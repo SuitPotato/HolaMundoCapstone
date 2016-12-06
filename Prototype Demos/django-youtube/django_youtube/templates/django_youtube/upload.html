@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+	<form action="{{ post_url }}?nexturl={{ next_url }}" method="post" enctype="multipart/form-data">
+	    {{ form.file }}
+	    {{ form.token.as_hidden }}
+	    <input value="{% trans "Upload video file" %}" type="submit" />
+	</form>
+{% endblock %}

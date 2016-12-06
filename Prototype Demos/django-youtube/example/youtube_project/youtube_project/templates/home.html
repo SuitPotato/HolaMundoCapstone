@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<ul>
+	<li><a href="{% url youtube_video_list %}">{% trans "List of videos" %}</li>
+	<li><a href="{% url youtube_upload %}">{% trans "Upload" %}</li>
+</ul>
+{% endblock %}
+
