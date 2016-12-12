@@ -1,0 +1,64 @@
+#################################################
+C1
+#################################################
+
+Host server through:
+...
+python manage.py runserver
+...
+
+For ease of use, go to the folder with the 
+manage.py file and in the explorer line type 'cmd'
+to go straight to it.
+
+#################################################
+C2
+#################################################
+
+Host server through:
+...
+python manage.py runserver
+...
+
+For ease of use, go to the folder with the 
+manage.py file and in the explorer line type 'cmd'
+to go straight to it.
+
+#################################################
+C3
+#################################################
+
+None.
+
+#################################################
+C4
+#################################################
+How to run angularjs Drag and Drop locally:
+
+1. Install Node.js is installed (windows)
+      - go to https://nodejs.org/en/download/
+      - To test
+            <br>* open command prompt and type node -v. will give version number
+            <br>* test NPM is installed by typing npm -v. will give version number
+            <br>* blog with detail on how to test it's all working -> http://blog.teamtreehouse.com/install-node-js-npm-windows
+2. Install a http-server
+       <br> - open command prompt
+       <br> - npm install -g http-server
+3. Run project  
+        - go to project folder and type http-server -o 
+		
+#################################################
+C5
+#################################################
+Create and populate a SQLite database:
+
+    ```
+    $ python manage.py migrate
+    $ python manage.py loaddata fixture.json
+    ```
+
+3. Start up a local webserver:
+
+    ```
+    $ python manage.py runserver
+    ```

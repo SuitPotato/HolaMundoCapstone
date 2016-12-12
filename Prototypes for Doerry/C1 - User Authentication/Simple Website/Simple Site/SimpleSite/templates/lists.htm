@@ -1,0 +1,73 @@
+{% extends 'base.htm' %}
+{% load bootstrap %}
+{% block headertitle %}Lists <a href=""><button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span></button></a>{% endblock %}
+{% block body %}
+<h3>Owned Lists</h3>
+{% for list in lists %}
+<div class="panel panel-default">
+<table class="table">
+<thead>
+ <tr class="active">
+ <th colspan=2><center>{{list.title}}</center></th>
+ <th><center><form id="form" action="../edit_list/{{list.id}}/" method="get">
+            {% csrf_token %}
+            <input class="btn btn-info btn-xs" type="submit" name="submit" value="Edit" />
+     </form></center></th>
+ <th><center><form id="form" action="../remove_list/{{list.id}}/" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger btn-xs" type="submit" name="submit" value="Remove" />
+     </form></center></th>
+
+ </tr>
+</thead>
+<tbody>
+<tr>
+ <th scope="row">Owner</th>
+ <td colspan=3>{{list.user}}</td>
+</tr>
+<tr>
+ <th scope="row">Items</th> 
+ <td colspan=3><a href="/../list_items/{{list.id}}/">Link</a></td>
+</tr>
+<tr>
+ <th scope="row">Users</th>
+ <td colspan=3><a href="../list_users/{{list.id}}/">Link</a></td>
+ </tr>
+</tbody>
+</table>
+</div>
+{% endfor %}
+
+
+<h3>Membered Lists</h3>
+
+
+
+{% for object in membered_lists %}
+<div class="panel panel-default">
+<table class="table">
+<thead>
+ <tr class="active">
+ <th colspan=2><center>{{object.list.title}}</center></th>
+ </tr>
+</thead>
+<tbody>
+<tr>
+ <th scope="row">Owner</th>
+ <td colspan=3>{{object.list.user}}</td>
+</tr>
+<tr>
+ <th scope="row">Items</th> 
+ <td colspan=3><a href="/../list_items/{{object.list.id}}/">Link</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+{% endfor %}
+
+<form id="form" action="../add_list/" method="post">
+            {% csrf_token %}
+            {{ form.title }}
+            <input class="btn btn-success" type="submit" name="submit" value="Add List" />
+</form>
+{% endblock %}

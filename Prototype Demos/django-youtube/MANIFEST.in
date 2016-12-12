@@ -1,2 +1,0 @@
-include setup.py README.md LICENSE.txt CHANGES.txt
-recursive-include django_youtube *.py *.html

@@ -1,0 +1,68 @@
+{% extends 'base.htm' %}
+{% load bootstrap %}
+{% block body %}
+<h3>Items in "{{list.title}}" <a href=""><button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span></button></a></h3>
+{% for bridge in bridges %}
+<div class="panel panel-default">
+<table class="table">
+<thead>
+ <tr class="active">
+ <th colspan=2><center>{{bridge.item.title}}</center></th>
+ <th><form id="form" action="/list_items/{{list.id}}/edit_item/{{bridge.item.id}}/" method="get">
+            {% csrf_token %}
+            <input class="btn btn-info btn-xs" type="submit" name="submit" value="Edit" />
+     </form></th>
+ <th>     <form id="form" action="/list_items/{{list.id}}/remove_item/{{bridge.id}}/" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger btn-xs" type="submit" name="submit" value="Remove" />
+     </form></th>
+
+ </tr>
+</thead>
+<tbody>
+ <tr>
+ <th scope="row">Quantity</th> 
+ <td colspan=3>{{bridge.item.quantity}}</td>
+</tr>
+<tr>
+ <th scope="row">Cost</th>
+ <td colspan=3>{{bridge.item.cost}}</td>
+ </tr> <tr>
+ <th scope="row">Urgency</th>
+ <td colspan=3>{{bridge.item.geturgency}}</td>
+ </tr>
+<tr>
+ <th scope="row">Category</th>
+ <td colspan=3>{{bridge.item.getcategory}}</td>
+ </tr>
+<tr>
+ <th scope="row">Assignee</th>
+ <td colspan=3>{{bridge.user}}</td>
+ </tr>
+</tbody>
+</table>  
+</div>
+{% endfor %}
+<div class="panel panel-default">
+<p>
+<form class="form-inline" id="addform" action="/list_items/{{list.id}}/add_item/" method="post">
+            {% csrf_token %}
+            {{ addform|bootstrap }}
+            <input class="btn btn-success" type="submit" name="submit" value="Add Item" />
+</form>
+</p>
+</div>
+
+<p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Create Item Form
+</button></p>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+<form id="createform" action="/../list_items/{{list.id}}/create_item/" method="post">
+            {% csrf_token %}
+            {{ createform|bootstrap }}
+            <input class="btn btn-success" type="submit" name="submit" value="Create Item" />
+</form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.htm' %}
+{% load bootstrap %}
+{% block body %}
+<h3>Users in "{{list.title}}"</h3>
+<table class="table">
+<thead>
+ <tr>
+ <th><center>Users</center></th>
+ <th><center>Remove</center></th>
+ </tr>
+</thead>
+<tbody>
+{% for bridge in bridges %}
+<tr>
+ <td>{{bridge.user.username}}</td>
+ <td><form id="form" action="/list/{{list.id}}/remove_user/{{bridge.id}}/" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit" name="submit" value="Remove" />
+     </form></td>
+</tr>  
+{% endfor %}
+</tbody>
+</table>
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Add User Form
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+<form id="form" action="/list/{{list.id}}/add_user/" method="post">
+            {% csrf_token %}
+            {{ form.user|bootstrap }}
+            <input class="btn btn-success" type="submit" name="submit" value="Add User" />
+</form>
+</div>
+{% endblock %}
