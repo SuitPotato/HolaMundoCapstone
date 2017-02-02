@@ -1,0 +1,27 @@
+header-404 {
+	text-align: center;
+	color: blue;
+	font-size: 300;
+	margin: 20px 0 20px 0;
+	padding: 70px 0;
+	border: 5px solid black;
+}
+
+body-404 {
+	text-align: center;
+	color: green;
+	font-size:50;
+	margin: 20px 0 20px 0;
+	padding: 70px;
+	border: 5px solid black;
+}
+
+p.red {
+	color: red;
+}
+p.large {
+	font-size: 300;
+}
+p.center {
+	text-align: center;
+}

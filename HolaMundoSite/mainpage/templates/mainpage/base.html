@@ -11,7 +11,7 @@
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-
+		
 	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
 	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
 	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
@@ -101,17 +101,11 @@
 				</div>
 				
 			</nav>
-			<div class="jumbotron">
-				<h2>
-					Hello, world!
-				</h2>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
-			</div>
+			
+			{% block content %}
+			
+			{% endblock %}
+			
 		</div>
 	</div>
 </div>
