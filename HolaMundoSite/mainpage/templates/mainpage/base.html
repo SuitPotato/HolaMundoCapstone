@@ -5,15 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 3, from LayoutIt!</title>
+    <title> {% block title %} {% endblock %}</title>
 	
 	{% load staticfiles %}
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 		
-	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
-	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
 	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
 	
     <link rel="stylesheet" href="{% static 'HolaMundoSite/css/bootstrap.min.css' %}" type = "text/css"/>
@@ -30,7 +28,7 @@
 					 
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-					</button> <a class="navbar-brand" href="#">Brand</a>
+					</button> <a class="navbar-brand" href="/">Hola Mundo</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -71,7 +69,7 @@
 							<input type="text" class="form-control">
 						</div> 
 						<button type="submit" class="btn btn-default">
-							Submit
+							Search
 						</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">

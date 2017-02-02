@@ -1,5 +1,8 @@
 {% extends "mainpage/base.html" %}
 
+{% block title %}
+{% endblock %}
+
 {% block content %}
 	<style>
 		body {font-family: "Lato", sans-serif;}
@@ -57,28 +60,34 @@
 		</div>
 
 		<div class="container">
-			<p>Extas</p>
+			<p>Extras</p>
 
-			<ul class="tab">
-			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'London')" id="defaultOpen">Tab 1</a></li>
-			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Paris')">Tab 2</a></li>
-			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tokyo')">Tab 3</a></li>
+			<ul class="tab" style="max-width: 635px;">
+			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">{% block tab1 %} {% endblock %}</a></li>
+			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab2')">{% block tab2 %} {% endblock %}</a></li>
+			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab3')">{% block tab3 %} {% endblock %}</a></li>
+			  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab4')">{% block tab4 %} {% endblock %}</a></li>
 			</ul>
 
-			<div id="London" class="tabcontent">
-			  <h3>Tab 1 info</h3>
-			  <p>A sentence.</p>
-			  <p>Some really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, really, long sentence. </p>
+			<div id="Tab1" class="tabcontent">
+			  <!--<h3>put block here</h3> -->
+			  <p> {% block tab1desc %} {% endblock %}</p>
 			</div>
 
-			<div id="Paris" class="tabcontent">
-			  <h3>Tab 2 info</h3>
-			  <p>Paris is the capital of France.</p>
+			<div id="Tab2" class="tabcontent">
+			  <!--<h3>put block here</h3> -->
+			  <!-- THIS LINE IS THE LYRICS EXAMPLE, SCROLLABLE TEXTBOX IN OUR TABPANE -->
+			  <div class="pre-scrollable" style="max-height: 510px;"> {% block tab2desc %} {% endblock %} </div>
 			</div>
 
-			<div id="Tokyo" class="tabcontent">
-			  <h3>Tab 3 info</h3>
-			  <p>Tokyo is the capital of Japan.</p>
+			<div id="Tab3" class="tabcontent">
+			  <!--<h3>put block here</h3> -->
+			  <p> {% block tab3desc %} {% endblock %}</p>
+			</div>
+			
+			<div id="Tab4" class="tabcontent">
+			  <!--<h3>put block here</h3> -->
+			  <p> {% block tab4desc %} {% endblock %}</p>
 			</div>
 		</div
 	</body>
