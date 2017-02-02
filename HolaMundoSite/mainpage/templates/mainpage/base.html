@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Bootstrap 3, from LayoutIt!</title>
+	
+	{% load staticfiles %}
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
+	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
+	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.css' %}" type = "text/css"/>
+	
+    <link rel="stylesheet" href="{% static 'HolaMundoSite/css/bootstrap.min.css' %}" type = "text/css"/>
+    <link rel="stylesheet" href="{% static 'HolaMundoSite/css/style.css' %}" type = "text/css"/>
 
   </head>
   <body>
@@ -109,9 +115,9 @@
 		</div>
 	</div>
 </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+	
+    <script src="{% static 'HolaMundoSite/js/jquery.min.js' %}"></script>
+    <script src="{% static 'HolaMundoSite/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'HolaMundoSite/js/scripts.js' %}"></script>
   </body>
 </html>
