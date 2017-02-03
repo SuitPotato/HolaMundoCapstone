@@ -1,0 +1,185 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+	<style>
+		body {font-family: "Lato", sans-serif;}
+
+		ul.tab {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+		}
+
+		/* Float the list items side by side */
+		ul.tab li {float: left;}
+
+		/* Style the links inside the list items */
+		ul.tab li a {
+			display: inline-block;
+			color: black;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			transition: 0.3s;
+			font-size: 17px;
+		}
+
+		/* Change background color of links on hover */
+		ul.tab li a:hover {
+			background-color: #ddd;
+		}
+
+		/* Create an active/current tablink class */
+		ul.tab li a:focus, .active {
+			background-color: #ccc;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			/* border: 1px solid #ccc; */
+			border-top: none;
+		}
+	</style>
+	
+	<body class="body" style="background-color:#ffffff">
+	
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6 content" style="float:left;min-width:600px; max-width:900px;">
+				
+					{% block video %}
+					
+					{% endblock %}
+					
+				</div>
+
+				<div class="col-sm-6 content" style="min-width:600px; max-width:900px;">
+					<p>Extras</p>
+
+					<ul class="tab" style="min-width: 300px;max-width:905px;">
+					  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">{% block tab1 %} {% endblock %}</a></li>
+					  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab2')">{% block tab2 %} {% endblock %}</a></li>
+					  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab3')">{% block tab3 %} {% endblock %}</a></li>
+					  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tab4')">{% block tab4 %} {% endblock %}</a></li>
+					</ul>
+
+					<div id="Tab1" class="tabcontent">
+					  <!--<h3>put block here</h3> -->
+					  <p> {% block tab1desc %} {% endblock %}</p>
+					</div>
+
+					<div id="Tab2" class="tabcontent">
+					  <!--<h3>put block here</h3> -->
+					  <!-- THIS LINE IS THE LYRICS EXAMPLE, SCROLLABLE TEXTBOX IN OUR TABPANE -->
+					  <div class="pre-scrollable" style="max-height: 440px;"> {% block tab2desc %} {% endblock %} </div>
+					</div>
+
+					<div id="Tab3" class="tabcontent">
+					  <!--<h3>put block here</h3> -->
+					  <p> {% block tab3desc %} {% endblock %}</p>
+					</div>
+					
+					<div id="Tab4" class="tabcontent">
+					  <!--<h3>put block here</h3> -->
+					  <p> {% block tab4desc %} {% endblock %}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row center-block" style="margin-top: 20px;">
+				<div class="col-sm-2 col-md-2" style="min-width:150px; max-width:350px;">
+					<div class="panel panel-default">
+						<div class="panel-header" style="text-align: center;">
+							{{title}}
+						</div>
+						<div class="panel-body"> 
+							<div style="position:relative;height:0;padding-bottom:75.06%"><iframe src="https://www.youtube.com/embed/{{video}}" style="position:absolute;width:100%;height:100%;left:0" width="120" height="90" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 col-md-2" style="min-width:150px; max-width:350px;">
+					<div class="panel panel-default">
+						<div class="panel-header" style="text-align: center;">
+							{{title}}
+						</div>
+						<div class="panel-body"> 
+							<div style="position:relative;height:0;padding-bottom:75.06%"><iframe src="https://www.youtube.com/embed/{{video}}" style="position:absolute;width:100%;height:100%;left:0" width="120" height="90" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 col-md-2" style="min-width:150px; max-width:350px;">
+					<div class="panel panel-default">
+						<div class="panel-header" style="text-align: center;">
+							{{title}}
+						</div>
+						<div class="panel-body"> 
+							<div style="position:relative;height:0;padding-bottom:75.06%"><iframe src="https://www.youtube.com/embed/{{video}}" style="position:absolute;width:100%;height:100%;left:0" width="120" height="90" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 col-md-2" style="min-width:150px; max-width:350px;">
+					<div class="panel panel-default">
+						<div class="panel-header" style="text-align: center;">
+							{{title}}
+						</div>
+						<div class="panel-body"> 
+							<div style="position:relative;height:0;padding-bottom:75.06%"><iframe src="https://www.youtube.com/embed/{{video}}" style="position:absolute;width:100%;height:100%;left:0" width="120" height="90" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 col-md-2" style="min-width:150px; max-width:350px;">
+					<div class="panel panel-default">
+						<div class="panel-header" style="text-align: center;">
+							{{title}}
+						</div>
+						<div class="panel-body"> 
+							<div style="position:relative;height:0;padding-bottom:75.06%"><iframe src="https://www.youtube.com/embed/{{video}}" style="position:absolute;width:100%;height:100%;left:0" width="120" height="90" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 col-md-2" style="min-width:150px; max-width:350px;">
+					<div class="panel panel-default">
+						<div class="panel-header" style="text-align: center;">
+							{{title}}
+						</div>
+						<div class="panel-body"> 
+							<div style="position:relative;height:0;padding-bottom:75.06%"><iframe src="https://www.youtube.com/embed/{{video}}" style="position:absolute;width:100%;height:100%;left:0" width="120" height="90" frameborder="0" allowfullscreen></iframe></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	<script>
+		function openTab(evt, tabName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
+	
+	
+
+{% endblock %}
