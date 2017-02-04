@@ -11,10 +11,11 @@
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-		
-	<link rel="stylesheet" href="{% static 'HolaMundoSite/css/bootstrap.css' %}" type = "text/css"/>
-    <link rel="stylesheet" href="{% static 'HolaMundoSite/css/bootstrap.min.css' %}" type = "text/css"/>
-    <link rel="stylesheet" href="{% static 'HolaMundoSite/css/style.css' %}" type = "text/css"/>
+	
+	<link rel="stylesheet" href="{% static 'mainpage/css/bootstrap.css' %}" type = "text/css"/>
+    <link rel="stylesheet" href="{% static 'mainpage/css/bootstrap.min.css' %}" type = "text/css"/>
+    <link rel="stylesheet" href="{% static 'mainpage/css/style.css' %}" type = "text/css"/>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
   </head>
   <body>
@@ -34,9 +35,6 @@
 					<ul class="nav navbar-nav">
 						<li class="active">
 							<a href="/login/">Login</a>
-						</li>
-						<li>
-							<a href="#">Link</a>
 						</li>
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -73,8 +71,8 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="#">Link</a>
-						</li>
+							<a href="#login-overlay" data-toggle="modal">Login(Modal)</a>
+						</li>	
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
@@ -106,9 +104,62 @@
 		</div>
 	</div>
 </div>
-	
-    <script src="{% static 'HolaMundoSite/js/jquery.min.js' %}"></script>
-    <script src="{% static 'HolaMundoSite/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'HolaMundoSite/js/scripts.js' %}"></script>
-  </body>
+</body>
+    <script src="{% static 'mainpage/js/jquery.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/scripts.js' %}"></script>
+  
+  
+  <!-- MODAL CODE HERE -->
+      <div id="login-overlay" class="modal fade">
+	  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel" style="text-align:center;"> Hola Mundo</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-6">
+                      <div class="well">
+                          <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                              <div class="form-group">
+                                  <label for="username" class="control-label">Username</label>
+                                  <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="email">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password" class="control-label">Password</label>
+                                  <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password" placeholder="password">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember me
+                                  </label>
+                              </div>
+                              <button type="submit" class="btn btn-success btn-block">Log in</button>
+							  <!-- IF WE WANT A "FORGOT PASSWORD" button -->
+                              <!--<a href="/forgot/" class="btn btn-default btn-block">Help to login</a> -->
+                          </form>
+                      </div>
+                  </div>
+                  <div class="col-xs-6">
+                      <p class="lead">No account? Sign up <span class="text-success">NOW</span></p>
+                      <ul class="list-unstyled" style="line-height: 2">
+                          <li><span class="fa fa-check text-success"></span> Track your videos</li>
+                          <li><span class="fa fa-check text-success"></span> Keep track of progress</li>
+                          <li><span class="fa fa-check text-success"></span> Videos suggested to you</li>
+                          <li><span class="fa fa-check text-success"></span> Email updates</li>
+                          <li><span class="fa fa-check text-success"></span> Blah Blah blah</li>
+                          <!--<li><a href="/read-more/"><u>Read more</u></a></li> -->
+                      </ul>
+                      <p><a href="/new-customer/" class="btn btn-info btn-block">Sign up</a></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+	</div>
+  </div>
 </html>
