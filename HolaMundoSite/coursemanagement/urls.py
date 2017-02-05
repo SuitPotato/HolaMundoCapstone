@@ -19,5 +19,5 @@ from . import views
 
 urlpatterns = [
     url(r'^manage/$', views.manage),
-	url(r'^createcourse/$', views.makecourseform)
+	url(r'^createcourse', views.course)
 ]

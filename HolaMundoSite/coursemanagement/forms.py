@@ -10,7 +10,7 @@ from coursemanagement.models import Videos
 #class CourseForm(forms.Form):
 
 
-class CourseForm(ModelForm):
+class CourseForm(forms.Form):
 	# Meta Class
 	class Meta:
 		# Based off of the model
