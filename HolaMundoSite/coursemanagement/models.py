@@ -59,7 +59,7 @@ class Videos(models.Model):
 	)
 	
 	link = models.CharField(max_length = 15)
-	tabs = models.CharField(choices = NUM_TABS)
+	tabs = models.CharField(max_length = 5, choices = NUM_TABS)
 	
 	# Hide the tabs that will not be used in the template/views
 	tab1desc = models.TextField(max_length = 2000, default = "Tab 1 Description")
