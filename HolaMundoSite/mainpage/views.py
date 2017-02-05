@@ -8,3 +8,6 @@ def index(request):
 	
 def login(request):
 	return render(request, 'mainpage/login.html')
+
+def drag(request):
+	return render(request, 'mainpage/DragDemo.html')
