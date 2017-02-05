@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 from django.db import models
 
 # Create your models here.
@@ -37,21 +36,39 @@ from django.db import models
 # To reference a model from another app:
 #	models.foreignkey(appname.modelname)
 class Course(models.Model):
-	course_title = models.CharField(max_length = 140)
-	course_id = models.AutoField(primary_key = True)
+	#course_title = models.CharField(max_length = 140)
+	#course_id = models.AutoField(primary_key = True)
 	
 	pass
 	#def __str__(self):
 	
 	
 class Videos(models.Model):
-	#title = models.CharField(max_length = 140)
-	#youtube = models.CharField(max_length = 100)
-	# Tab (1-4)
-	# Tab Description (1-4)
 	# Next
 	# Prev
-	pass
+	title = models.CharField(max_length = 140)
+	youtube = models.CharField(max_length = 100)
+	
+	NUM_TABS = (
+	('ONE', '1'),
+	('TWO', '2'),
+	('THREE','3'),
+	('FOUR', '4'),
+	('FIVE','5'),
+	('SIX','6'),
+	)
+	
+	link = models.CharField(max_length = 15)
+	tabs = models.CharField(choices = NUM_TABS)
+	
+	# Hide the tabs that will not be used in the template/views
+	tab1desc = models.TextField(max_length = 2000, default = "Tab 1 Description")
+	tab2desc = models.TextField(max_length = 2000, default = "Tab 2 Description")
+	tab3desc = models.TextField(max_length = 2000, default = "Tab 3 Description")
+	tab4desc = models.TextField(max_length = 2000, default = "Tab 4 Description")
+	tab5desc = models.TextField(max_length = 2000, default = "Tab 5 Description")
+	tab6desc = models.TextField(max_length = 2000, default = "Tab 6 Description")
+	
 	
 class Series(models.Model):
 	#series_id = models.AutoField(primary_key = True)
