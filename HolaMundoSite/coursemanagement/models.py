@@ -35,11 +35,11 @@ from django.db import models
 
 # To reference a model from another app:
 #	models.foreignkey(appname.modelname)
-class Course(models.Model):
+#class Course(models.Model):
 	#course_title = models.CharField(max_length = 140)
 	#course_id = models.AutoField(primary_key = True)
 	
-	pass
+#	pass
 	#def __str__(self):
 	
 	
@@ -59,7 +59,7 @@ class Videos(models.Model):
 	)
 	
 	link = models.CharField(max_length = 15)
-	tabs = models.CharField(max_length = 5, choices = NUM_TABS)
+	tabs = models.CharField(max_length = 5, choices = NUM_TABS, default="1")
 	
 	# Hide the tabs that will not be used in the template/views
 	tab1desc = models.TextField(max_length = 2000, default = "Tab 1 Description")
@@ -69,8 +69,10 @@ class Videos(models.Model):
 	tab5desc = models.TextField(max_length = 2000, default = "Tab 5 Description")
 	tab6desc = models.TextField(max_length = 2000, default = "Tab 6 Description")
 	
-	
-class Series(models.Model):
+	def __str__(self):
+		return self.title
+		
+#class Series(models.Model):
 	#series_id = models.AutoField(primary_key = True)
-	pass
+#	pass
 	
