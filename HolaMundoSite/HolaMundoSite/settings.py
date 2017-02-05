@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'mainpage',
     'Video_page',
+	'coursemanagement',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
