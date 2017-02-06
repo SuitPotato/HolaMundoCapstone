@@ -11,3 +11,6 @@ def login(request):
 
 def drag(request):
 	return render(request, 'mainpage/DragDemo.html')
+	
+def results(request):
+	return render(request, 'mainpage/results.html')
