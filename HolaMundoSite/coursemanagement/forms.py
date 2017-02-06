@@ -39,4 +39,3 @@ class CourseForm(forms.Form):
 	tab4desc = forms.CharField(max_length = 2000, strip = True)
 	tab5desc = forms.CharField(max_length = 2000, strip = True)
 	tab6desc = forms.CharField(max_length = 2000, strip = True)
-	
