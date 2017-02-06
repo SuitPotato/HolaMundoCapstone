@@ -15,6 +15,9 @@ from coursemanagement.forms import CourseForm
 def manage(request):
 	return render(request, 'coursemanagement/manage.html')
 	
+def success(request):
+	return render(request, 'coursemanagement/success.html')
+	
 def course(request):
 
 	if request.method == 'POST':
@@ -35,12 +38,11 @@ def course(request):
 			v.tab6desc = form.cleaned_data["tab6desc"]
 			# Must save the instantiated variables afterwards
 			v.save()
-			return HttpResponseRedirect("/test")
 			
-			
+			# Make sure HttpResponseRedirect has a view and URL
+			return HttpResponseRedirect('/success/')
 	elif request.method == 'GET':
 		form = CourseForm()
 	else:
-		return HttpResponseRedirect("/404/")
-		
-	return render(request, "coursemanagement/createcourse.html", {"form":form})
+		form = CourseForm()
+	return render(request, "coursemanagement/courseform.html", {"form":form})
