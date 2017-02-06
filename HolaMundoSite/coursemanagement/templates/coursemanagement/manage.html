@@ -1,15 +1,46 @@
 {% extends "../mainpage/base.html" %}
 
 {% block content %}
-	<div class="jumbotron">
-		<h2>
-			Testing World!
-		</h2>
-		<p>
-			Testing a Django 1.10 feature of extension!
-		</p>
-		<p>
-			<a class="btn btn-primary btn-large" href="#">Wahoo!</a>
-		</p>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-4">
+					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
+				</div>
+				<div class="col-md-4">
+					<h3>
+						h3. Lorem ipsum dolor sit amet.
+					</h3>
+				</div>
+				<div class="col-md-4">
+					<div class="btn-group">
+						 
+						<button class="btn btn-default">
+							Action
+						</button> 
+						<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">Action</a>
+							</li>
+							<li class="disabled">
+								<a href="#">Another action</a>
+							</li>
+							<li class="divider">
+							</li>
+							<li>
+								<a href="#">Something else here</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+		</div>
 	</div>
+</div>
 {% endblock %}
