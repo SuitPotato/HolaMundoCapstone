@@ -15,6 +15,7 @@
 .video-line {
 	margin-bottom: 10px;
 	margin-top: 10px;
+	min-height: 160px;
 }
 </style>
 <div class="container-fluid">
@@ -34,6 +35,16 @@
 		<div class="col-md-2">
 		</div>
 	</div>
+	<!-- 
+	
+	{% for foo in foo_list %}
+		<li>{{ foo.non_db_property }}</li>
+	{% endfor %}
+	
+	-->
+	
+	{% for video in videos %}
+		
 	<div class="row">
 		<div class="col-md-2">
 		</div>
@@ -44,10 +55,10 @@
 				</div>
 				<div class="col-md-9">
 					<h2>
-						Heading
+						{{video.title}}
 					</h2>
 					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+						{{video.tab1desc}}
 					</p>
 					<p>
 						<a class="btn" href="#">View details »</a>
@@ -58,389 +69,8 @@
 		<div class="col-md-2">
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail right" />
-				</div>
-				<div class="col-md-9">
-					<h2>
-						Heading
-					</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
+	
+	{% endfor %}
+	
 </div>
 {% endblock %}
