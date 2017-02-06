@@ -1,0 +1,53 @@
+{% extends "../mainpage/base.html" %}
+
+
+
+{% block titleBlock %} Course Form {% endblock %}
+{% block content %}
+<form action="" method = "POST">
+    {% csrf_token %}
+	<h1 align="center" style="color: #000000;"> Develop a Course</h1>
+	
+	<br></br>
+	<h2 align="center">Enter the appropriate text to the fields.</h2>
+	
+	<br></br>
+
+	<h3 align="center"> Please fill out the information below, thank you.</h3>
+
+	<br></br>
+	
+	<p align="center"> Course Title: </p>
+    <p align="center">{{form.title}}</p>
+	
+	<p align="center"> Youtube Url: </p>
+    <p align="center">{{form.youtube}}</p>
+	
+	<p align="center"> Link Url: </p>
+    <p align="center">{{form.link}}</p>
+	
+	<p align="center"> Number of Tabs: </p>
+	<p align="center">{{form.tabs}}</p>
+	
+	<p align="center"> Tab One Description: </p>
+	<p align="center">{{form.tab1desc}}</p>
+	
+	<p align="center"> Tab Two Description: </p>
+	<p align="center">{{form.tab2desc}}</p>
+	
+	<p align="center"> Tab Three Description: </p>
+	<p align="center">{{form.tab3desc}}</p>
+	
+	<p align="center"> Tab Four Description: </p>
+	<p align="center">{{form.tab4desc}}</p>
+	
+	<p align="center"> Tab Five Description: </p>
+	<p align="center">{{form.tab5desc}}</p>
+	
+	<p align="center"> Tab Six Description: </p>
+	<p align="center">{{form.tab6desc}}</p>
+
+    <CENTER><input type="submit" value = "Submit"/></CENTER>
+</form>
+{% endblock %}
+
