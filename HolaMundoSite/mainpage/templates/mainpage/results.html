@@ -53,17 +53,14 @@
 		<div class="col-md-8">
 			<div class="row video-line">
 				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right" />
+					<a href="/video/{{video.link}}"> <img alt="Bootstrap Image Preview"  src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right" /> </a>
 				</div>
 				<div class="col-md-9">
 					<h2>
-						{{video.title}}
+						<a href="/video/{{video.link}}"> {{video.title}} </a>
 					</h2>
 					<p>
 						{{video.tab1desc}}
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
 					</p>
 				</div>
 			</div>
