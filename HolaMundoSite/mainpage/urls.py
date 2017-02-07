@@ -18,7 +18,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index),
-	url(r'^login/$', views.login),
 	url(r'^DragDemo/$', views.drag),
-	url(r'^results/$', views.results)
+	url(r'^results/$', views.results),
+	url(r'^loginview/$', views.loginview),
+	url(r'^adduser', views.lexusadduser)
 ]
