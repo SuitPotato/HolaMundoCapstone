@@ -3,30 +3,45 @@
 {% block content %}
 
 {% load staticfiles %}
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
 				<div class="row">
+
 					<div class="col-md-3">
 					</div>
+
 					<div class="col-md-6">
-						<center><h1>Hola Mundo </center><center><p></p></h1><h1><small>For Authentic Spanish Language and Pedagogy</small> </h1></center>
+						<h1 style="text-align: center;">Hola Mundo <p></p></h1><h1 style="text-align: center;"><small>For Authentic Spanish Language and Pedagogy</small> </h1>
 					</div>
+
 					<div class="col-md-3">
 					</div>
+
 				</div>
 			</div>
+
+			{% comment %}
+
 			<div class="row ">
+
 				<div class="col-md-3">
 				</div>
+
 				<div class="col-md-6">
 					<img src="{% static 'mainpage/img/thumbs/home-aslap.png' %}" alt="Home-Aslap" class="img-responsive center-block" >
 				</div>
+
 				<div class="col-md-3">
 				</div>
+
 			</div>
-			<div class="jumbotron" style="margin-top: 15px;">
+
+			{% endcomment %}
+
+			{% comment %}<div class="jumbotron" style="margin-top: 15px;">
 				<h2>
 					What do we do?
 				</h2>
@@ -41,7 +56,8 @@
 				</p>
 				-->
 				
-			</div>
+			</div>{% endcomment %}
+
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="text-center text-success">
@@ -59,7 +75,7 @@
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 									</p>
 									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+										<a class="btn btn-primary" href="/results/">Take me to Beginner videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
 									</p>
 								</div>
 							</div>
@@ -75,7 +91,7 @@
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 									</p>
 									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+										<a class="btn btn-primary" href="/results/">Take me to Intermediate videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
 									</p>
 								</div>
 							</div>
@@ -91,23 +107,17 @@
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 									</p>
 									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+										<a class="btn btn-primary" href="/results/">Take me to Advanced videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
 									</p>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							 
 							<address>
-								 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
-							</address>
-						</div>
-						<div class="col-md-6">
-							 
-							<address>
-								 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
+								 <strong>Hola Mundo</strong><br> S San Francisco St<br> Flagstaff, AZ 86001<br> <abbr title="Email">Email:</abbr> Karen.Schairer@nau.edu
 							</address>
 						</div>
 					</div>
