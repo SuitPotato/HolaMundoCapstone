@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -28,7 +28,9 @@ def lexusadduser(request):
 			new_user = User.objects.create_user(**form.cleaned_data)
 			login(new_user)
 			# Redirect, or however we want to return back to the main view
-			return HttpResponseRedirect('/index/')
+			
+			# HttpResponse is based off of URL Response, not Views
+			return HttpResponseRedirect('/loginview/')
 	else:
 		form = UserForm()
 	return render(request, 'mainpage/adduser.html', {'form':form})
