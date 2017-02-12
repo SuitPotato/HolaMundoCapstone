@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -34,3 +34,16 @@ def lexusadduser(request):
 	else:
 		form = UserForm()
 	return render(request, 'mainpage/adduser.html', {'form':form})
+	
+def login(request):
+	username = request.POST['username']
+	password = request.POST['password']
+	user = authenticate(username = username, password = password)
+	if user is not None:
+		login(request, user)
+	else:
+		return HttpResponseRedirect('/loginview/')
+
+def logout(request):
+	logout(request)
+	return HttpResponseRedirect('/loginview/')
