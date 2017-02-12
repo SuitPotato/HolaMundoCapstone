@@ -55,9 +55,16 @@
 								</li>
 								<li class="divider">
 								</li>
+								{% if user.is_authenticated %}
 								<li>
-									<a href="#">One more separated link</a>
+									<a href="/logout/">Logout {{ user.username }}</a>
 								</li>
+								{% else %}
+								<li>
+									<a href="/login/">Login</a>
+								</li>
+								{% endif %}
+								
 							</ul>
 						</li>
 					</ul>
