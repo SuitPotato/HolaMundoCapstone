@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'mainpage',
+    'UserSettingsPage',
     'Video_page',
     'coursemanagement',
     'youtube',
