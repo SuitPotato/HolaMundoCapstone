@@ -37,13 +37,16 @@
 		<div class="col-md-2">
 		</div>
 	</div>
-	<!-- 
+
 	
+    {% comment %}
+
 	{% for foo in foo_list %}
 		<li>{{ foo.non_db_property }}</li>
 	{% endfor %}
-	
-	-->
+
+	{% endcomment %}
+
 	
 	{% for video in videos %}
 		
@@ -56,9 +59,9 @@
 					<a href="/video/{{video.link}}"> <img alt="Bootstrap Image Preview"  src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right" /> </a>
 				</div>
 				<div class="col-md-9">
-					<h2>
+					<h3>
 						<a href="/video/{{video.link}}"> {{video.title}} </a>
-					</h2>
+					</h3>
 					<p>
 						{{video.tab1desc}}
 					</p>
