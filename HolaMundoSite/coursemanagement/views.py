@@ -5,8 +5,8 @@ from django import forms
 from django.db import models
 
 # Course Management App Imports
-from coursemanagement.models import Videos
-from coursemanagement.forms import CourseForm
+from coursemanagement.models import Lesson
+from coursemanagement.forms import LessonForm
 
 
 # Create your views here.
@@ -25,7 +25,7 @@ def course(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             # Instantiate the class Course from Models
-            v = Videos()
+            v = Lesson()
             v.title = form.cleaned_data["title"]
             v.link = form.cleaned_data["link"]
             v.youtube = form.cleaned_data["youtube"]
