@@ -42,8 +42,10 @@ def login(request):
 	if user is not None:
 		login(request, user)
 	else:
+		# Change from LoginView to the acutal Login Page later
 		return HttpResponseRedirect('/loginview/')
 
 def logout(request):
 	logout(request)
+	# Change from LoginView to the acutal Login Page later
 	return HttpResponseRedirect('/loginview/')
