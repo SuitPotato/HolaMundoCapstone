@@ -1,30 +1,12 @@
-{% extends "mainpage/base.html" %}
+{% extends "../mainpage/base.html" %}
+
+{% block title %}Login{% endblock %}
 
 {% block content %}
-
-{% load staticfiles %}
-<div class="jumbotron" style="margin-top: 15px;">
-<body>
-<form action="/auth/" method="POST"> {% csrf_token %}
-    <div data-role="fieldcontain">
-        <label for="email">Email:</label><input type="email" name="email" id="email" value="" />
-    </div>
-    <div data-role="fieldcontain">
-        <label for="password">Password:</label><input type="password" name="password" id="password" value="" />
-    </div>    
-    <button type="submit" name="submit" value="submit-value">Sign in</button>
-</form>
-<body>
-<form action="/signup/" method="POST"> {% csrf_token %}
-    <div data-role="fieldcontain">
-        <label for="email">Email:</label><input type="email" name="email" id="email" value="" />
-    </div>
-    <div data-role="fieldcontain">
-        <label for="password">Password:</label><input type="password" name="password" id="password" value="" />
-    </div>    
-    <button type="submit" name="submit" value="submit-value">Sign up</button>
-</form>
-</body>
-</div>
-
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
 {% endblock %}
