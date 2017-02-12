@@ -58,6 +58,12 @@
 								<li>
 									<a href="#">One more separated link</a>
 								</li>
+								
+								{% if user.is_authenticated %}
+								<li>
+									<p>Welcome {{ user.username }} !!!</p>   
+								</li>
+								{% endif %}
 							</ul>
 						</li>
 					</ul>
