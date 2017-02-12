@@ -1,9 +1,11 @@
 {% extends "../mainpage/base.html" %}
 {% block content %}
 {% load staticfiles %}
+
 <form method="post" action="">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Create new user account" />
 </form>
+
 {% endblock %}
