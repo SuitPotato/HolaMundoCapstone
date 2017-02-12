@@ -1,0 +1,129 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<div class="row">
+
+					<div class="col-md-3">
+					</div>
+
+					<div class="col-md-6">
+						<h1 style='text-align: center; font-family: "Times New Roman", Times, serif; '>Hola Mundo <p></p></h1><h1 style="text-align: center;"><small>For Authentic Spanish Language and Pedagogy</small> </h1>
+					</div>
+
+					<div class="col-md-3">
+					</div>
+
+				</div>
+			</div>
+
+			{% comment %}
+
+			<div class="row ">
+
+				<div class="col-md-3">
+				</div>
+
+				<div class="col-md-6">
+					<img src="{% static 'mainpage/img/thumbs/home-aslap.png' %}" alt="Home-Aslap" class="img-responsive center-block" >
+				</div>
+
+				<div class="col-md-3">
+				</div>
+
+			</div>
+
+			{% endcomment %}
+
+			{% comment %}<div class="jumbotron" style="margin-top: 15px;">
+				<h2>
+					What do we do?
+				</h2>
+				<p>
+					Here at Hola Mundo, we have the largest collection of Authentic Spanish videos from around the world. This is Dr. Schairer's personal collection
+					of videos gathered over multiple decades. We have many different dialects from many different countries, to make sure you get an Authentic Spanish learning experience.
+				</p>
+				
+				<!--
+				<p>
+					<a class="btn btn-primary btn-large" href="#">Learn more</a>
+				</p>
+				-->
+				
+			</div>{% endcomment %}
+
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-success">
+						3 Difficulty levels - <small> To fine tune your learning experience </small>
+					</h3>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="thumbnail">
+								<img src="{% static 'mainpage/img/thumbs/beginner.jpg' %}" alt="beginner" class="img-responsive center-block" >
+								<div class="caption">
+									<h3>
+										Beginner
+									</h3>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+									<p>
+										<a class="btn btn-primary" href="/results/">Take me to Beginner videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="thumbnail">
+								<img src="{% static 'mainpage/img/thumbs/intermediate.jpg' %}" alt="Intermediate" class="img-responsive center-block" >
+								<div class="caption">
+									<h3>
+										Intermediate
+									</h3>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+									<p>
+										<a class="btn btn-primary" href="/results/">Take me to Intermediate videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="thumbnail">
+								<img src="{% static 'mainpage/img/thumbs/advanced.jpg' %}" alt="Advanced" class="img-responsive center-block" >
+								<div class="caption">
+									<h3>
+										Advanced
+									</h3>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+									<p>
+										<a class="btn btn-primary" href="/results/">Take me to Advanced videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							 
+							<address>
+								 <strong>Hola Mundo</strong><br> S San Francisco St<br> Flagstaff, AZ 86001<br> <abbr title="Email">Email:</abbr> Karen.Schairer@nau.edu
+							</address>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
