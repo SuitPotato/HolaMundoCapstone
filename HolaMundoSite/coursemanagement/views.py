@@ -18,11 +18,10 @@ def manage(request):
 def success(request):
     return render(request, 'coursemanagement/success.html')
 
-
-def course(request):
+def lesson(request):
     if request.method == 'POST':
         # form is a variable that contains the courseform
-        form = CourseForm(request.POST)
+        form = LessonForm(request.POST)
         if form.is_valid():
             # Instantiate the class Course from Models
             v = Lesson()
@@ -42,7 +41,7 @@ def course(request):
             # Make sure HttpResponseRedirect has a view and URL
             return HttpResponseRedirect('/success/')
     elif request.method == 'GET':
-        form = CourseForm()
+        form = LessonForm()
     else:
-        form = CourseForm()
+        form = LessonForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})
