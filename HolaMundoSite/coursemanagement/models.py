@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 
+
 # Required for importing User for Author 
 from django.contrib.auth.models import User
 
@@ -47,17 +48,18 @@ from django.contrib.auth.models import User
 	#def __str__(self):
 
 
-	
+# Courses can be assigned or be separate
 class Lesson(models.Model):
 	# Next
 	# Prev
 	lessonID = models.AutoField(primary_key = True)
+	assignedCourse = models.ForeignKey('coursemanagement.Course', on_delete=models.CASCADE,related_name='assigned_course',null = True, blank = True)
 	title = models.CharField(max_length = 140)
 	youtube = models.CharField(max_length = 100)
 	author = models.ForeignKey(User, null=False, blank=False)
+	
+	# Increment or decrement when moving to the next or previous orders. Can give order to quizzes as well.
 	order = models.PositiveSmallIntegerField(null=False, blank=False, default = 1)
-	next = models.ForeignKey('self', on_delete=models.CASCADE, related_name='next_lesson', null = True, default = False)
-	prev = models.ForeignKey('self', on_delete=models.CASCADE, related_name='previous_lesson', null = True, default = False)
 	
 	NUM_TABS = (
 	('ONE', '1'),
@@ -87,7 +89,7 @@ class Course(models.Model):
 	title = models.CharField(max_length = 100)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add = True)
-	lesson = models.ManyToManyField(Lesson)
+	lesson = models.ManyToManyField(Lesson, null=True, blank=True)
 	#quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 	
 	
