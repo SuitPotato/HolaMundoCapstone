@@ -5,16 +5,16 @@ from django.http import HttpResponseRedirect
 from django.forms import ModelForm
 
 # Course Management Imports
-from coursemanagement.models import Videos
+from coursemanagement.models import Lesson
 
 #class CourseForm(forms.Form):
 
 
-class CourseForm(forms.Form):
+class LessonForm(forms.Form):
 	# Meta Class
 	class Meta:
 		# Based off of the model
-		model = Videos
+		model = Lesson
 		fields = ['title', 'youtube', 'link', 'tabs', 'tab1desc', 'tab2desc', 
 			'tab3desc', 'tab4desc', 'tab5desc', 'tab6desc']
 			

@@ -19,6 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'^manage/$', views.manage),
-	url(r'^createcourse', views.course),
+	url(r'^createlesson', views.lesson),
 	url(r'^success', views.success)
 ]

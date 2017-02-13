@@ -1,5 +1,6 @@
 from django.contrib import admin
-from coursemanagement.models import Videos
+from coursemanagement.models import Lesson, Course
 
 # Register your models here.
-admin.site.register(Videos)
+admin.site.register(Lesson)
+admin.site.register(Course)

@@ -5,8 +5,8 @@ from django import forms
 from django.db import models
 
 # Course Management App Imports
-from coursemanagement.models import Videos
-from coursemanagement.forms import CourseForm
+from coursemanagement.models import Lesson
+from coursemanagement.forms import LessonForm
 
 
 # Create your views here.
@@ -18,14 +18,13 @@ def manage(request):
 def success(request):
     return render(request, 'coursemanagement/success.html')
 
-
-def course(request):
+def lesson(request):
     if request.method == 'POST':
         # form is a variable that contains the courseform
-        form = CourseForm(request.POST)
+        form = LessonForm(request.POST)
         if form.is_valid():
             # Instantiate the class Course from Models
-            v = Videos()
+            v = Lesson()
             v.title = form.cleaned_data["title"]
             v.link = form.cleaned_data["link"]
             v.youtube = form.cleaned_data["youtube"]
@@ -42,7 +41,7 @@ def course(request):
             # Make sure HttpResponseRedirect has a view and URL
             return HttpResponseRedirect('/success/')
     elif request.method == 'GET':
-        form = CourseForm()
+        form = LessonForm()
     else:
-        form = CourseForm()
+        form = LessonForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})

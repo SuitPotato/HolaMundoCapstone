@@ -1,6 +1,10 @@
 from __future__ import unicode_literals
 from django.db import models
 
+# Required for importing User for Author 
+from django.contrib.auth.models import User
+
+
 # Create your models here.
 # Potentially hard code the next and previous keys
 # ##############################################################
@@ -41,13 +45,19 @@ from django.db import models
 	
 #	pass
 	#def __str__(self):
+
+
 	
-	
-class Videos(models.Model):
+class Lesson(models.Model):
 	# Next
 	# Prev
+	lessonID = models.AutoField(primary_key = True)
 	title = models.CharField(max_length = 140)
 	youtube = models.CharField(max_length = 100)
+	author = models.ForeignKey(User, null=False, blank=False)
+	order = models.PositiveSmallIntegerField(null=False, blank=False, default = 1)
+	next = models.ForeignKey('self', on_delete=models.CASCADE, related_name='next_lesson', null = True, default = False)
+	prev = models.ForeignKey('self', on_delete=models.CASCADE, related_name='previous_lesson', null = True, default = False)
 	
 	NUM_TABS = (
 	('ONE', '1'),
@@ -68,6 +78,19 @@ class Videos(models.Model):
 	tab4desc = models.TextField(max_length = 2000, default = "Tab 4 Description")
 	tab5desc = models.TextField(max_length = 2000, default = "Tab 5 Description")
 	tab6desc = models.TextField(max_length = 2000, default = "Tab 6 Description")
+	
+	def __str__(self):
+		return self.title
+		
+class Course(models.Model):
+	courseID = models.AutoField(primary_key = True)
+	title = models.CharField(max_length = 100)
+	author = models.ForeignKey(User, null=False, blank=False)
+	date = models.DateField(auto_now_add = True)
+	lesson = models.ManyToManyField(Lesson)
+	#quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+	
+	
 	
 	def __str__(self):
 		return self.title
