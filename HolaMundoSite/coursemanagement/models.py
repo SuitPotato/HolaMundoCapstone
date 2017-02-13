@@ -1,6 +1,10 @@
 from __future__ import unicode_literals
 from django.db import models
 
+# Required for importing User for Author 
+from django.contrib.auth.models import User
+
+
 # Create your models here.
 # Potentially hard code the next and previous keys
 # ##############################################################
@@ -43,11 +47,12 @@ from django.db import models
 	#def __str__(self):
 	
 	
-class Videos(models.Model):
+class Lesson(models.Model):
 	# Next
 	# Prev
 	title = models.CharField(max_length = 140)
 	youtube = models.CharField(max_length = 100)
+	author = models.ForeignKey(User, null=False, blank=False)
 	
 	NUM_TABS = (
 	('ONE', '1'),
