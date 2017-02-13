@@ -89,9 +89,12 @@
 						<li class="dropdown" style="margin-right: 20px;">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
 							<ul class="dropdown-menu" >
+								{% if user.is_authenticated %}
 								<li>
-									<a href="#">Action</a>
+									<a href="/youtube/">Upload a video</a>
 								</li>
+								{% else %}
+								{% endif %}
 								<li>
 									<a href="#">Another action</a>
 								</li>
