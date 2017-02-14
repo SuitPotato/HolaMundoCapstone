@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 
-# A ModelForm automatically builds your form off a model you provide. It handles the 
+# A ModelForm automatically builds your form off a model you provide. It handles the
 # validations based on the fields.
 # The model User, does not need to be defined in the models.py because it is built in
 # to Django.
