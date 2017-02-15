@@ -29,18 +29,22 @@ def passwordform(request):
         form = PasswordChangeForm(user = request.user)
 
         args = {'form':form}
-        return render(request, 'passwordform.html', args)
-        return redirect('/UserSettingsPage/passwordform')
+        return render(request, 'UserSettingsPage/passwordform.html', args)
 
 def emailform(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance = request.user)
+        form = EditProfileForm(data = request.POST, user = request.user)
 
         if form.is_valid():
             form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('/UserSettingsPage/settings')
             # redirect users to profile page
             # return redirect(reverse(''))
+            # args = {'form':form}
+            # return render(request, 'mainpage/index.html', args)
+            # return HttpResponseRedirect('/mainpage/index.html')
         else:
-            form = EditProfileForm(instance=request.user)
+            form = EditProfileForm(user=request.user)
             args = {'form':form}
             return render(request, 'UserSettingsPage/emailform.html', args)
