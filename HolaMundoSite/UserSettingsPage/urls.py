@@ -18,8 +18,7 @@ from . import views
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
-    # url(r'^UserSettingsPage', views.emailform),
-    # url(r'^UserSettingsPage', views.passwordform),
+    url(r'^emailform/$', views.emailform, name = 'emailform'),
     url(r'^passwordform/$',views.passwordform, name = 'passwordform'),
     url(r'^UserSettingsPage', views.settings)
 ]

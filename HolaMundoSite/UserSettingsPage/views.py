@@ -21,3 +21,17 @@ def passwordform(request):
 
         args = {'form':form}
         return render(request, 'UserSettingsPage/passwordform', args)
+
+def emailform(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance = request.user)
+
+        if form.is_valid():
+            form.save()
+            # redirect users to profile page
+            # return redirect(reverse(''))
+        else:
+            form = EditProfileForm(instance=request.user)
+            args = {'form':form}
+            return render(request, 'UserSettingsPage/emailform.html', args)
+            
