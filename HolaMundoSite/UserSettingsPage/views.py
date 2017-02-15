@@ -5,7 +5,16 @@ from django.http import HttpResponse
 
 # Create your views here.
 def settings(request):
-    return render(request, 'UserSettingsPage\settings.html')
+    if request.GET.get('email') == ('email'):
+        return render(request, 'UserSettingsPage/emailform.html', args)
+        return HttpResponseRedirect('/UserSettingsPage/emailform')
+    elif request.GET.get('password') == ('password'):
+        return render(request, 'UserSettingsPage/passwordform.html', args)
+        return HttpResponseRedirect('/UserSettingsPage/passwordform')
+    else:
+        return render(request, 'UserSettingsPage/settings.html')
+
+
 def passwordform(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data = request.POST, user = request.user)
@@ -20,7 +29,8 @@ def passwordform(request):
         form = PasswordChangeForm(user = request.user)
 
         args = {'form':form}
-        return render(request, 'UserSettingsPage/passwordform', args)
+        return render(request, 'passwordform.html', args)
+        return redirect('/UserSettingsPage/passwordform')
 
 def emailform(request):
     if request.method == 'POST':
@@ -34,4 +44,3 @@ def emailform(request):
             form = EditProfileForm(instance=request.user)
             args = {'form':form}
             return render(request, 'UserSettingsPage/emailform.html', args)
-            

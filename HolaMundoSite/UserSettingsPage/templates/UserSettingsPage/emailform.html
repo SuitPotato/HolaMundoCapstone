@@ -19,6 +19,7 @@
   <div class="container">
     <h3>Change information</h3>
     <form method="post">
+      <!-- token used in django to protect against cross site request forgeries -->
       {% csrf_token}
       {{ form.as_p }}
     </form>

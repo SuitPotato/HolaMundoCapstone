@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 # fix this line
-from UserSettingsPage.models import UserProfile
+# from UserSettingsPage.models import UserProfile
 
 class EditProfileForm(UserChangeForm):
     template_name='/UserSettingsPage/emailform'
