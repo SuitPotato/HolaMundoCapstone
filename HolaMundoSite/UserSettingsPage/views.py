@@ -1,7 +1,18 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import update_session_auth_hash # keeps user logged in after password change
+from django.urls import reverse
+
+from django.forms import ModelForm
+from django.contrib.auth.models import User
+
+from UserSettingsPage.forms import (
+    EditProfileForm
+)
+
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from django.http import HttpResponse
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def settings(request):
@@ -31,20 +42,18 @@ def passwordform(request):
         args = {'form':form}
         return render(request, 'UserSettingsPage/passwordform.html', args)
 
-def emailform(request):
+def view_profile(request):
+    args = {'user': request.user}
+    return render(request, 'UserSettingsPage/profile.html', args)
+
+def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(data = request.POST, user = request.user)
+        form = EditProfileForm(request.POST, instance=request.user)
 
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect('/UserSettingsPage/settings')
-            # redirect users to profile page
-            # return redirect(reverse(''))
-            # args = {'form':form}
-            # return render(request, 'mainpage/index.html', args)
-            # return HttpResponseRedirect('/mainpage/index.html')
-        else:
-            form = EditProfileForm(user=request.user)
-            args = {'form':form}
-            return render(request, 'UserSettingsPage/emailform.html', args)
+            return redirect(reverse('UserSettingsPage:view_profile'))
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'UserSettingsPage/edit_profile.html', args)
