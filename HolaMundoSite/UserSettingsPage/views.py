@@ -21,26 +21,51 @@ def settings(request):
         return HttpResponseRedirect('/UserSettingsPage/emailform')
     elif request.GET.get('password') == ('password'):
         return render(request, 'UserSettingsPage/passwordform.html', args)
-        return HttpResponseRedirect('/UserSettingsPage/passwordform')
+        # return HttpResponseRedirect('/DragDemo/')
     else:
         return render(request, 'UserSettingsPage/settings.html')
 
 
+# def passwordform(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(data = request.POST, user = request.user)
+#
+#         if form.is_valid():
+#             form.save()
+#             update_session_auth_hash(request, form.user)
+#             return render(request, 'mainpage/DragDemo', args)
+#         else:
+#             return redirect('mainpage/DragDemo')
+#     else:
+#         form = PasswordChangeForm(user = request.user)
+#
+#         args = {'form':form}
+#         return render(request, 'UserSettingsPage/passwordform.html', args)
 def passwordform(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(data = request.POST, user = request.user)
-
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect('/UserSettingsPage/settings')
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            # messages.success(request, 'Your password was successfully updated!')
+            return redirect('UserSettingsPage:password')
         else:
-            return redirect('/UserSettingsPage/passwordform')
+                # if form is not valid go here
+                return redirect('mainpage/DragDemo')
     else:
-        form = PasswordChangeForm(user = request.user)
+        form = PasswordChangeForm(request.user)
+        return render(request, 'UserSettingsPage/passwordform.html', {'form': form})
 
-        args = {'form':form}
-        return render(request, 'UserSettingsPage/passwordform.html', args)
+
+
+
+
+
+
+
+
+
+
 
 def view_profile(request):
     args = {'user': request.user}
@@ -52,7 +77,10 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('UserSettingsPage:view_profile'))
+            update_session_auth_hash(request, form.user)
+            return redirect(reverse('/UserSettingsPage/view_profile'))
+        else:
+            return redirect('/UserSettingsPage/edit_profile')
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
