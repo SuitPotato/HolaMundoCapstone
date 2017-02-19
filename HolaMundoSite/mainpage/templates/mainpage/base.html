@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> {% block title %} {% endblock %}</title>
-	
+
 	{% load staticfiles %}
-	
+
 	<link rel="stylesheet" href="{% static 'mainpage/css/bootstrap.css' %}" type = "text/css"/>
     <link rel="stylesheet" href="{% static 'mainpage/css/bootstrap.min.css' %}" type = "text/css"/>
     <link rel="stylesheet" href="{% static 'mainpage/css/style.css' %}" type = "text/css"/>
@@ -22,12 +22,12 @@
 		<div class="col-md-12">
 			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 				<div class="navbar-header">
-					 
+
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
 						 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 					</button> <a class="navbar-brand" href="/">Hola Mundo</a>
 				</div>
-				
+
 				<div class="collapse navbar-collapse" id="navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
@@ -53,6 +53,9 @@
 								<li>
 									<a href="/createcourse">Create a course?</a>
 								</li>
+                <li>
+                  <a href="/UserSettingsPage/profile">Edit Profile</a>
+                </li>
 								<li class="divider">
 								</li>
 								{% if user.is_authenticated %}
@@ -64,14 +67,14 @@
 									<a href="/login/">Login</a>
 								</li>
 								{% endif %}
-								
+
 							</ul>
 						</li>
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control">
-						</div> 
+						</div>
 						<a type="button" class="btn btn-default" href="/results/">
 							Search
 						</a>
@@ -110,13 +113,13 @@
 						</li>
 					</ul>
 				</div>
-				
+
 			</nav>
-			
+
 			{% block content %}
-			
+
 			{% endblock %}
-			
+
 		</div>
 	</div>
 </div>
@@ -124,8 +127,8 @@
     <script src="{% static 'mainpage/js/jquery.min.js' %}"></script>
     <script src="{% static 'mainpage/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'mainpage/js/scripts.js' %}"></script>
-  
-  
+
+
   <!-- MODAL CODE HERE -->
       <div id="login-overlay" class="modal fade">
 	  <div class="modal-dialog">

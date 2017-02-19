@@ -5,14 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 # fix this line
 # from UserSettingsPage.models import UserProfile
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(forms.ModelForm):
     template_name='/UserSettingsPage/edit_profile'
-
-    # class Meta:
-    #     model = User
-    #     fields = (
-    #         'email',
-    #         'first_name',
-    #         'last_name',
-    #         'password'
-    #     )
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'username')
