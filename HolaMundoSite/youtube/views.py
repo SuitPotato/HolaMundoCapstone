@@ -32,7 +32,7 @@ BASE_URL = 'C:\Users\Josh\Documents\GitHub\HolaMundoCapstone\HolaMundoSite'
 # Create your views here.
 
 def index(request):
-    form = VidUploadForm(request.POST, request.FILES)
+    form = VidUploadForm()
     return render(request, 'youtube/index.html', {'form': form})
 
 
