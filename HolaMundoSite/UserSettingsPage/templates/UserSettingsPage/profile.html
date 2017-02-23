@@ -1,0 +1,18 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+
+<title>Profile</title>
+
+<div class="container">
+    <h1>Profile</h1>
+    <p>Username: {{ user }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <a href="/profile/edit" class="btn btn-default">Edit Information</a>
+</div>
+
+
+{% endblock %}
