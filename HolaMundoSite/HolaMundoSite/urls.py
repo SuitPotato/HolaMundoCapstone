@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^', include('UserSettingsPage.urls')),
     url(r'^', include('Video_page.urls')),
     url(r'^', include('coursemanagement.urls')),
-    url(r'^', include('youtube.urls'))
+    url(r'^', include('youtube.urls')),
+	url(r'^matching', include('matching.urls'))
 ]
