@@ -24,6 +24,7 @@ urlpatterns = [
 	url(r'^results/$', views.results),
 	url(r'^loginview/$', views.loginview),
 	url(r'^adduser', views.lexusadduser),
+	url(r'^results/(?P<tag>[\w]+)$', views.results, name="results"),
 	url(r'^login/$', auth_views.login, {'template_name': 'mainpage/login.html'}, name='login'),
 	url(r'^logout/$', auth_views.logout, {'template_name': 'mainpage/logout.html'}, name='logout'),
     url(r'^UserSettingsPage/', include('UserSettingsPage.urls'))
