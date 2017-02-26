@@ -57,9 +57,6 @@
 								<li>
 									<a href="/createcourse">Create a course?</a>
 								</li>
-								<li>
-								  <a href="/UserSettingsPage/profile">Edit Profile</a>
-								</li>
 								<li class="divider">
 								</li>
 								<li>
@@ -75,10 +72,7 @@
                         <button class="btn btn-default" id="search_submit" type="submit"> Search</button>
                     </form>
 					<ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/logout/">Logout {{ user.username }}</a>
-                            </li>
-						<li class="dropdown" style="margin-right: 20px;">
+						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
 							<ul class="dropdown-menu" >
 								<li>
@@ -97,6 +91,9 @@
 								</li>
 							</ul>
 						</li>
+                        <li>
+                            <a href="/UserSettingsPage/profile" style="margin-right: 20px;">My Profile</a>
+                        </li>
 					</ul>
 				</div>
 
@@ -147,10 +144,7 @@
                         <button class="btn btn-default" id="search_submit" type="submit"> Search</button>
                     </form>
 					<ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#login-overlay" data-toggle="modal">Login</a>
-                            </li>
-						<li class="dropdown" style="margin-right: 20px;">
+						<li class="dropdown" >
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
 							<ul class="dropdown-menu" >
 								<li>
@@ -166,6 +160,9 @@
 								</li>
 							</ul>
 						</li>
+                        <li>
+                            <a href="#login-overlay" data-toggle="modal" style="margin-right: 20px;">Login</a>
+                        </li>
 					</ul>
 				</div>
 

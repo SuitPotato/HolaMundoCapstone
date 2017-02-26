@@ -126,4 +126,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/DragDemo/'
+LOGIN_REDIRECT_URL = '/UserSettingsPage/profile'
