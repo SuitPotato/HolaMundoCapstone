@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from Video_page.models import Video
+from coursemanagement.models import Lesson
 
 
 # Create your views here.
@@ -12,7 +13,7 @@ def index(request):
 
 def load_video(request, link):
     try:
-        video = Video.objects.get(link=link)
+        video = Lesson.objects.get(link=link)
         context = {'video': video.youtube, 'title': video.title, 'tab1': video.tab1, 'tab2': video.tab2,
                    'tab3': video.tab3, 'tab4': video.tab4, 'tab1desc': video.tab1desc, 'tab2desc': video.tab2desc,
                    'tab3desc': video.tab3desc, 'tab4desc': video.tab4desc}
