@@ -1,6 +1,7 @@
 # Django Imports
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django import forms
 from django.db import models
 
@@ -11,13 +12,15 @@ from coursemanagement.forms import LessonForm
 
 # Create your views here.
 
+@login_required()
 def manage(request):
     return render(request, 'coursemanagement/manage.html')
 
-
+@login_required()
 def success(request):
     return render(request, 'coursemanagement/success.html')
 
+@login_required()
 def lesson(request):
     if request.method == 'POST':
         # form is a variable that contains the courseform

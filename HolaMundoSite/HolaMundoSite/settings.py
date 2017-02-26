@@ -127,3 +127,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/UserSettingsPage/profile'
+
+LOGIN_URL = '/login/'

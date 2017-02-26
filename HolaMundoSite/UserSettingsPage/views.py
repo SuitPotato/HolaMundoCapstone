@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
 from django.forms import ModelForm
-
 from django.db import models
-
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from UserSettingsPage.forms import (
     EditProfileForm
@@ -18,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required()
 def settings(request):
     if request.GET.get('email') == ('email'):
         return render(request, 'UserSettingsPage/profile.html', args)
@@ -28,6 +27,7 @@ def settings(request):
     else:
         return render(request, 'UserSettingsPage/settings.html')
 
+@login_required()
 def passwordform(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -43,10 +43,12 @@ def passwordform(request):
         form = PasswordChangeForm(request.user)
         return render(request, 'UserSettingsPage/passwordform.html', {'form': form})
 
+@login_required()
 def view_profile(request):
     args = {'user': request.user}
     return render(request, 'UserSettingsPage/profile.html', args)
 
+@login_required()
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)

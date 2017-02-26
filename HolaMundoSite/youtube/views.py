@@ -19,6 +19,7 @@ from googleapiclient.http import MediaFileUpload
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import argparser, run_flow
+from django.contrib.auth.decorators import login_required
 from django.db import models
 from Video_page.models import Video
 from .models import *
@@ -29,13 +30,12 @@ BASE_URL = 'C:\Users\Josh\Documents\GitHub\HolaMundoCapstone\HolaMundoSite'
 
 
 
-# Create your views here.
-
+@login_required()
 def index(request):
     form = VidUploadForm()
     return render(request, 'youtube/index.html', {'form': form})
 
-
+@login_required()
 def uploaded(request):
     if request.method == 'POST':
         form = VidUploadForm(request.POST, request.FILES)
