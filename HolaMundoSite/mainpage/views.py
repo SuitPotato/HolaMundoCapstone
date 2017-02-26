@@ -24,7 +24,7 @@ def results(request, tag='all'):
         tag = request.GET.get('query', None)
         print(tag)
 
-    if(tag == 'all'):
+    if tag == '':
         videos = Video.objects.all()
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
