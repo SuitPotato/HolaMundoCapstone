@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from Video_page.models import Video
+from coursemanagement.models import Lesson
 
 from forms import UserForm
 
@@ -25,11 +25,11 @@ def results(request, tag='all'):
         print(tag)
 
     if tag == '':
-        videos = Video.objects.all()
+        videos = Lesson.objects.all()
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
     else:
-        videos = Video.objects.filter(link=tag).values()
+        videos = Lesson.objects.filter(link=tag).values()
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
 
