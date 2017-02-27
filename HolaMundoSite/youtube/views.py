@@ -24,7 +24,7 @@ from django.db import models
 from Video_page.models import Video
 from .models import *
 
-from Video_page.models import Video
+from coursemanagement.models import Lesson
 
 BASE_URL = 'C:\Users\Josh\Documents\GitHub\HolaMundoCapstone\HolaMundoSite'
 
@@ -213,7 +213,7 @@ def resumable_upload(insert_request):
             if response is not None:
                 if 'id' in response:
                     print "Video id '%s' was successfully uploaded." % response['id']
-                    p = Video()
+                    p = Lesson()
                     p.title = response['snippet']['title']
                     p.youtube = response['id']
                     p.link = 558
