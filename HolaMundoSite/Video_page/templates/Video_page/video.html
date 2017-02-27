@@ -34,6 +34,12 @@
 							<li>
 								<a href="#panel-4" data-toggle="tab">{% block tab4 %} {% endblock %}</a>
 							</li>
+							<li>
+								<a href="#panel-5" data-toggle="tab">{% block tab5 %} {% endblock %}</a>
+							</li>
+							<li>
+								<a href="#panel-6" data-toggle="tab">{% block tab6 %} {% endblock %}</a>
+							</li>
 						</ul>
 						<div class="tab-content" id="tabs">
 							<div class="tab-pane active" style="overflow-y:auto; height: 60vh;" id="panel-1">
@@ -54,6 +60,16 @@
 							<div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-4">
 								<p>
 									{% block tab4desc %} {% endblock %}
+								</p>
+							</div>
+							<div class="tab-pane" id="panel-5">
+								<p>
+									{% block tab5desc %} {% endblock %}
+								</p>
+							</div>
+							<div class="tab-pane" id="panel-6">
+								<p>
+									{% block tab6desc %} {% endblock %}
 								</p>
 							</div>
 						</div>
