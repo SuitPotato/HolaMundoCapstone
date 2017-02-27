@@ -2,85 +2,116 @@
 
 
 {% block content %}
+
+
     <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
-						{% block title %}
-						{% endblock %}
-					</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					{% block video %}
-					
-					{% endblock %}
-				</div>
-				<div class="col-md-6">
-					<div class="tabbable" id="tabs-925380">
-						<ul class="nav nav-tabs">
-							<li class="active">
-								<a href="#panel-1" data-toggle="tab">{% block tab1 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-2" data-toggle="tab">{% block tab2 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-3" data-toggle="tab">{% block tab3 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-4" data-toggle="tab">{% block tab4 %} {% endblock %}</a>
-							</li>
-						</ul>
-						<div class="tab-content" id="tabs">
-							<div class="tab-pane active" style="overflow-y:auto; height: 60vh;" id="panel-1">
-								<p>
-									{% block tab1desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-2">
-								<p>
-									{% block tab2desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-3">
-								<p>
-									{% block tab3desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-4">
-								<p>
-									{% block tab4desc %} {% endblock %}
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-2 ">
-					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
-				</div>
-				<div class="col-md-2">
-					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
-				</div>
-				<div class="col-md-2">
-					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
-				</div>
-				<div class="col-md-2">
-					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
-				</div>
-				<div class="col-md-2">
-					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
-				</div>
-				<div class="col-md-2">
-					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
+                            {% block title %}
+                            {% endblock %}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    {% if user.is_authenticated %}
+                        <div class="col-md-6">
+                    {% else %}
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                    {% endif %}
+                        {% block video %}
+
+                        {% endblock %}
+                    {% if user.is_authenticated %}
+                        </div>
+                    {% else %}
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                        <div class=""row">
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <div class="col-md-6">
+                    {% else %}
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                    {% endif %}
+                        <div class="tabbable" id="tabs-925380">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#panel-1" data-toggle="tab">{% block tab1 %} {% endblock %}</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-2" data-toggle="tab">{% block tab2 %} {% endblock %}</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-3" data-toggle="tab">{% block tab3 %} {% endblock %}</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-4" data-toggle="tab">{% block tab4 %} {% endblock %}</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="tabs">
+                                <div class="tab-pane active" style="overflow-y:auto; height: 60vh;" id="panel-1">
+                                    <p>
+                                        {% block tab1desc %} {% endblock %}
+                                    </p>
+                                </div>
+                                <div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-2">
+                                    <p>
+                                        {% block tab2desc %} {% endblock %}
+                                    </p>
+                                </div>
+                                <div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-3">
+                                    <p>
+                                        {% block tab3desc %} {% endblock %}
+                                    </p>
+                                </div>
+                                <div class="tab-pane" style="overflow-y:auto; height: 60vh;" id="panel-4">
+                                    <p>
+                                        {% block tab4desc %} {% endblock %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% if user.is_authenticated %}
+                            </div>
+                        {% else %}
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-2 ">
+                             <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
+                        </div>
+                        <div class="col-md-2">
+                             <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
+                        </div>
+                        <div class="col-md-2">
+                             <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
+                        </div>
+                        <div class="col-md-2">
+                             <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
+                        </div>
+                        <div class="col-md-2">
+                             <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
+                        </div>
+                        <div class="col-md-2">
+                             <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
