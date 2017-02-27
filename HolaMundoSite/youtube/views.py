@@ -21,7 +21,6 @@ from oauth2client.file import Storage
 from oauth2client.tools import argparser, run_flow
 from django.contrib.auth.decorators import login_required
 from django.db import models
-from Video_page.models import Video
 from .models import *
 
 from coursemanagement.models import Lesson
