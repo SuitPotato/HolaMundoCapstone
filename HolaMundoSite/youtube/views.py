@@ -59,7 +59,7 @@ def toYoutube(f):
     #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
     #  privacyStatus='public', title='Test video')
 
-    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file= BASE_URL + uploaded_url, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
+    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file=BASE_URL + uploaded_url, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
 
     if not os.path.exists(args.file):
         exit("Please specify a valid file using the --file= parameter.")
