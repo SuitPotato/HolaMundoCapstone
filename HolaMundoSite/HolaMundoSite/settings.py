@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'Video_page',
     'coursemanagement',
     'youtube',
+    'fillintheblank',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
