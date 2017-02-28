@@ -25,6 +25,6 @@ def fb_quiz(request):
             return redirect('mainpage:DragDemo')
     else:
         form = FillInTheBlank(instance=request.POST)
-        return render(request, 'FillInTheBlank/fb_quiz.html', {'form':form})
+        return render(request, 'fillintheblank/fb_quiz.html', {'form':form})
 
     
