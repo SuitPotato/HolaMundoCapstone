@@ -3,6 +3,8 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 import re
 from django.core.exceptions import ObjectDoesNotExist
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 
 # A ModelForm automatically builds your form off a model you provide. It handles the
@@ -15,11 +17,37 @@ class UserForm(ModelForm):
         model = User
         fields = ('username', 'email', 'password')
 
+
 class RegistrationForm(forms.Form):
-    username = forms.CharField(label="Username", max_length=30)
-    email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput())
-    password2 = forms.CharField(label="Password", widget=forms.PasswordInput())
+    username = forms.CharField(
+        label="Username",
+        max_length=30,
+
+    )
+    email = forms.EmailField(
+        label="Email",
+    )
+
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(),
+    )
+
+    password2 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = "registrationForm"
+        self.helper.form_method = 'post'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-2'
+        self.helper.field_class = 'col-md-4'
+
+        self.helper.add_input(Submit('submit', 'Submit', css_class='btn btn-success'))
 
     def clean_password2(self):
         if 'password1' in self.cleaned_data:
