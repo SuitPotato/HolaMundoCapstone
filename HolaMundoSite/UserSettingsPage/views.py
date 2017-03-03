@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from UserSettingsPage.models import Preference
 
 from UserSettingsPage.forms import (
     EditProfileForm
@@ -45,7 +46,8 @@ def passwordform(request):
 
 @login_required()
 def view_profile(request):
-    args = {'user': request.user}
+    prefs = Preference.objects.get(user=request.user)
+    args = {'user': request.user, 'prefs': prefs}
     return render(request, 'UserSettingsPage/profile.html', args)
 
 @login_required()

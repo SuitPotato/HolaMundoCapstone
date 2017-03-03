@@ -84,59 +84,6 @@
       </div>
 
   </div>
-  	<hr>
-	<div class="row">
-      <!-- left column -->
-    <!-- <div class="alert alert-info alert-dismissable">
-      <a class="panel-close close" data-dismiss="alert">×</a>
-      <i class="fa fa-coffee"></i>
-      This is an <strong>.alert</strong>. Use this to show important messages to the user.
-    </div> -->
-      <div class="col-md-3">
-      </div>
-
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-        <h3>Video preferences</h3>
-
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Video layout:</label>
-            <div class="col-lg-8">
-              <div class="ui-select">
-                <select id="user_video_layout" class="form-control">
-                  <option value="Left-right">Left/right</option>
-                  <option value="Top-bottom">Top/bottom</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Difficulty:</label>
-            <div class="col-lg-8">
-              <div class="ui-select">
-                <select id="user_difficulty" class="form-control">
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hard">Hard</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="Save Changes">
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
-                <a href="/profile/edit" class="btn btn-default">Edit Information</a>
-            </div>
-          </div>
-        </form>
-      </div>
-  </div>
-
 
   	<hr>
 	<div class="row">
@@ -158,9 +105,10 @@
             <label class="col-lg-3 control-label">Default language:</label>
             <div class="col-lg-8">
               <div class="ui-select">
-                <select id="user_website" class="form-control">
-                  <option value="English">English</option>
-                  <option value="Spanish">Spanish</option>
+                <select id="user_language" class="form-control">
+                    {% for choice in prefs.LANGUAGES %}
+                        <option value="{{ choice.1 }}">{{ choice.0 }}</option>
+                    {% endfor %}
                 </select>
               </div>
             </div>
@@ -170,10 +118,9 @@
             <div class="col-lg-8">
               <div class="ui-select">
                 <select id="user_difficulty" class="form-control">
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hard">Hard</option>
-                  <option value="Advanced">Advanced</option>
+                    {% for choice in prefs.DIFFICULTIES %}
+                        <option value="{{ choice.1 }}">{{ choice.0 }}</option>
+                    {% endfor %}
                 </select>
               </div>
             </div>

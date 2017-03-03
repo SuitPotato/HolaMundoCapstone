@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class Preference(models.Model):
 
     # Autoincrement ID and user
@@ -28,4 +29,4 @@ class Preference(models.Model):
     difficulty = models.CharField(max_length=20, choices=DIFFICULTIES, default="1")
 
     def __str__(self):
-        return self.user
+        return self.user.username
