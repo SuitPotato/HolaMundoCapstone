@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from mainpage.forms import *
 from coursemanagement.models import Lesson
 
 from forms import UserForm
@@ -68,3 +69,13 @@ def logout(request):
     logout(request)
     # Change from LoginView to the acutal Login Page later
     return HttpResponseRedirect('/loginview/')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(username=form.cleaned_data['username'],password=form.cleaned_data['password1'],email=form.cleaned_data['email'])
+            return HttpResponseRedirect('/profile/')
+    form = RegistrationForm()
+    return render(request, 'mainpage/register.html', {'form': form})
