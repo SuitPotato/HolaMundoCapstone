@@ -36,12 +36,9 @@ INSTALLED_APPS = [
     'Video_page',
     'coursemanagement',
     'youtube',
-<<<<<<< HEAD
-	'matching.apps.MatchingConfig',
+	'matching',
 	'TrueOrFalse.apps.TrueorfalseConfig',
-=======
 	'DragAndDropQuiz',
->>>>>>> refs/remotes/origin/master
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

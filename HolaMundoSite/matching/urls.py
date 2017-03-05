@@ -2,6 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	url(r'^getnumber/$', views.get_number, name='get_number'),
-	url(r'^getquestions/$', views.get_questions, name='get_questions'),
+	url(r'^get_number', views.get_number),
+	url(r'^get_questions', views.get_questions),
+	url(r'^answer_question', views.get_questions),
 ]
