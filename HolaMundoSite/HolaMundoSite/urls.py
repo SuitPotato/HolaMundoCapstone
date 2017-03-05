@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^', include('Video_page.urls')),
     url(r'^', include('coursemanagement.urls')),
     url(r'^', include('youtube.urls')),
-	url(r'^matching', include('matching.urls'))
+	url(r'^matching', include('matching.urls', namespace="matching")),
+	url(r'^TrueOrFalse', include('TrueOrFalse.urls', namespace="TrueOrFalse")),
 ]
