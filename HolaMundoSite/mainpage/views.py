@@ -19,10 +19,19 @@ def drag(request):
     return render(request, 'mainpage/DragDemo.html')
 
 
-def results(request):
-    videos = Video.objects.all()
-    context = {"videos": videos}
-    return render(request, 'mainpage/results.html', context)
+def results(request, tag='all'):
+    if request.method == 'GET':
+        tag = request.GET.get('query', None)
+        print(tag)
+
+    if(tag == 'all'):
+        videos = Video.objects.all()
+        context = {"videos": videos}
+        return render(request, 'mainpage/results.html', context)
+    else:
+        videos = Video.objects.filter(link=tag).values()
+        context = {"videos": videos}
+        return render(request, 'mainpage/results.html', context)
 
 
 def loginview(request):
