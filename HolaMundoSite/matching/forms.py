@@ -6,3 +6,7 @@ class MatchingNumber(forms.Form):
 class MatchingQuestion(forms.Form):
 	question = forms.CharField(label='Question:')
 	answer = forms.CharField(label='Answer')
+	rand_letter = forms.CharField(label='Letter')
+	
+class MatchingAnswer(forms.Form):
+	user_answer = forms.CharField(label='Your answer:')

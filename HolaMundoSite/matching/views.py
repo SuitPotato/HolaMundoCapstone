@@ -8,10 +8,10 @@ def get_number(request):
 	if request.method == 'POST':
 		form = MatchingNumber(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('question.html')
+			return HttpResponseRedirect('matching/question.html')
 	else:
 		form = MatchingNumber()
-		return render(request, 'number.html', {'form': form})
+		return render(request, 'matching/number.html', {'form': form})
 
 @login_required()		
 def get_questions(request):
@@ -21,7 +21,7 @@ def get_questions(request):
 			return HttpResponseRedirect('/completion/')
 	else:
 		form = MatchingQuestion()
-		return render(request, 'question.html', {'form': form})
+		return render(request, 'matching/question.html', {'form': form})
 
 @login_required()		
 def answer_question(request):
@@ -31,4 +31,4 @@ def answer_question(request):
 			return HttpResponseRedirect('/completion/')
 	else:
 		form = MatchingQuestion()
-		return render(request, 'question.html', {'form': form})
+		return render(request, 'matching/question.html', {'form': form})
