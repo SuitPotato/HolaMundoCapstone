@@ -36,14 +36,19 @@ INSTALLED_APPS = [
     'Video_page',
     'coursemanagement',
     'youtube',
+<<<<<<< HEAD
 	'matching.apps.MatchingConfig',
 	'TrueOrFalse.apps.TrueorfalseConfig',
+=======
+	'DragAndDropQuiz',
+>>>>>>> refs/remotes/origin/master
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,4 +133,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/DragDemo/'
+LOGIN_REDIRECT_URL = '/UserSettingsPage/profile'
+
+LOGIN_URL = '/login/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

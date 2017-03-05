@@ -1,18 +1,147 @@
 {% extends "mainpage/base.html" %}
 
+{%  block title %}
+    Profile
+{% endblock %}
+
 {% block content %}
-
-
-<title>Profile</title>
 
 <div class="container">
     <h1>Profile</h1>
-    <p>Username: {{ user }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <a href="/profile/edit" class="btn btn-default">Edit Information</a>
+    <div class="alert alert-success alert-dismissable">
+      <a class="panel-close close" data-dismiss="alert">×</a>
+      <i class="fa fa-coffee"></i>
+      This is an <strong>.alert</strong>. Use this to show important messages to the user.
+    </div>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+        <!-- <div class="alert alert-info alert-dismissable">
+      <a class="panel-close close" data-dismiss="alert">×</a>
+      <i class="fa fa-coffee"></i>
+      This is an <strong>.alert</strong>. Use this to show important messages to the user.
+    </div> -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+
+          <input type="file" class="form-control">
+        </div>
+      </div>
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <h3>Personal info</h3>
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Username:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="{{ user }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="{{ user.first_name }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="{{ user.last_name }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="{{ user.email }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+                <a href="/profile/edit" class="btn btn-default">Edit Information</a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+  </div>
+
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+    <!-- <div class="alert alert-info alert-dismissable">
+      <a class="panel-close close" data-dismiss="alert">×</a>
+      <i class="fa fa-coffee"></i>
+      This is an <strong>.alert</strong>. Use this to show important messages to the user.
+    </div> -->
+      <div class="col-md-3">
+      </div>
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <h3>Website preferences</h3>
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Default language:</label>
+            <div class="col-lg-8">
+              <div class="ui-select">
+                <select id="user_language" class="form-control">
+                    {% for choice in prefs.LANGUAGES %}
+                        <option value="{{ choice.1 }}">{{ choice.0 }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Difficulty:</label>
+            <div class="col-lg-8">
+              <div class="ui-select">
+                <select id="user_difficulty" class="form-control">
+                    {% for choice in prefs.DIFFICULTIES %}
+                        <option value="{{ choice.1 }}">{{ choice.0 }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+                <a href="/profile/edit" class="btn btn-default">Edit Information</a>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
 </div>
+
+
+
+<hr>
 
 
 {% endblock %}

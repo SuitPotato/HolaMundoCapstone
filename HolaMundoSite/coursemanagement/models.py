@@ -73,6 +73,14 @@ class Lesson(models.Model):
 	link = models.CharField(max_length = 15)
 	tabs = models.CharField(max_length = 5, choices = NUM_TABS, default="1")
 	
+	# Names for the Tabs
+	tab1 = models.CharField(max_length=15, default = "1")
+	tab2 = models.CharField(max_length=15, default = "2")
+	tab3 = models.CharField(max_length=15, default = "3")
+	tab4 = models.CharField(max_length=15, default = "4")
+	tab5 = models.CharField(max_length=15, default = "5")
+	tab6 = models.CharField(max_length=15, default = "6")
+	
 	# Hide the tabs that will not be used in the template/views
 	tab1desc = models.TextField(max_length = 2000, default = "Tab 1 Description")
 	tab2desc = models.TextField(max_length = 2000, default = "Tab 2 Description")

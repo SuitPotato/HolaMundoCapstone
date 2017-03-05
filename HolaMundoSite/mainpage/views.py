@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from Video_page.models import Video
+from mainpage.forms import *
+from coursemanagement.models import Lesson
+from UserSettingsPage.models import Preference
 
 from forms import UserForm
 
@@ -24,12 +26,12 @@ def results(request, tag='all'):
         tag = request.GET.get('query', None)
         print(tag)
 
-    if(tag == 'all'):
-        videos = Video.objects.all()
+    if tag == '':
+        videos = Lesson.objects.all()
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
     else:
-        videos = Video.objects.filter(link=tag).values()
+        videos = Lesson.objects.filter(link=tag).values()
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
 
@@ -68,3 +70,19 @@ def logout(request):
     logout(request)
     # Change from LoginView to the acutal Login Page later
     return HttpResponseRedirect('/loginview/')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(username=form.cleaned_data['username'], password=form.cleaned_data['password1'], email=form.cleaned_data['email'])
+            pref = Preference.objects.create(user=user)
+            auth_login(request, user)
+            return HttpResponseRedirect('/registered/')
+    form = RegistrationForm()
+    return render(request, 'mainpage/register.html', {'form': form})
+
+
+def registered(request):
+    return render(request, 'mainpage/registered.html')
