@@ -1,10 +1,16 @@
-<form action="" method="post">
+<form action="/question/" method="POST">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
 </form>
 
 <form action="/answer/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+<form action="/rand_letter/" method="POST">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
