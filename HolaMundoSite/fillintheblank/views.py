@@ -17,7 +17,7 @@ def index(request):
             return HttpResponseRedirect('fillintheblank/question.html')
     else:
         form = FillInTheBlank()
-        return render(request, 'fillintheblank/number.html', {'form': form})
+        return render(request, 'fillintheblank/fb_quiz.html', {'form': form})
 
 @login_required()
 def detail(request):
