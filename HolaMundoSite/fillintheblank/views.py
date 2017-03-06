@@ -1,35 +1,47 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
-from django.forms import ModelForm
+from django.forms import *
 from django.db import models
 from .models import Question
-from django.contrib.auth.models import User
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
 
 
 # Create your views here.
 
+@login_required()
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    context = {'latest_question_list': latest_question_list}
-    return render(request, 'fillintheblank/index.html', context)
+    if request.method == 'POST':
+        form = FillInTheBlank(request.POST)
 
-    #output = ', '.join([q.question_text for q in latest_question_list])
-    #return HttpResponse(output)
+        if form.is_valid():
+            return HttpResponseRedirect('fillintheblank/question.html')
+    else:
+        form = FillInTheBlank()
+        return render(request, 'fillintheblank/number.html', {'form': form})
 
-def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
-        raise Http404("Question does not exist.")
-    return render(request, 'fillintheblank/detail.html', {'question': question})
-    #return HttpResponse("You're looking at question %s." % question_id)
+@login_required()
+def detail(request):
+    if request.method == 'POST':
+        form = FillInTheBlank(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/done/')
+    else:
+        form = FillInTheBlank()
+        return render(request, 'fillintheblank/detail.html' {'form': form})
 
+
+@login_required()
 def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'fillintheblank/results.html', {'question': question})
+    if request.method == 'POST':
+        form = FillInTheBlank(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/done/')
+    else:
+        form = FillInTheBlank()
+        return render(request, 'fillintheblank/detail.html'{'form': form})
+        
+    #question = get_object_or_404(Question, pk=question_id)
+    #return render(request, 'fillintheblank/results.html', {'question': question})
 
     #response = "You're looking at the results of question %s."
     #return HttpResponse(response % question_id)
