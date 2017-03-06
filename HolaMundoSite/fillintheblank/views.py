@@ -27,7 +27,7 @@ def detail(request):
             return HttpResponseRedirect('/done/')
     else:
         form = FillInTheBlank()
-        return render(request, 'fillintheblank/detail.html' {'form': form})
+        return render(request, 'fillintheblank/detail.html', {'form': form})
 
 
 @login_required()
@@ -38,8 +38,8 @@ def results(request, question_id):
             return HttpResponseRedirect('/done/')
     else:
         form = FillInTheBlank()
-        return render(request, 'fillintheblank/detail.html'{'form': form})
-        
+        return render(request, 'fillintheblank/detail.html', {'form': form})
+
     #question = get_object_or_404(Question, pk=question_id)
     #return render(request, 'fillintheblank/results.html', {'question': question})
 
