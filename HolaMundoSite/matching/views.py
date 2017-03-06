@@ -31,4 +31,4 @@ def answer_question(request):
 			return HttpResponseRedirect('/completion/')
 	else:
 		form = MatchingQuestion()
-		return render(request, 'matching/question.html', {'form': form})
+		return render(request, 'matching/answer.html', {'form': form})
