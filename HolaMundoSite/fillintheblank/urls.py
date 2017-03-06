@@ -21,6 +21,6 @@ from django.contrib.auth.views import login, logout
 
 
 urlpatterns = [
-    url(r'^fb_quiz/$', views.fb_quiz, name='fb_quiz'),
+    url(r'^fb_quiz/', views.fb_quiz, name='fb_quiz'),
     url(r'^FillInTheBlank',views.fb_quiz)
 ]
