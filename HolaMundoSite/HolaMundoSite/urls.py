@@ -23,7 +23,6 @@ urlpatterns = [
     url(r'^', include('Video_page.urls')),
     url(r'^', include('coursemanagement.urls')),
     url(r'^', include('youtube.urls')),
-	url(r'^TrueOrFalse', include('TrueOrFalse.urls', namespace="TrueOrFalse")),
     url(r'^', include('matching.urls')),
     url(r'^', include('DragAndDropQuiz.urls')),
 ]
