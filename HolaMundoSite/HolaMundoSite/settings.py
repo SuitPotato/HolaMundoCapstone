@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'coursemanagement',
     'youtube',
 	'DragAndDropQuiz',
+    'multipleChoice',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
