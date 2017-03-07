@@ -1,4 +1,5 @@
-from django.forms import ModelForm
+# from django.forms import ModelForm
+from django import forms 
 from multipleChoice.models import Question
 
 class QuestionForm(ModelForm):
