@@ -26,9 +26,9 @@ def get_questions(request):
 @login_required()		
 def answer_question(request):
 	if request.method == 'POST':
-		form = MatchingQuestion(request.POST)
+		form = MatchingAnswer(request.POST)
 		if form.is_valid():
 			return HttpResponseRedirect('/completion/')
 	else:
-		form = MatchingQuestion()
+		form = MatchingAnswer()
 		return render(request, 'matching/answer.html', {'form': form})
