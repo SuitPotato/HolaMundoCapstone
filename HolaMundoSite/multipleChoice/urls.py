@@ -20,5 +20,6 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.quiz, name='quiz'),
+    url(r'^multipleChoice/$', views.quiz),
+    # url(r'^multipleChoice/', 'multipleChoice.views.quiz', name = 'quiz'),
 ]
