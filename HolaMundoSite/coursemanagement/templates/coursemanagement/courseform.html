@@ -3,6 +3,16 @@
 
 
 {% block titleBlock %} Lesson Form {% endblock %}
+
+
+<!--
+Google CDN for jQuery Host.
+-->
+{% block headContent %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{% endblock %}
+
+
 {% block content %}
 <form action="" method = "POST">
     {% csrf_token %}
