@@ -14,8 +14,10 @@ Google CDN for jQuery Host.
 
 
 {% block content %}
-<form action="" method = "POST">
-    {% csrf_token %}
+
+	
+	
+	
 	<h1 align="center" style="color: #000000;"> Develop a Lesson</h1>
 	
 	<br></br>
@@ -27,37 +29,26 @@ Google CDN for jQuery Host.
 
 	<br></br>
 	
-	<p align="center"> Course Title: </p>
-    <p align="center">{{form.title}}</p>
+	<form action="" method = "POST">
+    {% csrf_token %}
 	
-	<p align="center"> Youtube Url: </p>
-    <p align="center">{{form.youtube}}</p>
+	<form id="rendered-form">
+	<div class="fb-select form-group field-coursemanagement">
+	<label for="coursemanagement" class="fb-select-label">What do you want to Create?
+		<span class="required">*</span> 
+		<!--<span class="tooltip-element" tooltip="Select one of the following from the dropdown.">Tooltip Span</span> -->
+	</label>
+		<select type="select" required="" placeholder="Select one of the following:" class="form-control" name="coursemanagement" access="true" role="1" id="coursemanagement" aria-required="true">
+			<option disabled="" selected="">Select one of the following:</option>
+			<option value="course-1">Course</option>
+			<option value="lesson-2">Lesson</option>
+			<option value="quiz-3">Quiz</option>
+		</select>
+	</div>
+	</form>
 	
-	<p align="center"> Link Url: </p>
-    <p align="center">{{form.link}}</p>
-	
-	<p align="center"> Number of Tabs: </p>
-	<p align="center">{{form.tabs}}</p>	
-	
-	<p align="center"> Tab One Description: </p>
-	<p align="center">{{form.tab1desc}}</p>
-	
-	<p align="center"> Tab Two Description: </p>
-	<p align="center">{{form.tab2desc}}</p>
-	
-	<p align="center"> Tab Three Description: </p>
-	<p align="center">{{form.tab3desc}}</p>
-	
-	<p align="center"> Tab Four Description: </p>
-	<p align="center">{{form.tab4desc}}</p>
-	
-	<p align="center"> Tab Five Description: </p>
-	<p align="center">{{form.tab5desc}}</p>
-	
-	<p align="center"> Tab Six Description: </p>
-	<p align="center">{{form.tab6desc}}</p>
 
-    <CENTER><input type="submit" value = "Submit"/></CENTER>
+    <center><input type="submit" value = "Submit"/></center>
 </form>
 {% endblock %}
 
