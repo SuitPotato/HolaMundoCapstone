@@ -7,14 +7,25 @@ from django.db import models
 
 # Course Management App Imports
 from coursemanagement.models import Lesson
+from coursemanagement.models import Course
 from coursemanagement.forms import LessonForm
+
+# Import User
+from django.contrib.auth.models import User
 
 
 # Create your views here.
 
+
+# Purpose of the manage is to show all the courses related to the same author
 @login_required()
 def manage(request):
-    return render(request, 'coursemanagement/manage.html')
+	if request.method == 'GET':
+		# Filters out courses only made by the user
+		course = course.objects.filter(author = username)
+		context = {"course":course}
+		return render(request, 'coursemanagement/manage.html', context)
+
 
 @login_required()
 def success(request):
