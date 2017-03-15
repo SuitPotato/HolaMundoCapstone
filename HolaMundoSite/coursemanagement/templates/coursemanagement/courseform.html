@@ -29,7 +29,7 @@ Google CDN for jQuery Host.
 
 	<br></br>
 	
-	<form action="" method = "POST">
+	<form action="" method = "GET">
     {% csrf_token %}
 	
 	<form id="rendered-form">
@@ -40,9 +40,9 @@ Google CDN for jQuery Host.
 	</label>
 		<select type="select" required="" placeholder="Select one of the following:" class="form-control" name="coursemanagement" access="true" role="1" id="coursemanagement" aria-required="true">
 			<option disabled="" selected="">Select one of the following:</option>
-			<option value="course-1">Course</option>
-			<option value="lesson-2">Lesson</option>
-			<option value="quiz-3">Quiz</option>
+			<option value="/DragDemo/">Course</option>
+			<option value="lesson">Lesson</option>
+			<option value="quiz">Quiz</option>
 		</select>
 	</div>
 	</form>
