@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="{% static 'mainpage/css/style.css' %}" type = "text/css"/>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
+	<!--
+	The head content block is to upload scripts that aren't currently on the base page. Particularly, the jQuery
+	scripts from google and microsoft. These imports aren't necessary on every page, however, so it's being left
+	as a block to fill in.	
+	-->
+	{% block headContent %}
+	
+	{% endblock %}
+	
   </head>
 
     <style>
