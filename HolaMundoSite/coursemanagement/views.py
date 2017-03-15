@@ -20,11 +20,12 @@ from django.contrib.auth.models import User
 # Purpose of the manage is to show all the courses related to the same author
 @login_required()
 def manage(request):
-	if request.method == 'GET':
-		# Filters out courses only made by the user
-		course = course.objects.filter(author = username)
-		context = {"course":course}
-		return render(request, 'coursemanagement/manage.html', context)
+	
+	# Filters out courses only made by the user
+	current_user = request.user
+	courses = Course.objects.filter(author = current_user)
+	context = {"courses":courses}
+	return render(request, 'coursemanagement/manage.html', context)
 
 
 @login_required()
