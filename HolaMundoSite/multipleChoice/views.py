@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import ModelForm
 from django.db import models
@@ -11,13 +12,16 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def quiz(request):
     # if request.method == 'POST':
-    #     form = QuestionForm(request.user, request.POST)
+    #     form = QuestionForm(request.POST)
     #     if form.is_valid():
     #         question = form.save()
-    #         return redirect('www.djangoproject.com')
+    #         return HttpResponseRedirect('https://www.djangoproject.com/')
     #     else:
-    #         return redirect('mainpage/DragDemo')
+    #         return HttpResponseRedirect('https://www.djangoproject.com/')
     # else:
+    #     return HttpResponseRedirect('https://www.djangoproject.com/')
     #     form = QuestionForm(request.user)
     #     return render(request, 'multipleChoice/quiz.html', {'form': form})
-    return render(request, 'multipleChoice/quiz.html', {})
+    # return render(request, 'multipleChoice/quiz.html', {})
+    form = QuestionForm()
+    return render(request, 'multipleChoice/quiz.html', {'form': form})
