@@ -27,6 +27,26 @@ def manage(request):
 	context = {"courses":courses}
 	return render(request, 'coursemanagement/manage.html', context)
 
+# Purpose of viewcourse is to show the lessons specific course.
+# Takes in a request and the courseID
+# Need to verify if the author is the current user, if not redirect
+@login_required()
+def viewcourse(request, courseID):
+	current_user = request.user
+	# Retrieving one value, so no filter needed, but get instead
+	# Follows the format (for looking up stuff):
+		# field__lookuptype=value
+		# courseID__exact = courseID
+	course = Course.objects.get(courseID__exact = courseID)
+	if(courses.author == current_user)
+		context = {"course":course}:
+		return render(request, 'coursemanagement/viewcourse.html',context)
+	else:
+		# Just a temporary flag
+		return render(request, 'mainpage/DragDemo.html')
+	
+	
+
 
 @login_required()
 def success(request):
