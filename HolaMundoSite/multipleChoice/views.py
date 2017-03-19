@@ -11,9 +11,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def quiz(request):
-    form = QuestionForm()
-    return render(request, 'multipleChoice/quiz.html', {'form': form})
-
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
