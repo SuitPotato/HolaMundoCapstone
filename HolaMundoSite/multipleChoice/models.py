@@ -5,8 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Question(models.Model):
-    # id = models.AutoField(primary_key=True)
-    question = models.CharField(max_length=150)
+    question = models.CharField(max_length=150, default = '')
     answer_a = models.CharField(max_length=150, default='')
     answer_b = models.CharField(max_length=150, default='')
     answer_c = models.CharField(max_length=150, default='')
