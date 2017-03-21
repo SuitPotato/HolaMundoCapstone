@@ -31,6 +31,14 @@
             -webkit-box-shadow: 0 0 0px 1000px white inset;
         }
     </style>
+	
+	{% block styleContent %}
+	<!--
+	The sytle content block is similar to the head content block. Just for convenience primarily, however, you 
+	can put your scripts in this section and it will be in the correct section.
+	-->
+	{% endblock %}
+	
   <body style="padding-top:60px; background-image: url('{% static "mainpage/img/background.jpg"%}')";>
 
     <div class="container-fluid">
