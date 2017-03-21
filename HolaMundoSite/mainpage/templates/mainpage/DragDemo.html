@@ -1,62 +1,70 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Droppable - Revert draggable position</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <style>
-  #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-  </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#draggable" ).draggable({ revert: "valid" });
-    $( "#draggable2" ).draggable({ revert: "invalid" });
-    $( "#draggable3" ).draggable({ revert: "invalid" });
+{% extends "mainpage/base.html" %}
 
-    $( "#droppable" ).droppable({
-      classes: {
-        "ui-droppable-active": "ui-state-active",
-        "ui-droppable-hover": "ui-state-hover"
-      },
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      },
-      accept: function(d) {
-            if(d.attr("id") == "draggable2") {
-                return true;
-            }
-        }
-    });
+{% block title %} jQuery UI Droppable - Revert draggable position {% endblock %}
 
-      $( "#droppable2" ).droppable({
-      classes: {
-        "ui-droppable-active": "ui-state-active",
-        "ui-droppable-hover": "ui-state-hover"
-      },
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      },
-      accept: function(d) {
-            if(d.attr("id") == "draggable3") {
-                return true;
+{% block styleContent %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+        #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+    </style>
+
+{% endblock %}
+
+
+{% block headContent %}
+
+    <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+
+    <script>
+      $( function() {
+        $( "#draggable" ).draggable({ revert: "valid" });
+        $( "#draggable2" ).draggable({ revert: "invalid" });
+        $( "#draggable3" ).draggable({ revert: "invalid" });
+
+        $( "#droppable" ).droppable({
+          classes: {
+            "ui-droppable-active": "ui-state-active",
+            "ui-droppable-hover": "ui-state-hover"
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable2") {
+                    return true;
+                }
             }
-        }
-    });
-  } );
-  </script>
-</head>
-<body>
+        });
+
+          $( "#droppable2" ).droppable({
+          classes: {
+            "ui-droppable-active": "ui-state-active",
+            "ui-droppable-hover": "ui-state-hover"
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable3") {
+                    return true;
+                }
+            }
+        });
+      } );
+    </script>
+
+{% endblock %}
+
+{%  block content %}
 
 <div id="draggable" class="ui-widget-content">
   <p>I revert when I'm dropped</p>
@@ -77,7 +85,5 @@
 <div id="droppable2" class="ui-widget-header">
   <p>Drop me here</p>
 </div>
- 
- 
-</body>
-</html>
+
+{% endblock %}
