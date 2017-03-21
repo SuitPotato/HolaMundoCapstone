@@ -1,72 +1,83 @@
-{% extends "mainpage/base.html" %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Droppable - Revert draggable position</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#draggable" ).draggable({ revert: "valid" });
+    $( "#draggable2" ).draggable({ revert: "invalid" });
+    $( "#draggable3" ).draggable({ revert: "invalid" });
 
-{% block content %}
+    $( "#droppable" ).droppable({
+      classes: {
+        "ui-droppable-active": "ui-state-active",
+        "ui-droppable-hover": "ui-state-hover"
+      },
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      },
+      accept: function(d) {
+            if(d.attr("id") == "draggable2") {
+                return true;
+            }
+        }
+    });
 
-{% load staticfiles %}
+      $( "#droppable2" ).droppable({
+      classes: {
+        "ui-droppable-active": "ui-state-active",
+        "ui-droppable-hover": "ui-state-hover"
+      },
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      },
+      accept: function(d) {
+            if(d.attr("id") == "draggable3") {
+                return true;
+            }
+        }
+    });
+  } );
+  </script>
+</head>
+<body>
 
-<style>
-.choice {
-	<!--border-style: solid;
-	border-color: red; -->
-	display: inline-block; 
-}
-.leftBox {
-	border-style: solid;
-	display:inline-block;
-	background-color: white;
-	min-width: 50px;
-	min-height: 50px;
-}
-.rightBox{
-	display:inline-block;
-	border-style: solid;
-	border-color: green;
-	min-width:50px;
-	min-height:50px;
-	background-color: green;
-}
-</style>
-
-<link rel="stylesheet" href="{% static 'mainpage/css/dragula.css' %}" type = "text/css"/>
-   <script src="{% static 'mainpage/js/dragula.js' %}"></script>
-
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h3 class="text-center text-primary">
-				Drag and drop DEMO
-			</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-8">
-			<p>
-				This is a demo for drag and drop. Take an element from the right, and drop it into the open spot in the sentence.
-			</p>
-		</div>
-		<div class="col-md-4">
-				<p>
-					<div class="leftBox" id="left">
-						<div class="choice"> <p>Hello everyone i'm over</p> </div>
-						<div class="choice"> Hello </div>
-					</div>
-				</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				This is the sentence. <div class="rightBox" id="right"> </div> there.
-			</h3>
-		</div>
-	</div>
+<div id="draggable" class="ui-widget-content">
+  <p>I revert when I'm dropped</p>
 </div>
 
-<script>
-	dragula([document.querySelector('#left'), document.querySelector('#right')], {
-		revertOnSpill: true
-		
-	});
-</script>
+<div id="draggable2" class="ui-widget-content">
+  <p>I revert when I'm not dropped</p>
+</div>
 
-{% endblock %}
+<div id="draggable3" class="ui-widget-content">
+  <p>I revert when I'm not dropped</p>
+</div>
+
+<div id="droppable" class="ui-widget-header">
+  <p>Drop me here</p>
+</div>
+
+<div id="droppable2" class="ui-widget-header">
+  <p>Drop me here</p>
+</div>
+ 
+ 
+</body>
+</html>
