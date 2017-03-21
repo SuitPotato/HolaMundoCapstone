@@ -1,0 +1,72 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+<style>
+.choice {
+	<!--border-style: solid;
+	border-color: red; -->
+	display: inline-block; 
+}
+.leftBox {
+	border-style: solid;
+	display:inline-block;
+	background-color: white;
+	min-width: 50px;
+	min-height: 50px;
+}
+.rightBox{
+	display:inline-block;
+	border-style: solid;
+	border-color: green;
+	min-width:50px;
+	min-height:50px;
+	background-color: green;
+}
+</style>
+
+<link rel="stylesheet" href="{% static 'mainpage/css/dragula.css' %}" type = "text/css"/>
+   <script src="{% static 'mainpage/js/dragula.js' %}"></script>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-primary">
+				Drag and drop DEMO
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<p>
+				This is a demo for drag and drop. Take an element from the right, and drop it into the open spot in the sentence.
+			</p>
+		</div>
+		<div class="col-md-4">
+				<p>
+					<div class="leftBox" id="left">
+						<div class="choice"> <p>Hello everyone i'm over</p> </div>
+						<div class="choice"> Hello </div>
+					</div>
+				</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				This is the sentence. <div class="rightBox" id="right"> </div> there.
+			</h3>
+		</div>
+	</div>
+</div>
+
+<script>
+	dragula([document.querySelector('#left'), document.querySelector('#right')], {
+		revertOnSpill: true
+		
+	});
+</script>
+
+{% endblock %}
