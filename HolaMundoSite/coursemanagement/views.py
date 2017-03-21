@@ -38,8 +38,9 @@ def viewcourse(request, courseID):
 		# field__lookuptype=value
 		# courseID__exact = courseID
 	course = Course.objects.get(courseID__exact = courseID)
-	if(courses.author == current_user)
-		context = {"course":course}:
+	if(courses.author == current_user):
+		
+		context = {"course":course}
 		return render(request, 'coursemanagement/viewcourse.html',context)
 	else:
 		# Just a temporary flag
