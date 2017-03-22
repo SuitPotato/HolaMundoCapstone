@@ -25,9 +25,14 @@ def create_dragndrop(request):
 	
 # The following views are using the new method of Drag and drop
 # Names can be changed later, current name is not as effective
-def view_sentence_drag(request):
-	return None
-	
+def view_sentence_drag(request, quizID):
+	try:
+		sentence = Sentence.objects.get(quizID = quizID)
+		context = {'title': sentence.title, 'wordOne': sentence.wordOne,'wordTwo': sentence.wordTwo,
+					'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour, 'wordFive': sentence.wordFive}
+		return render(request, 'DragAndDrop/sentence.html', context)
+	except:
+		return render(request, '/success/')
 @login_required()
 def create_sentence_drag(request):
 	if request.method == 'POST':
