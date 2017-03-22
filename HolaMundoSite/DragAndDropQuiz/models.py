@@ -28,8 +28,7 @@ class DragAndDrop(models.Model):
 		
 class Sentence(models.Model):
 	# QuizID - References the Primary Key
-	quizID = models.AutoField()
-	
+	quizID = models.AutoField(primary_key = True)
 	title = models.CharField(max_length = 140)
 	
 	# Potentially add the content of non-draggable sentence
