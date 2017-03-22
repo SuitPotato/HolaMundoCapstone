@@ -5,10 +5,13 @@ from django.db import models
 # Create your models here.
 
 class Number(models.Model):
-	quiz_name = models.CharField(max_length=50)
+	quiz_name = models.CharField(max_length=50, default = '')
 	number = models.IntegerField()
 	def __str__(self):
 		return self.quiz_name
+	
+	class Meta:
+		db_table = "matching"
 	
 class Question(models.Model):
 	question = models.CharField(max_length=250)

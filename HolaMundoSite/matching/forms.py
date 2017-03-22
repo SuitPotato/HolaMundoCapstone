@@ -2,14 +2,14 @@ from django import forms
 from django.forms import ModelForm
 from matching.models import *
 
-class MatchingNumber(ModelForm):
+class MatchingNumber(forms.ModelForm):
 	class Meta:
 		model = Number
 		fields = ['quiz_name', 'number',]
 	#quiz_name = forms.CharField(label='Quiz Name')
 	#number = forms.IntegerField(label='How many matching questions do you want?', max_value=26, min_value=2)
 
-class MatchingQuestion(ModelForm):
+class MatchingQuestion(forms.ModelForm):
 	class Meta:
 		model = Question
 		fields = ['question', 'answer', 'rand_letter',]
@@ -22,7 +22,7 @@ class MatchingQuestion(ModelForm):
 		rand_letter = forms.CharField(label='Letter')
 		temp += 1'''
 	
-class MatchingAnswer(ModelForm):
+class MatchingAnswer(forms.ModelForm):
 	class Meta:
 		model = Answer
 		fields = ['answer',]

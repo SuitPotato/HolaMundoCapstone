@@ -1,34 +1,40 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from forms import *
+from matching.forms import *
 
 @login_required()
 def get_number(request):
 	if request.method == 'POST':
 		form = MatchingNumber(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('matching/question.html')
+			questionnumber = form.save(commit=False)
+			questionnumber.save()
+			#return HttpResponseRedirect('matching/question.html')
 	else:
 		form = MatchingNumber()
-		return render(request, 'matching/number.html', {'form': form})
+	return render(request, 'matching/number.html', {'form': form})
 
 @login_required()		
 def get_questions(request):
 	if request.method == 'POST':
 		form = MatchingQuestion(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('/completion/')
+			questions = form.save(commit=False)
+			questions.save()
+			#return HttpResponseRedirect('/completion/')
 	else:
 		form = MatchingQuestion()
-		return render(request, 'matching/question.html', {'form': form})
+	return render(request, 'matching/question.html', {'form': form})
 
 @login_required()		
 def answer_question(request):
 	if request.method == 'POST':
 		form = MatchingAnswer(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('/completion/')
+			answers = form.save(commit=False)
+			answers.save()
+			#return HttpResponseRedirect('/completion/')
 	else:
 		form = MatchingAnswer()
-		return render(request, 'matching/answer.html', {'form': form})
+	return render(request, 'matching/answer.html', {'form': form})
