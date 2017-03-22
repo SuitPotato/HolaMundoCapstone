@@ -10,7 +10,7 @@ def create_dragndrop(request):
 	
 	
 # The following views are using the new method of Drag and drop
-
+# Names can be changed later, current name is not as effective
 def view_sentence_drag(request):
 	return None
 	
