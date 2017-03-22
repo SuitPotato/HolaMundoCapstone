@@ -23,9 +23,9 @@ def quiz(request):
         form = QuestionForm()
     return render(request, 'fillintheblank/quiz.html', {'form': form})
 
-@login_required()
-def take_quiz(request, key):
-    
+#@login_required()
+#def take_quiz(request, key):
+
 
 ''''
 @login_required()

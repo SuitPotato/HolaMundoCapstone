@@ -20,7 +20,7 @@
 		  width: 175px; 
 		  height: 90px; 
 		  font-size: 4em; 
-		  text-align: center; 
+		  text-align: center;
 		}
 
 		.div3 {
@@ -57,12 +57,24 @@
 
 
 {% block content %}
-<ul id="sortable" class="div3">
-	<li id="word1" class="ui-state-default buttonli">Order</li>
-	<li id="word2" class="ui-state-default buttonli">The</li>
-	<li id="word3" class="ui-state-default buttonli">Words</li>
-	<li id="word4" class="ui-state-default buttonli">Put</li>  
-	<li id="word4" class="ui-state-default buttonli">In</li>
-</ul>	
+
+	<div class="col-md-12">
+		<h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
+				Hola Mundo - {{title}}
+		</h3>
+	</div>
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+		<ul id="sortable" class="div3">
+			<li id="word1" class="ui-state-default buttonli">{{wordOne}}</li>
+			<li id="word2" class="ui-state-default buttonli">{{wordTwo}}</li>
+			<li id="word3" class="ui-state-default buttonli">{{wordThree}}</li>
+			<li id="word4" class="ui-state-default buttonli">{{wordFour}}</li>  
+			<li id="word4" class="ui-state-default buttonli">{{wordFive}}</li>
+		</ul>
+	</div>
+	<div class="col-md-2">
+	</div>
 {% endblock %}
 
