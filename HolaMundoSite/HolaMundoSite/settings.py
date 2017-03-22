@@ -36,12 +36,9 @@ INSTALLED_APPS = [
     'Video_page',
     'coursemanagement',
     'youtube',
-<<<<<<< HEAD
     'fillintheblank',
-=======
 	'DragAndDropQuiz',
     'multipleChoice',
->>>>>>> master
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

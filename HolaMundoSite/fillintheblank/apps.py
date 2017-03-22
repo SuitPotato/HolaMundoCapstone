@@ -5,3 +5,4 @@ from django.apps import AppConfig
 
 class FillintheblankConfig(AppConfig):
     name = 'fillintheblank'
+
