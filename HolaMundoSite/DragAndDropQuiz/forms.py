@@ -24,3 +24,21 @@ class DragAndDropForm(forms.Form):
 	wordThree = forms.CharField(max_length = 15)
 	wordFour = forms.CharField(max_length = 15)
 	wordFive = forms.CharField(max_length = 15)
+	
+class Sentence(forms.Form):
+	# Meta Class
+	class Meta:
+		# Based off of the model
+		model = Sentence
+		fields = ['title','wordOne','wordTwo','wordThree','wordFour','wordFive']
+		
+	# Fields defined under forms.++++
+	title = forms.CharField(max_length = 140)
+	
+	# Extend later to accept more words
+	wordOne = forms.CharField(max_length = 15)
+	wordTwo = forms.CharField(max_length = 15)
+	wordThree = forms.CharField(max_length = 15)
+	wordFour = forms.CharField(max_length = 15)
+	wordFive = forms.CharField(max_length = 15)
+	
