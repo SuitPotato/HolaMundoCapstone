@@ -1,13 +1,28 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.forms import *
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.forms import ModelForm
 from django.db import models
-from .models import Question
+from fillintheblank.forms import (
+    QuestionForm
+)
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
-
 
 # Create your views here.
 
+@login_required()
+def quiz(request):
+    if request.method == 'POST':
+        form = fillintheblank(request.POST)
+
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.save()
+    else:
+        form = QuestionForm()
+    return render(request, 'fillintheblank/quiz.html', {'form': form})
+
+''''
 @login_required()
 def index(request):
     if request.method == 'POST':
@@ -43,12 +58,12 @@ def results(request, question_id):
     #question = get_object_or_404(Question, pk=question_id)
     #return render(request, 'fillintheblank/results.html', {'question': question})
 
-    #response = "You're looking at the results of question %s."
-    #return HttpResponse(response % question_id)
+    #response = "You're looking at the results of question ."
+    #return HttpResponse(response question_id)
 
 
 
-'''
+
 def fb_quiz(request):
     # text = """<h1>welcome to my app !</h1>"""
     # return HttpResponse(text)
