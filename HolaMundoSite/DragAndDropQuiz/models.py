@@ -41,3 +41,6 @@ class Sentence(models.Model):
 	wordThree = models.CharField(max_length = 15)
 	wordFour = models.CharField(max_length = 15)
 	wordFive = models.CharField(max_length = 15)
+	
+	def __str__(self):
+		return self.title
