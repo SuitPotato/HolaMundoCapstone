@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^', include('youtube.urls')),
     url(r'^', include('matching.urls')),
     url(r'^', include('DragAndDropQuiz.urls')),
+    url(r'^', include('multipleChoice.urls'))
 ]

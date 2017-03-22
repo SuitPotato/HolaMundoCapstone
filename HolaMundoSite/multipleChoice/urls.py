@@ -1,4 +1,4 @@
-"""Course Management URL Configuration
+"""HolaMundoSite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -14,17 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
+
+
 urlpatterns = [
-    url(r'^manage/$', views.manage),
-	url(r'^createlesson', views.lesson),
-	url(r'^success', views.success),
-	url(r'^viewcourse/(\d+)/', views.viewcourse),	#Takes in a CourseID, check coursemanagement/views.py for more 
-	
-	#url(r'^create', views.create),
-	#url(r'^createcourse', views.course),
-	#url(r'^createquize', views.quiz),
-	
+    url(r'^multipleChoice/$', views.quiz),
+    url(r'^multipleChoice/$', views.quiz, name='quiz')
+    # url(r'^multipleChoice/', 'multipleChoice.views.quiz', name = 'quiz'),
 ]

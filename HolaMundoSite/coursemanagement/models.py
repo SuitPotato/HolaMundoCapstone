@@ -97,7 +97,7 @@ class Course(models.Model):
 	title = models.CharField(max_length = 100)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add = True)
-	lesson = models.ManyToManyField(Lesson, null=True, blank=True)
+	lesson = models.ManyToManyField(Lesson, null=False, blank=False)
 	#quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 	
 	

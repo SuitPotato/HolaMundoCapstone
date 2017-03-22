@@ -9,13 +9,21 @@
 
 	{% load staticfiles %}
 
+	{% block headLink %}
 	
+	{% endblock %}
 	<link rel="stylesheet" href="{% static 'mainpage/css/bootstrap.css' %}" type = "text/css"/>
     <link rel="stylesheet" href="{% static 'mainpage/css/bootstrap.min.css' %}" type = "text/css"/>
     <link rel="stylesheet" href="{% static 'mainpage/css/style.css' %}" type = "text/css"/>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<!--
+
+	
+    <script src="{% static 'mainpage/js/jquery.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/scripts.js' %}"></script>
+
+		<!--
 	The head content block is to upload scripts that aren't currently on the base page. Particularly, the jQuery
 	scripts from google and microsoft. These imports aren't necessary on every page, however, so it's being left
 	as a block to fill in.	
@@ -24,6 +32,19 @@
 	
 	{% endblock %}
 	
+	{% block headScript %}
+	
+	{% endblock %}
+	
+    <!--
+	The style content block is similar to the head content block. Just for convenience primarily, however, you
+	can put your scripts in this section and it will be in the correct section.
+	-->
+
+	{% block styleContent %}
+
+	{% endblock %}
+
   </head>
 
     <style>
@@ -31,6 +52,9 @@
             -webkit-box-shadow: 0 0 0px 1000px white inset;
         }
     </style>
+
+
+	
   <body style="padding-top:60px; background-image: url('{% static "mainpage/img/background.jpg"%}')";>
 
     <div class="container-fluid">
@@ -193,9 +217,6 @@
 	</div>
 </div>
 </body>
-    <script src="{% static 'mainpage/js/jquery.min.js' %}"></script>
-    <script src="{% static 'mainpage/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'mainpage/js/scripts.js' %}"></script>
 
 
   <!-- MODAL CODE HERE -->
