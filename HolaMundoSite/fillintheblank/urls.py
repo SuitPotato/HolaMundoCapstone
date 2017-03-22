@@ -22,5 +22,7 @@ from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     url(r'^fillintheblank/$', views.quiz),
-    url(r'^fillintheblank/$', views.quiz, name='quiz')
+    url(r'^fillintheblank/$', views.quiz, name='quiz'),
+    #url(r'^fillintheblank/$', )
+
 ]

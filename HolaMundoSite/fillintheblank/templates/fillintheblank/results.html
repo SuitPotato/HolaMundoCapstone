@@ -1,17 +1,15 @@
-{% extends "mainpage/base.html" %}
+{% extends "../mainpage/base.html" %}
 
 {% block content %}
-
-{% load staticfiles %}
-
-<h1>{{ question.question_text }}</h1>
-
-<ul>
-{% for Answer in question.choice_set.all %}
-    <li>{{ Answer.choice_text }} -- </li>
-{% endfor %}
-</ul>
-
-<a href="{% url 'fillintheblank:detail' question.id %}">Vote again?</a>
-
+	<div class="jumbotron">
+		<h2>
+			Success!
+		</h2>
+		<p>
+			You have submitted your Question!
+		</p>
+		<p>
+			<a class="btn btn-primary btn-large" href="#">Wahoo!</a>
+		</p>
+	</div>
 {% endblock %}

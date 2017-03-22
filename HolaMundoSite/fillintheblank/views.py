@@ -13,11 +13,12 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def quiz(request):
     if request.method == 'POST':
-        form = fillintheblank(request.POST)
+        form = QuestionForm(request.POST)
 
         if form.is_valid():
             question = form.save(commit=False)
             question.save()
+            return render(request, 'fillintheblank/success.html')
     else:
         form = QuestionForm()
     return render(request, 'fillintheblank/quiz.html', {'form': form})
