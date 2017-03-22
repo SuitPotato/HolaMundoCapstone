@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Question(models.Model):
 	question = models.CharField(max_length=250, default = '')
 	answer = models.CharField(max_length=500, default = '')
+	key = models.IntegerField(default=0)
 
 	class Meta:
 		db_table = "FillInTheBlank"

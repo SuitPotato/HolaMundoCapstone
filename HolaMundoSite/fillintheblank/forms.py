@@ -11,4 +11,4 @@ class QuestionForm(forms.ModelForm):
     #template_name = '/fillintheblank/fb_quiz'
     class Meta:
         model = Question
-        fields = ('question', 'answer')
+        fields = ('question', 'answer', 'key')
