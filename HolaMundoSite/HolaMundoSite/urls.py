@@ -19,7 +19,11 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('mainpage.urls')),
+    url(r'^', include('UserSettingsPage.urls')),
     url(r'^', include('Video_page.urls')),
     url(r'^', include('coursemanagement.urls')),
-    url(r'^', include('youtube.urls'))
+    url(r'^', include('youtube.urls')),
+    url(r'^matching', include('matching.urls')),
+    url(r'^', include('DragAndDropQuiz.urls')),
+    url(r'^', include('multipleChoice.urls'))
 ]

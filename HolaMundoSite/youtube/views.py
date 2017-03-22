@@ -19,23 +19,22 @@ from googleapiclient.http import MediaFileUpload
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import argparser, run_flow
+from django.contrib.auth.decorators import login_required
 from django.db import models
-from Video_page.models import Video
 from .models import *
 
-from Video_page.models import Video
+from coursemanagement.models import Lesson
 
 BASE_URL = 'C:\Users\Josh\Documents\GitHub\HolaMundoCapstone\HolaMundoSite'
 
 
 
-# Create your views here.
-
+@login_required()
 def index(request):
     form = VidUploadForm()
     return render(request, 'youtube/index.html', {'form': form})
 
-
+@login_required()
 def uploaded(request):
     if request.method == 'POST':
         form = VidUploadForm(request.POST, request.FILES)
@@ -59,7 +58,7 @@ def toYoutube(f):
     #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
     #  privacyStatus='public', title='Test video')
 
-    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file= BASE_URL + uploaded_url, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
+    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file=BASE_URL + uploaded_url, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
 
     if not os.path.exists(args.file):
         exit("Please specify a valid file using the --file= parameter.")
@@ -213,7 +212,7 @@ def resumable_upload(insert_request):
             if response is not None:
                 if 'id' in response:
                     print "Video id '%s' was successfully uploaded." % response['id']
-                    p = Video()
+                    p = Lesson()
                     p.title = response['snippet']['title']
                     p.youtube = response['id']
                     p.link = 558

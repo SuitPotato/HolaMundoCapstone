@@ -20,5 +20,11 @@ from . import views
 urlpatterns = [
     url(r'^manage/$', views.manage),
 	url(r'^createlesson', views.lesson),
-	url(r'^success', views.success)
+	url(r'^success', views.success),
+	url(r'^viewcourse/(\d+)/', views.viewcourse),	#Takes in a CourseID, check coursemanagement/views.py for more 
+	
+	#url(r'^create', views.create),
+	#url(r'^createcourse', views.course),
+	#url(r'^createquize', views.quiz),
+	
 ]

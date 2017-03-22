@@ -5,13 +5,14 @@
 {% load staticfiles %}
 
 <style>
+
 .right {
-	position: absolute;
-    right: 0px;
-    border: 3px solid #73AD21;
+    float:left;
+    width:190px;
+    height:140px;
+    margin-right:10px;
     padding: 10px;
-	width: 190px;
-	height: 140px;
+    border: 3px solid #73AD21;
 }
 
 .video-line {
@@ -19,58 +20,22 @@
 	margin-top: 10px;
 	min-height: 160px;
 }
+
 </style>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-4">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-6">
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-
-	
-    {% comment %}
-
-	{% for foo in foo_list %}
-		<li>{{ foo.non_db_property }}</li>
-	{% endfor %}
-
-	{% endcomment %}
 
 	{% for video in videos %}
-		
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="row video-line">
-				<div class="col-md-3">
-					<a href="/video/{{video.link}}"> <img alt="Bootstrap Image Preview"  src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right" /> </a>
-				</div>
-				<div class="col-md-9">
-					<h3>
-						<a href="/video/{{video.link}}"> {{video.title}} </a>
-					</h3>
-					<p>
-						{{video.tab1desc}}
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
-	
+
+    <div class="container">
+            <div class="row video-line">
+                <div class="col-md-12">
+					<a href="/video/{{video.link}}"> <img src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right" /> </a>
+                    <h3><a href="/video/{{video.link}}"> {{video.title}} </a></h3>
+                    <p>{{ video.tab2desc }}</p>
+                </div>
+            </div>
+    </div>
+
 	{% endfor %}
 	
 </div>
