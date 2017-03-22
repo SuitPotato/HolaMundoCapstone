@@ -17,8 +17,23 @@
 
 
 {% block content %}
-
-
+<form action= "" method = "POST">
+	{% csrf_token %}
 	
+	<p align = "center">Title</p>
+	<p align = "center">{{ form.title }}</p>
+	<p align = "center">Word One</p>
+	<p align = "center">{{ form.wordOne }}</p>
+	<p align = "center">Word Two</p>
+	<p align = "center">{{ form.wordTwo }}</p>
+	<p align = "center">Word Three</p>
+	<p align = "center">{{ form.wordThree }}</p>
+	<p align = "center">Word Four</p>
+	<p align = "center">{{ form.wordFour }}</p>
+	<p align = "center">Word Five</p>
+	<p align = "center">{{ form.wordFive }}</p>
+	
+	<center><input type = "submit" value = "Submit"/></center>
+</form>
 {% endblock %}
 

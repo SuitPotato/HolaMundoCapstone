@@ -32,7 +32,7 @@ def view_sentence_drag(request):
 def create_sentence_drag(request):
 	if request.method == 'POST':
 		# Form is a variable that contains the source form
-		form = SentenceForm(request.Post)
+		form = SentenceForm(request.POST)
 		if form.is_valid():
 			# Specifically calling the model
 			v = Sentence()
@@ -47,10 +47,14 @@ def create_sentence_drag(request):
 			
 			# HttpResponseRedirect has a view and URL
 			# Currently a flag, no success screen yet
-			return HttpResponseRedirect('/DragDemo/')
+			return HttpResponseRedirect('/success/')
 	elif request.method == 'GET':
 		form = SentenceForm()
 	else:
 		form = SentenceForm()
-	return render(request, "DragAndDropQuiz/sentence_create.html", {"form":form})
+	return render(request, 'DragAndDropQuiz/sentence_create.html', {"form":form})
 			
+			
+@login_required
+def success(request):
+	return render(request, 'DragAndDropQuiz/success.html')
