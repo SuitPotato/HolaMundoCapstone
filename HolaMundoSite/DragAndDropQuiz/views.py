@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django import forms
 from django.db import models
+from django.shortcuts import render
 
 # Course Management App Imports
 
@@ -25,14 +26,15 @@ def create_dragndrop(request):
 	
 # The following views are using the new method of Drag and drop
 # Names can be changed later, current name is not as effective
-def view_sentence_drag(request, quizID):
+def view_sentence_drag(request, title):
 	try:
-		sentence = Sentence.objects.get(quizID = quizID)
+		sentence = Sentence.objects.get(title = title)
 		context = {'title': sentence.title, 'wordOne': sentence.wordOne,'wordTwo': sentence.wordTwo,
 					'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour, 'wordFive': sentence.wordFive}
-		return render(request, 'DragAndDrop/sentence.html', context)
+		return render(request, 'DragAndDropQuiz/sentence.html', context)
 	except:
-		return render(request, '/success/')
+		return render(request, 'Video_page/404.html')
+		
 @login_required()
 def create_sentence_drag(request):
 	if request.method == 'POST':
