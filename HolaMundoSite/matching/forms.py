@@ -2,6 +2,8 @@ from django import forms
 from django.forms import ModelForm
 from matching.models import *
 
+#form created from model for taking in user input quiz name and number
+#of choices in the question
 class MatchingNumber(forms.ModelForm):
 	class Meta:
 		model = Number
@@ -9,6 +11,9 @@ class MatchingNumber(forms.ModelForm):
 	#quiz_name = forms.CharField(label='Quiz Name')
 	#number = forms.IntegerField(label='How many matching questions do you want?', max_value=26, min_value=2)
 
+#form created from model for taking in user input choices, answers,
+#and corresponding letter for answer for matching that the student
+#can input	
 class MatchingQuestion(forms.ModelForm):
 	class Meta:
 		model = Question
@@ -21,7 +26,8 @@ class MatchingQuestion(forms.ModelForm):
 		answer = forms.CharField(label='Answer')
 		rand_letter = forms.CharField(label='Letter')
 		temp += 1'''
-	
+		
+#form created from model that takes in students answer
 class MatchingAnswer(forms.ModelForm):
 	class Meta:
 		model = Answer
