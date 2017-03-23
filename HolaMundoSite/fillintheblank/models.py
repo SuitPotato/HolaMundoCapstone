@@ -17,6 +17,15 @@ class Answer(models.Model):
 
 	def __str__(self):
 		return self.answer
+		
+class FillInTheBlankQuestion(models.Model):
+	question_start = models.CharField(max_length=50, default = '')
+	question_end = models.CharField(max_length=50, default = '')
+	answer = models.CharField(max_length=50, default = '')
+	key = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.answer
 
 '''from __future__ import unicode_literals
 
