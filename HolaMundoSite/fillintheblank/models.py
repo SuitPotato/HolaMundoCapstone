@@ -12,6 +12,12 @@ class Question(models.Model):
 	class Meta:
 		db_table = "FillInTheBlank"
 
+class Answer(models.Model):
+	answer = models.CharField(max_length=500, default = '')
+
+	def __str__(self):
+		return self.answer
+
 '''from __future__ import unicode_literals
 
 from django.db import models

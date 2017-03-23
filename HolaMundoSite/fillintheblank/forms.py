@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from fillintheblank.models import Question
+from fillintheblank.models import *
 
 # class Create_FillInTheBlank_quiz(forms.Form):
 
@@ -12,3 +12,8 @@ class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ('question', 'answer', 'key')
+
+class Answer(forms.ModelForm):
+	class Meta:
+		model = Answer
+		fields = ['answer', ]

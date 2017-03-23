@@ -9,7 +9,7 @@ from fillintheblank.forms import (
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+#SHort answer/essay quiz that is created when a user is logged in
 @login_required()
 def quiz(request):
     if request.method == 'POST':
@@ -23,8 +23,17 @@ def quiz(request):
         form = QuestionForm()
     return render(request, 'fillintheblank/quiz.html', {'form': form})
 
-#@login_required()
-#def take_quiz(request, key):
+@login_required()
+def answer_question(request):
+    if request.method == 'POST':
+        form = Answer(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.save()
+
+    else:
+        form = Answer()
+        return render(request, 'fillintheblank/answer.html', {'form': form})
 
 
 ''''
