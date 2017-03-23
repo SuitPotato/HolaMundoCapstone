@@ -8,13 +8,20 @@
   <title>Multiple Choice</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% for question in quiz %}
+  <script>
+    if($("input[name='optradio']:checked").val() == question.correct_answer){
+      print "correct";
+    };
+  </script>
+  {% endfor %}
 </head>
 {% csrf_token %}
 <html>
 {% for question in quiz %}
 <p>{{ question.question }}</p>
 <div class="container">
-  <form>
+  <form method="get">
     <div class="radio">
       <label><input type="radio" name="optradio">{{ question.answer_a }}</label>
     </div>
@@ -29,9 +36,6 @@
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
-  {% if question.correct_answer == question.answer_a  %}
-  CORRECT
-  {% endif %}
   {% endfor %}
 </div>
 </html>

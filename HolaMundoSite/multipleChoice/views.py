@@ -23,4 +23,6 @@ def quiz(request):
 
 def takeQuiz(request):
     quiz = Question.objects.all()
+    # if request.GET.get('optradio') == answer:
+    #     print('correct!!')
     return render(request, 'multipleChoice/takeQuiz.html', {"quiz": quiz})
