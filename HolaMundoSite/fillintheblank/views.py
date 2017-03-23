@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 
 #Short answer/essay quiz that is created when a user is logged in
 @login_required()
-def quiz(request):
+def essay_quiz(request):
     if request.method == 'POST':
         # Form is a variable that contains the source form
         form = QuestionForm(request.POST)
@@ -27,7 +27,7 @@ def quiz(request):
             return render(request, 'fillintheblank/success.html')
     else:
         form = QuestionForm()
-    return render(request, 'fillintheblank/quiz.html', {'form': form})
+    return render(request, 'fillintheblank/essay_quiz.html', {'form': form})
 
 # The answer_question view is for the student to complete the question being asked
 # and subitting their answer
