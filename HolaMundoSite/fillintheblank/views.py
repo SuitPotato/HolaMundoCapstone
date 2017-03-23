@@ -62,6 +62,3 @@ def FillInTheBlankQuestion(request):
         form = FillInTheBlank()
     return render(request, 'fillintheblank/fb_quiz.html', {'form': form})
 
-
-
-    
