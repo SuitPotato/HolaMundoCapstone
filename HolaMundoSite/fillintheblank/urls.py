@@ -1,5 +1,6 @@
-"""HolaMundoSite URL Configuration
 
+"""
+HolaMundoSite URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
@@ -13,18 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import url, include
-from django.contrib import admin
+from . import views
+from django.contrib.auth.views import login, logout
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('mainpage.urls')),
-    url(r'^', include('UserSettingsPage.urls')),
-    url(r'^', include('Video_page.urls')),
-    url(r'^', include('coursemanagement.urls')),
-    url(r'^', include('youtube.urls')),
-    url(r'^', include('matching.urls')),
-    url(r'^', include('DragAndDropQuiz.urls')),
-    url(r'^', include('multipleChoice.urls')),
-    url(r'^', include('fillintheblank.urls')),
+    url(r'^fillintheblank/$', views.quiz, name='quiz'),
+    #url(r'^quiz', views.quiz),
+    url(r'^fillintheblank/answer', views.answer_question, name='success'),
+    url(r'^fillintheblank/fb_quiz', views.FillInTheBlankQuestion),
+
 ]
