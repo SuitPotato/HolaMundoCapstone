@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'Video_page',
     'coursemanagement',
     'youtube',
-    'fillintheblank',
 	'matching',
 	'DragAndDropQuiz',
     'multipleChoice',

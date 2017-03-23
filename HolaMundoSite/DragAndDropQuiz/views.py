@@ -34,7 +34,17 @@ def view_sentence_drag(request, title):
 		return render(request, 'DragAndDropQuiz/sentence.html', context)
 	except:
 		return render(request, 'Video_page/404.html')
-		
+
+def view_sentence_dragTwo(request, title):
+	try:
+		sentence = Sentence.objects.get(title=title)
+		context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
+				   'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
+				   'wordFive': sentence.wordFive}
+		return render(request, 'DragAndDropQuiz/sentenceTwo.html', context)
+	except:
+		return render(request, 'Video_page/404.html')
+
 @login_required()
 def create_sentence_drag(request):
 	if request.method == 'POST':
