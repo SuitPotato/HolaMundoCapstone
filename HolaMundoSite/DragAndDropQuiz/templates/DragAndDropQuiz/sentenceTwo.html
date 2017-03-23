@@ -1,0 +1,134 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} jQuery UI Droppable - Revert draggable position {% endblock %}
+
+{% block styleContent %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0;  z-index: 3;  }
+        #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; z-index: 2; }
+		#sortable {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		}
+		#sortable li {
+		  margin: 3px 3px 3px 0;
+		  padding: 1px;
+		  float: left;
+		  width: 175px;
+		  height: 90px;
+		  font-size: 4em;
+		  text-align: center;
+		}
+    </style>
+
+{% endblock %}
+
+
+{% block headContent %}
+
+    <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+
+    <script>
+      $( function() {
+        $( "#draggable" ).draggable({ revert: "invalid" });
+        $( "#draggable2" ).draggable({ revert: "invalid", snap: ".draggableContainer", stack: ".draggable" });
+        $( "#draggable3" ).draggable({ revert: "invalid" });
+
+        $( "#droppable" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable2") {
+                    return true;
+                }
+            }
+        });
+
+          $( "#droppable2" ).droppable({
+          classes: {
+            "ui-droppable-hover": "ui-state-hover"
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable3") {
+                    return true;
+                }
+            }
+        });
+      } );
+    </script>
+
+{% endblock %}
+
+{%  block content %}
+
+    <div class="col-md-12">
+		<h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
+				Hola Mundo - {{title}}
+		</h3>
+	</div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p> Word Bank: </p>
+
+            <ul id="sortable" class="div3">
+                <li id="draggable" class="ui-state-default buttonli"> {{ wordOne }} </li>
+                <li id="draggable2" class="ui-state-default buttonli"> {{ wordTwo }} </li>
+                <li id="draggable3" class="ui-state-default buttonli"> {{ wordThree }} </li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="container-fluid">
+                <p> Place your words here: </p>
+
+                <ul id="sortable" class="div3">
+                    <li id="word1" class="ui-state-default buttonli">1 </li>
+                    <li id="droppable" class="ui-state-default buttonli">
+                    <li id="droppable2" class="ui-state-default buttonli"></li>
+                    <li id="word4" class="ui-state-default buttonli">{{wordFour}}</li>
+                    <li id="word4" class="ui-state-default buttonli">{{wordFive}}</li>
+		        </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-12">
+	</div>
+
+{% endblock %}

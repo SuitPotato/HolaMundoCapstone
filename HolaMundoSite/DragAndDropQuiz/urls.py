@@ -27,5 +27,6 @@ urlpatterns = [
 	url(r'^dragndrop/$', views.view_dragndrop, name='view_dnd'),
 	url(r'^dragndrop/create/$', views.create_dragndrop, name='create_dnd'),
     url(r'^sentence/(?P<title>[\w]+)$', views.view_sentence_drag, name='view_sentence'),
+    url(r'^sentenceTwo/(?P<title>[\w]+)$', views.view_sentence_dragTwo, name='view_sentence2'),
 	url(r'^createsentence/$', views.create_sentence_drag, name = 'create_sentence'),
 ]
