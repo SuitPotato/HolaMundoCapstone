@@ -9,4 +9,4 @@ class QuestionForm(forms.ModelForm):
  #     fields = ('question', 'answer_a', 'answer_b', 'answer_c', 'answer_d')
     class Meta:
         model = Question
-        fields = ['question', 'answer_a', 'answer_b', 'answer_c', 'answer_d']
+        fields = ['question', 'answer_a', 'answer_b', 'answer_c', 'answer_d', 'correct_answer']

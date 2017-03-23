@@ -10,6 +10,7 @@ class Question(models.Model):
     answer_b = models.CharField(max_length=150, default='')
     answer_c = models.CharField(max_length=150, default='')
     answer_d = models.CharField(max_length=150, default='')
+    correct_answer = models.CharField(max_length=150, default='')
 
     class Meta:
         db_table = "multipleChoice"

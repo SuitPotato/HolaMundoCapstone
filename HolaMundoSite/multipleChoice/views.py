@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import ModelForm
 from django.db import models
+from multipleChoice.models import Question
 from multipleChoice.forms import (
     QuestionForm
 )
@@ -19,3 +20,7 @@ def quiz(request):
     else:
         form = QuestionForm()
     return render(request, 'multipleChoice/quiz.html', {'form': form})
+
+def takeQuiz(request):
+    quiz = Question.objects.all()
+    return render(request, 'multipleChoice/takeQuiz.html', {"quiz": quiz})

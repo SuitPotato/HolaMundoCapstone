@@ -21,6 +21,7 @@ from . import views
 
 urlpatterns = [
     url(r'^multipleChoice/$', views.quiz),
-    url(r'^multipleChoice/$', views.quiz, name='quiz')
+    url(r'^multipleChoice/$', views.quiz, name='quiz'),
+    url(r'^takeQuiz/$', views.takeQuiz, name='takeQuiz')
     # url(r'^multipleChoice/', 'multipleChoice.views.quiz', name = 'quiz'),
 ]
