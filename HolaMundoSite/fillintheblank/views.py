@@ -3,9 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import ModelForm
 from django.db import models
-from fillintheblank.forms import (
-    QuestionForm
-)
+from fillintheblank.forms import *
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
