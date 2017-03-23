@@ -21,4 +21,4 @@ class Answer(forms.ModelForm):
 class FillInTheBlank(forms.ModelForm):
 	class Meta:
 		model = FillInTheBlankQuestion
-		fields = ('question_start', 'question_end' 'answer', 'key')
+		fields = ('question_start', 'question_end', 'answer', 'key')
