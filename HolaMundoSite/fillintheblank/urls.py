@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^fillintheblank/$', views.FillInTheBlankQuestion, name='quiz'),
     url(r'^fillintheblank/essay_quiz', views.essay_quiz, name='quiz'),
     #url(r'^quiz', views.quiz),
-    url(r'^fillintheblank/answer', views.answer_question, name='success'),
+    url(r'^fillintheblank/essay_answer', views.answer_question, name='success'),
     #url(r'^fillintheblank/fb_quiz', views.FillInTheBlankQuestion),
 
 ]

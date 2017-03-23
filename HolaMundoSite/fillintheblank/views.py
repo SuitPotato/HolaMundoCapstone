@@ -43,7 +43,7 @@ def answer_question(request):
 
     else:
         form = Answer()
-        return render(request, 'fillintheblank/answer.html', {'form': form})
+        return render(request, 'fillintheblank/essay_answer.html', {'form': form})
 
 # This view retireves the form for Fill In The Blank question for the teacher
 # to create a question for a fill in the blank question.
