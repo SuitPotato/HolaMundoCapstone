@@ -13,22 +13,22 @@
     <html>
     {% for question in quiz %}
     <p>{{ question.question }}</p>
-    {% endfor %}
     <div class="container">
       <form>
         <div class="radio">
-          <label><input type="radio" name="optradio">Answer 1</label>
+          <label><input type="radio" name="optradio">{{ question.answer_a }}</label>
         </div>
         <div class="radio">
-          <label><input type="radio" name="optradio">Answer 2</label>
+          <label><input type="radio" name="optradio">{{ question.answer_b }}</label>
         </div>
         <div class="radio">
-          <label><input type="radio" name="optradio">Answer 3</label>
+          <label><input type="radio" name="optradio">{{ question.answer_c }}</label>
         </div>
         <div class="radio">
-          <label><input type="radio" name="optradio">Answer 4</label>
+          <label><input type="radio" name="optradio">{{ question.answer_d }}</label>
         </div>
       </form>
+      {% endfor %}
     </div>
 </html>
 {% endblock %}
