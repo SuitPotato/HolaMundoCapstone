@@ -27,7 +27,6 @@ urlpatterns = [
 	url(r'^results/(?P<tag>[\w]+)$', views.results, name="results"),
 	url(r'^login/$', auth_views.login, {'template_name': 'mainpage/login.html'}, name='login'),
 	url(r'^logout/$', auth_views.logout, {'template_name': 'mainpage/logout.html'}, name='logout'),
-    url(r'^fillintheblank/$', include('fillintheblank.urls')),
 	url(r'^register/$', views.register),
     url(r'^UserSettingsPage/', include('UserSettingsPage.urls')),
 	url(r'^registered/$', views.registered)
