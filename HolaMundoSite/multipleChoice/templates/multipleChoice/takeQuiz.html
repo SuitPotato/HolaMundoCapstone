@@ -9,26 +9,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-    {% csrf_token %}
-    <html>
-    {% for question in quiz %}
-    <p>{{ question.question }}</p>
-    <div class="container">
-      <form>
-        <div class="radio">
-          <label><input type="radio" name="optradio">{{ question.answer_a }}</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio">{{ question.answer_b }}</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio">{{ question.answer_c }}</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio">{{ question.answer_d }}</label>
-        </div>
-      </form>
-      {% endfor %}
+{% csrf_token %}
+<html>
+{% for question in quiz %}
+<p>{{ question.question }}</p>
+<div class="container">
+  <form>
+    <div class="radio">
+      <label><input type="radio" name="optradio">{{ question.answer_a }}</label>
     </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio">{{ question.answer_b }}</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio">{{ question.answer_c }}</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio">{{ question.answer_d }}</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+  {% if question.correct_answer == question.answer_a  %}
+  CORRECT
+  {% endif %}
+  {% endfor %}
+</div>
 </html>
 {% endblock %}

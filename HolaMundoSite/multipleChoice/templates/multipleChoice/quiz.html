@@ -14,7 +14,7 @@
 </head>
 <h1>Create Quiz Question</h1>
 <form method="POST" class="QuestionForm">
-    <input type="text" name="numOfQuestions">
+    <!-- <input type="text" name="numOfQuestions"> -->
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>
