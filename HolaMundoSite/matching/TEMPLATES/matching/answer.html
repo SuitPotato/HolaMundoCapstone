@@ -1,5 +1,20 @@
-<form action="/question/" method="POST">
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Matching Quiz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  </script>
+</head>
+<h1>Answer Matching Question</h1>
+<form method="POST" class="MatchingAnswer" action="">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
 </form>
+{% endblock %}
