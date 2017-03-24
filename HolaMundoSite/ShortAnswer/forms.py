@@ -13,10 +13,10 @@ class QuestionForm(forms.ModelForm):
     class Meta:
     	# Based off Model: Question
         model = Question
-        fields = ('title', 'author', 'question_name', 'answer')
+        fields = ('title', 'author', 'question', 'answer')
 
     # fields defined under forms
 	title = forms.CharField(max_length = 140)
 	author = forms.CharField(max_length = 140)
-	question_name = forms.CharField(max_length = 500)
+	question = forms.CharField(max_length = 500)
 	answer = forms.CharField(max_length = 1000)

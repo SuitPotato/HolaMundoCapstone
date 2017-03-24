@@ -1,0 +1,24 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+<div class="container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p align = "left">Title</p>
+        <p align = "left">{{ form.title }}</p>
+        <p align = "left">Question</p>
+        <p align = "left">{{ form.question_start }}</p>
+        <p align = "left">Answer</p>
+        <p align = "left">{{ form.answer }}</p>
+        <p align = "left">Question End</p>
+        <p align = "left">{{ form.question_end }}</p>
+        <left><button type="submit">Submit</button></left>
+    </form>
+    <br>
+</div>
+
+
+{% endblock %}

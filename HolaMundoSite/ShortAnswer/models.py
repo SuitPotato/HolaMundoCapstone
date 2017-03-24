@@ -14,7 +14,7 @@ class Question(models.Model):
 	# author of quiz
 	author = models.CharField(max_length = 100)
 	# Text Field for Question
-	question_name = models.CharField(max_length = 1000)
+	question = models.CharField(max_length = 1000)
 	# Text Field for answer
 	answer = models.CharField(max_length = 1000)
 

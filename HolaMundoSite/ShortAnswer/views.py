@@ -19,9 +19,9 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def view_essay_quiz(request, title):
 	try:
-		question = Question.objects.get(title = title)
-		context = {'title': question.title, 'question': question.question_name,
-		 'answer': question.answer}
+		question1 = Question.objects.get(questionID__exact = questionID, title = title)
+		context = {'title': question1.title, 'question': question1.question,
+		 'answer': question1.answer}
 
 		return render(request, 'ShortAnswer/essay_quiz.html', context)
 	except:
@@ -29,17 +29,17 @@ def view_essay_quiz(request, title):
 
 # Short answer/essay quiz that is created when a user is logged in
 @login_required()
-def essay_quiz(request):
+def create_essay_quiz(request):
     if request.method == 'POST':
         # Form is a variable that contains the source form
         form = QuestionForm(request.POST)
 
         if form.is_valid():
-            question = Question()
-            question.title = form.cleaned_data["title"]
-            question.question_name = form.cleaned_data["question_name"]
-            question.answer = form. cleaned_data["answer"]
-            question.save()
+            question1 = Question()
+            question1.title = form.cleaned_data["title"]
+            question1.question = form.cleaned_data["question"]
+            question1.answer = form. cleaned_data["answer"]
+            question1.save()
             return render(request, 'ShortAnswer/success.html')
     elif request.method == 'GET':
         form = QuestionForm()
@@ -50,3 +50,4 @@ def essay_quiz(request):
 @login_required
 def success(request):
 	return render(request, 'ShortAnswer/success.html')
+
