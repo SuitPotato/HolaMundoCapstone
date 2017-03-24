@@ -7,55 +7,11 @@ from django.db import models
 
 # Import Forms
 from fillintheblank.forms import *
+# Import Models
+from fillintheblank.models import *
 
 # Required for importing User for Author
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
-
-# view is to see the Short Answer/Essay question
-@login_required()
-def view_essay_quiz(request, title):
-	try:
-		question = Question.objects.get(title = title)
-		context = {'title': question.title, 'question': question.question_name,
-		 'answer': question.answer}
-
-		return render(request, 'fillintheblank/essay_quiz.html', context)
-	except:
-		return render(request, 'Video_page/404.html')
-
-# Short answer/essay quiz that is created when a user is logged in
-@login_required()
-def essay_quiz(request):
-    if request.method == 'POST':
-        # Form is a variable that contains the source form
-        form = QuestionForm(request.POST)
-
-        if form.is_valid():
-            question = form.save(commit=False)
-            # save the variable into the model.
-            question.save()
-            return render(request, 'fillintheblank/success.html')
-    else:
-        form = QuestionForm()
-    return render(request, 'fillintheblank/essay_quiz.html', {'form': form})
-
-# The answer_question view is for the student to complete the question being asked
-# and subitting their answer
-@login_required()
-def answer_question(request):
-    if request.method == 'POST':
-        # Form is a variable that contains the source form
-        form = Answer(request.POST)
-        if form.is_valid():
-            answer = form.save(commit=False)
-            # save the variable into the model.
-            answer.save()
-
-    else:
-        form = Answer()
-        return render(request, 'fillintheblank/essay_answer.html', {'form': form})
 
 # This view retireves the form for Fill In The Blank question for the teacher
 # to create a question for a fill in the blank question.
@@ -73,4 +29,3 @@ def FillInTheBlankQuestion(request):
     else:
         form = FillInTheBlank()
     return render(request, 'fillintheblank/fb_quiz.html', {'form': form})
-
