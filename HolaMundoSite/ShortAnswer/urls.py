@@ -1,5 +1,6 @@
-"""HolaMundoSite URL Configuration
 
+"""
+HolaMundoSite URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
@@ -13,19 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import url, include
-from django.contrib import admin
+from . import views
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('mainpage.urls')),
-    url(r'^', include('UserSettingsPage.urls')),
-    url(r'^', include('Video_page.urls')),
-    url(r'^', include('coursemanagement.urls')),
-    url(r'^', include('fillintheblank.urls')),
-    url(r'^', include('ShortAnswer.urls')),
-    url(r'^', include('youtube.urls')),
-    url(r'^', include('matching.urls')),
-    url(r'^', include('DragAndDropQuiz.urls')),
-    url(r'^', include('multipleChoice.urls'))
+	url(r'^ShortAnswer/$', views.essay_quiz, name='create_essay'),
+	url(r'^ShortAnswer/(?P<title>[\w]+)$', views.view_essay_quiz, name='view_essay'),
+	#url(r'^ShortAnswer/essay_quiz', views.essay_quiz, name='essay quiz'),
+	#url(r'^ShortAnswer/$', views.view_essay_quiz, name='quiz'),
+    #url(r'^fillintheblank/$', views.FillInTheBlankQuestion, name='quiz'),
+    #url(r'^fillintheblank/essay_quiz', views.essay_quiz, name='quiz'),
+    
 ]

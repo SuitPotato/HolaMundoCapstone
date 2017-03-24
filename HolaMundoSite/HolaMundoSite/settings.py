@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'coursemanagement',
     'youtube',
     'fillintheblank',
+    'ShortAnswer',
 	'matching',
 	'DragAndDropQuiz',
     'multipleChoice',
