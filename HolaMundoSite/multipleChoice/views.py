@@ -12,19 +12,14 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def view_takeQuiz(request,title):
-    # try:
-        # sentence = Sentence.objects.get(title = title)
-        # form = QuestionForm()
-        # quiz = Quiz(question='test', answerA='test', answerB='test', answerC='test',answerD='test', correctAnswer='test')
-        # quiz.save()
-        quiz = Quiz.objects.get(title="test")
-        # myquest = Question.objects.all()
+    try:
+        quiz = Quiz.objects.get(title=title)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
                    'answerC': quiz.answerC,'answerD': quiz.answerD,
                    'correctAnswer': quiz.correctAnswer}
         return render(request, 'multipleChoice/takeQuiz.html', context)
-    # except:
-    #     return render(request, 'multipleChoice/quiz.html', {})
+    except:
+        return render(request, 'multipleChoice/quiz.html', {})
 
 @login_required
 def quiz(request):
