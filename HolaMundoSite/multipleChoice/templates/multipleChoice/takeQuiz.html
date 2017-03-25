@@ -8,35 +8,26 @@
   <title>Multiple Choice</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- {% for question in quiz %} -->
-  <script>
-    if($("input[name='optradio']:checked").val("#optradio") == question.correct_answer){
-      print "correct";
-    };
-  </script>
-  <!-- {% endfor %} -->
 </head>
 {% csrf_token %}
 <html>
-<!-- {% for question in quiz %} -->
-<p>{{ question.question }}</p>
-<!-- <div class="container">
-  <form action="" method="get">
+{{ title }}
+<div class="container">
+   <form method="GET" class="QuestionForm">
     <div class="radio">
-      <label><input type="radio" name="optradio">{{ question.answer_a }}</label>
+      <label><input type="radio" name="optradio">{{answerA}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">{{ question.answer_b }}</label>
+      <label><input type="radio" name="optradio">{{answerB}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">{{ question.answer_c }}</label>
+      <label><input type="radio" name="optradio">{{answerC}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">{{ question.answer_d }}</label>
+      <label><input type="radio" name="optradio">{{answerD}}</label>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
-  </form> -->
-  <!-- {% endfor %} -->
+  </form>
 </div>
 </html>
 {% endblock %}

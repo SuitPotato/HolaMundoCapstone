@@ -21,6 +21,6 @@ urlpatterns = [
     url(r'^multipleChoice/$', views.quiz),
     url(r'^multipleChoice/$', views.quiz, name='quiz'),
     # url(r'^takeQuiz/$', views.takeQuiz, name = 'takeQuiz')
-    url(r'^multipleChoice/(?P<question>[\w]+)/$', views.takeQuiz, name='takeQuiz')
+    url(r'^multipleChoice/(?P<title>[\w]+)/$', views.view_takeQuiz, name='view_takeQuiz')
     # url(r'^multipleChoice/', 'multipleChoice.views.quiz', name = 'quiz'),
 ]
