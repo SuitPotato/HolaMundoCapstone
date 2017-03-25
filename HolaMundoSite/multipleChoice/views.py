@@ -11,12 +11,18 @@ from multipleChoice.forms import (
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def results(request):
+    # show results of quiz to user
+    return redirect('https://www.google.de/')
+
 def view_takeQuiz(request,title):
     try:
         quiz = Quiz.objects.get(title=title)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
                    'answerC': quiz.answerC,'answerD': quiz.answerD,
                    'correctAnswer': quiz.correctAnswer}
+        if request.method == 'GET':
+           return render(request, 'multipleChoice/results.html', {})
         return render(request, 'multipleChoice/takeQuiz.html', context)
     except:
         return render(request, 'multipleChoice/quiz.html', {})
