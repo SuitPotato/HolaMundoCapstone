@@ -8,23 +8,31 @@
   <title>Multiple Choice</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+    $(function()
+    {
+      $('#quiz').on('change', function(){
+        alert($('input[name=optradio]:checked','#quiz').val());
+      })
+    })
+</script>
 </head>
 {% csrf_token %}
 <html>
-{{ title }}
+<p>{{ title }}</p>
 <div class="container">
-   <form method="GET" class="QuestionForm">
+   <form method="GET" class="QuestionForm" id="quiz">
     <div class="radio">
-      <label><input type="radio" name="optradio">{{answerA}}</label>
+      <label><input type="radio" name="optradio" value="A">{{answerA}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">{{answerB}}</label>
+      <label><input type="radio" name="optradio" value="B">{{answerB}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">{{answerC}}</label>
+      <label><input type="radio" name="optradio" value="C">{{answerC}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">{{answerD}}</label>
+      <label><input type="radio" name="optradio" value="D">{{answerD}}</label>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
