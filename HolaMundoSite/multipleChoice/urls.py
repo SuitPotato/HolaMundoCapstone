@@ -1,5 +1,4 @@
 """HolaMundoSite URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
@@ -21,7 +20,7 @@ urlpatterns = [
     url(r'^multipleChoice/$', views.quiz),
     url(r'^multipleChoice/$', views.quiz, name='quiz'),
     # url(r'^takeQuiz/$', views.takeQuiz, name = 'takeQuiz')
-    url(r'^multipleChoice/(?P<title>[\w]+)/$', views.view_takeQuiz, name='view_takeQuiz'),
+    url(r'^multipleChoice/(?P<quizID>[\w]+)/$', views.view_takeQuiz, name='view_takeQuiz'),
     url(r'^multipleChoice/$', views.results, name='results')
     # url(r'^multipleChoice/', 'multipleChoice.views.quiz', name = 'quiz'),
 ]

@@ -15,13 +15,21 @@
     //     alert($('input[name=optradio]:checked','#quiz').val());
     //   })
     // })
+    // $(document).ready(function(){
+    //   // $("#A").click(function(event){
+    //     if ($('input[name=A]:checked').val() == correctAnswer) {
+    //         alert($('input[name=optradio]:checked','#quiz').val());
+    //     }
+    //   // })
+    // })
     $(document).ready(function(){
-      // $("#A").click(function(event){
-        if ($('input[name=A]:checked').val() == correctAnswer) {
-            alert($('input[name=optradio]:checked','#quiz').val());
+      $('#quiz').on('change', function(){
+        if($('#A').val() || $('#B').val() || $('#C').val() || $('#D').val() == '{{correctAnswer}}'){
+          alert('youre correct');
         }
-      // })
+      })
     })
+
 </script>
 </head>
 {% csrf_token %}
@@ -30,16 +38,16 @@
 <div class="container">
    <form method="GET" class="QuestionForm" id="quiz">
     <div class="radio">
-      <label><input type="radio" name="optradio" id="A">{{answerA}}</label>
+      <label><input type="radio" name="optradio" id="A" value="{{answerA}}">{{answerA}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio" id="B">{{answerB}}</label>
+      <label><input type="radio" name="optradio" id="B" value="{{answerB}}">{{answerB}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio" id="C">{{answerC}}</label>
+      <label><input type="radio" name="optradio" id="C" value="{{answerC}}">{{answerC}}</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio" id="D">{{answerD}}</label>
+      <label><input type="radio" name="optradio" id="D" value="{{answerD}}">{{answerD}}</label>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
