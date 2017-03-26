@@ -9,26 +9,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-    // $(function()
-    // {
-    //   $('#quiz').on('change', function(){
-    //     alert($('input[name=optradio]:checked','#quiz').val());
-    //   })
-    // })
-    // $(document).ready(function(){
-    //   // $("#A").click(function(event){
-    //     if ($('input[name=A]:checked').val() == correctAnswer) {
-    //         alert($('input[name=optradio]:checked','#quiz').val());
-    //     }
-    //   // })
-    // })
-    $(document).ready(function(){
-      $('#quiz').on('change', function(){
-        if($('#A').val() || $('#B').val() || $('#C').val() || $('#D').val() == '{{correctAnswer}}'){
-          alert('youre correct');
-        }
-      })
-    })
+
+$(document).ready(function(){
+  $('#quiz').on('change', function(){
+    if($('input[name=optradio]:checked').val() == "{{correctAnswer}}"){
+      alert('youre correct');
+    }
+    //  alert('correct');
+  })
+})
+
+// })
+
 
 </script>
 </head>
