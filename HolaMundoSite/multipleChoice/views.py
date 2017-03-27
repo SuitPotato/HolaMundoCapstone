@@ -16,20 +16,19 @@ def results(request):
     return redirect('https://www.google.de/')
 
 def view_takeQuiz(request,quizID):
-    try:
+    # try:
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
         'answerC': quiz.answerC,'answerD': quiz.answerD,
         'correctAnswer': quiz.correctAnswer, 'score':quiz.score}
-        ctx = {}
-        if request.method == 'POST' and 'input' in request.POST:
-           ctx['score'] = int(request.get('input', 0)) + 1
-           return render(request, 'multipleChoice/takeQuiz.html', score)
+        if request.method == 'POST':
+            # quiz.score = form.cleaned_data["score"]
+            return redirect('https://www.google.de/')
         return render(request, 'multipleChoice/takeQuiz.html', context)
+    # except:
+    # except:
+    #     return render(request, 'multipleChoice/quiz.html', {})
 
-
-    except:
-        return render(request, 'multipleChoice/quiz.html', {})
 
 @login_required
 def quiz(request):
