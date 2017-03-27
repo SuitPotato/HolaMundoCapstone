@@ -22,4 +22,5 @@ urlpatterns = [
 	url(r'^answer_question', views.answer_question),
 	url(r'^create_matching', views.create_matching),
 	url(r'^complete', views.complete),
+	url(r'^view_matching', views.view_matching),
 ]

@@ -1,0 +1,13 @@
+{% extends "mainpage/base.html" %}
+
+{% block titleBlock %} Matching Question {% endblock %}
+
+{% csrf_token %}
+<html>
+<p>{{ title }}</p>
+<div class="container">
+	<form method="GET" class="MatchingForm" id="quiz">
+	</form>
+</div>
+</html>
+{% endblock %}
