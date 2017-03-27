@@ -31,7 +31,7 @@ def results(request, tag='all'):
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
     else:
-        videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tab2desc.lower() for text in tag.split())]
+        videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() for text in tag.split())]
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
 
