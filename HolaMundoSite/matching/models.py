@@ -38,3 +38,27 @@ class Answer(models.Model):
 		return self.answer
 		
 	#do i use same db table or create new one?
+	
+class Matching(models.Model):
+	quizID = models.AutoField(primary_key = True)
+	#author = models.ForeignKey(User, null=False, blank=False)
+	title = models.CharField(max_length = 140)
+	
+	options = (
+	('2', '2'),
+	('3','3'),
+	('4', '4'),
+	)
+	
+	left_one = models.CharField(max_length = 20, blank = True)
+	left_two = models.CharField(max_length = 20, blank = True)
+	left_three = models.CharField(max_length = 20, blank = True)
+	left_four = models.CharField(max_length = 20, blank = True)
+	
+	right_one = models.CharField(max_length = 20, blank = True)
+	right_two = models.CharField(max_length = 20, blank = True)
+	right_three = models.CharField(max_length = 20, blank = True)
+	right_four = models.CharField(max_length = 20, blank = True)
+	
+	def __str__(self):
+		return self.title

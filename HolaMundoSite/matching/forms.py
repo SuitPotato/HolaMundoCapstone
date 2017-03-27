@@ -1,8 +1,7 @@
 from django import forms
+from django.db import models
 from django.forms import ModelForm
-from matching.models import Number
-from matching.models import Question
-from matching.models import Answer
+from matching.models import *
 
 #form created from model for taking in user input quiz name and number
 #of choices in the question
@@ -27,3 +26,26 @@ class MatchingAnswer(forms.ModelForm):
 		model = Answer
 		fields = ['answer',]
 	#user_answer = forms.CharField(label='Your answer:')
+	
+	
+class MatchingForm(forms.Form):
+	class Meta:
+		# Based off of the models
+		model = Matching
+		# Add options
+		fields = ['title','left_one','left_two','left_three','left_four','right_one'
+				'right_two','right_three','right_four']
+		
+	# Fields defined under forms.
+	title = forms.CharField(max_length = 140)
+	
+	left_one = forms.CharField(max_length = 140)
+	left_two = forms.CharField(max_length = 140)
+	left_three = forms.CharField(max_length = 140)
+	left_four = forms.CharField(max_length = 140)
+	
+	right_one = forms.CharField(max_length = 140)
+	right_two = forms.CharField(max_length = 140)
+	right_three = forms.CharField(max_length = 140)
+	right_four = forms.CharField(max_length = 140)
+	
