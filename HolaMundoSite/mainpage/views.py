@@ -91,5 +91,6 @@ def registered(request):
 @login_required()
 def myHolaMundo(request):
     prefs = Preference.objects.get(user=request.user)
-    context = {'user': request.user, 'prefs': prefs}
+    videos = Lesson.objects.filter(author=request.user).values()
+    context = {'user': request.user, 'prefs': prefs, 'videos': videos}
     return render(request, 'mainpage/dashboard.html', context)
