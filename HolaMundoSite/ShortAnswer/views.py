@@ -23,6 +23,7 @@ def create_essay_quiz(request):
         form = QuestionForm(request.POST)
 
         if form.is_valid():
+            # set data from form and set to cleaned data
             quiz = Question()
             quiz.title = form.cleaned_data["title"]
             quiz.question = form.cleaned_data["question"]
@@ -36,10 +37,11 @@ def create_essay_quiz(request):
         form = QuestionForm()
     return render(request, 'ShortAnswer/essay_quiz.html', {'form': form})
 
+# View is to display for User to take quiz
 @login_required()
-def take_quiz(request, quizID):
+def take_quiz(request, questionID):
     try:
-        quiz = Question.objects.get(quizID=quizID)
+        quiz = Question.objects.get(questionID=quizID)
         context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
                     'correctAnswer': quiz.correctAnswer}
         if request.method == 'GET':
@@ -48,10 +50,16 @@ def take_quiz(request, quizID):
     except:
         return render(request, 'ShortAnswer/essay_quiz.html', {})
 
+# View is to display results
 @login_required()
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'ShortAnswer/results.html', {'question': question})
+def results(request, questionID):
+    # get question from Question Model
+    question = get_object_or_404(Question, pk=questionID)
+    # context of Question Model
+    context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
+                    'correctAnswer': quiz.correctAnswer}
+    # display results page 
+    return render(request, 'ShortAnswer/results.html', context)
 
 @login_required()
 def success(request):

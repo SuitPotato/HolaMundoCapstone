@@ -13,6 +13,7 @@ from fillintheblank.models import *
 # Required for importing User for Author
 from django.contrib.auth.decorators import login_required
 
+# View is for taking quiz for the User
 @login_required()
 def view_quiz(request, title):
     try:
@@ -24,6 +25,7 @@ def view_quiz(request, title):
             return render(request, 'fillintheblank/take_quiz.html', context)
     except:
         return render(request, 'fillintheblank/fb_quiz.html', {})
+
 # This view retireves the form for Fill In The Blank question for the teacher
 # to create a question for a fill in the blank question.
 @login_required()
@@ -52,7 +54,13 @@ def create_quiz(request):
         form = FillInTheBlank()
     return render(request, 'fillintheblank/fb_quiz.html', {'form': form})
 
+# view is to display results
 @login_required()
 def results(request, questionID):
+    # get question from Question Model
     question = get_object_or_404(FillInTheBlankQuestion, pk=questionID)
-    return render(request, 'fillintheblank/results.html', {'question': question})
+    # context of Question Model
+    context = {'title':quiz.title, 'question_start': quiz.question_start,
+                    'answer': quiz.answer, 'question_end': quiz.question_end,
+                    'correctAnswer': quiz.correctAnswer }
+    return render(request, 'fillintheblank/results.html', context)
