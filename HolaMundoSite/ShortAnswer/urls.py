@@ -23,7 +23,5 @@ urlpatterns = [
 	url(r'^ShortAnswer/$', views.create_essay_quiz, name='create_essay'),
     url(r'^ShortAnswer/(?P<questionID>[\w]+)/$', views.take_quiz, name='take_quiz'),
     url(r'^ShortAnswer/$', views.results, name='results'),
-	#url(r'^ShortAnswer/(?P<title>[\w]+)$', views.view_essay_quiz, name='view_essay'),
-    #url(r'^ShortAnswer/(?P<pk>[0-9]+)/results/$', views.results, name='results'),
-    
+
 ]

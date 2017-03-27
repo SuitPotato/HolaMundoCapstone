@@ -9,12 +9,14 @@
         {% csrf_token %}
         <p align = "left">Title</p>
         <p align = "left">{{ form.title }}</p>
-        <p align = "left">Question</p>
+        <p align = "left">Question Start</p>
         <p align = "left">{{ form.question_start }}</p>
         <p align = "left">Answer</p>
         <p align = "left">{{ form.answer }}</p>
         <p align = "left">Question End</p>
         <p align = "left">{{ form.question_end }}</p>
+        <p align = "left">Correct Answer</p>
+        <p align = "left">{{ form.correctAnswer }}</p>        
         <left><button type="submit">Submit</button></left>
     </form>
     <br>

@@ -41,14 +41,16 @@ def create_essay_quiz(request):
 @login_required()
 def take_quiz(request, questionID):
     try:
+        # set quiz by calling Question model and using questionID to
+        # get specific information.
         quiz = Question.objects.get(questionID=quizID)
         context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
                     'correctAnswer': quiz.correctAnswer}
         if request.method == 'GET':
-            #return render(request, 'ShortAnswer/results.html', {})
+            # If request is GET, display Short Answer quiz for User to take
             return render(request, 'ShortAnswer/take_quiz.html', context)
     except:
-        return render(request, 'ShortAnswer/essay_quiz.html', {})
+        return render(request, 'ShortAnswer/take_quiz.html', {})
 
 # View is to display results
 @login_required()

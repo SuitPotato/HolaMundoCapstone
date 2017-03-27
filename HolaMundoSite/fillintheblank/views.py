@@ -17,11 +17,14 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def view_quiz(request, title):
     try:
+         # set quiz by calling FillInTheBlankQuestion model and using questionID 
+         # to get specific information.
         quiz = FillInTheBlankQuestion.objects.get(title=title)
         context = {'title':quiz.title, 'question_start': quiz.question_start,
                     'answer': quiz.answer, 'question_end': quiz.question_end,
                     'correctAnswer': quiz.correctAnswer }
         if request.method == 'GET':
+            # if request is GET, display Fill in the Blank Quiz for User to take
             return render(request, 'fillintheblank/take_quiz.html', context)
     except:
         return render(request, 'fillintheblank/fb_quiz.html', {})
@@ -35,6 +38,7 @@ def create_quiz(request):
         form = FillInTheBlank(request.POST)
 
         if form.is_valid():
+            # set data from form and set to cleaned data
             quiz = FillInTheBlankQuestion()
             quiz.title = form.cleaned_data["title"]
             quiz.author = form.cleaned_data["author"]

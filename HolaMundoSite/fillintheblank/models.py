@@ -20,7 +20,7 @@ class FillInTheBlankQuestion(models.Model):
 	# Answer for Fill In The Blank
 	answer = models.CharField(max_length = 100)
 	# Correct Answer for Fill in the Blank
-	correctAnswer = models.CharField(max_length=100)
+	correctAnswer = models.CharField(max_length=100, default='')
 
 
 	def __str__(self):
