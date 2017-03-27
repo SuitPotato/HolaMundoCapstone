@@ -86,3 +86,10 @@ def register(request):
 
 def registered(request):
     return render(request, 'mainpage/registered.html')
+
+
+@login_required()
+def myHolaMundo(request):
+    prefs = Preference.objects.get(user=request.user)
+    context = {'user': request.user, 'prefs': prefs}
+    return render(request, 'mainpage/dashboard.html', context)
