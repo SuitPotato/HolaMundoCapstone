@@ -1,5 +1,20 @@
-<form action="/number/" method="post">
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Matching Number</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  </script>
+</head>
+<h1>Choose Number of Matching Choices</h1>
+<form method="POST" class="MatchingNumber" action="">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
 </form>
+{% endblock %}

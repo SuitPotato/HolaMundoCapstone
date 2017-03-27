@@ -1,0 +1,47 @@
+{% extends "../mainpage/base.html" %}
+
+
+<!--
+
+-->
+{% block titleBlock %} Matching Question Creator Form {% endblock %}
+
+
+
+{% block headContent %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<form action= "" method = "POST">
+	{% csrf_token %}
+	
+	<p align = "center">Title</p>
+	<p align = "center">{{ form.title }}</p>
+	
+	<p align = "left">Left One</p>
+	<p align = "left">{{ form.left_one }}</p>
+	<p align = "left">Left Two</p>
+	<p align = "left">{{ form.left_two }}</p>
+	<p align = "left">Left Three</p>
+	<p align = "left">{{ form.left_three }}</p>
+	<p align = "left">Left Four</p>
+	<p align = "left">{{ form.left_four }}</p>
+	
+	<p align = "right">Right One</p>
+	<p align = "right">{{ form.right_one }}</p>
+	<p align = "right">Right Two</p>
+	<p align = "right">{{ form.right_two }}</p>
+	<p align = "right">Right Three</p>
+	<p align = "right">{{ form.right_three }}</p>
+	<p align = "right">Right Four</p>
+	<p align = "right">{{ form.right_four }}</p>
+	
+	<center><input type = "submit" value = "Submit"/></center>
+</form>
+{% endblock %}
+
