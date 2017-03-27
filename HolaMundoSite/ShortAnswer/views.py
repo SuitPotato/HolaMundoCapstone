@@ -1,5 +1,5 @@
 # Django Imports 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import ModelForm
@@ -15,18 +15,6 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-# view is to see the Short Answer/Essay question
-@login_required()
-def view_essay_quiz(request, title):
-	try:
-		question1 = Question.objects.get(questionID__exact = questionID, title = title)
-		context = {'title': question1.title, 'question': question1.question,
-		 'answer': question1.answer}
-
-		return render(request, 'ShortAnswer/essay_quiz.html', context)
-	except:
-		return render(request, 'Video_page/404.html')
-
 # Short answer/essay quiz that is created when a user is logged in
 @login_required()
 def create_essay_quiz(request):
@@ -35,11 +23,12 @@ def create_essay_quiz(request):
         form = QuestionForm(request.POST)
 
         if form.is_valid():
-            question1 = Question()
-            question1.title = form.cleaned_data["title"]
-            question1.question = form.cleaned_data["question"]
-            question1.answer = form. cleaned_data["answer"]
-            question1.save()
+            quiz = Question()
+            quiz.title = form.cleaned_data["title"]
+            quiz.question = form.cleaned_data["question"]
+            quiz.answer = form.cleaned_data["answer"]
+            quiz.correctAnswer = form.cleaned_data["correctAnswer"]
+            quiz.save()
             return render(request, 'ShortAnswer/success.html')
     elif request.method == 'GET':
         form = QuestionForm()
@@ -47,7 +36,24 @@ def create_essay_quiz(request):
         form = QuestionForm()
     return render(request, 'ShortAnswer/essay_quiz.html', {'form': form})
 
-@login_required
+@login_required()
+def take_quiz(request, quizID):
+    try:
+        quiz = Question.objects.get(quizID=quizID)
+        context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
+                    'correctAnswer': quiz.correctAnswer}
+        if request.method == 'GET':
+            #return render(request, 'ShortAnswer/results.html', {})
+            return render(request, 'ShortAnswer/take_quiz.html', context)
+    except:
+        return render(request, 'ShortAnswer/essay_quiz.html', {})
+
+@login_required()
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'ShortAnswer/results.html', {'question': question})
+
+@login_required()
 def success(request):
 	return render(request, 'ShortAnswer/success.html')
 

@@ -1,0 +1,14 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+<h1> {{ question.question }}</h1>
+
+<ul>
+	{% for answer in Question %}
+		<li> {{ answer }} </li>
+	{% endfor %}
+</ul>
+
+
+{% endblock %}
