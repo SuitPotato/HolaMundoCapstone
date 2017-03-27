@@ -2,11 +2,78 @@
 
 {% block titleBlock %} Matching Question {% endblock %}
 
-{% csrf_token %}
-<html>
-<p>{{ title }}</p>
-<div class="container">
-	<form method="GET" class="MatchingForm" id="quiz">
-	</form>
-</div>
-</html>
+{% block styleContent %}
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+	<style>
+		#sortable { 
+		  list-style-type: none; 
+		  margin: 0; 
+		  padding: 0; 
+		}
+		#sortable li { 
+		  margin: 3px 3px 3px 0; 
+		  padding: 1px; 
+		  float: left; 
+		  width: 175px; 
+		  height: 90px; 
+		  font-size: 4em; 
+		  text-align: center;
+		}
+		.div3 {
+		  margin-left: 0px;
+		  height:200px;
+		  padding:50px;
+		  border:1px solid #aaaaaa;
+		  background-color: LightBlue;
+		}
+		.buttonli { 
+		  margin: 20px; 
+		  padding: 20px; 
+		  border: 0px solid;
+		  border-radius: 25px;
+		  box-shadow: 5px 5px 5px grey;
+		}
+	</style>
+
+{% endblock %}
+
+{% block headContent %}
+
+    <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+	<script>
+		$(function() {
+			$( "#sortable" ).sortable();
+			$( "#sortable" ).disableSelection();
+		  });
+	</script>
+	
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="col-md-12">
+		<h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
+				Hola Mundo - {{title}}
+		</h3>
+	</div>
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+		<ul id="sortable" class="div3">
+			<li id="left_one" class="ui-state-default buttonli">{{left_one}}</li>
+			<li id="left_two" class="ui-state-default buttonli">{{left_two}}</li>
+			<li id="left_three" class="ui-state-default buttonli">{{left_three}}</li>
+			<li id="left_four" class="ui-state-default buttonli">{{left_four}}</li>  
+			<li id="right_one" class="ui-state-default buttonli">{{right_one}}</li>
+			<li id="right_two" class="ui-state-default buttonli">{{right_two}}</li>
+			<li id="right_three" class="ui-state-default buttonli">{{right_three}}</li>
+			<li id="right_four" class="ui-state-default buttonli">{{right_four}}</li>
+		</ul>
+	</div>
+	<div class="col-md-2">
+	</div>
+{% endblock %}
