@@ -12,23 +12,30 @@
 
 $(document).ready(function(){
   $('#quiz').on('change', function(){
+    var scoreAttr = "{{score}}";
     if($('input[name=optradio]:checked').val() == "{{correctAnswer}}"){
-      alert('youre correct');
+      scoreAttr++;
+      alert(scoreAttr);
+      // var $score = '{{score}}';
+      // var s = $score.val();
+      // s++;
+      // alert(s);
+      // alert('youre correct');
+      //if the user choses the right button and submits quiz, then show them their score
     }
     //  alert('correct');
   })
 })
 
 // })
-
-
 </script>
 </head>
 {% csrf_token %}
 <html>
 <p>{{ title }}</p>
 <div class="container">
-   <form method="GET" class="QuestionForm" id="quiz">
+   <form method="POST" class="QuestionForm" id="quiz">
+    {% csrf_token %}
     <div class="radio">
       <label><input type="radio" name="optradio" id="A" value="{{answerA}}">{{answerA}}</label>
     </div>
@@ -41,7 +48,9 @@ $(document).ready(function(){
     <div class="radio">
       <label><input type="radio" name="optradio" id="D" value="{{answerD}}">{{answerD}}</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <!-- <p>Your score is: </p>
+       <input type="text" name="output" value="{{score}}">
+    <button type="submit" class="btn btn-default">Submit</button> -->
   </form>
 </div>
 </html>

@@ -19,12 +19,15 @@ def view_takeQuiz(request,quizID):
     try:
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
-                   'answerC': quiz.answerC,'answerD': quiz.answerD,
-                   'correctAnswer': quiz.correctAnswer}
-        if request.method == 'GET':
-        #    if request.GET['answerA'] == request.GET['correctAnswer']:
-                # return redirect('https://www.google.de/')
-            return render(request, 'multipleChoice/takeQuiz.html', context)
+        'answerC': quiz.answerC,'answerD': quiz.answerD,
+        'correctAnswer': quiz.correctAnswer, 'score':quiz.score}
+        ctx = {}
+        if request.method == 'POST' and 'input' in request.POST:
+           ctx['score'] = int(request.get('input', 0)) + 1
+           return render(request, 'multipleChoice/takeQuiz.html', score)
+        return render(request, 'multipleChoice/takeQuiz.html', context)
+
+
     except:
         return render(request, 'multipleChoice/quiz.html', {})
 
