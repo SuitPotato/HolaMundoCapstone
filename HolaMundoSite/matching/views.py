@@ -109,7 +109,7 @@ def complete(request):
 	
 def view_matching(request, title):
 	try:
-		matching = Matching.objects.get(title=title)
+		matching = Matching.objects.get(title = title)
 		context = {'title': matching.title, 'left_one': matching.left_one, 'left_two': matching.left_two,
 				   'left_three': matching.left_three, 'left_four': matching.left_four,
 				   'right_one': matching.right_one, 'right_two': matching.right_two,
