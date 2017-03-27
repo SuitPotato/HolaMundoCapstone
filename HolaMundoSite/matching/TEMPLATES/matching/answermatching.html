@@ -1,79 +1,97 @@
 {% extends "mainpage/base.html" %}
 
-{% block titleBlock %} Matching Question {% endblock %}
-
-{% block styleContent %}
-
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-
-	<style>
-		#sortable { 
-		  list-style-type: none; 
-		  margin: 0; 
-		  padding: 0; 
-		}
-		#sortable li { 
-		  margin: 3px 3px 3px 0; 
-		  padding: 1px; 
-		  float: left; 
-		  width: 175px; 
-		  height: 90px; 
-		  font-size: 4em; 
-		  text-align: center;
-		}
-		.div3 {
-		  margin-left: 0px;
-		  height:200px;
-		  padding:50px;
-		  border:1px solid #aaaaaa;
-		  background-color: LightBlue;
-		}
-		.buttonli { 
-		  margin: 20px; 
-		  padding: 20px; 
-		  border: 0px solid;
-		  border-radius: 25px;
-		  box-shadow: 5px 5px 5px grey;
-		}
-	</style>
-
-{% endblock %}
-
-{% block headContent %}
-
-    <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-
-	<script>
-		$(function() {
-			$( "#sortable" ).sortable();
-			$( "#sortable" ).disableSelection();
-		  });
-	</script>
-	
-{% endblock %}
-
-
 {% block content %}
 
-	<div class="col-md-12">
-		<h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
-				Hola Mundo - {{title}}
-		</h3>
-	</div>
-	<div class="col-md-2">
-	</div>
-	<div class="col-md-8">
-		<ul id="sortable" class="div3">
-			<li id="left_one" class="ui-state-default buttonli">{{left_one}}</li>
-			<li id="left_two" class="ui-state-default buttonli">{{left_two}}</li>
-			<li id="left_three" class="ui-state-default buttonli">{{left_three}}</li>
-			<li id="left_four" class="ui-state-default buttonli">{{left_four}}</li>  
-			<li id="right_one" class="ui-state-default buttonli">{{right_one}}</li>
-			<li id="right_two" class="ui-state-default buttonli">{{right_two}}</li>
-			<li id="right_three" class="ui-state-default buttonli">{{right_three}}</li>
-			<li id="right_four" class="ui-state-default buttonli">{{right_four}}</li>
-		</ul>
-	</div>
-	<div class="col-md-2">
-	</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Matching Quiz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% csrf_token %}
+<html>
+<p>{{ title }}</p>
+<div class="container">
+   <form method="GET" class="MatchingForm" id="quiz">
+    {% csrf_token %}
+    <div class="question">
+      <label><name="left_one" id="1" value="{{left_one}}">{{left_one}}</label>
+    </div>
+    <div class="question">
+      <label><name="left_two" id="2" value="{{left_two}}">{{left_two}}</label>
+    </div>
+    <div class="question">
+      <label><name="left_three" id="3" value="{{left_three}}">{{left_three}}</label>
+    </div>
+    <div class="question">
+      <label><name="left_four" id="4" value="{{left_four}}">{{left_four}}</label>
+    </div>
+	<div class="choice" align="right">
+      <label><name="right_one" id="a" value="{{right_one}}">{{right_one}}</label>
+    </div>
+	<div class="choice" align="right">
+      <label><name="right_two" id="b" value="{{right_two}}">{{right_two}}</label>
+    </div>
+	<div class="choice" align="right">
+      <label><name="right_three" id="c" value="{{right_three}}">{{right_three}}</label>
+    </div>
+	<div class="choice" align="right">
+      <label><name="right_four" id="d" value="{{right_four}}">{{right_four}}</label>
+    </div>
+	<div class="answer" align="center">
+      <label><input type="text" name="answer_one" id="a1"></label>
+    </div>
+	<div class="answer" align="center">
+      <label><input type="text" name="answer_two" id="a2"></label>
+    </div>
+	<div class="answer" align="center">
+      <label><input type="text" name="answer_three" id="a3"></label>
+    </div>
+	<div class="answer" align="center">
+      <label><input type="text" name="answer_four" id="a4"></label>
+    </div>
+   <button type="submit" class="btn btn-default">Submit</button>
+   <button onclick="Test()">Test</button>
+   <script>
+   function Test(){
+		var c1 = document.getElementById('a').innerHTML;
+		var c2 = document.getElementById('b').innerHTML;
+		var c3 = document.getElementById('c').innerHTML;
+		var c4 = document.getElementById('d').innerHTML;
+		
+		var a1 = document.getElementById('a1').value;
+		var a2 = document.getElementById('a2').value;
+		var a3 = document.getElementById('a3').value;
+		var a4 = document.getElementById('a4').value;
+		
+		var equal1 = strcmp(a1, c1)
+		var equal2 = strcmp(a2, c2)
+		var equal3 = strcmp(a3, c3)
+		var equal4 = strcmp(a4, c4)
+		
+		if((equal1 == 0) && (equal2 == 0) && (equal3 == 0) && (equal4 == 0)){
+			window.alert("Correct!");
+		}
+		else{
+			window.alert("Incorrect");
+		}
+   }
+function strcmp ( str1, str2 ) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Waldo Malqui Silva
+    // +      input by: Steve Hilder
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: gorthaur
+    // *     example 1: strcmp( 'waldo', 'owald' );
+    // *     returns 1: 1
+    // *     example 2: strcmp( 'owald', 'waldo' );
+    // *     returns 2: -1
+
+    return ( ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 ) );
+}
+   </script>
+  </form>
+</div>
+</html>
 {% endblock %}

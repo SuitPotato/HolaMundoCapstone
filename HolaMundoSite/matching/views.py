@@ -108,12 +108,12 @@ def complete(request):
 	return render(request, 'matching/complete.html')
 	
 def view_matching(request, title):
-	try:
+	#try:
 		matching = Matching.objects.get(title = title)
 		context = {'title': matching.title, 'left_one': matching.left_one, 'left_two': matching.left_two,
 				   'left_three': matching.left_three, 'left_four': matching.left_four,
 				   'right_one': matching.right_one, 'right_two': matching.right_two,
 				   'right_three': matching.right_three, 'right_four': matching.right_four}
 		return render(request, 'matching/answermatching.html', context)
-	except:
+	#except:
 		return render(request, 'Video_page/404.html')
