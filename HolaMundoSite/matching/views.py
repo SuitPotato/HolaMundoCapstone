@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 #login required refers to a user having to be logged in to be able to
 #access the following content on all functions in the views file
 #where it is located
-@login_required()
+'''@login_required()
 def get_number(request):
 	#if the request is post which means you have already completed
 	#a form and want to submit it this if statement gets called
@@ -69,7 +69,7 @@ def answer_question(request):
 			#return HttpResponseRedirect('/completion/')
 	else:
 		form = MatchingAnswer()
-	return render(request, 'matching/answer.html', {'form': form})
+	return render(request, 'matching/answer.html', {'form': form})'''
 	
 @login_required()
 def create_matching(request):
@@ -106,7 +106,8 @@ def create_matching(request):
 @login_required()
 def complete(request):
 	return render(request, 'matching/complete.html')
-	
+
+@login_required()	
 def view_matching(request, title):
 	#try:
 		matching = Matching.objects.get(title = title)

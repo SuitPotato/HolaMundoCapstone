@@ -5,7 +5,7 @@ from matching.models import *
 
 #form created from model for taking in user input quiz name and number
 #of choices in the question
-class MatchingNumber(forms.ModelForm):
+'''class MatchingNumber(forms.ModelForm):
 	class Meta:
 		model = Number
 		fields = ['quiz_name', 'number',]
@@ -25,7 +25,7 @@ class MatchingAnswer(forms.ModelForm):
 	class Meta:
 		model = Answer
 		fields = ['answer',]
-	#user_answer = forms.CharField(label='Your answer:')
+	#user_answer = forms.CharField(label='Your answer:')'''
 	
 	
 class MatchingForm(forms.Form):

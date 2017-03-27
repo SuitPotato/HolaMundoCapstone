@@ -15,9 +15,10 @@
 <div class="container">
    <form method="GET" class="MatchingForm" id="quiz">
     {% csrf_token %}
-    <div class="question">
+    <div class="question" style="text-align:left;float:left;">
       <label><name="left_one" id="1" value="{{left_one}}">{{left_one}}</label>
     </div>
+	<br>
     <div class="question">
       <label><name="left_two" id="2" value="{{left_two}}">{{left_two}}</label>
     </div>
@@ -27,9 +28,10 @@
     <div class="question">
       <label><name="left_four" id="4" value="{{left_four}}">{{left_four}}</label>
     </div>
-	<div class="choice" align="right">
+	<div class="choice" align="right" style="text-align:right;float:right;">
       <label><name="right_one" id="a" value="{{right_one}}">{{right_one}}</label>
     </div>
+	<br>
 	<div class="choice" align="right">
       <label><name="right_two" id="b" value="{{right_two}}">{{right_two}}</label>
     </div>
