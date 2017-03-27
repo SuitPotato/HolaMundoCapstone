@@ -31,7 +31,7 @@ def results(request, tag='all'):
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
     else:
-        videos = Lesson.objects.filter(link=tag).values()
+        videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() for text in tag.split())]
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
 
@@ -86,3 +86,11 @@ def register(request):
 
 def registered(request):
     return render(request, 'mainpage/registered.html')
+
+
+@login_required()
+def myHolaMundo(request):
+    prefs = Preference.objects.get(user=request.user)
+    videos = Lesson.objects.filter(author=request.user).values()
+    context = {'user': request.user, 'prefs': prefs, 'videos': videos}
+    return render(request, 'mainpage/dashboard.html', context)
