@@ -88,6 +88,9 @@ class Lesson(models.Model):
 	tab4desc = models.TextField(max_length = 2000, default = "Tab 4 Description")
 	tab5desc = models.TextField(max_length = 2000, default = "Tab 5 Description")
 	tab6desc = models.TextField(max_length = 2000, default = "Tab 6 Description")
+
+
+	tags = models.TextField(max_length = 5000, default = "")
 	
 	def __str__(self):
 		return self.title
