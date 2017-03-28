@@ -33,10 +33,17 @@ class MatchingForm(forms.Form):
 		# Based off of the models
 		model = Matching
 		# Add options
-		fields = ['title','left_one','left_two','left_three','left_four','right_one'
+		fields = ['options','title','left_one','left_two','left_three','left_four','right_one'
 				'right_two','right_three','right_four']
 		
 	# Fields defined under forms.
+	
+	NUMBER_OPTIONS = (
+	('2', '2'),
+	('3','3'),
+	('4', '4'),
+	)
+	
 	title = forms.CharField(max_length = 140)
 	
 	left_one = forms.CharField(max_length = 140)

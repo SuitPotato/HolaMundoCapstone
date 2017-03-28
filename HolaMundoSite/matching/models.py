@@ -39,16 +39,23 @@ class Answer(models.Model):
 		
 	#do i use same db table or create new one?'''
 	
+NUMBER_OPTIONS = (
+	('2', '2'),
+	('3','3'),
+	('4', '4'),
+	)
+	
 class Matching(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	#author = models.ForeignKey(User, null=False, blank=False)
 	title = models.CharField(max_length = 140)
 	
-	options = (
+	NUMBER_OPTIONS = (
 	('2', '2'),
 	('3','3'),
 	('4', '4'),
 	)
+	options = models.CharField(max_length=10, choices=NUMBER_OPTIONS, default='4')
 	
 	left_one = models.CharField(max_length = 20, blank = True)
 	left_two = models.CharField(max_length = 20, blank = True)
@@ -62,3 +69,15 @@ class Matching(models.Model):
 	
 	def __str__(self):
 		return self.title
+		
+'''class Answer(models.Model):
+	QuizID = models.ForeignKey(Matching, primary_key = True)
+	title = models.ForeignKey(Matching)
+	
+	answer_one = models.CharField(max_length = 20, blank = True)
+	answer_two = models.CharField(max_length = 20, blank = True)
+	answer_three = models.CharField(max_length = 20, blank = True)
+	answer_four = models.CharField(max_length = 20, blank = True)
+	
+	def __str__(self):
+		return self.title'''

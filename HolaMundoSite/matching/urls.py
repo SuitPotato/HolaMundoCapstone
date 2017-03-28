@@ -23,4 +23,5 @@ urlpatterns = [
 	url(r'^create_matching', views.create_matching),
 	url(r'^complete', views.complete),
 	url(r'^answermatching/(?P<title>[\w]+)/$', views.view_matching, name='view_matching'),
+	url(r'^number_matching', views.number_matching),
 ]

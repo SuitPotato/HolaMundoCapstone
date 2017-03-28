@@ -71,6 +71,20 @@ def answer_question(request):
 		form = MatchingAnswer()
 	return render(request, 'matching/answer.html', {'form': form})'''
 	
+def number_matching(request):
+	if request.method == 'POST':
+		form = MatchingForm(request.POST)
+		if form.is_valid():
+			v = Matching()
+			v.options = form.cleaned_data["options"]
+			v.save()
+			
+			return render(request, 'matching/creatematching.html', {"form":form})
+	elif request.method == 'GET':
+		form = MatchingForm()
+	else:
+		form = MatchingForm()
+	return render(request, 'matching/numbermatching.html', {"form":form})
 @login_required()
 def create_matching(request):
 	if request.method == 'POST':
@@ -109,12 +123,12 @@ def complete(request):
 
 @login_required()	
 def view_matching(request, title):
-	#try:
+	try:
 		matching = Matching.objects.get(title = title)
 		context = {'title': matching.title, 'left_one': matching.left_one, 'left_two': matching.left_two,
 				   'left_three': matching.left_three, 'left_four': matching.left_four,
 				   'right_one': matching.right_one, 'right_two': matching.right_two,
 				   'right_three': matching.right_three, 'right_four': matching.right_four}
 		return render(request, 'matching/answermatching.html', context)
-	#except:
+	except:
 		return render(request, 'Video_page/404.html')
