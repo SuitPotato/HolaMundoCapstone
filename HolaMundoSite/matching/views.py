@@ -121,14 +121,44 @@ def create_matching(request):
 def complete(request):
 	return render(request, 'matching/complete.html')
 
+def answered(request):
+	return render(request, 'matching/answered.html')
+
 @login_required()	
 def view_matching(request, title):
+	if request.method == 'POST':
+		# Form is a variable that contains the source form
+		form = AnswerForm(request.POST)
+		if form.is_valid():
+			# Specifically calling the model
+			v = Answer()
+			m = Matching()
+			v.answer_one = form.cleaned_data["answer_one"]
+			v.answer_two = form.cleaned_data["answer_two"]
+			v.answer_three = form.cleaned_data["answer_three"]
+			v.answer_four = form.cleaned_data["answer_four"]
+			
+			if((v.answer_one == m.right_one) and (v.answer_two == m.right_two)
+			and (v.answer_three == m.right_three) and (v.answer_four == m.right_four)):
+				v.score = 1
+				print "Correct!"
+			else:
+				v.score = 0
+				print v.answer_one
+				print m.right_one
+			v.save()
+			#return HttpResponseRedirect('/answered/')
+	elif request.method == 'GET':
+		form = AnswerForm()
+	else:
+		form = AnswerForm()
 	try:
 		matching = Matching.objects.get(title = title)
 		context = {'title': matching.title, 'left_one': matching.left_one, 'left_two': matching.left_two,
 				   'left_three': matching.left_three, 'left_four': matching.left_four,
 				   'right_one': matching.right_one, 'right_two': matching.right_two,
-				   'right_three': matching.right_three, 'right_four': matching.right_four}
+				   'right_three': matching.right_three, 'right_four': matching.right_four,
+				   'form': form}
 		return render(request, 'matching/answermatching.html', context)
 	except:
 		return render(request, 'Video_page/404.html')

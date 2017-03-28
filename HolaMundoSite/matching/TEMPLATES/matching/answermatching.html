@@ -41,19 +41,19 @@
 	<div class="choice" align="right">
       <label><name="right_four" id="d" value="{{right_four}}">{{right_four}}</label>
     </div>
-	<div class="answer" align="center">
-      <label><input type="text" name="answer_one" id="a1"></label>
-    </div>
-	<div class="answer" align="center">
-      <label><input type="text" name="answer_two" id="a2"></label>
-    </div>
-	<div class="answer" align="center">
-      <label><input type="text" name="answer_three" id="a3"></label>
-    </div>
-	<div class="answer" align="center">
-      <label><input type="text" name="answer_four" id="a4"></label>
-    </div>
-   <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+    <form action= "" method = "POST" class = "AnswerForm">
+		 {% csrf_token %}
+		<p align = "center">Answer 1</p>
+		<p align = "center">{{ form.answer_one }}</p>
+		<p align = "center">Answer 2</p>
+		<p align = "center">{{ form.answer_two }}</p>
+		<p align = "center">Answer 3</p>
+		<p align = "center">{{ form.answer_three }}</p>
+		<p align = "center">Answer 4</p>
+		<p align = "center">{{ form.answer_four }}</p>
+   <center><input type = "submit" value = "Submit"/></center>
+   </form>
    <button onclick="Test()">Test</button>
    <script>
    function Test(){
@@ -93,7 +93,6 @@ function strcmp ( str1, str2 ) {
     return ( ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 ) );
 }
    </script>
-  </form>
 </div>
 </html>
 {% endblock %}

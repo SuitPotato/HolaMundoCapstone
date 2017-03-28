@@ -22,6 +22,7 @@ urlpatterns = [
 	#url(r'^answer_question', views.answer_question),
 	url(r'^create_matching', views.create_matching),
 	url(r'^complete', views.complete),
+	url(r'^answered', views.answered),
 	url(r'^answermatching/(?P<title>[\w]+)/$', views.view_matching, name='view_matching'),
 	url(r'^number_matching', views.number_matching),
 ]

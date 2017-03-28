@@ -33,8 +33,8 @@ class MatchingForm(forms.Form):
 		# Based off of the models
 		model = Matching
 		# Add options
-		fields = ['options','title','left_one','left_two','left_three','left_four','right_one'
-				'right_two','right_three','right_four']
+		fields = ['options','title','left_one','left_two','left_three','left_four','right_one',
+				'right_two','right_three','right_four',]
 		
 	# Fields defined under forms.
 	
@@ -56,3 +56,12 @@ class MatchingForm(forms.Form):
 	right_three = forms.CharField(max_length = 140)
 	right_four = forms.CharField(max_length = 140)
 	
+class AnswerForm(forms.Form):
+	class Meta:
+		model = Answer
+		fields = ['answer_one', 'answer_two', 'answer_three',
+				'answer_four']
+	answer_one = forms.CharField(max_length = 140)
+	answer_two = forms.CharField(max_length = 140)
+	answer_three = forms.CharField(max_length = 140)
+	answer_four = forms.CharField(max_length = 140)

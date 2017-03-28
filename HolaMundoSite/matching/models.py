@@ -39,11 +39,6 @@ class Answer(models.Model):
 		
 	#do i use same db table or create new one?'''
 	
-NUMBER_OPTIONS = (
-	('2', '2'),
-	('3','3'),
-	('4', '4'),
-	)
 	
 class Matching(models.Model):
 	quizID = models.AutoField(primary_key = True)
@@ -55,29 +50,34 @@ class Matching(models.Model):
 	('3','3'),
 	('4', '4'),
 	)
-	options = models.CharField(max_length=10, choices=NUMBER_OPTIONS, default='4')
+	options = models.CharField(max_length=2, choices=NUMBER_OPTIONS, default='4')
 	
-	left_one = models.CharField(max_length = 20, blank = True)
-	left_two = models.CharField(max_length = 20, blank = True)
-	left_three = models.CharField(max_length = 20, blank = True)
-	left_four = models.CharField(max_length = 20, blank = True)
+	left_one = models.CharField(max_length = 140, blank = True)
+	left_two = models.CharField(max_length = 140, blank = True)
+	left_three = models.CharField(max_length = 140, blank = True)
+	left_four = models.CharField(max_length = 140, blank = True)
 	
-	right_one = models.CharField(max_length = 20, blank = True)
-	right_two = models.CharField(max_length = 20, blank = True)
-	right_three = models.CharField(max_length = 20, blank = True)
-	right_four = models.CharField(max_length = 20, blank = True)
+	right_one = models.CharField(max_length = 140, blank = True)
+	right_two = models.CharField(max_length = 140, blank = True)
+	right_three = models.CharField(max_length = 140, blank = True)
+	right_four = models.CharField(max_length = 140, blank = True)
 	
 	def __str__(self):
 		return self.title
 		
-'''class Answer(models.Model):
-	QuizID = models.ForeignKey(Matching, primary_key = True)
-	title = models.ForeignKey(Matching)
+class Answer(models.Model):
+	AnswerID = models.AutoField(primary_key = True)
+	#QuizID = models.ForeignKey(Matching, null=False, blank=False)
+	#title = models.ForeignKey(Matching, null=False, blank=False)
+	#student = models.ForeignKey(User, null=False, blank=False)
 	
-	answer_one = models.CharField(max_length = 20, blank = True)
-	answer_two = models.CharField(max_length = 20, blank = True)
-	answer_three = models.CharField(max_length = 20, blank = True)
-	answer_four = models.CharField(max_length = 20, blank = True)
+	#matching = models.ForeignKey(Matching, on_delete=models.CASCADE, default=True)
+	
+	answer_one = models.CharField(max_length = 140, blank = True)
+	answer_two = models.CharField(max_length = 140, blank = True)
+	answer_three = models.CharField(max_length = 140, blank = True)
+	answer_four = models.CharField(max_length = 140, blank = True)
+	score = models.IntegerField(default = 0)
 	
 	def __str__(self):
-		return self.title'''
+		return "Student"
