@@ -11,24 +11,33 @@ from multipleChoice.forms import (
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-def results(request):
-    # show results of quiz to user
-    return redirect('https://www.google.de/')
+# view to take in score and update database model
+def results(request, quizID):
+    # q = Quiz.objects.get(quizID=quizID)
+    # q.score = 1;
+    # q.save()
+    # try:
+    #     selected_ans = Quiz.objects.get(pk=request.POST['score'])
+    # except:
+    return render(request, 'multipleChoice/quiz.html', {})
+    # else:
+    #     selected_ans.score += 1
+    #     selected_ans.save()
+    #     return HttpResponseRedirect(reverse('multipleChoice:results', args=(quiz.quizID)))
 
 def view_takeQuiz(request,quizID):
-    # try:
+    try:
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
         'answerC': quiz.answerC,'answerD': quiz.answerD,
         'correctAnswer': quiz.correctAnswer, 'score':quiz.score}
-        if request.method == 'POST':
-            # quiz.score = form.cleaned_data["score"]
-            return redirect('https://www.google.de/')
         return render(request, 'multipleChoice/takeQuiz.html', context)
-    # except:
-    # except:
-    #     return render(request, 'multipleChoice/quiz.html', {})
-
+    except:
+        return render(request, 'multipleChoice/quiz.html', {})
+    else:
+        q = Quiz.objects.get(quizID=quizID)
+        q.score += 1;
+        q.save()
 
 @login_required
 def quiz(request):
