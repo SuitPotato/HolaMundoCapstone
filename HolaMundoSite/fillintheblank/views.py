@@ -29,8 +29,11 @@ def view_quiz(request, questionID):
         return render(request, 'fillintheblank/fb_quiz.html', {})
 
     else:
+        # set objects by getting the questionID from FillInTheBlankQuestion model
         q = FillInTheBlankQuestion.objects.get(questionID=questionID)
+        # increment the User's score by 1
         q.score +=1;
+        # save results
         q.save()
 
 # This view retireves the form for Fill In The Blank question for the teacher
