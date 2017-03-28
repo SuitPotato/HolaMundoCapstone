@@ -3,17 +3,43 @@
 {% block content %}
 
 <!DOCTYPE html>
-
+<html lang="en">
+<head>
+  <title>Short Answer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    $('.likebutton').click(function(){
+      var catid;
+      catid = $(this).attr("data-catid");
+      $.ajax({
+        type:"GET",
+        url: "/likepost",
+        data: {
+          questionID: catid
+        },
+        success:function(data){
+          $('#like' + catid).remove();
+          $('#message').text(data);
+        }
+      })
+    });
+</script>
+</head>
 {% csrf_token %}
 <html>
-<p>{{ quiz.title }}</p>
+<p>{{ title }}</p>
 <div class="container">
-   <form method="GET" class="QuestionForm" id="quiz">
-    <div class="radio">
-      <label>Answer:<input type="text" name="Answer" id="answer" value="{{answer}}">{{answer}}</label>
+   <form method="POST" class="QuestionForm" action="./" id="quiz">
+    {% csrf_token %}
+    <div class="text">
+      <label><input type="text" name="Answer" id="answer" value="{{answer}}">{{answer}}</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit Answer</button>
-  </form>
+   <button type="submit" class="btn btn-default" id="{{score}}">Submit</button>
+   <!-- <a class="likebutton" id="like{{quiz.quizID}}" href="#" data-catid="{{quiz.quizID}}">LIKE</a> -->
+</form>
+  <p id="reportScore">{{score}}</p>
 </div>
 </html>
 {% endblock %}

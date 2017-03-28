@@ -15,19 +15,23 @@ from django.contrib.auth.decorators import login_required
 
 # View is for taking quiz for the User
 @login_required()
-def view_quiz(request, title):
+def view_quiz(request, questionID):
     try:
          # set quiz by calling FillInTheBlankQuestion model and using questionID 
          # to get specific information.
-        quiz = FillInTheBlankQuestion.objects.get(title=title)
+        quiz = FillInTheBlankQuestion.objects.get(questionID=questionID)
         context = {'title':quiz.title, 'question_start': quiz.question_start,
                     'answer': quiz.answer, 'question_end': quiz.question_end,
-                    'correctAnswer': quiz.correctAnswer }
-        if request.method == 'GET':
-            # if request is GET, display Fill in the Blank Quiz for User to take
-            return render(request, 'fillintheblank/take_quiz.html', context)
+                    'correctAnswer': quiz.correctAnswer, 'score': quiz.score }
+
+        return render(request, 'fillintheblank/take_quiz.html', context)
     except:
         return render(request, 'fillintheblank/fb_quiz.html', {})
+
+    else:
+        q = FillInTheBlankQuestion.objects.get(questionID=questionID)
+        q.score +=1;
+        q.save()
 
 # This view retireves the form for Fill In The Blank question for the teacher
 # to create a question for a fill in the blank question.

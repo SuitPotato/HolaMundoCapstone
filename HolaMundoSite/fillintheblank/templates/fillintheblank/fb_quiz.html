@@ -1,26 +1,26 @@
 {% extends "mainpage/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-{% load staticfiles %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fill In The Blank Question</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  </script>
+</head>
 <div class="container">
-    <form action="" method="POST">
-        {% csrf_token %}
-        <p align = "left">Title</p>
-        <p align = "left">{{ form.title }}</p>
-        <p align = "left">Question Start</p>
-        <p align = "left">{{ form.question_start }}</p>
-        <p align = "left">Answer</p>
-        <p align = "left">{{ form.answer }}</p>
-        <p align = "left">Question End</p>
-        <p align = "left">{{ form.question_end }}</p>
-        <p align = "left">Correct Answer</p>
-        <p align = "left">{{ form.correctAnswer }}</p>        
-        <left><button type="submit">Submit</button></left>
-    </form>
-    <br>
+  <h1><small><b>Create Fill In The Blank Quiz Question</h1></small></b>
+  <form method="POST" class="FillInTheBlank">
+      <!-- <input type="text" name="numOfQuestions"> -->
+      {% csrf_token %}
+      <!-- {{ form.as_p }} -->
+      {{ form|crispy }}
+      <button type="submit" class="save btn btn-default">Save</button>
+  </form>
 </div>
-
-
+<!-- <a href="{% url 'quiz' %}" class="top-menu"></a> -->
 {% endblock %}

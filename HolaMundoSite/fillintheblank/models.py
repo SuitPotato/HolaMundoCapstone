@@ -21,6 +21,8 @@ class FillInTheBlankQuestion(models.Model):
 	answer = models.CharField(max_length = 100)
 	# Correct Answer for Fill in the Blank
 	correctAnswer = models.CharField(max_length=100, default='')
+	# score to track performance of User
+	score = models.CharField(max_length=100, default='')
 
 
 	def __str__(self):

@@ -43,14 +43,17 @@ def take_quiz(request, questionID):
     try:
         # set quiz by calling Question model and using questionID to
         # get specific information.
-        quiz = Question.objects.get(questionID=quizID)
+        quiz = Question.objects.get(questionID=quuestionID)
         context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
-                    'correctAnswer': quiz.correctAnswer}
-        if request.method == 'GET':
-            # If request is GET, display Short Answer quiz for User to take
-            return render(request, 'ShortAnswer/take_quiz.html', context)
+                    'correctAnswer': quiz.correctAnswer, 'score': quiz.score}
+        return render(request, 'ShortAnswer/take_quiz.html', context)
+        
     except:
-        return render(request, 'ShortAnswer/take_quiz.html', {})
+        return render(request, 'ShortAnswer/essay_quiz.html', {})
+    else:
+        q = Question.objects.get(questionID=questionID)
+        q.score += 1;
+        q.save()
 
 # View is to display results
 @login_required()

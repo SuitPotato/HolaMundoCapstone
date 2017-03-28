@@ -19,6 +19,8 @@ class Question(models.Model):
 	answer = models.CharField(max_length = 1000)
 	# Text field for Correct Answer
 	correctAnswer = models.CharField(max_length=1000, default='')
+	# score to track performance of User
+	score = models.CharField(max_length=100, default='')
 
 
 	def __str__(self):

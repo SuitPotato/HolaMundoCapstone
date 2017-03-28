@@ -8,35 +8,44 @@
   <title>Fill In The Blank</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  $('#quiz').on('change', function(){
-    if($('input[name=optradio]:checked').val() == "{{correctAnswer}}"){
-      alert('youre correct');
-    }
-    //  alert('correct');
-  })
-})
-
-
+    $('.likebutton').click(function(){
+      var catid;
+      catid = $(this).attr("data-catid");
+      $.ajax({
+        type:"GET",
+        url: "/likepost",
+        data: {
+          questionID: catid
+        },
+        success:function(data){
+          $('#like' + catid).remove();
+          $('#message').text(data);
+        }
+      })
+    });
 </script>
 </head>
 {% csrf_token %}
 <html>
 <p>{{ title }}</p>
 <div class="container">
-   <form method="GET" class="FillInTheBlank" id="quiz">
+   <form method="POST" class="FillInTheBlank" action="./" id="quiz">
+    {% csrf_token %}
     <div class="text">
-      <label><input type="text" name="Question Start" id="A" value="{{question_start}}">{{question_start}}</label>
-    </div>
-      <div class="text">
-        <label><input type="text" name="Answer" id="B" value="{{answer}}">{{answer}}</label>
+      <label><input type="text" name="question_start" id="start" value="{{question_start}}">{{question_start}}</label>
     </div>
         <div class="text">
-        <label><input type="text" name="Question End" id="C" value="{{question_end}}">{{question_end}}</label>
+      <label><input type="text" name="answer" id="answer" value="{{answer}}">{{answer}}</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+    <div class="text">
+      <label><input type="text" name="question_end" id="end" value="{{question_end}}">{{question_end}}</label>
+    </div>
+   <button type="submit" class="btn btn-default" id="{{score}}">Submit</button>
+   <!-- <a class="likebutton" id="like{{quiz.quizID}}" href="#" data-catid="{{quiz.quizID}}">LIKE</a> -->
+</form>
+  <p id="reportScore">{{score}}</p>
 </div>
 </html>
 {% endblock %}

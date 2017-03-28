@@ -5,13 +5,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Short Answer</title>
+  <title>Fill In The Blank</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<h1>You have submitted your quiz.</h1>
-<a href="{% url 'quiz' %}" class="top-menu"></a>
+{% csrf_token %}
+<html>
+ <ul class="list-group">
+  <li class="list-group-item">User Name</li>
+  <li class="list-group-item">Score</li>
+</ul>
+</html>
 {% endblock %}

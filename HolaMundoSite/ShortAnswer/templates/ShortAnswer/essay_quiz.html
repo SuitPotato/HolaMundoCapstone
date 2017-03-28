@@ -1,4 +1,5 @@
 {% extends "mainpage/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -8,14 +9,18 @@
   <title>Short Answer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+  </script>
 </head>
-<h1>Create Short Answer Question</h1>
-<form method="POST" class="QuestionForm">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Submit Question</button>
-</form>
-<a href="{% url 'quiz' %}" class="top-menu"></a>
+<div class="container">
+  <h1><small><b>Create Quiz Question</h1></small></b>
+  <form method="POST" class="QuestionForm">
+      <!-- <input type="text" name="numOfQuestions"> -->
+      {% csrf_token %}
+      <!-- {{ form.as_p }} -->
+      {{ form|crispy }}
+      <button type="submit" class="save btn btn-default">Save</button>
+  </form>
+</div>
+<!-- <a href="{% url 'quiz' %}" class="top-menu"></a> -->
 {% endblock %}
