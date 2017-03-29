@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -31,7 +33,7 @@ def results(request, tag='all'):
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
     else:
-        videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() for text in tag.split())]
+        videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
         context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
 
@@ -92,5 +94,7 @@ def registered(request):
 def myHolaMundo(request):
     prefs = Preference.objects.get(user=request.user)
     videos = Lesson.objects.filter(author=request.user).values()
-    context = {'user': request.user, 'prefs': prefs, 'videos': videos}
+    videos_1 = random.sample(videos, 6)
+    picked_videos = random.sample(videos, 6)
+    context = {'user': request.user, 'prefs': prefs, 'videos_author': picked_videos, 'videos_1': videos_1}
     return render(request, 'mainpage/dashboard.html', context)

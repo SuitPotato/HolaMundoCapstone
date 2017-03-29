@@ -12,7 +12,7 @@ class Preference(models.Model):
     # Autoincrement ID and user
     prefID = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, null=False, blank=False)
-    lastVid = models.ForeignKey(Lesson)
+    lastVid = models.ForeignKey(Lesson, null=True)
 
     # Listed choices for preferences
     LANGUAGES = (

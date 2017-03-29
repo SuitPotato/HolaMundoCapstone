@@ -12,13 +12,33 @@
     height:140px;
     margin-right:10px;
     padding: 10px;
-    border: 3px solid #73AD21;
+    border: 6px solid #73AD21;
 }
 
 .video-line {
 	margin-bottom: 10px;
 	margin-top: 10px;
 	min-height: 160px;
+}
+
+.green {
+    border: 6px solid #44AF69;
+}
+
+.red {
+    border: 6px solid #c62830;
+}
+
+.gold {
+    border: 6px solid #FCAB10;
+}
+
+.blue {
+    border: 6px solid #2B9EB3;
+}
+
+.grey {
+    border: 6px solid #DBD5B5;
 }
 
 </style>
@@ -29,9 +49,17 @@
     <div class="container">
             <div class="row video-line">
                 <div class="col-md-12">
-					<a href="/video/{{video.link}}"> <img src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right" /> </a>
+
+                    {% if video.difficulty == "Beginner" %}
+                        <a href="/video/{{video.link}}"> <img src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right green" /> </a>
+                    {% elif video.difficulty == "Intermediate" %}
+                        <a href="/video/{{video.link}}"> <img src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right gold" /> </a>
+                    {% else %}
+                        <a href="/video/{{video.link}}"> <img src="https://img.youtube.com/vi/{{video.youtube}}/1.jpg" class="img-thumbnail right red" /> </a>
+                    {% endif %}
+
                     <h3><a href="/video/{{video.link}}"> {{video.title}} </a></h3>
-                    <p>{{ video.tags }}</p>
+                    <p>{{ video.difficulty }}</p>
                 </div>
             </div>
     </div>

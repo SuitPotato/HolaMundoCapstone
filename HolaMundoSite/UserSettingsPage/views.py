@@ -1,11 +1,13 @@
+# Django Imports
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.forms import ModelForm
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from UserSettingsPage.models import Preference
 
+# User Settings Imports
+from UserSettingsPage.models import Preference
 from UserSettingsPage.forms import (
     EditProfileForm
 )
@@ -20,11 +22,9 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def settings(request):
     if request.GET.get('email') == ('email'):
-        return render(request, 'UserSettingsPage/profile.html', args)
-        return HttpResponseRedirect('/UserSettingsPage/profile')
+        return render(request, 'UserSettingsPage/profile.html')
     elif request.GET.get('password') == ('password'):
         return render(request, 'UserSettingsPage/passwordform.html', args)
-        # return HttpResponseRedirect('/DragDemo/')
     else:
         return render(request, 'UserSettingsPage/settings.html')
 
@@ -35,7 +35,6 @@ def passwordform(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            # messages.success(request, 'Your password was successfully updated!')
             return redirect('UserSettingsPage:password')
         else:
                 # if form is not valid go here
@@ -46,9 +45,15 @@ def passwordform(request):
 
 @login_required()
 def view_profile(request):
-    prefs = Preference.objects.get(user=request.user)
-    args = {'user': request.user, 'prefs': prefs}
-    return render(request, 'UserSettingsPage/profile.html', args)
+	try:
+		prefs = Preference.objects.get(user=request.user)
+		args = {'user': request.user, 'prefs': prefs}
+		return render(request, 'UserSettingsPage/profile.html', args)
+	except:
+		prefs = Preference.objects.create(user=request.user)
+		prefs = Preference.objects.get(user=request.user)
+		args = {'user': request.user, 'prefs': prefs}
+		return render(request, 'UserSettingsPage/profile.html', args)
 
 @login_required()
 def edit_profile(request):
