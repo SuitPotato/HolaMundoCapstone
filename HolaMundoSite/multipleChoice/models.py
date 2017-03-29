@@ -26,6 +26,7 @@ class Quiz(models.Model):
     answerB = models.CharField(max_length=150, default='')
     answerC = models.CharField(max_length=150, default='')
     answerD = models.CharField(max_length=150, default='')
+    score = models.CharField(max_length=150, default='')
     correctAnswer = models.CharField(max_length=150, default='')
 
     def __str__(self):

@@ -5,7 +5,7 @@ from multipleChoice.models import Quiz, Response
 class QuizForm(forms.ModelForm):
     class Meta:
         model = Quiz
-        fields = ['title', 'answerA', 'answerB', 'answerC', 'answerD', 'correctAnswer']
+        fields = ['title', 'answerA', 'answerB', 'answerC', 'answerD', 'correctAnswer', 'score']
 class ResponseForm(forms.ModelForm):
     class Meta:
         model = Response

@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # # view to take in score and update database model
 def submit(request):
+
     r = Response(title="What is 2+2?", answer="4", score="1")
     r.save()
     return render(request, 'multipleChoice/submit.html', {})
@@ -23,7 +24,7 @@ def view_takeQuiz(request,quizID):
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
         'answerC': quiz.answerC,'answerD': quiz.answerD,
-        'correctAnswer': quiz.correctAnswer}
+        'correctAnswer': quiz.correctAnswer, 'score': quiz.score}
         return render(request, 'multipleChoice/takeQuiz.html', context)
 
     except:
