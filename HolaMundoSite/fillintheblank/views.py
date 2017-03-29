@@ -65,6 +65,26 @@ def create_quiz(request):
         form = FillInTheBlank()
     return render(request, 'fillintheblank/fb_quiz.html', {'form': form})
 
+# view to save User's answer and update in database
+@login_required()
+def submit(request):
+    if request.method == 'POST':
+        form = AnswerForm()
+
+        if form.is_valid():
+            a = Answer()
+            a.title = request.POST.get("title")
+            a.answer = request.POST.get("answer")
+            a.score = request.POST.get("score")
+            a.save()
+            return HttpResponseRedirect('fillintheblank/success.html')
+        elif request.method == 'GET':
+            form = AnswerForm()
+        else:
+            form = AnswerForm()
+            return redirect('https://djangoproject.com')
+
+'''
 # view is to display results
 @login_required()
 def results(request, questionID):
@@ -75,3 +95,5 @@ def results(request, questionID):
                     'answer': quiz.answer, 'question_end': quiz.question_end,
                     'correctAnswer': quiz.correctAnswer }
     return render(request, 'fillintheblank/results.html', context)
+'''
+

@@ -20,3 +20,16 @@ class FillInTheBlank(forms.ModelForm):
 	question_end = forms.CharField(max_length = 100)
 	answer = forms.CharField(max_length = 100)
 	correctAnswer = forms.CharField(max_length=100)
+
+# Form for Fill In The Blank Answer
+class AnswerForm(forms.ModelForm):
+		# Meta Class
+	class Meta:
+		# Based off Model: Answer
+		model = Answer
+		fields = {'title', 'answer', 'score'}
+
+	# fields defined under form
+	title = forms.CharField(max_length=140)
+	answer = forms.CharField(max_length=1000)
+	score = forms.IntegerField(default=0)

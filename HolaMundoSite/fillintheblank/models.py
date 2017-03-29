@@ -34,7 +34,7 @@ class Answer(models.Model):
 	# answer for answer Model
 	answer = models.CharField(max_length=100)
 	# score to track performance of User
-	score = models.CharField(max_length=100, default='')
+	score = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.title

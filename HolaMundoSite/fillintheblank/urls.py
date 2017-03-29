@@ -24,5 +24,6 @@ urlpatterns = [
 	url(r'^fillintheblank/$', views.create_quiz, name='create_quiz'),
     url(r'^fillintheblank/(?P<questionID>[0-9]+)/$', views.view_quiz, name='view_quiz'),
     url(r'^fillintheblank/(?P<questionID>[0-9]+)/results/$', views.results, name='results'),
+    url(r'^fillintheblank/submit/$', views.submit, name='submit'),
 
 ]
