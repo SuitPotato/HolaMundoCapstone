@@ -13,23 +13,20 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # # view to take in score and update database model
 def submit(request):
+    r = Response()
     if request.method == 'POST':
-        form = ResponseForm(request.POST)
-        title = request.POST['title']
-        answer = request.POST['answerA']
-        score = request.POST['score']
-        if form.is_valid():
-            r = Response()
-            r.title = form.cleaned_data["title"]
-            r.answer = form.cleaned_data["answer"]
-            r.score = form.cleaned_data["score"]
-            r.save()
-            return HttpResponseRedirect('/success/')
-    elif request.method == 'GET':
-         form = ResponseForm()
-    else:
-         form = ResponseForm()
-    return render(request, 'multipleChoice/submit.html', {"form":form})
+       r.answer = request.POST['A']
+    r.save()
+    return redirect('http://stackoverflow.com')
+    #  if request.method == 'POST':
+    #     form = ResponseForm(data=request.POST, instance=quiz)
+    #     if form.is_valid():
+    #        r = Response()
+    #        r.title = request.POST.get("title")
+    #        r.answer = request.POST.get("answer")
+    #        r.score = request.POST.get("score")
+    #        r.save()
+    #  return render(request, 'multipleChoice/submit.html', {})
 
 def view_takeQuiz(request,quizID):
     try:
