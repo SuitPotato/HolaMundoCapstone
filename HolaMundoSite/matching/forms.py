@@ -1,4 +1,5 @@
 from django import forms
+from django.db import models
 from django.forms import ModelForm
 from matching.models import *
 
@@ -17,15 +18,7 @@ class MatchingNumber(forms.ModelForm):
 class MatchingQuestion(forms.ModelForm):
 	class Meta:
 		model = Question
-		fields = ['question', 'answer', 'rand_letter',]
-	'''MN = MatchingNumber(forms.ModelForm)
-	copynumber = MN.number
-	temp = 0
-	while(temp != copynumber):
-		question = forms.CharField(label='Question:')
-		answer = forms.CharField(label='Answer')
-		rand_letter = forms.CharField(label='Letter')
-		temp += 1'''
+		fields = ['question', 'correct', 'rand_letter',]
 		
 #form created from model that takes in students answer
 class MatchingAnswer(forms.ModelForm):
@@ -33,3 +26,26 @@ class MatchingAnswer(forms.ModelForm):
 		model = Answer
 		fields = ['answer',]
 	#user_answer = forms.CharField(label='Your answer:')
+	
+	
+class MatchingForm(forms.Form):
+	class Meta:
+		# Based off of the models
+		model = Matching
+		# Add options
+		fields = ['title','left_one','left_two','left_three','left_four','right_one'
+				'right_two','right_three','right_four']
+		
+	# Fields defined under forms.
+	title = forms.CharField(max_length = 140)
+	
+	left_one = forms.CharField(max_length = 140)
+	left_two = forms.CharField(max_length = 140)
+	left_three = forms.CharField(max_length = 140)
+	left_four = forms.CharField(max_length = 140)
+	
+	right_one = forms.CharField(max_length = 140)
+	right_two = forms.CharField(max_length = 140)
+	right_three = forms.CharField(max_length = 140)
+	right_four = forms.CharField(max_length = 140)
+	

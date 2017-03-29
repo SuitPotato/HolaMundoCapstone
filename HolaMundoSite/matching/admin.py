@@ -5,3 +5,4 @@ from matching.models import *
 admin.site.register(Number)
 admin.site.register(Question)
 admin.site.register(Answer)
+admin.site.register(Matching)
