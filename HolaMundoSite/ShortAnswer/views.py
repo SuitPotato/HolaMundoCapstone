@@ -50,11 +50,8 @@ def take_quiz(request, questionID):
         
     except:
         return render(request, 'ShortAnswer/essay_quiz.html', {})
-    else:
-        q = Question.objects.get(questionID=questionID)
-        q.score += 1;
-        q.save()
 
+'''
 # View is to display results
 @login_required()
 def results(request, questionID):
@@ -65,14 +62,29 @@ def results(request, questionID):
                     'correctAnswer': quiz.correctAnswer}
     # display results page 
     return render(request, 'ShortAnswer/results.html', context)
+'''
 
-# save User's answer
-#@login_required()
-#def save_answers(request):
-#    form =
+# view to save User's answer and update in database
+@login_required()
+def submit(request):
+    if request.method == 'POST':
+        form = AnswerForm()
 
-
+        if form.is_valid():
+            a = Answer()
+            a.title = request.POST.get("title")
+            a.answer = request.POST.get("answer")
+            a.score = request.POST.get("score")
+            a.save()
+            return HttpResponseRedirect('ShortAnswer/success.html')
+        elif request.method == 'GET':
+            form = AnswerForm()
+        else:
+            form = AnswerForm()
+            return redirect('https://djangoproject.com')
+'''
 @login_required()
 def success(request):
 	return render(request, 'ShortAnswer/success.html')
 
+'''
