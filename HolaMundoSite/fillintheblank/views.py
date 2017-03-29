@@ -22,7 +22,8 @@ def view_quiz(request, questionID):
         quiz = FillInTheBlankQuestion.objects.get(questionID=questionID)
         context = {'title':quiz.title, 'question_start': quiz.question_start,
                     'answer': quiz.answer, 'question_end': quiz.question_end,
-                    'correctAnswer': quiz.correctAnswer, 'score': quiz.score }
+                    'score': quiz.score }
+                    #{'correctAnswer': quiz.correctAnswer,}
 
         return render(request, 'fillintheblank/take_quiz.html', context)
     except:
@@ -50,7 +51,7 @@ def create_quiz(request):
             quiz.title = form.cleaned_data["title"]
             quiz.author = form.cleaned_data["author"]
             quiz.question_start = form.cleaned_data["question_start"]
-            quiz.answer = form.cleaned_data["answer"]
+            #quiz.answer = form.cleaned_data["answer"]
             quiz.question_end = form.cleaned_data["question_end"]
             quiz.correctAnswer = form.cleaned_data["correctAnswer"]
             
@@ -84,16 +85,14 @@ def submit(request):
             form = AnswerForm()
             return redirect('https://djangoproject.com')
 
-'''
 # view is to display results
 @login_required()
 def results(request, questionID):
     # get question from Question Model
     question = get_object_or_404(FillInTheBlankQuestion, pk=questionID)
     # context of Question Model
-    context = {'title':quiz.title, 'question_start': quiz.question_start,
-                    'answer': quiz.answer, 'question_end': quiz.question_end,
-                    'correctAnswer': quiz.correctAnswer }
+    context = {'title':quiz.title, 'author': question.author , 
+                'question_start': quiz.question_start,'question_end': quiz.question_end,
+                'correctAnswer': quiz.correctAnswer }
     return render(request, 'fillintheblank/results.html', context)
-'''
 

@@ -12,14 +12,15 @@ class FillInTheBlank(forms.ModelForm):
 	class Meta:
 		# Based off Model: Fill In The Blank Question
 		model = FillInTheBlankQuestion
-		fields = ('title', 'question_start', 'question_end', 'answer', 'correctAnswer')
+		fields = ('title', 'author', 'question_start', 'correctAnswer', 'question_end')
 
 	# fields defined under forms
 	title = forms.CharField(max_length = 140)
+	author = forms.CharField(max_length=100)
 	question_start = forms.CharField(max_length = 100)
-	question_end = forms.CharField(max_length = 100)
-	answer = forms.CharField(max_length = 100)
 	correctAnswer = forms.CharField(max_length=100)
+	question_end = forms.CharField(max_length = 100)
+	#answer = forms.CharField(max_length = 100)
 
 # Form for Fill In The Blank Answer
 class AnswerForm(forms.ModelForm):
@@ -32,4 +33,4 @@ class AnswerForm(forms.ModelForm):
 	# fields defined under form
 	title = forms.CharField(max_length=140)
 	answer = forms.CharField(max_length=1000)
-	score = forms.IntegerField(default=0)
+	#score = forms.IntegerField(max_length=100)

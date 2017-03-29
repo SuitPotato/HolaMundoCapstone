@@ -18,7 +18,7 @@ class FillInTheBlankQuestion(models.Model):
 	# End of sentence
 	question_end = models.CharField(max_length = 50)
 	# Answer for Fill In The Blank
-	answer = models.CharField(max_length = 100)
+	#answer = models.CharField(max_length = 100)
 	# Correct Answer for Fill in the Blank
 	correctAnswer = models.CharField(max_length=100, default='')
 

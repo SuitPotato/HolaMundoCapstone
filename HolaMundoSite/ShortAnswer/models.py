@@ -16,7 +16,7 @@ class Question(models.Model):
 	# Text Field for Question
 	question = models.CharField(max_length = 1000)
 	# Text Field for answer
-	answer = models.CharField(max_length = 1000)
+	#answer = models.CharField(max_length = 1000)
 	# Text field for Correct Answer
 	correctAnswer = models.CharField(max_length=1000, default='')
 
@@ -26,7 +26,7 @@ class Question(models.Model):
 # Short Answer/Essay Answer Model
 class Answer(models.Model):
 	# foreign key should be linked to questionID of Question
-	questionID = models.ForeignKey(Question, related_name='questioID_text')
+	questionID = models.ForeignKey(Question, related_name='questionID_text')
 	# title of Answer
 	title = models.CharField(max_length=1000)
 	# text field for answer 

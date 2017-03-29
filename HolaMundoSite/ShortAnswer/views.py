@@ -27,7 +27,7 @@ def create_essay_quiz(request):
             quiz = Question()
             quiz.title = form.cleaned_data["title"]
             quiz.question = form.cleaned_data["question"]
-            quiz.answer = form.cleaned_data["answer"]
+            #quiz.answer = form.cleaned_data["answer"]
             quiz.correctAnswer = form.cleaned_data["correctAnswer"]
             quiz.save()
             return render(request, 'ShortAnswer/success.html')
@@ -45,13 +45,14 @@ def take_quiz(request, questionID):
         # get specific information.
         quiz = Question.objects.get(questionID=quuestionID)
         context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
-                    'correctAnswer': quiz.correctAnswer, 'score': quiz.score}
+                'score': quiz.score}
+                #{'correctAnswer': quiz.correctAnswer,}
         return render(request, 'ShortAnswer/take_quiz.html', context)
         
     except:
         return render(request, 'ShortAnswer/essay_quiz.html', {})
 
-'''
+
 # View is to display results
 @login_required()
 def results(request, questionID):
@@ -62,7 +63,7 @@ def results(request, questionID):
                     'correctAnswer': quiz.correctAnswer}
     # display results page 
     return render(request, 'ShortAnswer/results.html', context)
-'''
+
 
 # view to save User's answer and update in database
 @login_required()
