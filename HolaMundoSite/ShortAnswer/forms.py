@@ -27,10 +27,9 @@ class AnswerForm(forms.ModelForm):
 	class Meta:
 		# Based off Model: Answer
 		model = Answer
-		fields = {'title', 'author', 'question', 'answer'}
+		fields = {'title', 'answer', 'score'}
 
 	# fields defined under form
 	title = forms.CharField(max_length=140)
-	author = forms.CharField(max_length=140)
-	question = forms.CharField(max_length=500)
 	answer = forms.CharField(max_length=1000)
+	score = forms.IntegerField(default=0)

@@ -23,5 +23,6 @@ urlpatterns = [
 	url(r'^ShortAnswer/$', views.create_essay_quiz, name='create_essay'),
     url(r'^ShortAnswer/(?P<questionID>[0-9]+)/$', views.take_quiz, name='take_quiz'),
     url(r'^ShortAnswer/?<questionID>[0-9]/results/$', views.results, name='results'),
+    url(r'^ShortAnswer/submit/$', views.submit, name='submit'),
 
 ]

@@ -21,9 +21,20 @@ class FillInTheBlankQuestion(models.Model):
 	answer = models.CharField(max_length = 100)
 	# Correct Answer for Fill in the Blank
 	correctAnswer = models.CharField(max_length=100, default='')
+
+	def __str__(self):
+		return self.title
+
+# Fill In The Blank Answer Model
+class Answer(models.Model):
+	# question ID references Primary Key
+	questionID = models.ForeignKey(FillInTheBlankQuestion, related_name='questionID_text')
+	# title of the question
+	title = models.CharField(max_length=1000)
+	# answer for answer Model
+	answer = models.CharField(max_length=100)
 	# score to track performance of User
 	score = models.CharField(max_length=100, default='')
-
 
 	def __str__(self):
 		return self.title
