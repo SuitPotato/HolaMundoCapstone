@@ -57,7 +57,7 @@ def take_quiz(request, questionID):
 @login_required()
 def results(request, questionID):
     # get question from Question Model
-    question = get_object_or_404(Question, pk=questionID)
+    quiz = get_object_or_404(Question, pk=questionID)
     # context of Question Model
     context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
                     'correctAnswer': quiz.correctAnswer}
