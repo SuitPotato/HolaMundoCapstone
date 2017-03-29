@@ -29,7 +29,9 @@ def create_essay_quiz(request):
             quiz.question = form.cleaned_data["question"]
             #quiz.answer = form.cleaned_data["answer"]
             quiz.correctAnswer = form.cleaned_data["correctAnswer"]
+            # save data
             quiz.save()
+            # render to success page of creating a quiz
             return render(request, 'ShortAnswer/success.html')
     elif request.method == 'GET':
         form = QuestionForm()
@@ -69,14 +71,18 @@ def results(request, questionID):
 @login_required()
 def submit(request):
     if request.method == 'POST':
+        #  if User wants to submit answers, display answer form
         form = AnswerForm()
 
         if form.is_valid():
+            # set data from Answer Model
             a = Answer()
             a.title = request.POST.get("title")
             a.answer = request.POST.get("answer")
             a.score = request.POST.get("score")
+            # save data
             a.save()
+            # Not sure where to send Users
             return HttpResponseRedirect('ShortAnswer/success.html')
         elif request.method == 'GET':
             form = AnswerForm()
