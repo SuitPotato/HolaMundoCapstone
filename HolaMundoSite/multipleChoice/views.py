@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.forms import ModelForm
 from django.db import models
 from django import forms
-from multipleChoice.models import Quiz
+from multipleChoice.models import Quiz, Response
 from multipleChoice.forms import (
     QuizForm, ResponseForm
   )
@@ -13,22 +13,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # # view to take in score and update database model
 def submit(request):
-    if request.method == 'POST':
-        form = ResponseForm()
-        if form.is_valid():
-            r = Response()
-            r.title = request.POST.get("title")
-            r.answer = request.POST.get("answer")
-            r.score = request.POST.get("score")
-            r.save()
-            return HttpResponseRedirect('/success/')
-        elif request.method == 'GET':
-            form = ResponseForm()
-        else:
-            form = ResponseForm()
-            return redirect('https://github.com/')
-#
-#
+    r = Response(title="What is 2+2?", answer="4", score="1")
+    r.save()
+    return render(request, 'multipleChoice/submit.html', {})
 
 def view_takeQuiz(request,quizID):
     try:
