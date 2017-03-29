@@ -1,0 +1,19 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fill In The Blank/title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{% csrf_token %}
+<html>
+ <ul class="list-group">
+  <li class="list-group-item">User Name</li>
+  <li class="list-group-item">Score</li>
+</ul>
+</html>
+{% endblock %}
