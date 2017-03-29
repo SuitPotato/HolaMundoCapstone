@@ -31,6 +31,7 @@ def results(request, tag='all'):
 
 	# If the user hit the search button without putting in a query
     if tag == '':
+	
 		# If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
         videos = Lesson.objects.all()
         context = {"videos": videos}
@@ -38,6 +39,7 @@ def results(request, tag='all'):
 	
 	# If the user searched a specific query
     else:
+	
 		# This line takes all videos in the database, and if the video's tags contain any word in the query, we keep that video. If the video's difficulty
 		# is in the query, we add those videos as well. If nothing in the user's query is in the tags or difficulty, the video is excluded.
 		# If any of this functionality is to be changed, change it below
@@ -72,12 +74,14 @@ def login(request):
     if user is not None:
         login(request, user)
     else:
+	
         # Change from LoginView to the acutal Login Page later
         return HttpResponseRedirect('/loginview/')
 
 
 def logout(request):
     logout(request)
+	
     # Change from LoginView to the acutal Login Page later
     return HttpResponseRedirect('/loginview/')
 
@@ -104,13 +108,13 @@ def register(request):
     return render(request, 'mainpage/register.html', {'form': form})
 
 
-	# Successfully registered users get redirected here
+# Successfully registered users get redirected here
 def registered(request):
     return render(request, 'mainpage/registered.html')
 
 
-	# myHolaMundo page is a customized page, where users will view their last viewed video as well as other suggest videos
-	# Videos suggested now randomly, eventually by a score they get based on their performance
+# myHolaMundo page is a customized page, where users will view their last viewed video as well as other suggest videos
+# Videos suggested now randomly, eventually by a score they get based on their performance
 @login_required()
 def myHolaMundo(request):
     user_preferences = Preference.objects.get(user=request.user)
@@ -118,11 +122,11 @@ def myHolaMundo(request):
     videos_by_author = Lesson.objects.filter(author=request.user).values()
 	
 	# Currently random videos uploaded by you, later will be changed to match variable name
-    six_random_videos_by_author = random.sample(videos, 6) 
+    six_random_videos_by_author = random.sample(videos_by_author, 6) 
 	
 	# Currently random videos uploaded by you, later will be changed to match variable name
-    six_random_videos_by_difficulty = random.sample(videos, 6)
+    six_random_videos_by_difficulty = random.sample(videos_by_author, 6)
 	
 	# Pass user preferences, 6 videos by author/difficulty to dashboard.html to populate video displays at the bottom of the page
-    context = {'user': request.user, 'prefs': prefs, 'videos_author': picked_videos, 'videos_1': videos_1}
+    context = {'user': request.user, 'prefs': user_preferences, 'videos_author': six_random_videos_by_author, 'videos_difficulty': six_random_videos_by_difficulty}
     return render(request, 'mainpage/dashboard.html', context)
