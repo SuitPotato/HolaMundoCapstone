@@ -1,5 +1,5 @@
 from django.contrib import admin
-from multipleChoice.models import Quiz
+from multipleChoice.models import Quiz, Response
 # Register your models here.
 admin.site.register(Quiz)
-# admin.site.register(Answer)
+admin.site.register(Response)
