@@ -1,11 +1,13 @@
+# Django Imports
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.forms import ModelForm
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from UserSettingsPage.models import Preference
 
+# User Settings Imports
+from UserSettingsPage.models import Preference
 from UserSettingsPage.forms import (
     EditProfileForm
 )
