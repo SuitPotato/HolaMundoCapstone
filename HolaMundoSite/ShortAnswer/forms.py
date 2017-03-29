@@ -5,7 +5,6 @@ from django.forms import ModelForm
 # Import Models
 from ShortAnswer.models import *
 
-# class Create_FillInTheBlank_quiz(forms.Form):
 
 # Form for Short Answer/Essay Question
 class QuestionForm(forms.ModelForm):
@@ -21,3 +20,17 @@ class QuestionForm(forms.ModelForm):
 	question = forms.CharField(max_length = 500)
 	answer = forms.CharField(max_length = 1000)
 	correctAnswer = forms.CharField(max_length=1000)
+
+# form for User's Answer to Short Answer/Essay Question
+class AnswerForm(forms.ModelForm):
+	# Meta Class
+	class Meta:
+		# Based off Model: Answer
+		model = Answer
+		fields = {'title', 'author', 'question', 'answer'}
+
+	# fields defined under form
+	title = forms.CharField(max_length=140)
+	author = forms.CharField(max_length=140)
+	question = forms.CharField(max_length=500)
+	answer = forms.CharField(max_length=1000)

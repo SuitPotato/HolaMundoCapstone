@@ -66,6 +66,12 @@ def results(request, questionID):
     # display results page 
     return render(request, 'ShortAnswer/results.html', context)
 
+# save User's answer
+#@login_required()
+#def save_answers(request):
+#    form =
+
+
 @login_required()
 def success(request):
 	return render(request, 'ShortAnswer/success.html')
