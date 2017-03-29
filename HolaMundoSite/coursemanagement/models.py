@@ -91,6 +91,14 @@ class Lesson(models.Model):
 
 
 	tags = models.TextField(max_length = 5000, default = "")
+
+	DIFFICULTIES = (
+	('Beginner', '1'),
+	('Intermediate', '2'),
+	('Advanced','3'),
+	)
+
+	difficulty = models.CharField(max_length=15, choices= DIFFICULTIES, default="Beginner")
 	
 	def __str__(self):
 		return self.title
