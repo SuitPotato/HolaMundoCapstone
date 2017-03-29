@@ -71,7 +71,7 @@ class Answer(models.Model):
 	#title = models.ForeignKey(Matching, null=False, blank=False)
 	#student = models.ForeignKey(User, null=False, blank=False)
 	
-	#matching = models.ForeignKey(Matching, on_delete=models.CASCADE, default=True)
+	#matching = models.ForeignKey(Matching, on_delete=models.CASCADE, default="Help")
 	
 	answer_one = models.CharField(max_length = 140, blank = True)
 	answer_two = models.CharField(max_length = 140, blank = True)
@@ -80,4 +80,4 @@ class Answer(models.Model):
 	score = models.IntegerField(default = 0)
 	
 	def __str__(self):
-		return "Student"
+		return str(self.AnswerID)

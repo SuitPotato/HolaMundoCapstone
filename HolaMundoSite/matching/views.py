@@ -129,6 +129,7 @@ def view_matching(request, title):
 	if request.method == 'POST':
 		# Form is a variable that contains the source form
 		form = AnswerForm(request.POST)
+		mform = MatchingForm(request.GET)
 		if form.is_valid():
 			# Specifically calling the model
 			v = Answer()
@@ -137,6 +138,11 @@ def view_matching(request, title):
 			v.answer_two = form.cleaned_data["answer_two"]
 			v.answer_three = form.cleaned_data["answer_three"]
 			v.answer_four = form.cleaned_data["answer_four"]
+			
+			m.right_one = mform["right_one"]
+			m.right_one = mform["right_two"]
+			m.right_one = mform["right_three"]
+			m.right_one = mform["right_four"]
 			
 			if((v.answer_one == m.right_one) and (v.answer_two == m.right_two)
 			and (v.answer_three == m.right_three) and (v.answer_four == m.right_four)):
@@ -147,7 +153,7 @@ def view_matching(request, title):
 				print v.answer_one
 				print m.right_one
 			v.save()
-			#return HttpResponseRedirect('/answered/')
+			return HttpResponseRedirect('/answered/')
 	elif request.method == 'GET':
 		form = AnswerForm()
 	else:
