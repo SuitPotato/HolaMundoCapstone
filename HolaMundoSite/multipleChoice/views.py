@@ -14,11 +14,12 @@ from django.contrib.auth.decorators import login_required
 # # view to take in score and update database model
 def submit(request):
     r = Response()
-    if request.method == 'POST':
-       r.answer = request.POST['A']
+    r.title = "test"
+    # if request.method == 'POST':
+    #    r.answer = request.POST['A']
     r.save()
     return redirect('http://stackoverflow.com')
-    #  if request.method == 'POST':
+    # #  if request.method == 'POST':
     #     form = ResponseForm(data=request.POST, instance=quiz)
     #     if form.is_valid():
     #        r = Response()
@@ -30,13 +31,22 @@ def submit(request):
 
 def view_takeQuiz(request,quizID):
     try:
-
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
         'answerC': quiz.answerC,'answerD': quiz.answerD,
         'correctAnswer': quiz.correctAnswer, 'score': quiz.score}
         return render(request, 'multipleChoice/takeQuiz.html', context)
-
+        context = RequestContext(request)
+        if request.method == 'POST':
+           form = RequestForm(request)
+           if form.is_valid():
+              form.save(commit=True)
+              return submit(request)
+           else:
+              print form.errors
+        else:
+            form = RequestForm()
+        return redirect('http://www.tangowithdjango.com')
     except:
         return render(request, 'multipleChoice/quiz.html', {})
 
