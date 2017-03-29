@@ -31,14 +31,14 @@
 {% csrf_token %}
 <html>
 <div class="container">
-  <form method="POST" action="./">
+  <form method="POST" action="/multipleChoice/submit/">
     {% csrf_token %}
-    <label for="quiz.title">{{title}}</label>
+    <label for="quiz.title" name="title">{{title}}</label>
     <ul>
-      <input type="radio" name="{{answerA}}">{{answerA}}</input></br>
-      <input type="radio" name="{{answerB}}">{{answerB}}</input></br>
-      <input type="radio" name="{{answerC}}">{{answerC}}</input></br>
-      <input type="radio" name="{{answerD}}">{{answerD}}</input></br>
+      <input type="radio" name="answer">{{answerA}}</input></br>
+      <input type="radio" name="answer">{{answerB}}</input></br>
+      <input type="radio" name="answer">{{answerC}}</input></br>
+      <input type="radio" name="answer">{{answerD}}</input></br>
     </ul>
        <input type="submit" value="SUBMIT">
   </form>

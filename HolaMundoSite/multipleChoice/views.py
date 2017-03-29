@@ -6,26 +6,39 @@ from django.db import models
 from django import forms
 from multipleChoice.models import Quiz
 from multipleChoice.forms import (
-    QuizForm
+    QuizForm, ResponseForm
   )
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # # view to take in score and update database model
-# def submit(request):
-#     if request.method == 'POST':
-#        form = QuizForm(request.POST)
-#        if request.POST.get("")
-
-
+def submit(request):
+    if request.method == 'POST':
+        form = ResponseForm()
+        if form.is_valid():
+            r = Response()
+            r.title = request.POST.get("title")
+            r.answer = request.POST.get("answer")
+            r.score = request.POST.get("score")
+            r.save()
+            return HttpResponseRedirect('/success/')
+        elif request.method == 'GET':
+            form = ResponseForm()
+        else:
+            form = ResponseForm()
+            return redirect('https://github.com/')
+#
+#
 
 def view_takeQuiz(request,quizID):
     try:
+
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
         'answerC': quiz.answerC,'answerD': quiz.answerD,
-        'correctAnswer': quiz.correctAnswer, 'score':quiz.score}
+        'correctAnswer': quiz.correctAnswer}
         return render(request, 'multipleChoice/takeQuiz.html', context)
+
     except:
         return render(request, 'multipleChoice/quiz.html', {})
 
