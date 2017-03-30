@@ -27,8 +27,8 @@ class FillInTheBlankQuestion(models.Model):
 
 # Fill In The Blank Answer Model
 class Answer(models.Model):
-	# question ID references Primary Key
-	questionID = models.ForeignKey(FillInTheBlankQuestion, related_name='questionID_text')
+	# AnswerID is the primary key for Answer Model
+	AnswerID = models.AutoField(primary_key=True, default='')
 	# title of the question
 	title = models.CharField(max_length=1000)
 	# answer for answer Model

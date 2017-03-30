@@ -9,8 +9,10 @@ from django.contrib.auth.models import User
 class Question(models.Model):
 	# primary key references quiestionID
 	questionID = models.AutoField(primary_key = True)
+
 	# title of question
-	title = models.CharField(max_length = 1000)
+	#title = models.CharField(max_length = 1000)
+
 	# author of quiz
 	author = models.CharField(max_length = 100)
 	# Text Field for Question
@@ -25,10 +27,10 @@ class Question(models.Model):
 
 # Short Answer/Essay Answer Model
 class Answer(models.Model):
-	# foreign key should be linked to questionID of Question
-	original_questionID = models.ForeignKey(Question, related_name='questionID_text')
+	# AnswerID is the primary key for Answer Model
+	AnswerID = models.AutoField(primary_key=True, default='')
 	# title of Answer
-	title = models.CharField(max_length=1000)
+	question = models.CharField(max_length=1000)
 	# text field for answer 
 	answer = models.CharField(max_length=1000)
 	# score to track performance of User
