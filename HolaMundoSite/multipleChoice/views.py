@@ -11,33 +11,7 @@ from multipleChoice.forms import (
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-# Create your views here.
-# # view to take in score and update database model
-# def submit(request):
-   # if request.method == 'GET':
-   #    if form.is_valid():
-   #       q = Quiz.objects.get(quizID=quizID)
-   #       form = ResponseForm()
-   #       r = Response()
-   #       r.title = form.cleaned_data['title']
-   #      #  r.answer = q.answerA
-   #      #  r.score = q.score
-   #
-   #       if((r.answer == q.correctAnswer)):
-   #         r.score = 1
-   #         print "correct!"
-   #       else:
-   #         r.score = 0
-   #         print "not correct!"
-   #       r.save()
-   #       return redirect('http://stackoverflow.com')
-   # elif request.method == 'POST':
-   #      form = ResponseForm()
-   # else:
-   #      form = ResponseForm()
-   # return render(request, 'multipleChoice/submit.html', {})
-
-
+# view to bring up quiz for user
 def view_takeQuiz(request,quizID):
     if request.method == 'POST':
         form = ResponseForm(request.POST)
@@ -48,14 +22,18 @@ def view_takeQuiz(request,quizID):
             #r.title = form.cleaned_data["title"]
             r.answer = form.cleaned_data["answer"]
             #r.score = form.cleaned_data["score"]
+            # if the user submits correct answer, increment score by 1
             if((r.answer == q.correctAnswer)):
                 r.score = 1
                 print "Correct!"
             else:
+                # if they guess wrong, set equal to zero
                 r.score = 0
                 print "Not correct!"
+            # save form
             r.save()
-            return redirect('https://www.facebook.com')
+            # change redirect in UI phase
+            return redirect('https://www.djangoproject.com/')
         elif request.method == 'GET':
             form = ResponseForm()
         else:
@@ -72,6 +50,7 @@ def view_takeQuiz(request,quizID):
 
 
 @login_required
+# view to create a quiz
 def quiz(request):
     if request.method == 'POST':
        form = QuizForm(request.POST)

@@ -13,6 +13,7 @@
 {% csrf_token %}
 <html>
 <!-- <p id="title">{{ title }}</p> -->
+<!-- quiz form which draws multiple choice options-->
 <div class="container">
   <form method="GET" class="QuizForm" id="quiz">
     {% csrf_token %}
@@ -31,12 +32,14 @@
     </div>
   </form>
 </div>
+<!-- response form to pass quiz data to secondary model  -->
 <form action="" method="POST" class="ResponseForm">
   <!-- {% for radio in } -->
    {% csrf_token %}
    <!-- <p>{{title}}</p> -->
    <!--<p>{{form.title}}</p>
    <!-- <p>{{answerA}}</p> -->
+   <!-- confirmation to pass along answer. In UI phase, change this -->
    <p>{{form.answer}}</p>
    <!-- <p>{{score}}</p> -->
    <!--<p>{{form.score}}</p>
