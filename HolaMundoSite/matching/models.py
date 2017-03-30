@@ -65,7 +65,7 @@ class Matching(models.Model):
 	right_four = models.CharField(max_length = 140, blank = True)
 	
 	def __str__(self):
-		return self.title
+		return str(self.quizID)
 		
 class Answer(models.Model):
 	AnswerID = models.AutoField(primary_key = True)
