@@ -16,6 +16,9 @@ def load_video(request, link):
         video = Lesson.objects.get(link=link)
         if request.user.is_authenticated():
             pref = Preference.objects.get(user=request.user)
+            pref.fourthLastVid = pref.thirdLastVid
+            pref.thirdLastVid = pref.secondLastVid
+            pref.secondLastVid = pref.lastVid
             pref.lastVid = video
             pref.save()
 
