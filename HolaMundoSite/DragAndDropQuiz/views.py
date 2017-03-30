@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 # Course Management App Imports
 
-from DragAndDropQuiz.models import Sentence
+from coursemanagement.models import Quiz
 from DragAndDropQuiz.forms import SentenceForm
 
 # Import User
@@ -28,7 +28,7 @@ def create_dragndrop(request):
 # Names can be changed later, current name is not as effective
 def view_sentence_drag(request, title):
 	try:
-		sentence = Sentence.objects.get(title = title)
+		sentence = Quiz.objects.get(title = title)
 		context = {'title': sentence.title, 'wordOne': sentence.wordOne,'wordTwo': sentence.wordTwo,
 					'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour, 'wordFive': sentence.wordFive}
 		return render(request, 'DragAndDropQuiz/sentence.html', context)
@@ -37,7 +37,7 @@ def view_sentence_drag(request, title):
 
 def view_sentence_dragTwo(request, title):
 	try:
-		sentence = Sentence.objects.get(title=title)
+		sentence = Quiz.objects.get(title=title)
 		context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
 				   'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
 				   'wordFive': sentence.wordFive}
@@ -52,7 +52,7 @@ def create_sentence_drag(request):
 		form = SentenceForm(request.POST)
 		if form.is_valid():
 			# Specifically calling the model
-			v = Sentence()
+			v = Quiz()
 			v.title = form.cleaned_data["title"]
 			v.wordOne = form.cleaned_data["wordOne"]
 			v.wordTwo = form.cleaned_data["wordTwo"]

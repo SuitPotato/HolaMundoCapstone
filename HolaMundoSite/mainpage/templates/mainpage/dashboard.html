@@ -4,19 +4,6 @@
 
 {% block headContent %}
 
-	<script>
-		$(function() {
-
-		   $("authorJumbo").mousewheel(function(event, delta) {
-
-			  this.scrollLeft -= (delta * 30);
-			
-			  event.preventDefault();
-
-		   });
-
-		});
-	</script>
 	
 {% endblock %}
 
@@ -53,12 +40,12 @@
     body,
     html {
       color: #ecf0f1;
-	  overflow-x: hidden;
+      overflow-x: hidden;
       font-family: 'Open Sans', sans-serif;
       min-height: 100vh;
       display: -webkit-box;
       display: -ms-flexbox;
-      display: flex;
+      display: inline-block;
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
           -ms-flex-direction: row;
@@ -183,7 +170,6 @@
     .row__inner:hover {
     }
     .row__inner:hover .tile {
-      opacity: 0.3;
     }
     .row__inner:hover .tile:hover {
       -webkit-transform: scale(1.5);
@@ -202,12 +188,11 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid" >
+        <div class="row" >
             <div class="col-md-12">
                 <div class="page-header">
                     <div class="row">
-
                         <div class="col-md-3">
                         </div>
 
@@ -217,101 +202,152 @@
 
                         <div class="col-md-3">
                         </div>
-
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-        {% if prefs.lastVid != null %}
-            <div class="col-md-12">
-                <div class="jumbotron-fluid" style="background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0)";>
-                    <div class="row">
-                        <h2>
-                            Last video watched
-                        </h2>
-                    </div>
+{% if prefs.lastVid != null and prefs.secondLastVid != null and prefs.thirdLastVid != null and prefs.fourthLastVid != null%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>
+                    Last video watched
+                </h2>
+            </div>
 
-                    <div class="row">
-                        <div class="row video-line">
-                            <div class="col-md-12">
-                                <a href="/video/{{ prefs.lastVid.link }}"> <img src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last" /> </a>
-                            </div>
+            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-center">
+                    Other recent videos
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/video/{{ prefs.lastVid.link }}"> <img src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last" /> </a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="contain" >
+                    <div class="row__inner">
+                        <div class="tile" >
+                            <a href="/video/{{ prefs.secondLastVid.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ prefs.secondLastVid.title }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="tile" >
+                            <a href="/video/{{ prefs.thirdLastVid.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ prefs.thirdLastVid.title }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="tile" >
+                            <a href="/video/{{ prefs.fourthLastVid.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ prefs.fourthLastVid.title }}
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-
                 </div>
             </div>
-        {% endif %}
+        </div>
+    </div>
+{% endif %}
 
-
+    <div class = "container-fluid" >
+        <div class="row">
             <div class="col-md-12">
+                <div class="contain" >
+                    <h2>
+                        Other videos by Dr. Schairer
+                    </h2>
 
-                <div class="jumbotron-fluid" id="authorJumbo" style="background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0);">
-                    <div class="row">
-                    </div>
-                    <div class="contain">
-                        <h2>
-                            Other videos by Dr. Schairer
-                        </h2>
-                        <div class="row__inner" style="width: 100vw;">
+                    <div class="row__inner">
 
-                        {% for video in videos_difficulty %}
+                    {% for video in videos_difficulty %}
+                        <div class="tile" >
+                            <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
 
-                            <div class="tile" >
-                                <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                </div>
 
-                                    <div class="tile__media">
-                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ video.title }}
                                     </div>
+                                </div>
 
-                                    <div class="tile__details">
-                                        <div class="tile__title" >
-                                            {{ video.title }}
-                                        </div>
-                                    </div>
-
-                                </a>
-                            </div>
-
-                        {% endfor %}
-
+                            </a>
                         </div>
+
+                    {% endfor %}
+
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+
+    <div class = "container-fluid">
+        <div class="row">
 			<div class="col-md-12">
+                <div class="contain">
+                    <h2>
+                        Other videos by Dr. Schairer
+                    </h2>
 
-                <div class="jumbotron-fluid" id="authorJumbo" style="background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0);">
-                    <div class="row">
-                    </div>
-                    <div class="contain">
-                        <h2>
-                            Other videos by Dr. Schairer
-                        </h2>
-                        <div class="row__inner" style="width: 100vw;">
+                    <div class="row__inner" style="width: 100vw;">
 
-                        {% for video in videos_author %}
+                    {% for video in videos_author %}
+                        <div class="tile" >
+                            <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
 
-                            <div class="tile" >
-                                <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                </div>
 
-                                    <div class="tile__media">
-                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ video.title }}
                                     </div>
-
-                                    <div class="tile__details">
-                                        <div class="tile__title" >
-                                            {{ video.title }}
-                                        </div>
-                                    </div>
-
-                                </a>
-                            </div>
-
-                        {% endfor %}
-
+                                </div>
+                            </a>
                         </div>
+                    {% endfor %}
+
                     </div>
                 </div>
             </div>

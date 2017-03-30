@@ -13,6 +13,10 @@ class Preference(models.Model):
     prefID = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, null=False, blank=False)
     lastVid = models.ForeignKey(Lesson, null=True)
+    secondLastVid = models.ForeignKey(Lesson, null=True, related_name="second")
+    thirdLastVid = models.ForeignKey(Lesson, null=True, related_name="third")
+    fourthLastVid = models.ForeignKey(Lesson, null=True, related_name="fourth")
+
 
     # Listed choices for preferences
     LANGUAGES = (
