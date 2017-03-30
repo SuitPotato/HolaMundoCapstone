@@ -15,10 +15,9 @@
 <div class="container">
    <form method="GET" class="MatchingForm" id="quiz">
     {% csrf_token %}
-    <div class="question" style="text-align:left;float:left;">
+    <div class="question">
       <label><name="left_one" id="1" value="{{left_one}}">{{left_one}}</label>
     </div>
-	<br>
     <div class="question">
       <label><name="left_two" id="2" value="{{left_two}}">{{left_two}}</label>
     </div>
@@ -28,10 +27,9 @@
     <div class="question">
       <label><name="left_four" id="4" value="{{left_four}}">{{left_four}}</label>
     </div>
-	<div class="choice" align="right" style="text-align:right;float:right;">
+	<div class="choice" align="right">
       <label><name="right_one" id="a" value="{{right_one}}">{{right_one}}</label>
     </div>
-	<br>
 	<div class="choice" align="right">
       <label><name="right_two" id="b" value="{{right_two}}">{{right_two}}</label>
     </div>
@@ -44,7 +42,7 @@
 	</form>
     <form action= "" method = "POST" class = "AnswerForm">
 		 {% csrf_token %}
-		<p align = "center">Answer 1</p>
+		<p align = "center">{{left_one}}</p>
 		<!--<label><id="a1" value="{{form.answer_one}}"{{ form.answer_one }}</label>
 		<p align = "center">Answer 2</p>
 		<label><id="a2" value="{{form.answer_two}}">{{ form.answer_two }}</label>
@@ -53,11 +51,11 @@
 		<p align = "center">Answer 4</p>
 		<label><id="a4" value="{{form.answer_four}}">{{ form.answer_four }}</label>-->
 		<p align = "center">{{ form.answer_one }}</p>
-		<p align = "center">Answer 2</p>
+		<p align = "center">{{left_two}}</p>
 		<p align = "center">{{ form.answer_two }}</p>
-		<p align = "center">Answer 3</p>
+		<p align = "center">{{left_three}}</p>
 		<p align = "center">{{ form.answer_three }}</p>
-		<p align = "center">Answer 4</p>
+		<p align = "center">{{left_four}}</p>
 		<p align = "center">{{ form.answer_four }}</p>-->
    <center><input type = "submit" value = "Submit"/></center>
    </form>
