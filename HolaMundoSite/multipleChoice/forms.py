@@ -1,12 +1,24 @@
 from django.forms import ModelForm
 from django import forms
-from multipleChoice.models import Question
+from multipleChoice.models import Quiz, Response
 
-class QuestionForm(forms.ModelForm):
- # template_name = '/multipleChoice/quiz'
- # class Meta:
- #     model = Question
- #     fields = ('question', 'answer_a', 'answer_b', 'answer_c', 'answer_d')
+class QuizForm(forms.Form):
     class Meta:
-        model = Question
-        fields = ['question', 'answer_a', 'answer_b', 'answer_c', 'answer_d']
+        model = Quiz
+        fields = ['title', 'answerA', 'answerB', 'answerC', 'answerD', 'correctAnswer', 'score']
+
+    title = forms.CharField(max_length=1500)
+    answerA = forms.CharField(max_length=150)
+    answerB = forms.CharField(max_length=150)
+    answerC = forms.CharField(max_length=150)
+    answerD = forms.CharField(max_length=150)
+    score = forms.CharField(max_length=150)
+    correctAnswer = forms.CharField(max_length=150)
+class ResponseForm(forms.Form):
+    class Meta:
+        model = Response
+        #fields = ['title', 'answer', 'score']
+        fields = ['answer']
+    #title = forms.CharField(max_length=120)
+    answer = forms.CharField(max_length=120)
+    #score = forms.CharField(max_length=120)
