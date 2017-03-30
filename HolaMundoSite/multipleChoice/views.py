@@ -13,21 +13,29 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # # view to take in score and update database model
 def submit(request):
-    r = Response()
-    r.title = "test"
-    # if request.method == 'POST':
-    #    r.answer = request.POST['A']
-    r.save()
-    return redirect('http://stackoverflow.com')
-    # #  if request.method == 'POST':
-    #     form = ResponseForm(data=request.POST, instance=quiz)
-    #     if form.is_valid():
-    #        r = Response()
-    #        r.title = request.POST.get("title")
-    #        r.answer = request.POST.get("answer")
-    #        r.score = request.POST.get("score")
-    #        r.save()
-    #  return render(request, 'multipleChoice/submit.html', {})
+   if request.method == 'POST':
+      form = ResponseForm(request.POST)
+      if form.is_valid():
+         q = Quiz.objects.get(quizID=quizID)
+         r = Response()
+         r.title = form.cleaned_data["title"]
+         r.answer = form.cleaned_data["answer"]
+         r.score = form.cleaned_data["score"]
+
+         if((r.answer == q.correctAnswer)):
+           r.score = 1
+           print "correct!"
+         else:
+           r.score = 0
+           print "not correct!"
+         r.save()
+         return redirect('http://stackoverflow.com')
+   elif request.method == 'GET':
+        form = ResponseForm()
+   else:
+        form = ResponseForm()
+   return render(request, 'multipleChoice/submit.html', {"form":form})
+
 
 def view_takeQuiz(request,quizID):
     try:
@@ -36,17 +44,17 @@ def view_takeQuiz(request,quizID):
         'answerC': quiz.answerC,'answerD': quiz.answerD,
         'correctAnswer': quiz.correctAnswer, 'score': quiz.score}
         return render(request, 'multipleChoice/takeQuiz.html', context)
-        context = RequestContext(request)
-        if request.method == 'POST':
-           form = RequestForm(request)
-           if form.is_valid():
-              form.save(commit=True)
-              return submit(request)
-           else:
-              print form.errors
-        else:
-            form = RequestForm()
-        return redirect('http://www.tangowithdjango.com')
+        # context = RequestContext(request)
+        # if request.method == 'POST':
+        #    form = RequestForm(request)
+        #    if form.is_valid():
+        #       form.save(commit=True)
+        #       return submit(request)
+        #    else:
+        #       print form.errors
+        # else:
+        #     form = RequestForm()
+        # return redirect('http://www.tangowithdjango.com')
     except:
         return render(request, 'multipleChoice/quiz.html', {})
 

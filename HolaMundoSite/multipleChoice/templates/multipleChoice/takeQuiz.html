@@ -9,50 +9,51 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $('#quiz').on('change', function(){
-    if($('input[name=optradio]:checked').val() == "{{correctAnswer}}"){
-      var $score = '{{score}}';
-      var s = $score.val();
-      s++;
-      // alert(s);
-      // alert('youre correct');
-      //if the user choses the right button and submits quiz, then show them their score
-    }
-    $.ajax({
-      url: '/submit/',
-      type: 'POST',
-      data: {s:s}
-      success:function(response){},
-      complete:function(){}
+  <script>
+  $(document).ready(function(){
+    $('#quiz').on('change', function(){
+      if($('input[name=optradio]:checked').val() == "{{correctAnswer}}"){
+        var $score = '{{score}}';
+        var s = $score.val();
+        s++;
+        // alert(s);
+        // alert('youre correct');
+        //if the user choses the right button and submits quiz, then show them their score
+      }
+      $.ajax({
+        url: '/submit/',
+        type: 'POST',
+        data: {s:s}
+        success:function(response){},
+        complete:function(){}
+      })
+      //  alert('correct');
     })
-    //  alert('correct');
   })
-})
 
-// })
-</script>
+  // })
+  </script>
 </head>
 {% csrf_token %}
-    <html>
-    <p id="title">{{ title }}</p>
-    <div class="container">
-       <form method="GET" class="QuestionForm" id="quiz" action="/multipleChoice/submit/">
-        <div class="radio">
-          <label><input type="radio" name="optradio" id="A" value="{{answerA}}">{{answerA}}</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio" id="B" value="{{answerB}}">{{answerB}}</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio" id="C" value="{{answerC}}">{{answerC}}</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio" id="D" value="{{answerD}}">{{answerD}}</label>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+<html>
+<p id="title">{{ title }}</p>
+<div class="container">
+  <form method="GET" class="QuestionForm" id="quiz" action="/multipleChoice/submit/">
+    {% csrf_token %}
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="A" value="{{answerA}}">{{answerA}}</label>
     </div>
-    </html>
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="B" value="{{answerB}}">{{answerB}}</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="C" value="{{answerC}}">{{answerC}}</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="D" value="{{answerD}}">{{answerD}}</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+</html>
 {% endblock %}
