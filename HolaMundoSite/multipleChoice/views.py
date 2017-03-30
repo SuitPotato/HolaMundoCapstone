@@ -42,21 +42,23 @@ def view_takeQuiz(request,quizID):
        form = ResponseForm(request.POST)
        print "addf"
        if form.is_valid():
-          q = Quiz.objects.get(quizID=quizID)
-          r = Response()
-          r.title = form.cleaned_data["title"]
-          r.answer = form.cleaned_data["answer"]
-          print "addf"
-          if((r.answer == q.correctAnswer)):
-             r.score = 1
-             print "Correct!"
-          else:
-             v.score = 0
-             print "Not correct!"
-          r.save()
-          print "adfhjk"
-          return redirect('https://www.facebook.com/')
-          print "adfhjk"
+           q = Quiz.objects.get(quizID=quizID)
+           r = Response()
+           r.title = form.cleaned_data["title"]
+           r.answer = form.cleaned_data["answer"]
+           print "addf"
+           if((r.answer == q.correctAnswer)):
+               r.score = 1
+               print "Correct!"
+           else:
+               v.score = 0
+               print "Not correct!"
+               r.save()
+               print "adfhjk"
+               return redirect('https://www.facebook.com/')
+               print "adfhjk"
+      else:
+           print "adfhjk"
     elif request.method == 'GET':
          print "..."
          form = ResponseForm()
