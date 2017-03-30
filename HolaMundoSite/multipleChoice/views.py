@@ -9,6 +9,7 @@ from multipleChoice.forms import (
     QuizForm, ResponseForm
   )
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 # # view to take in score and update database model
@@ -39,41 +40,35 @@ from django.contrib.auth.decorators import login_required
 
 def view_takeQuiz(request,quizID):
     if request.method == 'POST':
-       form = ResponseForm(request.POST)
-       print "addf"
-       if form.is_valid():
-           q = Quiz.objects.get(quizID=quizID)
-           r = Response()
-           r.title = form.cleaned_data["title"]
-           r.answer = form.cleaned_data["answer"]
-           print "addf"
-           if((r.answer == q.correctAnswer)):
-               r.score = 1
-               print "Correct!"
-           else:
-               v.score = 0
-               print "Not correct!"
-               r.save()
-               print "adfhjk"
-               return redirect('https://www.facebook.com/')
-               print "adfhjk"
-      else:
-           print "adfhjk"
-    elif request.method == 'GET':
-         print "..."
-         form = ResponseForm()
-    else:
-         form = ResponseForm()
-         print "addf"
+        form = ResponseForm(request.POST)
+        # print "POST"
+        if form.is_valid():
+            q = Quiz.objects.get(quizID=quizID)
+            r = Response()
+            #r.title = form.cleaned_data["title"]
+            r.answer = form.cleaned_data["answer"]
+            #r.score = form.cleaned_data["score"]
+            if((r.answer == q.correctAnswer)):
+                r.score = 1
+                print "Correct!"
+            else:
+                r.score = 0
+                print "Not correct!"
+            r.save()
+            return redirect('https://www.facebook.com/')
+        elif request.method == 'GET':
+            form = ResponseForm()
+        else:
+            form = ResponseForm()
     try:
         quiz = Quiz.objects.get(quizID=quizID)
         context = {'title': quiz.title, 'answerA': quiz.answerA, 'answerB': quiz.answerB,
         'answerC': quiz.answerC,'answerD': quiz.answerD,
-        'correctAnswer': quiz.correctAnswer, 'score': quiz.score}
+        'correctAnswer': quiz.correctAnswer, 'score': quiz.score, 'form': form}
         return render(request, 'multipleChoice/takeQuiz.html', context)
 
     except:
-        return render(request, 'multipleChoice/quiz.html', {})
+        return render(request, 'multipleChoice/quiz.html')
 
 
 @login_required

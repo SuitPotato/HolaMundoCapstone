@@ -17,7 +17,7 @@
   <form method="GET" class="QuizForm" id="quiz">
     {% csrf_token %}
     <p id="title">{{ title }}</p>
-    <div class="question">
+    <div class="radio">
       <label><input type="radio" name="optradio" id="A" value="{{answerA}}">{{answerA}}</label>
     </div>
     <div class="radio">
@@ -29,14 +29,19 @@
     <div class="radio">
       <label><input type="radio" name="optradio" id="D" value="{{answerD}}">{{answerD}}</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>
 <form action="" method="POST" class="ResponseForm">
+  <!-- {% for radio in } -->
    {% csrf_token %}
+   <!-- <p>{{title}}</p> -->
+   <!--<p>{{form.title}}</p>
+   <!-- <p>{{answerA}}</p> -->
    <p>{{form.answer}}</p>
-   <p>{{form.title}}</p>
+   <!-- <p>{{score}}</p> -->
+   <!--<p>{{form.score}}</p>
    <!-- <p>{{form.answer}}</p> -->
+   <button type="submit" class="btn btn-default">Submit</button>
 </form>
 </html>
 {% endblock %}

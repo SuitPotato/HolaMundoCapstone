@@ -11,14 +11,11 @@
 </head>
 {% csrf_token %}
 <html>
- <!-- <ul class="list-group">
-  <li class="list-group-item">{{user}}</li>
-  <li class="list-group-item">Your answer: {{answer}}</li>
-  <li class="list-group-item">Your Score: {{score}}</li>
-</ul> -->
-<!-- <button type="submit" class="btn btn-default">Submit</button> -->
-<!-- <form id="ResultsForm" method="POST" action="/multipleChoice/submit/"> -->
-  {{form}}
-<!-- </form> -->
+<form action="" method="POST" class="ResponseForm">
+   {% csrf_token %}
+   <p>{{form.answer}}</p>
+   <p>{{form.title}}</p>
+   <!-- <p>{{form.answer}}</p> -->
+</form>
 </html>
 {% endblock %}

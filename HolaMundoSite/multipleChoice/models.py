@@ -5,14 +5,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Response(models.Model):
-    quizID = models.AutoField(primary_key = True)
-    title = models.CharField(max_length=1500, default = '')
+    responseID = models.AutoField(primary_key = True)
+    #title = models.CharField(max_length=1500, default = '')
 
     answer = models.CharField(max_length=150, default='')
-    score = models.CharField(max_length=150, default='')
+    score = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return str(self.responseID)
 
     # class Meta:
     #      db_table = "multipleChoice"
