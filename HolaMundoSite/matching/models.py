@@ -52,6 +52,8 @@ class Matching(models.Model):
 	)
 	options = models.CharField(max_length=2, choices=NUMBER_OPTIONS, default='4')
 	
+	# semicolon delimited array
+	#left = models.CharField(max_length=500, blank = False)
 	left_one = models.CharField(max_length = 140, blank = True)
 	left_two = models.CharField(max_length = 140, blank = True)
 	left_three = models.CharField(max_length = 140, blank = True)

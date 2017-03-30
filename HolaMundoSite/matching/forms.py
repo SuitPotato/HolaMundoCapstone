@@ -27,16 +27,10 @@ class MatchingAnswer(forms.ModelForm):
 		fields = ['answer',]
 	#user_answer = forms.CharField(label='Your answer:')'''
 	
-	
-class MatchingForm(forms.Form):
+class NumberForm(ModelForm):
 	class Meta:
-		# Based off of the models
 		model = Matching
-		# Add options
-		fields = ['options','title','left_one','left_two','left_three','left_four','right_one',
-				'right_two','right_three','right_four',]
-		
-	# Fields defined under forms.
+		fields = ['options']
 	
 	NUMBER_OPTIONS = (
 	('2', '2'),
@@ -44,7 +38,24 @@ class MatchingForm(forms.Form):
 	('4', '4'),
 	)
 	
+	#title = forms.CharField(max_length = 140)
+	
+	#options = forms.CharField(max_length=2)
+	
+	
+class MatchingForm(forms.Form):
+	class Meta:
+		# Based off of the models
+		model = Matching
+		# Add options
+		fields = ['title', 'quizID', 'left_one','left_two','left_three','left_four','right_one',
+				'right_two','right_three','right_four',]
+		
+	# Fields defined under forms.
+	
 	title = forms.CharField(max_length = 140)
+	
+	#quizID = forms.IntegerField(widget = forms.HiddenInput(), required = True)
 	
 	left_one = forms.CharField(max_length = 140)
 	left_two = forms.CharField(max_length = 140)

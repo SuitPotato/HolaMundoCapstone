@@ -17,7 +17,14 @@
 
 
 {% block content %}
-<form action= "" method = "POST">
+<!--<form method="GET" class="NumberForm" id="quiz">
+	{% csrf_token %}
+	<div class="title" style="text-align:center;float:center;">
+      <label><name="title" id="1" value="{{title}}">{{title}}</label>
+    </div>
+</form>-->
+
+<form action= "" method = "POST" class = "MatchingForm">
 	{% csrf_token %}
 	
 	<p align = "center">Title</p>

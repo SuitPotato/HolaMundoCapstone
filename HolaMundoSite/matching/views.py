@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from matching.models import *
 from matching.forms import *
 from django.contrib.auth.models import User
+import random
 
 #This funciton asks user for the name of their quiz and the nuber of
 #choices in their matching question
@@ -73,19 +74,21 @@ def answer_question(request):
 	
 def number_matching(request):
 	if request.method == 'POST':
-		form = MatchingForm(request.POST)
+		form = NumberForm(request.POST)
 		if form.is_valid():
 			v = Matching()
+			v.title = form.cleaned_data["title"]
 			v.options = form.cleaned_data["options"]
 			v.save()
 			
 			return render(request, 'matching/creatematching.html', {"form":form})
 	elif request.method == 'GET':
-		form = MatchingForm()
+		form = NumberForm()
 	else:
-		form = MatchingForm()
+		form = NumberForm()
 	return render(request, 'matching/numbermatching.html', {"form":form})
-@login_required()
+
+
 def create_matching(request):
 	if request.method == 'POST':
 		# Form is a variable that contains the source form
@@ -93,8 +96,8 @@ def create_matching(request):
 		if form.is_valid():
 			# Specifically calling the model
 			v = Matching()
-			v.title = form.cleaned_data["title"]
 			
+			v.title = form.cleaned_data["title"]
 			v.left_one = form.cleaned_data["left_one"]
 			v.left_two = form.cleaned_data["left_two"]
 			v.left_three = form.cleaned_data["left_three"]
@@ -113,9 +116,12 @@ def create_matching(request):
 			return HttpResponseRedirect('/complete/')
 	elif request.method == 'GET':
 		form = MatchingForm()
+		print("Elif")
 	else:
 		form = MatchingForm()
+		print("Else")
 	return render(request, 'matching/creatematching.html', {"form":form})
+	print("Returned")
 	
 @login_required()
 def complete(request):
@@ -125,24 +131,25 @@ def answered(request):
 	return render(request, 'matching/answered.html')
 
 @login_required()	
-def view_matching(request, title):
+def view_matching(request, quizID):
 	if request.method == 'POST':
 		# Form is a variable that contains the source form
 		form = AnswerForm(request.POST)
-		mform = MatchingForm(request.GET)
+		#mform = MatchingForm(request.GET)
+		
 		if form.is_valid():
+			m = Matching.objects.get(quizID = quizID) # then get just the one
 			# Specifically calling the model
 			v = Answer()
-			m = Matching()
 			v.answer_one = form.cleaned_data["answer_one"]
 			v.answer_two = form.cleaned_data["answer_two"]
 			v.answer_three = form.cleaned_data["answer_three"]
 			v.answer_four = form.cleaned_data["answer_four"]
 			
-			m.right_one = mform["right_one"]
-			m.right_one = mform["right_two"]
-			m.right_one = mform["right_three"]
-			m.right_one = mform["right_four"]
+			#m.right_one = mform["right_one"]
+			#m.right_one = mform["right_two"]
+			#m.right_one = mform["right_three"]
+			#m.right_one = mform["right_four"]
 			
 			if((v.answer_one == m.right_one) and (v.answer_two == m.right_two)
 			and (v.answer_three == m.right_three) and (v.answer_four == m.right_four)):
@@ -159,11 +166,16 @@ def view_matching(request, title):
 	else:
 		form = AnswerForm()
 	try:
-		matching = Matching.objects.get(title = title)
-		context = {'title': matching.title, 'left_one': matching.left_one, 'left_two': matching.left_two,
+		matching = Matching.objects.get(quizID = quizID)
+		answers = [matching.right_one, matching.right_two, 
+		matching.right_three, matching.right_four]
+		#answers = matching.left.split(';')
+		# questions = matching.roght.split()
+		random.shuffle(answers)
+		context = {'title': matching.title, 'quizID': matching.quizID, 'left_one': matching.left_one, 'left_two': matching.left_two,
 				   'left_three': matching.left_three, 'left_four': matching.left_four,
-				   'right_one': matching.right_one, 'right_two': matching.right_two,
-				   'right_three': matching.right_three, 'right_four': matching.right_four,
+				   'right_one': answers[0], 'right_two': answers[1],
+				   'right_three': answers[2], 'right_four': answers[3],
 				   'form': form}
 		return render(request, 'matching/answermatching.html', context)
 	except:

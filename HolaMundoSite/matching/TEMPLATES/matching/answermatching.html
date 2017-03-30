@@ -45,13 +45,20 @@
     <form action= "" method = "POST" class = "AnswerForm">
 		 {% csrf_token %}
 		<p align = "center">Answer 1</p>
+		<!--<label><id="a1" value="{{form.answer_one}}"{{ form.answer_one }}</label>
+		<p align = "center">Answer 2</p>
+		<label><id="a2" value="{{form.answer_two}}">{{ form.answer_two }}</label>
+		<p align = "center">Answer 3</p>
+		<label><id="a3" value="{{form.answer_three}}">{{ form.answer_three }}</label>
+		<p align = "center">Answer 4</p>
+		<label><id="a4" value="{{form.answer_four}}">{{ form.answer_four }}</label>-->
 		<p align = "center">{{ form.answer_one }}</p>
 		<p align = "center">Answer 2</p>
 		<p align = "center">{{ form.answer_two }}</p>
 		<p align = "center">Answer 3</p>
 		<p align = "center">{{ form.answer_three }}</p>
 		<p align = "center">Answer 4</p>
-		<p align = "center">{{ form.answer_four }}</p>
+		<p align = "center">{{ form.answer_four }}</p>-->
    <center><input type = "submit" value = "Submit"/></center>
    </form>
    <button onclick="Test()">Test</button>
