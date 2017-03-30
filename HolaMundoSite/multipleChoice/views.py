@@ -55,7 +55,7 @@ def view_takeQuiz(request,quizID):
                 r.score = 0
                 print "Not correct!"
             r.save()
-            return redirect('https://www.facebook.com/')
+            return redirect('https://www.facebook.com')
         elif request.method == 'GET':
             form = ResponseForm()
         else:
