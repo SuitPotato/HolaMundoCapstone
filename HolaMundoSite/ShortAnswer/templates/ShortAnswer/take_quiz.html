@@ -9,31 +9,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-    $('.likebutton').click(function(){
-      var catid;
-      catid = $(this).attr("data-catid");
-      $.ajax({
-        type:"GET",
-        url: "/likepost",
-        data: {
-          questionID: catid
-        },
-        success:function(data){
-          $('#like' + catid).remove();
-          $('#message').text(data);
-        }
-      })
-    });
-</script>
 </head>
 {% csrf_token %}
 <html>
-<p>{{ title }}</p>
+<p id="question"> {{ question }}</p>
 <div class="container">
-   <form method="POST" action="/ShortAnswer/submit/">
+   <form method="GET" class="QuestionForm" id="quiz" action="/ShortAnswer/submit/" >
     {% csrf_token %}
-    <label for="quiz.title" name="title">{{title}}</label>
       <label><input type="text" name="Answer" id="answer" value="{{answer}}">{{answer}}</label>
       <button type="submit" class="btn btn-default" id="{{score}}">Submit</button>
   </form>

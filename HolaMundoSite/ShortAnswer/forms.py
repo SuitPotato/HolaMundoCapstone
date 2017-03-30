@@ -12,13 +12,13 @@ class QuestionForm(forms.ModelForm):
     class Meta:
     	# Based off Model: Question
         model = Question
-        fields = ('title', 'author', 'question', 'correctAnswer')
+        fields = ('title', 'author', 'question', 'answer', 'correctAnswer')
 
     # fields defined under forms
 	title = forms.CharField(max_length = 140)
 	author = forms.CharField(max_length = 140)
 	question = forms.CharField(max_length = 500)
-	#answer = forms.CharField(max_length = 1000)
+	answer = forms.CharField(max_length = 1000)
 	correctAnswer = forms.CharField(max_length=1000)
 
 # form for User's Answer to Short Answer/Essay Question
@@ -32,4 +32,4 @@ class AnswerForm(forms.ModelForm):
 	# fields defined under form
 	title = forms.CharField(max_length=140)
 	answer = forms.CharField(max_length=1000)
-	#score = forms.IntegerField(default=0)
+	score = forms.CharField(max_length=100)

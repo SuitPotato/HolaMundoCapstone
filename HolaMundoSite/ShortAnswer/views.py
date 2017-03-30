@@ -26,8 +26,9 @@ def create_essay_quiz(request):
             # set data from form and set to cleaned data
             quiz = Question()
             quiz.title = form.cleaned_data["title"]
+            quiz.author = form.cleaned_data["author"]
             quiz.question = form.cleaned_data["question"]
-            #quiz.answer = form.cleaned_data["answer"]
+            quiz.answer = form.cleaned_data["answer"]
             quiz.correctAnswer = form.cleaned_data["correctAnswer"]
             # save data
             quiz.save()
@@ -45,16 +46,62 @@ def take_quiz(request, questionID):
     try:
         # set quiz by calling Question model and using questionID to
         # get specific information.
-        quiz = Question.objects.get(questionID=quuestionID)
-        context = {'title': quiz.title, 'question': quiz.question, 'answer': quiz.answer,
-                'score': quiz.score}
-                #{'correctAnswer': quiz.correctAnswer,}
+        quiz = Question.objects.get(questionID=questionID)
+        context = {'title': quiz.title, 'author': quiz.author,
+                    'question': quiz.question, 'answer': quiz.answer,
+                    'correctAnswer': quiz.correctAnswer}
         return render(request, 'ShortAnswer/take_quiz.html', context)
+        # context = RequestContext(request)
+
+        # if request.method == 'POST':
+        #    form = RequestForm(request)
+        #    if form.is_valid():
+        #        form.save(commit=True)
+        #        return submit(request)
+        #    else:
+        #        print form.errors
+        # else:
+         #   form = RequestForm()
+          #  return redirect('http://www.djangoproject.com')
         
     except:
         return render(request, 'ShortAnswer/essay_quiz.html', {})
 
 
+
+# view to save User's answer and update in database
+@login_required()
+def submit(request):
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+
+        if form.is_valid():
+            # get all objects in Question Model
+            quiz = Question.objects.get(questionID=questionID)
+
+            a = Answer()
+            a.title = form.cleaned_data["title"]
+            a.answer = form.cleaned_data["author"]
+            a.score = form.cleaned_data["score"]
+
+            # compare Student's Answer to Correct Answer
+            if (a.answer == quiz.correctAnswer):
+                a.score = 1
+                print "Correct"
+
+            else:
+                a.score = 0
+                print "Incorrect"
+            a.save()
+            return redirect('http://www.stackoverflow.com')
+    elif request.method == 'GET':
+        form = AnswerForm()
+    else:
+        form = AnswerForm()
+    return render(request, 'ShortAnswer/submit.html', {"form":form})
+
+
+'''
 # View is to display results
 @login_required()
 def results(request, questionID):
@@ -66,30 +113,6 @@ def results(request, questionID):
     # display results page 
     return render(request, 'ShortAnswer/results.html', context)
 
-
-# view to save User's answer and update in database
-@login_required()
-def submit(request):
-    if request.method == 'POST':
-        #  if User wants to submit answers, display answer form
-        form = AnswerForm()
-
-        if form.is_valid():
-            # set data from Answer Model
-            a = Answer()
-            a.title = request.POST.get("title")
-            a.answer = request.POST.get("answer")
-            a.score = request.POST.get("score")
-            # save data
-            a.save()
-            # Not sure where to send Users
-            return HttpResponseRedirect('ShortAnswer/success.html')
-        elif request.method == 'GET':
-            form = AnswerForm()
-        else:
-            form = AnswerForm()
-            return redirect('https://djangoproject.com')
-'''
 @login_required()
 def success(request):
 	return render(request, 'ShortAnswer/success.html')

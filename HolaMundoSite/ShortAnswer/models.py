@@ -16,7 +16,7 @@ class Question(models.Model):
 	# Text Field for Question
 	question = models.CharField(max_length = 1000)
 	# Text Field for answer
-	#answer = models.CharField(max_length = 1000)
+	answer = models.CharField(max_length = 1000, default='')
 	# Text field for Correct Answer
 	correctAnswer = models.CharField(max_length=1000, default='')
 
@@ -26,13 +26,13 @@ class Question(models.Model):
 # Short Answer/Essay Answer Model
 class Answer(models.Model):
 	# foreign key should be linked to questionID of Question
-	questionID = models.ForeignKey(Question, related_name='questionID_text')
+	original_questionID = models.ForeignKey(Question, related_name='questionID_text')
 	# title of Answer
 	title = models.CharField(max_length=1000)
 	# text field for answer 
 	answer = models.CharField(max_length=1000)
 	# score to track performance of User
-	score = models.IntegerField(default=0)
+	score = models.CharField(max_length=100, default='')
 
 	def __str__(self):
 		return self.title
