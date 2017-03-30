@@ -5,7 +5,7 @@ from django.forms import ModelForm
 
 # Import Model
 from DragAndDropQuiz.models import DragAndDrop
-from DragAndDropQuiz.models import Sentence
+from coursemanagement.models import Quiz
 
 # Form Classes
 class DragAndDropForm(forms.Form):
@@ -30,7 +30,7 @@ class SentenceForm(forms.Form):
 	# Meta Class
 	class Meta:
 		# Based off of the model
-		model = Sentence
+		model = Quiz
 		fields = ['title','wordOne','wordTwo','wordThree','wordFour','wordFive']
 		
 	# Fields defined under forms.++++

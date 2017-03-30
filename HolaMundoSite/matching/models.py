@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from django.contrib.auth.models import User
+
 #model created for quiz name and number of choices in the database
 class Number(models.Model):
 	quiz_name = models.CharField(max_length=50, default = '')
@@ -16,9 +18,14 @@ class Number(models.Model):
 #model created in database for the choice, the answer, and the
 #corresponding letter to the answer	
 class Question(models.Model):
-	question = models.CharField(max_length=250)
-	answer = models.CharField(max_length=250)
-	rand_letter = models.CharField(max_length=1)
+	MN = Number(models.Model)
+	copynumber = MN.number
+	temp = 0
+	#while(temp != copynumber):
+	question = models.CharField(max_length=250, default = '')
+	correct = models.CharField(max_length=250, default = '')
+	rand_letter = models.CharField(max_length=1, default = '')
+		#temp += 1
 	def __str__(self):
 		return self.question
 	
@@ -26,8 +33,32 @@ class Question(models.Model):
 
 #model in database to store users answer		
 class Answer(models.Model):
-	answer = models.CharField(max_length=1)
+	answer = models.CharField(max_length=1, default = '')
 	def __str__(self):
 		return self.answer
 		
 	#do i use same db table or create new one?
+	
+class Matching(models.Model):
+	quizID = models.AutoField(primary_key = True)
+	#author = models.ForeignKey(User, null=False, blank=False)
+	title = models.CharField(max_length = 140)
+	
+	options = (
+	('2', '2'),
+	('3','3'),
+	('4', '4'),
+	)
+	
+	left_one = models.CharField(max_length = 20, blank = True)
+	left_two = models.CharField(max_length = 20, blank = True)
+	left_three = models.CharField(max_length = 20, blank = True)
+	left_four = models.CharField(max_length = 20, blank = True)
+	
+	right_one = models.CharField(max_length = 20, blank = True)
+	right_two = models.CharField(max_length = 20, blank = True)
+	right_three = models.CharField(max_length = 20, blank = True)
+	right_four = models.CharField(max_length = 20, blank = True)
+	
+	def __str__(self):
+		return self.title

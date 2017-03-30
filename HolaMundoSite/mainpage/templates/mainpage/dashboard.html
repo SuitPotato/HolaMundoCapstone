@@ -1,0 +1,358 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Hola Mundo {% endblock %}
+
+{% block headContent %}
+
+	
+{% endblock %}
+
+{% block styleContent %}
+    <style>
+        .right {
+            float: left;
+            width:400px;
+            height:300px;
+            margin-right:10px;
+            padding: 10px;
+            border: 3px solid #73AD21;
+            position: relative;
+            left: 80px;
+        }
+
+        .last {
+            float: left;
+            width: 660px;
+            height: 440px;
+            margin-right: 10px;
+            padding: 10px;
+            border: 3px solid #73AD21;
+            position: relative;
+            left: 80px;
+        }
+
+        .video-line {
+            margin-bottom: 10px;
+            margin-top: 10px;
+            min-height: 160px;
+        }
+
+    body,
+    html {
+      color: #ecf0f1;
+      overflow-x: hidden;
+      font-family: 'Open Sans', sans-serif;
+      min-height: 100vh;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: inline-block;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    h1,
+    p {
+      text-align: center;
+    }
+    p {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+    }
+    a:link,
+    a:hover,
+    a:active,
+    a:visited {
+      -webkit-transition: color 150ms;
+      transition: color 150ms;
+      color: #95a5a6;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #7f8c8d;
+      text-decoration: underline;
+    }
+    .contain {
+      width: 100%;
+    }
+    .row {
+      overflow: hidden;
+    }
+    .row__inner {
+      -webkit-transition: 450ms -webkit-transform;
+      transition: 450ms -webkit-transform;
+      transition: 450ms transform;
+      transition: 450ms transform, 450ms -webkit-transform;
+      font-size: 0;
+      white-space: nowrap;
+      margin: 35.3125px 0;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+    .tile {
+      position: relative;
+      display: inline-block;
+      width: 250px;
+      height: 140.625px;
+      margin-right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      -webkit-transition: 450ms all;
+      transition: 450ms all;
+      -webkit-transform-origin: center left;
+              transform-origin: center left;
+    }
+    .tile__img {
+      width: 250px;
+      height: 140.625px;
+      -o-object-fit: cover;
+         object-fit: cover;
+    }
+    .tile__details {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      font-size: 10px;
+      opacity: 0;
+      background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      -webkit-transition: 450ms opacity;
+      transition: 450ms opacity;
+    }
+    .tile__details:after,
+    .tile__details:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: #000;
+    }
+    .tile__details:after {
+      margin-top: -25px;
+      margin-left: -25px;
+      width: 50px;
+      height: 50px;
+      border: 3px solid #ecf0f1;
+      line-height: 50px;
+      text-align: center;
+      border-radius: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    .tile__details:before {
+      content: '▶';
+      left: 0;
+      width: 100%;
+      font-size: 30px;
+      margin-left: 7px;
+      margin-top: -18px;
+      text-align: center;
+      z-index: 2;
+    }
+    .tile:hover .tile__details {
+      opacity: 1;
+    }
+    .tile__title {
+      position: absolute;
+      bottom: 0;
+      padding: 10px;
+    }
+    .row__inner:hover {
+    }
+    .row__inner:hover .tile {
+    }
+    .row__inner:hover .tile:hover {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+      opacity: 1;
+    }
+
+    .tile:hover ~ .tile {
+      -webkit-transform: translate3d(125px, 0, 0);
+              transform: translate3d(125px, 0, 0);
+    }
+
+
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" >
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+
+                        <div class="col-md-6">
+                            <h1 style='text-align: center; color: #000000; font-family: "Times New Roman", Times, serif; '>Hola Mundo <p></p></h1><h2 style="text-align: center;"><small>For Authentic Spanish Language and Pedagogy</small> </h2>
+                        </div>
+
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% if prefs.lastVid != null and prefs.secondLastVid != null and prefs.thirdLastVid != null and prefs.fourthLastVid != null%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>
+                    Last video watched
+                </h2>
+            </div>
+
+            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-center">
+                    Other recent videos
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/video/{{ prefs.lastVid.link }}"> <img src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last" /> </a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="contain" >
+                    <div class="row__inner">
+                        <div class="tile" >
+                            <a href="/video/{{ prefs.secondLastVid.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ prefs.secondLastVid.title }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="tile" >
+                            <a href="/video/{{ prefs.thirdLastVid.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ prefs.thirdLastVid.title }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="tile" >
+                            <a href="/video/{{ prefs.fourthLastVid.link }}" style="color: #ecf0f1;">
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ prefs.fourthLastVid.title }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+    <div class = "container-fluid" >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="contain" >
+                    <h2>
+                        Other videos by Dr. Schairer
+                    </h2>
+
+                    <div class="row__inner">
+
+                    {% for video in videos_difficulty %}
+                        <div class="tile" >
+                            <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
+
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ video.title }}
+                                    </div>
+                                </div>
+
+                            </a>
+                        </div>
+
+                    {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class = "container-fluid">
+        <div class="row">
+			<div class="col-md-12">
+                <div class="contain">
+                    <h2>
+                        Other videos by Dr. Schairer
+                    </h2>
+
+                    <div class="row__inner" style="width: 100vw;">
+
+                    {% for video in videos_author %}
+                        <div class="tile" >
+                            <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
+
+                                <div class="tile__media">
+                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                </div>
+
+                                <div class="tile__details">
+                                    <div class="tile__title" >
+                                        {{ video.title }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
