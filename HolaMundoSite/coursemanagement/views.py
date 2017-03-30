@@ -9,6 +9,8 @@ from django.db import models
 from coursemanagement.models import Lesson
 from coursemanagement.models import Course
 from coursemanagement.forms import LessonForm
+from UserSettingsPage.models import Preference
+from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz
 
 # Import User
 from django.contrib.auth.models import User
@@ -81,3 +83,45 @@ def lesson(request):
     else:
         form = LessonForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})
+
+
+def load_course(request, link, number):
+    try:
+        print('Link: ' + link + '.')
+        print('number: ' + number + ".")
+        course = Course.objects.get(link=link)
+        print(course)
+        allInCourse = CourseLessonQuiz.objects.filter(courseID=course).values()
+        for item in allInCourse:
+            print(item.position)
+            if item.position == number:
+                toDisplay = item
+
+        print(toDisplay)
+
+        if request.user.is_authenticated():
+            pref = Preference.objects.get(user=request.user)
+            pref.fourthLastVid = pref.thirdLastVid
+            pref.thirdLastVid = pref.secondLastVid
+            pref.secondLastVid = pref.lastVid
+
+            pref.save()
+
+        print(toDisplay.QuizID)
+        if toDisplay.QuizID:
+            sentence = toDisplay.QuizID
+            context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
+                       'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
+                       'wordFive': sentence.wordFive}
+            return render(request, 'DragAndDropQuiz/sentenceTwo.html', context)
+
+        else:
+            video = toDisplay.LessonID
+            context = {'video': video.youtube, 'title': video.title, 'tab1': video.tab1, 'tab2': video.tab2,
+                       'tab3': video.tab3, 'tab4': video.tab4, 'tab5': video.tab5, 'tab6': video.tab6,
+                       'tab1desc': video.tab1desc, 'tab2desc': video.tab2desc, 'tab3desc': video.tab3desc,
+                       'tab4desc': video.tab4desc, 'tab5desc': video.tab5desc, 'tab6desc': video.tab6desc}
+            return render(request, 'Video_page/videoloader.html', context)
+
+    except:
+        return render(request, 'Video_page/404.html')

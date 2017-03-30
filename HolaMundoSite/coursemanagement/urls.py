@@ -21,7 +21,9 @@ urlpatterns = [
     url(r'^manage/$', views.manage),
 	url(r'^createlesson', views.lesson),
 	url(r'^success', views.success),
-	url(r'^viewcourse/(\d+)/', views.viewcourse),	#Takes in a CourseID, check coursemanagement/views.py for more 
+	url(r'^viewcourse/(\d+)/', views.viewcourse),	#Takes in a CourseID, check coursemanagement/views.py for more
+	url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]/+)$', views.load_course, name='course_loader'),
+
 	
 	#url(r'^create', views.create),
 	#url(r'^createcourse', views.course),
