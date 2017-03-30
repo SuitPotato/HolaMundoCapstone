@@ -9,8 +9,10 @@ from django.contrib.auth.models import User
 class FillInTheBlankQuestion(models.Model):
 	# questionID references primary key
 	questionID = models.AutoField(primary_key = True)
+
 	# title of the question
-	title = models.CharField(max_length = 100)
+	#title = models.CharField(max_length = 100)
+	
 	# author of question
 	author = models.CharField(max_length = 100)
 	# Beginning of sentence
@@ -18,7 +20,7 @@ class FillInTheBlankQuestion(models.Model):
 	# End of sentence
 	question_end = models.CharField(max_length = 50)
 	# Answer for Fill In The Blank
-	#answer = models.CharField(max_length = 100)
+	answer = models.CharField(max_length = 100)
 	# Correct Answer for Fill in the Blank
 	correctAnswer = models.CharField(max_length=100, default='')
 
@@ -29,8 +31,8 @@ class FillInTheBlankQuestion(models.Model):
 class Answer(models.Model):
 	# AnswerID is the primary key for Answer Model
 	AnswerID = models.AutoField(primary_key=True, default='')
-	# title of the question
-	title = models.CharField(max_length=1000)
+	# question to be answered
+	question = models.CharField(max_length=1000)
 	# answer for answer Model
 	answer = models.CharField(max_length=100)
 	# score to track performance of User

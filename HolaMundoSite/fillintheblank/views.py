@@ -16,26 +16,50 @@ from django.contrib.auth.decorators import login_required
 # View is for taking quiz for the User
 @login_required()
 def view_quiz(request, questionID):
+    if request.method == 'POST':
+        # form for Answer Form
+        form = AnswerForm(request.POST)
+
+        if form.is_valid():
+            #set q to the objects in FillInTheBlankQuestion Model
+            q = FillInTheBlankQuestion.objects.get(questionID = questionID)
+            #set a to Answer Model
+            a = Answer()
+            a.answer = form.cleaned_data["answer"]
+
+            # check if answe is correct
+            if(( a.answer == q.correctAnswer )):
+                # increase score by 1
+                a.score = 1
+                print "Correct"
+            # else answer is wrong
+            else:
+                # keep score at 0
+                a.score = 0
+                print "Incorrect"
+            # save answer
+            a.save()
+            #redirect to success page
+            return HttpResponseRedirect('fillintheblank/success.html')
+    # Get answer form if request method is GET
+    elif request.method == 'GET':
+        form = AnswerForm()
+    # set form to Answer Form
+    else:
+        form = AnswerForm()
+
     try:
          # set quiz by calling FillInTheBlankQuestion model and using questionID 
          # to get specific information.
         quiz = FillInTheBlankQuestion.objects.get(questionID=questionID)
-        context = {'title':quiz.title, 'question_start': quiz.question_start,
+        context = {'question_start': quiz.question_start,
                     'answer': quiz.answer, 'question_end': quiz.question_end,
-                    'score': quiz.score }
-                    #{'correctAnswer': quiz.correctAnswer,}
+                    'correctAnswer': quiz.correctAnswer, 'form': form}
 
         return render(request, 'fillintheblank/take_quiz.html', context)
     except:
         return render(request, 'fillintheblank/fb_quiz.html', {})
 
-    else:
-        # set objects by getting the questionID from FillInTheBlankQuestion model
-        q = FillInTheBlankQuestion.objects.get(questionID=questionID)
-        # increment the User's score by 1
-        q.score +=1;
-        # save results
-        q.save()
 
 # This view retireves the form for Fill In The Blank question for the teacher
 # to create a question for a fill in the blank question.
@@ -48,10 +72,10 @@ def create_quiz(request):
         if form.is_valid():
             # set data from form and set to cleaned data
             quiz = FillInTheBlankQuestion()
-            quiz.title = form.cleaned_data["title"]
+            #quiz.title = form.cleaned_data["title"]
             quiz.author = form.cleaned_data["author"]
             quiz.question_start = form.cleaned_data["question_start"]
-            #quiz.answer = form.cleaned_data["answer"]
+            quiz.answer = form.cleaned_data["answer"]
             quiz.question_end = form.cleaned_data["question_end"]
             quiz.correctAnswer = form.cleaned_data["correctAnswer"]
             
@@ -66,6 +90,11 @@ def create_quiz(request):
         form = FillInTheBlank()
     return render(request, 'fillintheblank/fb_quiz.html', {'form': form})
 
+@login_required()
+def success(request):
+    return render(request, 'fillintheblank/success.html')
+
+'''
 # view to save User's answer and update in database
 @login_required()
 def submit(request):
@@ -95,4 +124,4 @@ def results(request, questionID):
                 'question_start': quiz.question_start,'question_end': quiz.question_end,
                 'correctAnswer': quiz.correctAnswer }
     return render(request, 'fillintheblank/results.html', context)
-
+'''

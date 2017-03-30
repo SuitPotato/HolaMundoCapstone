@@ -29,7 +29,7 @@ class Question(models.Model):
 class Answer(models.Model):
 	# AnswerID is the primary key for Answer Model
 	AnswerID = models.AutoField(primary_key=True, default='')
-	# title of Answer
+	# question to be Answered
 	question = models.CharField(max_length=1000)
 	# text field for answer 
 	answer = models.CharField(max_length=1000)

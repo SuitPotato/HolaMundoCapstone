@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^ShortAnswer/(?P<questionID>[\w]+)/$', views.take_quiz, name='take_quiz'),
     #url(r'^ShortAnswer/?<questionID>[\w]/results/$', views.results, name='results'),
     #url(r'^ShortAnswer/submit/$', views.submit, name='submit'),
-    url(r'^ShortAnswer/success/$', views.success, name='success')
+    url(r'^ShortAnswer/success/$', views.success, name='success'),
 
 ]
