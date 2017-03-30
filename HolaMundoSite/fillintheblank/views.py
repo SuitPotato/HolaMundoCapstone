@@ -49,10 +49,10 @@ def view_quiz(request, questionID):
         form = AnswerForm()
 
     try:
-         # set quiz by calling FillInTheBlankQuestion model and using questionID 
-         # to get specific information.
+        # set quiz by calling FillInTheBlankQuestion model and using questionID 
+        # to get specific information.
         quiz = FillInTheBlankQuestion.objects.get(questionID=questionID)
-        context = {'question_start': quiz.question_start,
+        context = {'author': quiz.author, 'question_start': quiz.question_start,
                     'answer': quiz.answer, 'question_end': quiz.question_end,
                     'correctAnswer': quiz.correctAnswer, 'form': form}
 
