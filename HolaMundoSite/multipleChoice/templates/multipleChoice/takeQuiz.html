@@ -36,10 +36,11 @@
 </head>
 {% csrf_token %}
 <html>
-<p id="title">{{ title }}</p>
+<!-- <p id="title">{{ title }}</p> -->
 <div class="container">
-  <form method="GET" class="QuestionForm" id="quiz" action="/multipleChoice/submit/">
+  <form method="GET" class="ResponseForm" id="quiz">
     {% csrf_token %}
+    <p id="title">{{ title }}</p>
     <div class="radio">
       <label><input type="radio" name="optradio" id="A" value="{{answerA}}">{{answerA}}</label>
     </div>
