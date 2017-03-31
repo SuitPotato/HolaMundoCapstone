@@ -7,29 +7,26 @@ from ShortAnswer.models import *
 
 
 # Form for Short Answer/Essay Question
-class QuestionForm(forms.ModelForm):
+class QuestionForm(forms.Form):
 	# Meta Class
     class Meta:
     	# Based off Model: Question
         model = Question
-        fields = ('author', 'question', 'answer', 'correctAnswer')
+        fields = ['question', 'correctAnswer']
 
     # fields defined under forms
-	#title = forms.CharField(max_length = 140)
-	author = forms.CharField(max_length = 140)
-	question = forms.CharField(max_length = 500)
-	answer = forms.CharField(max_length = 1000)
+	question = forms.CharField(max_length = 1000)
 	correctAnswer = forms.CharField(max_length=1000)
 
 # form for User's Answer to Short Answer/Essay Question
-class AnswerForm(forms.ModelForm):
+class AnswerForm(forms.Form):
 	# Meta Class
 	class Meta:
 		# Based off Model: Answer
 		model = Answer
-		fields = {'question', 'answer', 'score'}
+		fields = ['answer']
 
 	# fields defined under form
-	question = forms.CharField(max_length=140)
+	#question = forms.CharField(max_length=140)
 	answer = forms.CharField(max_length=1000)
-	score = forms.CharField(max_length=100)
+	#score = forms.CharField(max_length=100)

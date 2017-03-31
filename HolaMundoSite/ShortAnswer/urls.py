@@ -20,7 +20,7 @@ from . import views
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
-	url(r'^ShortAnswer/$', views.create_essay_quiz, name='create_essay'),
+	url(r'^ShortAnswer/$', views.create_essay_quiz, name='create_essay_quiz'),
     #url(r'^ShortAnswer/(?P<questionID>[\w]+)/$', views.take_quiz, name='take_quiz'),
     url(r'^ShortAnswer/(?P<questionID>[\w]+)/$', views.take_quiz, name='take_quiz'),
     #url(r'^ShortAnswer/?<questionID>[\w]/results/$', views.results, name='results'),

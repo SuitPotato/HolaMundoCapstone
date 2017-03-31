@@ -3,7 +3,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import ModelForm
+from django import forms
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Import Forms
 from ShortAnswer.forms import *
@@ -19,6 +22,21 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def create_essay_quiz(request):
     if request.method == 'POST':
+        form = QuestionForm(request.POST)
+         
+        if form.is_valid():
+            q = Question()
+            q.question = form.cleaned_data["question"]
+            q.correctAnswer = form.cleaned_data["correctAnswer"]
+            q.save()
+            return render(request, 'ShortAnswer/success.html')
+    elif request.method == 'GET':
+        form = QuestionForm()
+    else:
+        form = QuestionForm()
+    return render(request, 'ShortAnswer/essay_quiz.html', {'form': form})
+
+'''
         # Form is a variable that contains the source form
         form = QuestionForm(request.POST)
 
@@ -26,9 +44,9 @@ def create_essay_quiz(request):
             # set data from form and set to cleaned data
             quiz = Question()
             #quiz.title = form.cleaned_data["title"]
-            quiz.author = form.cleaned_data["author"]
-            quiz.question = form.cleaned_data["question"]
-            quiz.answer = form.cleaned_data["answer"]
+            #quiz.author = form.cleaned_data["author"]
+            quiz.question = form["question"]
+            #quiz.answer = form.cleaned_data["answer"]
             quiz.correctAnswer = form.cleaned_data["correctAnswer"]
             # save data
             quiz.save()
@@ -39,7 +57,7 @@ def create_essay_quiz(request):
     else:
         form = QuestionForm()
     return render(request, 'ShortAnswer/essay_quiz.html', {'form': form})
-
+    '''
 # View is to display for User to take quiz
 @login_required()
 def take_quiz(request, questionID):
@@ -53,6 +71,7 @@ def take_quiz(request, questionID):
             # set a to Answer Model
             a = Answer()
             a.answer = form.cleaned_data["answer"]
+            print a.answer
 
             # check if answer is correct
             if(( a.answer == q.correctAnswer )):
@@ -68,6 +87,8 @@ def take_quiz(request, questionID):
             a.save()
             # redirect to success page
             return HttpResponseRedirect('ShortAnswer/success.html')
+        else:
+            print "Form is invalid"
     # Get answer form if request method is GET
     elif request.method == 'GET':
         form = AnswerForm()
@@ -79,7 +100,7 @@ def take_quiz(request, questionID):
         # set quiz by calling Question model and using questionID to
         # get specific information.
         quiz = Question.objects.get(questionID=questionID)
-        context = {'author': quiz.author,'question': quiz.question, 'answer': quiz.answer,
+        context = {'question': quiz.question,
                 'correctAnswer': quiz.correctAnswer, 'form': form}
         return render(request, 'ShortAnswer/take_quiz.html', context)
         # context = RequestContext(request)

@@ -19,13 +19,13 @@
     	<div class="question">
     		<label><name="question" id="1" value="{{question}}">{{question}}</label>
     	</div>
-    	<div class="choice">
-			<label><input type="text" name="Answer" id="answer" value="{{answer}}">{{answer}}</label> 
-		</div>
+    	<!--<div class="choice">
+			<label><input type="text" name="Answer" id="answer" value=""></label> 
+		</div> -->
 	</form>
 	<form action= "" method= "POST" class = "AnswerForm">
 		{% csrf_token %}
-		<p align="left"> {{ answer }}</p>
+		{{ form.answer }}
     <input type="submit" value="Submit"/>
   	</form>
 </div>

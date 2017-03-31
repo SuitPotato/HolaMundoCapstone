@@ -14,13 +14,14 @@
 </head>
 <div class="container">
   <h1><small><b>Create Quiz Question</h1></small></b>
-  <form method="POST" class="QuestionForm">
-      <!-- <input type="text" name="numOfQuestions"> -->
+  <form action="" method="POST" class="QuestionForm">
       {% csrf_token %}
-      <!-- {{ form.as_p }} -->
-      {{ form|crispy }}
+      {{ form.question }} 
+      {{ form.correctAnswer }}
+      <!-- {{ form|crispy }} -->
       <button type="submit" class="save btn btn-default">Save</button>
   </form>
 </div>
+</html>
 <!-- <a href="{% url 'quiz' %}" class="top-menu"></a> -->
 {% endblock %}
