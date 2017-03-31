@@ -22,7 +22,7 @@ from django.contrib.auth.views import login, logout
 
 urlpatterns = [
 	url(r'^fillintheblank/$', views.create_quiz, name='create_quiz'),
-    url(r'^fillintheblank/(?P<questionID>[\w]+)/$', views.view_quiz, name='view_quiz'),
+    url(r'^fillintheblank/(?P<questionID>[\w]+)/$', views.take_quiz, name='take_quiz'),
     #url(r'^fillintheblank/(?P<questionID>[\w]+)/results/$', views.results, name='results'),
     #url(r'^fillintheblank/submit/$', views.submit, name='submit'),
     url(r'^fillintheblank/success/$', views.success, name='success'),
