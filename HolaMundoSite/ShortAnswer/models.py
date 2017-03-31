@@ -5,33 +5,41 @@ from django.db import models
 # Required for importing User for Author
 from django.contrib.auth.models import User
 
-# Short Answer/Essay Question Model
+
+# Create your models here.
+
+# Model for Short Answer/Essay Question
 class Question(models.Model):
-	# primary key references quiestionID
+	# questionID references primary key
 	questionID = models.AutoField(primary_key = True)
+	# title of the Question 
+	title = models.CharField(max_length = 50)
+	# question 
+	question = models.CharField(max_length = 100)
+	# correctAnswer for question
+	correctAnswer = models.CharField(max_length = 1000)
 
-	# title of question
-	#title = models.CharField(max_length = 1000)
+	# Difficulty of Question for Content Creator to create
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+		)
 
-	# Text Field for Question
-	question = models.CharField(max_length = 1000, default='')
-
-	# Text field for Correct Answer
-	correctAnswer = models.CharField(max_length=1000, default='')
+	difficulty = models.CharField(max_length = 15, choices = DIFFICULTIES, default = "Beginner")
 
 	def __str__(self):
-		return self.question
+		return self.title
 
-# Short Answer/Essay Answer Model
+# Model for Short Answer/Essay Answer 
 class Answer(models.Model):
-	# AnswerID is the primary key for Answer Model
-	AnswerID = models.AutoField(primary_key=True, default='')
-	# question to be Answered
-	#question = models.CharField(max_length=1000)
-	# text field for answer 
-	answer = models.CharField(max_length=1000)
-	# score to track performance of User
-	score = models.IntegerField(default=0)
+	# answerID references primary key 
+	answerID = models.AutoField(primary_key = True)
+	# Student's answer 
+	answer = models.CharField(max_length = 1000)
+	# score to track Student's performance
+	score = models.IntegerField(default = 0)
 
 	def __str__(self):
-		return str(self.AnswerID)
+		return str(self.answerID)
+	
