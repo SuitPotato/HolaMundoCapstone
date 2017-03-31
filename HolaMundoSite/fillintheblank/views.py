@@ -27,6 +27,8 @@ def create_quiz(request):
 			q = Question()
 			q.title = form.cleaned_data["title"]
 			q.difficulty = form.cleaned_data["difficulty"]
+			q.question_start = form.cleaned_data["question_start"]
+			q.question_end = form.cleaned_data["question_end"]
 			q.correctAnswer = form.cleaned_data["correctAnswer"]
 
 			q.save()
