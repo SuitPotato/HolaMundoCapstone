@@ -2,4 +2,43 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+# Required for importing User for Author
+from django.contrib.auth.models import User
+
 # Create your models here.
+
+# Model for Fill In The Blank Question
+class Question(models.Model):
+	# questionID references primary key
+	questionID = models.AutoField(primary_key = True)
+	# title of question
+	title = models.CharField(max_length = 50)
+	# start of question
+	question_start = models.CharField(max_length = 100)
+	# end of question
+	question_end = models.CharField(max_length = 100)
+	# correctAnswer for question 
+	correctAnswer = models.CharField(max_length = 100, default = '')
+
+	# Difficulty for Content Creator to Create
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3',)
+		)
+	difficulty = models.CharField(max_length = 15, choices=DIFFICULTIES, default="Beginner")
+
+	def __str__(self):
+		return self.title
+
+# Model for Fill In The Blank Answer
+class Answer(models.Model):
+	# answerID references primary key
+	answerID = models.AutoField(primary_key = True)
+	# Student's answerID
+	answer = models.CharField(max_length = 100)
+	# score to track Student's performance
+	score = models.IntegerField(default = 0)
+
+	def __str__(self):
+		return str(self.answerID)
