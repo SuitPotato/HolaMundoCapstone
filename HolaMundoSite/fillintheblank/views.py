@@ -58,7 +58,7 @@ def take_quiz(request, questionID):
 			# check to see if User's answer is Correct
 			if((a.answer == q.correctAnswer)):
 				# if yes, increment score by 1
-				a.score = 1
+				a.score += 1
 				print "Correct!"
 			# else the User's Answer is wrong 
 			else:
