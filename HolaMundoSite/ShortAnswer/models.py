@@ -21,9 +21,9 @@ class Question(models.Model):
 
 	# Difficulty of Question for Content Creator to create
 	DIFFICULTIES = (
-		('Beginner', '1'),
-		('Intermediate', '2'),
-		('Advanced', '3'),
+		('1', 'Beginner'),
+		('2', 'Intermediate'),
+		('3', 'Advanced'),
 		)
 
 	difficulty = models.CharField(max_length = 15, choices = DIFFICULTIES, default = "Beginner")

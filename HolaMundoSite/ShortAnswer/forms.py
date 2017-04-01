@@ -14,9 +14,9 @@ class QuestionForm(forms.Form):
 
 	# Choices: DIFFICULTIES
 	DIFFICULTIES = (
-		('Beginner', '1'),
-		('Intermediate', '2'),
-		('Advanced', '3'),
+		('1', 'Beginner'),
+		('2', 'Intermediate'),
+		('3', 'Advanced'),
 		)
 
 	# fields defined under form
