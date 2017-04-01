@@ -18,6 +18,7 @@ class QuestionForm(forms.Form):
 		('Intermediate', '2'),
 		('Advanced', '3'),
 		)
+	difficulty = forms.ChoiceField(choices=Question.DIFFICULTIES)
 
 	# fields defined under form
 	title = forms.CharField(max_length = 50)

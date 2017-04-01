@@ -12,15 +12,30 @@
   <script>
   </script>
 </head>
+<center>
 <div class="container">
-  <h1><small><b>Create Fill In The Blank Quiz Question</h1></small></b>
-  <form method="POST" class="FillInTheBlank">
+  <h1><b><center>Create Fill In The Blank Quiz Question</center></h1></b>
+  <center>
+    <h4>Enter a Title:</h4>
+    {{ form.title }}</br>
+    <h5>Enter a Difficulty:</h5>
+    <p>{{ form.difficulty }}</p>
+    <h6>Start of Question:</h6>
+    <p>{{ form.question_start }}<p>
+    <h7>Answer for Question</h7>
+    <p>{{ form.correctAnswer }}</p>
+    <h8>End of Question:</h8>
+    <p>{{ form.question_end }}</p>
+
+  </center>
+  <!-- <form method="POST" class="FillInTheBlank"> -->
       <!-- <input type="text" name="numOfQuestions"> -->
       {% csrf_token %}
       <!-- {{ form.as_p }} -->
-      {{ form|crispy }}
+      <!-- {{ form|crispy }} -->
       <button type="submit" class="save btn btn-default">Save</button>
-  </form>
+  <!-- </form> -->
 </div>
+</center>
 <!-- <a href="{% url 'quiz' %}" class="top-menu"></a> -->
 {% endblock %}
