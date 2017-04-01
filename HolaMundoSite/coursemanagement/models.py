@@ -131,6 +131,7 @@ class Course(models.Model):
 	title = models.CharField(max_length=100)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
+	link = models.CharField(max_length=15)
 
 	DIFFICULTIES = (
 		('Beginner', '1'),

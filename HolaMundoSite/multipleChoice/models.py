@@ -4,12 +4,33 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-class Question(models.Model):
-    question = models.CharField(max_length=150, default = '')
-    answer_a = models.CharField(max_length=150, default='')
-    answer_b = models.CharField(max_length=150, default='')
-    answer_c = models.CharField(max_length=150, default='')
-    answer_d = models.CharField(max_length=150, default='')
+class Response(models.Model):
+    responseID = models.AutoField(primary_key = True)
+    #title = models.CharField(max_length=1500, default = '')
 
-    class Meta:
-        db_table = "multipleChoice"
+    answer = models.CharField(max_length=150, default='')
+    score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.responseID)
+
+    # class Meta:
+    #      db_table = "multipleChoice"
+
+
+class Quiz(models.Model):
+
+    quizID = models.AutoField(primary_key = True)
+    title = models.CharField(max_length=1500, default = '')
+    answerA = models.CharField(max_length=150, default='')
+    answerB = models.CharField(max_length=150, default='')
+    answerC = models.CharField(max_length=150, default='')
+    answerD = models.CharField(max_length=150, default='')
+    score = models.CharField(max_length=150, default='')
+    correctAnswer = models.CharField(max_length=150, default='')
+
+    def __str__(self):
+        return self.title
+
+    # class Meta:
+    #     db_table = "multipleChoice"
