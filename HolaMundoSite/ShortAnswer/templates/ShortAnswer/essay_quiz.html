@@ -12,16 +12,27 @@
   <script>
   </script>
 </head>
+<center>
 <div class="container">
-  <h1><small><b>Create Quiz Question</h1></small></b>
-  <form action="" method="POST" class="QuestionForm">
-      {% csrf_token %}
-      {{ form.question }} 
-      {{ form.correctAnswer }}
+  <center>
+  <h1><b>Create Short Answer/Essay Question</h1></b>
+  </center>
+  <center>
+    <h4><b>Enter a Title:</h4></b>
+    {{ form.title }}</br>
+    <h5><b>Enter a Difficulty:</b></h5>
+    {{ form.difficulty }}</br>
+    <h6><b>Enter a Question:</b></h6>
+    {{ form.question }}</br>
+    <h8><b>Enter the Correct Answer:</b></h8></br>
+    {{ form.correctAnswer }}</br>
+      <!-- {{ form.correctAnswer }} -->
       <!-- {{ form|crispy }} -->
-      <button type="submit" class="save btn btn-default">Save</button>
-  </form>
+    </br>
+    <button type="submit" class="save btn btn-default">Save</button>
+    </center>
 </div>
+</center>
 </html>
 <!-- <a href="{% url 'quiz' %}" class="top-menu"></a> -->
 {% endblock %}
