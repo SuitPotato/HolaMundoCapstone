@@ -1,15 +1,15 @@
 {% extends "../mainpage/base.html" %}
+{% load crispy_forms_tags %}
 
 
-
-{% block titleBlock %} Lesson Form {% endblock %}
+{% block titleBlock %} Course Form {% endblock %}
 
 
 <!--
 Google CDN for jQuery Host.
 -->
 {% block headContent %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 {% endblock %}
 
 
@@ -18,7 +18,7 @@ Google CDN for jQuery Host.
 	
 	
 	
-	<h1 align="center" style="color: #000000;"> Develop a Lesson</h1>
+	<h1 align="center" style="color: #000000;"> Develop a Course</h1>
 	
 	<br></br>
 	<h2 align="center">Enter the appropriate text to the fields.</h2>
@@ -29,26 +29,9 @@ Google CDN for jQuery Host.
 
 	<br></br>
 	
-	<form action="" method = "GET">
-    {% csrf_token %}
+	<h2>{{ form.title }}</h2>
+	<h2>{{ form.description }}</h2>
+	<h2>{{ form.difficulty }}</h2>
 	
-	<form id="rendered-form">
-	<div class="fb-select form-group field-coursemanagement">
-	<label for="coursemanagement" class="fb-select-label">What do you want to Create?
-		<span class="required">*</span> 
-		<!--<span class="tooltip-element" tooltip="Select one of the following from the dropdown.">Tooltip Span</span> -->
-	</label>
-		<select type="select" required="" placeholder="Select one of the following:" class="form-control" name="coursemanagement" access="true" role="1" id="coursemanagement" aria-required="true">
-			<option disabled="" selected="">Select one of the following:</option>
-			<option value="/DragDemo/">Course</option>
-			<option value="lesson">Lesson</option>
-			<option value="quiz">Quiz</option>
-		</select>
-	</div>
-	</form>
-	
-
-    <center><input type="submit" value = "Submit"/></center>
-</form>
 {% endblock %}
 

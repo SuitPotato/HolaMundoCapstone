@@ -27,7 +27,7 @@ def results(request, tag='all'):
 	
 	# Should always be hit. Gets tag, which is the text the user searched for
     if request.method == 'GET':
-        tag = request.GET.get('query', None)
+        tag = request.GET.get('query')
 
 	# If the user hit the search button without putting in a query
     if tag == '':
@@ -92,7 +92,7 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-		
+
 			# Create user if data put in register form is valid
             user = User.objects.create_user(username=form.cleaned_data['username'], password=form.cleaned_data['password1'], email=form.cleaned_data['email'])
 			

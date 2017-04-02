@@ -31,7 +31,7 @@
                         <div class="col-md-3">
                         </div>
                     </div>
-                        <div class=""row">
+                        <div class=row">
                     {% endif %}
 
                     {% if user.is_authenticated %}
@@ -97,6 +97,28 @@
 					</div>
 				</div>
 			</div>
+                <div class="row">
+                    <div class="col-md-1">
+                    {% if prev %}
+                        <a href="/course/{{ course }}/{{ prev }}" class="btn btn-primary" role="button">Prev</a>
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-md-4">
+                    </div>
+
+                    <div class="col-md-1 text-right">
+                    {% if next %}
+                        <a href="/course/{{ course }}/{{ next }}" class="btn btn-primary" role="button">Next</a>
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <!--
 			<div class="row">
 				<div class="col-md-2 ">
 					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
@@ -116,7 +138,7 @@
 				<div class="col-md-2">
 					 <span class="label label-default">{{title}}</span><p><img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"></p>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
