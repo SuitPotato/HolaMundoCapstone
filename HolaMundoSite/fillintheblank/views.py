@@ -26,7 +26,7 @@ def create_quiz(request):
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request
 		form = QuestionForm(request.POST)
-		# chekc whether it's valid
+		# check whether it's valid
 		if form.is_valid():
 			# set data from Question model to q
 			q = Question()
@@ -69,7 +69,7 @@ def take_quiz(request, questionID):
 			a.answer = form.cleaned_data["answer"]
 			# check to see if User's answer is Correct
 			if((a.answer == q.correctAnswer)):
-				# if yes, increment score by 1
+				# if yes, increment score by 100
 				a.score = 100
 				a.total = 100
 				print "Correct!"
