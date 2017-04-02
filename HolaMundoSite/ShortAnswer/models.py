@@ -35,10 +35,16 @@ class Question(models.Model):
 class Answer(models.Model):
 	# answerID references primary key 
 	answerID = models.AutoField(primary_key = True)
+	# title for quiz to answer
+	title = models.CharField(max_length = 150, default = '')
 	# Student's answer 
 	answer = models.CharField(max_length = 1000)
 	# score to track Student's performance
 	score = models.IntegerField(default = 0)
+	# total of score for User
+	total = models.IntegerField(default = 0)
+	# user taking quiz
+	user = models.ForeignKey(User, null = False, blank = False, default = 1, related_name = 'shortAnswer_User')
 
 	def __str__(self):
 		return str(self.answerID)

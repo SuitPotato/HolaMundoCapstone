@@ -11,12 +11,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 {% csrf_token %}
+<center>
 <html>
-<p id="question"> {{ question }}</p>
 <div class="container">
    	<form method="GET" class="QuestionForm" id="quiz" >
     	{% csrf_token %}
     	<div class="question">
+        <p id="title"> {{ title }}</p>
     		<label><name="question" id="1" value="{{question}}">{{question}}</label>
     	</div>
     	<!--<div class="choice">
@@ -25,9 +26,11 @@
 	</form>
 	<form action= "" method= "POST" class = "AnswerForm">
 		{% csrf_token %}
-		{{ form.answer }}
+    <input type="text" value="Answer"/>
+		{{ form.answer }}</br>
     <input type="submit" value="Submit"/>
   	</form>
 </div>
 </html>
+</center>
 {% endblock %}

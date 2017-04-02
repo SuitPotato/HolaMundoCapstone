@@ -60,22 +60,24 @@ def take_quiz(request, questionID):
 			if((a.asnwer == q.correctAnswer)):
 				# if yes, increment score by 1
 				a.score = 1
+				a.total += 100
 				print "Correct"
 			# else the User's answer is Incorrect
 			else:
 				# do not increment score
 				a.score = 0
+				a.total = 0
 				print "Incorrect"
 			# save answer to the database
 			a.save()
 			# redirect
 			return redirect('https://www.djangoproject.com/')
-	# if request method is GET, set form to Answer Form
-	elif request.method == 'GET':
-		form = AnswerForm()
-	# else set form to Answer Form
-	else:
-		form = AnswerForm()
+		# if request method is GET, set form to Answer Form
+		elif request.method == 'GET':
+			form = AnswerForm()
+		# else set form to Answer Form
+		else:
+			form = AnswerForm()
 	try:
 		quiz = Question.objects.get(questionID = questionID)
 		context = {'title': quiz.title, 'questionID': quiz.questionID,
