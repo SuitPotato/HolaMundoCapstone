@@ -5,10 +5,35 @@ from django.http import HttpResponseRedirect
 from django.forms import ModelForm
 
 # Course Management Imports
+from coursemanagement.models import Course
 from coursemanagement.models import Lesson
 
 #class CourseForm(forms.Form):
 
+
+class CourseForm(forms.Form):
+	# Meta Class
+	class Meta:
+		# Based off of the model
+		model = Course
+		# Include description later.
+		fields = ['title','difficulty'
+		]
+		
+		# Choices
+		DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+		)
+		
+		# Fields
+		title = forms.CharField(max_length = 100)
+		# Description form field for later
+		description = forms.CharField(max_length = 300)
+		difficulty = forms.ChoiceField(choices = DIFFICULTIES)
+		
+		
 
 class LessonForm(forms.Form):
 	# Meta Class

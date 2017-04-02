@@ -27,7 +27,7 @@ def results(request, tag='all'):
 	
 	# Should always be hit. Gets tag, which is the text the user searched for
     if request.method == 'GET':
-        tag = request.GET.get('query', None)
+        tag = request.GET.get('query')
 
 	# If the user hit the search button without putting in a query
     if tag == '':
