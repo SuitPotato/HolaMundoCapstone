@@ -98,22 +98,22 @@
 				</div>
 			</div>
                 <div class="row">
-                    {% if prev %}
                     <div class="col-md-1">
+                    {% if prev %}
                         <a href="/course/{{ course }}/{{ prev }}" class="btn btn-primary" role="button">Prev</a>
+                    {% endif %}
                     </div>
 
-                    {% endif %}
 
                     <div class="col-md-4">
                     </div>
 
-                    {% if next %}
                     <div class="col-md-1 text-right">
+                    {% if next %}
                         <a href="/course/{{ course }}/{{ next }}" class="btn btn-primary" role="button">Next</a>
+                    {% endif %}
                     </div>
 
-                    {% endif %}
 
                     <div class="col-md-6">
                     </div>
