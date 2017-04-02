@@ -32,9 +32,9 @@ def create_quiz(request):
 			q.correctAnswer = form.cleaned_data["correctAnswer"]
 
 			q.save()
-
+			print "Saved"
 			# return render(request, 'fillintheblank/success.html')
-			return HttpResponseRedirect('fillintheblank/success.html')
+			return HttpResponseRedirect('/success/')
 
 	elif request.method == 'GET':
 		form = QuestionForm()
