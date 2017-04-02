@@ -23,9 +23,9 @@ class QuestionForm(forms.Form):
 	# fields defined under form
 	title = forms.CharField(max_length = 50)
 	difficulty = forms.ChoiceField(choices = DIFFICULTIES)
-	question_start = forms.CharField(max_length = 100)
+	question_start = forms.CharField(max_length = 100, required = False)
 	correctAnswer = forms.CharField(max_length = 100)
-	question_end = forms.CharField(max_length = 100)
+	question_end = forms.CharField(max_length = 100, required = False)
 
 # Form for Fill In The Blank Answer
 class AnswerForm(forms.Form):

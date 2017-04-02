@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import ModelForm
+from django import forms
 from django.db import models
 
 # Import Forms
@@ -12,6 +13,7 @@ from fillintheblank.models import *
 
 # Required for importing User for Author
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
