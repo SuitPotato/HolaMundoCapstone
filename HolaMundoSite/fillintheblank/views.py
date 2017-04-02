@@ -22,25 +22,29 @@ from django.contrib.auth.models import User
 # create a quiz.
 @login_required()
 def create_quiz(request):
+	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
-		#form = QuestionForm(request.POST)
+		# create a form instance and populate it with data from the request
 		form = QuestionForm(request.POST)
-
+		# chekc whether it's valid
 		if form.is_valid():
+			# set data from Question model to q
 			q = Question()
+			# clean data from Question Model 
 			q.title = form.cleaned_data["title"]
 			q.difficulty = form.cleaned_data["difficulty"]
 			q.question_start = form.cleaned_data["question_start"]
 			q.question_end = form.cleaned_data["question_end"]
 			q.correctAnswer = form.cleaned_data["correctAnswer"]
-
+			# save data from Question Model
 			q.save()
 			print "Saved"
 			# return render(request, 'fillintheblank/success.html')
 			return HttpResponseRedirect('/success/')
-
+	# if request method is GET, we will create a blank Question Form
 	elif request.method == 'GET':
 		form = QuestionForm()
+	# create blank Question Form
 	else:
 		form = QuestionForm()
 	return render(request, 'fillintheblank/fb_quiz.html', {"form": form})
@@ -51,12 +55,17 @@ def create_quiz(request):
 # take the quiz.
 @login_required()
 def take_quiz(request, questionID):
+	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
+		# create a form instance and populate it with data from the request
 		form = AnswerForm(request.POST)
-
+		# check whether it is valid
 		if form.is_valid():
+			# set q to the Question Model by primary key QuestionID
 			q = Question.objects.get(questionID = questionID)
+			# set a to data from Answer Model
 			a = Answer()
+			# clean data from Answer
 			a.answer = form.cleaned_data["answer"]
 			# check to see if User's answer is Correct
 			if((a.answer == q.correctAnswer)):
@@ -80,9 +89,10 @@ def take_quiz(request, questionID):
 	# else set form to Answer Form
 	else:
 		form = AnswerForm()
-
 	try:
+		# set quiz to objects in Question Model by using primary key questionID
 		quiz = Question.objects.get(questionID = questionID)
+		# set context to objects in Question Model
 		context = { 'title': quiz.title, 'questionID': quiz.questionID,
 					'question_start': quiz.question_start, 'question_end': quiz.question_end,
 					'correctAnswer': quiz.correctAnswer, 'difficulty': quiz.difficulty,
