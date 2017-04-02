@@ -8,7 +8,7 @@ from django.db import models
 # Course Management App Imports
 from coursemanagement.models import Lesson
 from coursemanagement.models import Course
-from coursemanagement.forms import LessonForm
+from coursemanagement.forms import LessonForm, CourseForm
 from UserSettingsPage.models import Preference
 from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz
 
@@ -49,6 +49,31 @@ def viewcourse(request, courseID):
         # Just a temporary flag
         # Should return a 404
         return render(request, 'mainpage/DragDemo.html')
+		
+@login_required()
+def course(request):
+	current_user = request.user
+	if request.method == 'POST':
+		# form is a variable that contains the courseform
+		form = CourseForm(request.POST)
+        if form.is_valid():
+            # Instantiate the class Course from Models
+
+			v = Course()
+			v.title = form.cleaned_data["title"]
+			v.description = form.cleaned_data["description"]
+			v.difficulty = form.cleaned_data["difficulty"]
+            # Must save the instantiated variables afterwards
+			v.save()
+
+            # Make sure HttpResponseRedirect has a view and URL
+			return HttpResponseRedirect('/success/')
+			
+	elif request.methnod == 'GET':
+			form = CourseForm()
+	else:
+		form = CourseForm()
+	return render(request, "coursemanagement/courseform.html", {"form": form})
 
 
 @login_required()
