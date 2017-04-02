@@ -1,15 +1,15 @@
 {% extends "../mainpage/base.html" %}
+{% load crispy_forms_tags %}
 
 
-
-{% block titleBlock %} Lesson Form {% endblock %}
+{% block titleBlock %} Course Form {% endblock %}
 
 
 <!--
 Google CDN for jQuery Host.
 -->
 {% block headContent %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 {% endblock %}
 
 
@@ -28,10 +28,10 @@ Google CDN for jQuery Host.
 	<h3 align="center"> Please fill out the information below, thank you.</h3>
 
 	<br></br>
-
 	
-
-
-    
+	<h2>{{ form.title }}</h2>
+	<h2>{{ form.description }}</h2>
+	<h2>{{ form.difficulty }}</h2>
+	
 {% endblock %}
 
