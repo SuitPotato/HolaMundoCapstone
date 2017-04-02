@@ -101,30 +101,42 @@
 
     <div class="row">
         <div class="col-md-6">
-            <p> Word Bank: </p>
+            <div class="row">
+                <div class="container-fluid">
+                    <p> Word Bank: </p>
 
-            <ul id="sortable" class="div3">
-                <li id="draggable" class="ui-state-default buttonli"> {{ wordOne }} </li>
-                <li id="draggable2" class="ui-state-default buttonli"> {{ wordTwo }} </li>
-                <li id="draggable3" class="ui-state-default buttonli"> {{ wordThree }} </li>
-            </ul>
+                    <ul id="sortable" class="div3">
+                        <li id="draggable" class="ui-state-default buttonli"> {{ wordOne }} </li>
+                        <li id="draggable2" class="ui-state-default buttonli"> {{ wordTwo }} </li>
+                        <li id="draggable3" class="ui-state-default buttonli"> {{ wordThree }} </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container-fluid">
+                    <p> Place your words here: </p>
+
+                    <ul id="sortable" class="div3">
+                        <li id="word1" class="ui-state-default buttonli">1 </li>
+                        <li id="droppable" class="ui-state-default buttonli">
+                        <li id="droppable2" class="ui-state-default buttonli"></li>
+                        <li id="word4" class="ui-state-default buttonli">{{wordFour}}</li>
+                        <li id="word4" class="ui-state-default buttonli">{{wordFive}}</li>
+                    </ul>
+
+                </div>
+            </div>
 
         </div>
 
-        <div class="col-md-6">
-            <div class="container-fluid">
-                <p> Place your words here: </p>
-
-                <ul id="sortable" class="div3">
-                    <li id="word1" class="ui-state-default buttonli">1 </li>
-                    <li id="droppable" class="ui-state-default buttonli">
-                    <li id="droppable2" class="ui-state-default buttonli"></li>
-                    <li id="word4" class="ui-state-default buttonli">{{wordFour}}</li>
-                    <li id="word4" class="ui-state-default buttonli">{{wordFive}}</li>
-		        </ul>
-
-            </div>
-
+        <div class="col-md-6 text-right">
+            	<div>
+                    <iframe  style="height: 300px; width: 400px;"
+                        src="https://www.youtube.com/embed/{{ prevyoutube }}?rel=0&amp;showinfo=0"
+                        frameborder="0" allowfullscreen>
+                    </iframe>
+	            </div>
         </div>
     </div>
 

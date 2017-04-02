@@ -139,10 +139,11 @@ def load_course(request, link, number):
 
     elif toDisplay["QuizID_id"]:
         sentence = Quiz.objects.get(quizID=toDisplay["QuizID_id"])
-        print(sentence)
+        prevvid = allInCourse[int(number) - 2]
+        video = Lesson.objects.get(lessonID=prevvid["LessonID_id"])
         context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
                    'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
-                   'wordFive': sentence.wordFive, 'course': link}
+                   'wordFive': sentence.wordFive, 'course': link, 'prevyoutube': video.youtube}
 
         if int(number) == 1:
             context['next'] = 2
