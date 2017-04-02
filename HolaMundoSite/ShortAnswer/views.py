@@ -22,6 +22,11 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def success(request):
 	return render(request, 'ShortAnswer/success.html')
+	
+# render submit page
+@login_required()
+def submit(request):
+	return render(request, 'ShortAnswer/submit.html')
 
 # create_essay_quiz is a view where the Content Creator can create
 # a Short Answer or Essay question to be answered by the Student.

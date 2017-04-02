@@ -22,6 +22,11 @@ from django.contrib.auth.models import User
 def success(request):
 	return render (request, 'fillintheblank/success.html')
 
+# render submit page
+@login_required()
+def submit(request):
+	return render(request, 'fillintheblank/submit.html')
+
 # create_quiz is a view that is for Content Creators to create a 
 # Fill In The Blank quiz. You must be logged in to the site to 
 # create a quiz.
