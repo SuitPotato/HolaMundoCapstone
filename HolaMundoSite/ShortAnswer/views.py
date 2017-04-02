@@ -18,6 +18,11 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+# render success page
+@login_required()
+def success(request):
+	return render(request, 'ShortAnswer/success.html')
+
 # create_essay_quiz is a view where the Content Creator can create
 # a Short Answer or Essay question to be answered by the Student.
 # You must be logged in to the site create a quiz
@@ -41,8 +46,8 @@ def create_essay_quiz(request):
 			q.author = request.user
 			# save data from Question Model
 			q.save()
-			return render(request, 'ShortAnswer/success.html')
-			#return HttpResponseRedirect('ShortAnswer/success.html')
+			#return render(request, 'ShortAnswer/success.html')
+			return HttpResponseRedirect('/success/')
 	# if request method is GET, we will create a blank Question form
 	elif request.method == 'GET':
 		form = QuestionForm()
@@ -81,10 +86,16 @@ def take_quiz(request, questionID):
 				a.score = 0
 				a.total = 0
 				print "Incorrect"
+			# set title in Answer Model to title in Question Model
+			a.title = q.title
+			# set answerID in Answer Model to questionID in Question Model
+			a.answerID = q.questionID
+			# set user in Answer Model to user who is logged in
+			a.user = request.user
 			# save answer to the database
 			a.save()
 			# redirect
-			return redirect('https://www.djangoproject.com/')
+			return HttpResponseRedirect('/success/')
 		# if request method is GET, set form to Answer Form
 		elif request.method == 'GET':
 			form = AnswerForm()

@@ -17,6 +17,11 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+# render success page
+@login_required()
+def success(request):
+	return render (request, 'fillintheblank/success.html')
+
 # create_quiz is a view that is for Content Creators to create a 
 # Fill In The Blank quiz. You must be logged in to the site to 
 # create a quiz.
@@ -42,8 +47,8 @@ def create_quiz(request):
 			# save data from Question Model
 			q.save()
 			print "Saved"
-			return render(request, 'fillintheblank/success.html')
-			#return HttpResponseRedirect('/success/')
+			#return render(request, 'fillintheblank/success.html')
+			return HttpResponseRedirect('/success/')
 	# if request method is GET, we will create a blank Question Form
 	elif request.method == 'GET':
 		form = QuestionForm()
@@ -82,10 +87,16 @@ def take_quiz(request, questionID):
 				a.score = 0
 				a.total = 0
 				print "Incorrect"
+			# set title in Answer Model to title in Question Model
+			a.title = q.title
+			# set answerID in Answer Model to questionID in Question Model
+			a.answerID = q.questionID
+			# set user in Answer Model to user who is logged in
+			a.user = request.user
 			# save answer to database
 			a.save()
 			# redirect 
-			return redirect('https://www.djangoproject.com/')
+			return HttpResponseRedirect('/success/')
 	# if request method is GET, set form to Answer Form
 	elif request.method == 'GET':
 		form = AnswerForm()
