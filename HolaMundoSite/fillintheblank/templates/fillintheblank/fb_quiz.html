@@ -13,66 +13,68 @@
   </script>
 </head>
 <center>
-<div class="container">
-  <h1><b><center>Create Fill In The Blank Quiz Question</center></h1></b>
-  <center>
-    <h4><b>Enter a Title:</h4></b>
-    {{ form.title }}</br>
-    <h5><b>Enter a Difficulty:</h5></b>
-    <p>{{ form.difficulty }}</p>
-  </center>
-  <center>
-  <div class="container" align="center">
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instructions</button>
+<form id"fb_form" action="/" method="POST" class="QuestionForm">
+  {% csrf_token %}
+  <div class="container">
+    <h1><b><center>Create Fill In The Blank Quiz Question</center></h1></b>
+    <center>
+      <h4><b>Enter a Title:</h4></b>
+      {{ form.title }}</br>
+      <h5><b>Enter a Difficulty:</h5></b>
+      <p>{{ form.difficulty }}</p>
+    </center>
+    <center>
+    <div class="container" align="center">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instructions</button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Instructions</h4>
-        </div>
-        <div class="modal-body" align="left">
-          <p>There are a few ways you are able to create a 
-            Fill In The Blank Question.
-          </p>
-          <ul>
-             <li> Step 1: Fill out the "Start of Question" 
-            for the beginning of your sentence. 
-            </li>
-            <li> Step 2: Fill out the "Blank" for the word that the Student will fill out. 
-            </li>
-            <li> Step 3: Then fill out "End
-            of Question" for the end of the sentence. 
-            </li>
-            <le> Step 4: You may also fill out the "Start of Question" and the "Blank" for your question. Example: The color of the sky is <u><b>blue</u></b>
-            </li>
-            <li> Step 5: You may also start a sentence with "Blank" but you must fill 
-            out "End of Question". Example: <u><b>George Washington</u></b> was the 1st President of the United States.
-          </li>
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Instructions</h4>
+          </div>
+          <div class="modal-body" align="left">
+            <p>There are a few ways you are able to create a 
+              Fill In The Blank Question.
+            </p>
+            <ul>
+               <li> Step 1: Fill out the "Start of Question" 
+              for the beginning of your sentence. 
+              </li>
+              <li> Step 2: Fill out the "Blank" for the word that the Student will fill out. 
+              </li>
+              <li> Step 3: Then fill out "End
+              of Question" for the end of the sentence. 
+              </li>
+              <le> Step 4: You may also fill out the "Start of Question" and the "Blank" for your question. Example: The color of the sky is <u><b>blue</u></b>
+              </li>
+              <li> Step 5: You may also start a sentence with "Blank" but you must fill 
+              out "End of Question". Example: <u><b>George Washington</u></b> was the 1st President of the United States.
+              </li>
+            </ul>
+         </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          </div>
       
+      </div>
     </div>
   </div>
-</div>
-</center>
-<div class="container">
-  <center>
-    <h6><b>Start of Question:</h6></b>
-    <p>{{ form.question_start }}<p>
-    <h7><b>Answer for Question</h7></b>
-    <p>{{ form.correctAnswer }}</p>
-    <h8><b>End of Question:</h8></b>
-    <p>{{ form.question_end }}</p>
+  </center>
+  <div class="container">
+    <center>
+     <h6><b>Start of Question:</h6></b>
+      <p>{{ form.question_start }}<p>
+      <h7><b>Answer for Question</h7></b>
+      <p>{{ form.correctAnswer }}</p>
+      <h8><b>End of Question:</h8></b>
+      <p>{{ form.question_end }}</p>
 
 
   <!-- <form method="POST" class="FillInTheBlank"> -->
@@ -83,7 +85,9 @@
       <button type="submit" class="save btn btn-default">Save</button>
   <!-- </form> -->
     </center>
-</div>
+  </div>
+</form>
 </center>
+
 <!-- <a href="{% url 'quiz' %}" class="top-menu"></a> -->
 {% endblock %}

@@ -13,7 +13,8 @@
   </script>
 </head>
 <center>
-<form id="rendered_form" action="/" method="GET">
+<form id="rendered_form" action="/" method="POST" class="QuestionForm">
+  {% csrf_token %}
   <div class="container">
     <center>
     <h1><b>Create Short Answer/Essay Question</h1></b>
