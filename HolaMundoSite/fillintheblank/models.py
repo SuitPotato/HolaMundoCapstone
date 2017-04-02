@@ -16,9 +16,9 @@ class Question(models.Model):
 	# author of question is User logged in
 	author = models.ForeignKey(User, null=False, blank=False, default = 1, related_name='fb_author')
 	# start of question
-	question_start = models.CharField(max_length = 100)
+	question_start = models.CharField(max_length = 100, null=True, blank=True)
 	# end of question
-	question_end = models.CharField(max_length = 100)
+	question_end = models.CharField(max_length = 100, null=True, blank=True)
 	# correctAnswer for question 
 	correctAnswer = models.CharField(max_length = 100, default = '')
 
