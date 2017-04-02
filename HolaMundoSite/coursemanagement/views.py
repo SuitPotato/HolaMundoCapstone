@@ -112,30 +112,47 @@ def lesson(request):
 
 
 def load_course(request, link, number):
-    print('Link: ' + link + '.')
-    print('number: ' + number + ".")
     course = Course.objects.get(link=link)
     allInCourse = CourseLessonQuiz.objects.filter(courseID=course).values()
-    print(allInCourse)
-    toDisplay = allInCourse[int(number) - 1]
-    print(toDisplay)
+
+    try:
+        toDisplay = allInCourse[int(number) - 1]
+    except:
+        return render(request, 'Video_page/404.html')
 
     if toDisplay["LessonID_id"]:
         video = Lesson.objects.get(lessonID=toDisplay["LessonID_id"])
-        print(video)
         context = {'video': video.youtube, 'title': video.title, 'tab1': video.tab1, 'tab2': video.tab2,
                    'tab3': video.tab3, 'tab4': video.tab4, 'tab5': video.tab5, 'tab6': video.tab6,
                    'tab1desc': video.tab1desc, 'tab2desc': video.tab2desc, 'tab3desc': video.tab3desc,
-                   'tab4desc': video.tab4desc, 'tab5desc': video.tab5desc, 'tab6desc': video.tab6desc}
-        return render(request, 'Video_page/videoloader.html', context)
+                   'tab4desc': video.tab4desc, 'tab5desc': video.tab5desc, 'tab6desc': video.tab6desc, 'course': link}
+
+        if int(number) == 1:
+            context['next'] = 2
+        try:
+            next = allInCourse[int(number)]
+            context['next'] = int(number) + 1
+            context['prev'] = int(number) - 1
+        except:
+            context['prev'] = int(number) - 1
+        return render(request, 'coursemanagement/courseloader.html', context)
 
     elif toDisplay["QuizID_id"]:
         sentence = Quiz.objects.get(quizID=toDisplay["QuizID_id"])
         print(sentence)
         context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
                    'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
-                   'wordFive': sentence.wordFive}
-        return render(request, 'DragAndDropQuiz/sentenceTwo.html', context)
+                   'wordFive': sentence.wordFive, 'course': link}
+
+        if int(number) == 1:
+            context['next'] = 2
+        try:
+            next = allInCourse[int(number)]
+            context['next'] = int(number) + 1
+            context['prev'] = int(number) - 1
+        except:
+            context['prev'] = int(number) - 1
+        return render(request, 'coursemanagement/quizloader.html', context)
 
 
         # if request.user.is_authenticated():
