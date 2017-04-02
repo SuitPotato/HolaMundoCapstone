@@ -30,7 +30,7 @@ class CourseForm(forms.Form):
 		# Fields
 		title = forms.CharField(max_length = 100)
 		# Description form field for later
-		#Description = forms.CharField(max_length = 300)
+		description = forms.CharField(max_length = 300)
 		difficulty = forms.ChoiceField(choices = DIFFICULTIES)
 		
 		
