@@ -23,6 +23,7 @@ from django.contrib.auth.models import User
 @login_required()
 def create_quiz(request):
 	if request.method == 'POST':
+		#form = QuestionForm(request.POST)
 		form = QuestionForm(request.POST)
 
 		if form.is_valid():
@@ -60,12 +61,14 @@ def take_quiz(request, questionID):
 			# check to see if User's answer is Correct
 			if((a.answer == q.correctAnswer)):
 				# if yes, increment score by 1
-				a.score += 1
+				a.score = 100
+				a.total = 100
 				print "Correct!"
 			# else the User's Answer is wrong 
 			else:
 				# do not increment score
 				a.score = 0
+				a.total = 0
 				print "Incorrect"
 			# save answer to database
 			a.save()
