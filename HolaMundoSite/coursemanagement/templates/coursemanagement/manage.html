@@ -1,5 +1,6 @@
 {% extends "../mainpage/base.html" %}
-
+<!-- Currently template from previous attempt. Will delete if unneeded. -->
+<!--
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
@@ -46,5 +47,121 @@
 		<div class="col-md-2">
 		</div>
 	</div>
+</div>
+{% endblock %}
+
+-->
+{% block content %}
+<div class="container-fluid">
+	
+	<!-- Comment Block -->
+	
+	<div class="row">	
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>
+					Manager <small>for courses, lessons, and quizzes.</small>
+				</h1>
+			</div>
+			
+			<!-- Comment Block -->
+			
+			<div class="btn-group">
+				 
+				<button class="btn btn-default">
+					Sort
+				</button> 
+				<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#">Courses</a>
+					</li>
+					<li>
+						<a href="#">Quizzes</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		
+			<!-- End of Button -->
+	</div>
+	
+	<!-- End of first col-md-12 -->
+			
+	<!-- Comment Block -->		
+	<div class="row">
+		<div class="col-md-8">
+			<h3>
+				<!-- Course Title Location -->
+				h3. Lorem ipsum dolor sit amet.
+			</h3>
+			<!-- May need to change id. Could cause problems -->
+			<div class="panel-group" id="panel-386088">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-386088" href="#panel-element-125140">Collapsible Group Item #1</a>
+					</div>
+					<div id="panel-element-125140" class="panel-collapse collapse in">
+						<div class="panel-body">
+							Anim pariatur cliche...
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-386088" href="#panel-element-729703">Collapsible Group Item #2</a>
+					</div>
+					<div id="panel-element-729703" class="panel-collapse collapse">
+						<div class="panel-body">
+							Anim pariatur cliche...
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			 <!-- Comment Block -->
+			<button type="button" class="btn btn-info">
+				<!-- Text on Button -->
+				Edit
+			</button>
+		</div>
+	</div>
+	<!-- Comment Block -->
+	
+	
+	<!-- Comment Block -->
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="pagination pagination-lg">
+				<li>
+					<a href="#">Prev</a>
+				</li>
+				<li>
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Comment Block -->
+	
 </div>
 {% endblock %}
