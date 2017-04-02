@@ -54,34 +54,44 @@
 {% block content %}
 <div class="container-fluid">
 	
-	<!-- Comment Block -->
+	<!-- Title and Sorting Button -->
 	
 	<div class="row">	
 		<div class="col-md-12">
+		
+			<!-- Title Header
+				Title can be cnanged for something more suitable later on.
+			-->
 			<div class="page-header">
 				<h1>
 					Manager <small>for courses, lessons, and quizzes.</small>
 				</h1>
 			</div>
 			
-			<!-- Comment Block -->
-			
+			<!-- Button Group -->
 			<div class="btn-group">
-				 
+				
+				<!-- Text Field for the Button -->
 				<button class="btn btn-default">
 					Sort
 				</button> 
 				<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
 					<span class="caret"></span>
 				</button>
+				<!-- Dropdown Menu for the Button
+					Can do a query on courses, quizzes, or all. Sorted by date.
+				-->
+				
 				<ul class="dropdown-menu">
 					<li>
 						<a href="#">Courses</a>
 					</li>
 					<li>
-						<a href="#">Quizzes</a>
+						<a href="#">Lessons</a>
 					</li>
-					
+					<li>
+						<a href="#">All</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -89,16 +99,18 @@
 			<!-- End of Button -->
 	</div>
 	
-	<!-- End of first col-md-12 -->
+	<!-- End of Title and Sorting Button  -->
 			
-	<!-- Comment Block -->		
+	<!-- Courses/Lessons and their information -->		
 	<div class="row">
 		<div class="col-md-8">
 			<h3>
 				<!-- Course Title Location -->
 				h3. Lorem ipsum dolor sit amet.
 			</h3>
-			<!-- May need to change id. Could cause problems -->
+			<!-- Collapsable information. would show lessons.
+			May need to change id. Could cause problems -->
+			
 			<div class="panel-group" id="panel-386088">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -122,18 +134,48 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			 <!-- Comment Block -->
+		<div class="col-md-2">
+			<!-- Adding Button -->
+			<!-- Button Group -->
+			<div class="btn-group">
+				
+				<!-- Text Field for the Button -->
+				<button class="btn btn-default">
+					Add
+				</button> 
+				<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+					<span class="caret"></span>
+				</button>
+				<!-- Dropdown Menu for the Button
+					Send to form for creating Lesson or Quiz
+				-->
+				
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#">Lesson</a>
+					</li>
+					<li>
+						<a href="#">Quiz</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="col-md-2">
+			<!-- Info Button
+				Send to form fill in with editable information? -->
 			<button type="button" class="btn btn-info">
 				<!-- Text on Button -->
 				Edit
 			</button>
 		</div>
 	</div>
-	<!-- Comment Block -->
+	<!-- End of Courses/Lessons and their information block -->
 	
 	
-	<!-- Comment Block -->
+	<!-- Pagination Block
+		Currently unusable, can work with it later
+	-->
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="pagination pagination-lg">
@@ -161,7 +203,7 @@
 			</ul>
 		</div>
 	</div>
-	<!-- Comment Block -->
+	<!-- End of Pagination Block -->
 	
 </div>
 {% endblock %}
