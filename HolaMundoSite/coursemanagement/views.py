@@ -26,7 +26,8 @@ def manage(request):
 	# Filters out courses only made by the user
 	current_user = request.user
 	courses = Course.objects.filter(author = current_user)
-	context = {"courses":courses}
+	lessons = Lesson.objects.filter(author = current_user)
+	context = {"courses":courses, "lessons":lessons}
 	return render(request, 'coursemanagement/manage.html', context)
 
 # Purpose of viewcourse is to show the lessons specific course.
@@ -46,10 +47,8 @@ def viewcourse(request, courseID):
 		return render(request, 'coursemanagement/viewcourse.html',context)
 	else:
 		# Just a temporary flag
+		# Should return a 404
 		return render(request, 'mainpage/DragDemo.html')
-	
-	
-
 
 @login_required()
 def success(request):

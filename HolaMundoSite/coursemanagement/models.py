@@ -132,13 +132,16 @@ class Course(models.Model):
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
 	link = models.CharField(max_length=15)
+	
+	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
+	# Currently commented out for migrations/migrate
+	# description = models.CharField(max_length = 300, null = False, blank = False)
 
 	DIFFICULTIES = (
 		('Beginner', '1'),
 		('Intermediate', '2'),
 		('Advanced', '3'),
 	)
-
 	difficulty = models.CharField(max_length=15, choices=DIFFICULTIES, default="Beginner")
 
 	# quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
