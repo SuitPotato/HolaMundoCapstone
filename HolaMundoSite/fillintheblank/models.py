@@ -13,6 +13,8 @@ class Question(models.Model):
 	questionID = models.AutoField(primary_key = True)
 	# title of question
 	title = models.CharField(max_length = 50)
+	# author of question is User logged in
+	author = models.ForeignKey(User, null=False, blank=False, default = 1, related_name='fb_author')
 	# start of question
 	question_start = models.CharField(max_length = 100)
 	# end of question

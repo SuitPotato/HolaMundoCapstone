@@ -36,10 +36,13 @@ def create_essay_quiz(request):
 			q.difficulty = form.cleaned_data["difficulty"]
 			q.question = form.cleaned_data["question"]
 			q.correctAnswer = form.cleaned_data["correctAnswer"]
+
+			# request author as User
+			q.author = request.user
 			# save data from Question Model
 			q.save()
-			# return render(request, 'ShortAnswer/success.html')
-			return HttpResponseRedirect('ShortAnswer/success.html')
+			return render(request, 'ShortAnswer/success.html')
+			#return HttpResponseRedirect('ShortAnswer/success.html')
 	# if request method is GET, we will create a blank Question form
 	elif request.method == 'GET':
 		form = QuestionForm()
@@ -57,7 +60,7 @@ def take_quiz(request, questionID):
 	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request
-		form = AnswerForm(request.POST)
+		form = AnswerForm(request.post)
 		# check whether it's valid
 		if form.is_valid():
 			# set q to the Question Model by primary key questionID

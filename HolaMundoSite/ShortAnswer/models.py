@@ -14,6 +14,8 @@ class Question(models.Model):
 	questionID = models.AutoField(primary_key = True)
 	# title of the Question 
 	title = models.CharField(max_length = 50)
+	# author of Question is user logged in
+	author = models.ForeignKey(User, null=False, blank=False, default = 1)
 	# question 
 	question = models.CharField(max_length = 100)
 	# correctAnswer for question
