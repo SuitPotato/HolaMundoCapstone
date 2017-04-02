@@ -135,14 +135,10 @@ class Course(models.Model):
 	
 	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
 	# Currently commented out for migrations/migrate
-	# description = models.CharField(max_length = 300, null = False, blank = False)
+	description = models.CharField(max_length = 300, null = False, blank = False)
 
-	DIFFICULTIES = (
-		('Beginner', '1'),
-		('Intermediate', '2'),
-		('Advanced', '3'),
-	)
-	difficulty = models.CharField(max_length=15, choices=DIFFICULTIES, default="Beginner")
+	
+	difficulty = models.IntegerField()
 
 	# quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 
