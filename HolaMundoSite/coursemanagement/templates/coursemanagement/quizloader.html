@@ -140,23 +140,26 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        {% if prev %}
-        <div class="col-md-1 ">
-            <a href="/course/{{ course }}/{{ prev }}" class="btn btn-primary" role="button">Prev</a>
+    <footer class="navbar-fixed-bottom" style="padding-bottom: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                    <div class="col-md-1 text-left">
+                    {% if prev %}
+                        <a href="/course/{{ course }}/{{ prev }}" class="btn btn-primary" role="button">Prev</a>
+                    {% endif %}
+                    </div>
+
+                    <div class="col-md-10">
+                    </div>
+
+                    <div class="col-md-1 text-right">
+                    {% if next %}
+                        <a href="/course/{{ course }}/{{ next }}" class="btn btn-primary" role="button">Next</a>
+                    {% endif %}
+                    </div>
+            </div>
         </div>
+    </footer>
 
-        {% endif %}
-
-        <div class="col-md-10">
-        </div>
-
-        {% if next %}
-        <div class="col-md-1 ">
-            <a href="/course/{{ course }}/{{ next }}" class="btn btn-primary" role="button">Next</a>
-        </div>
-
-        {% endif %}
-	</div>
 
 {% endblock %}
