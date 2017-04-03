@@ -48,12 +48,12 @@ def create_quiz(request):
 			q.correctAnswer = form.cleaned_data["correctAnswer"]
 
 			# request author as User
-			q.author = request.User
+			q.author = request.user
 			# save data from Question Model
 			q.save()
 			print "Saved"
-			#return render(request, 'fillintheblank/success.html')
-			return HttpResponseRedirect('/success/')
+			return render(request, 'fillintheblank/success.html')
+			#return HttpResponseRedirect('/success/')
 	# if request method is GET, we will create a blank Question Form
 	elif request.method == 'GET':
 		form = QuestionForm()
@@ -101,7 +101,7 @@ def take_quiz(request, questionID):
 			# save answer to database
 			a.save()
 			# redirect 
-			return HttpResponseRedirect('/success/')
+			return render(request, 'fillintheblank/submit.html')
 	# if request method is GET, set form to Answer Form
 	elif request.method == 'GET':
 		form = AnswerForm()

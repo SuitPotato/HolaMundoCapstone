@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def success(request):
 	return render(request, 'ShortAnswer/success.html')
-	
+
 # render submit page
 @login_required()
 def submit(request):
@@ -51,8 +51,8 @@ def create_essay_quiz(request):
 			q.author = request.user
 			# save data from Question Model
 			q.save()
-			#return render(request, 'ShortAnswer/success.html')
-			return HttpResponseRedirect('/success/')
+			return render(request, 'ShortAnswer/success.html')
+			#return HttpResponseRedirect('/success.html')
 	# if request method is GET, we will create a blank Question form
 	elif request.method == 'GET':
 		form = QuestionForm()
@@ -70,7 +70,7 @@ def take_quiz(request, questionID):
 	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request
-		form = AnswerForm(request.post)
+		form = AnswerForm(request.POST)
 		# check whether it's valid
 		if form.is_valid():
 			# set q to the Question Model by primary key questionID
@@ -100,7 +100,7 @@ def take_quiz(request, questionID):
 			# save answer to the database
 			a.save()
 			# redirect
-			return HttpResponseRedirect('/success/')
+			return render(request, 'ShortAnswer/submit.html')
 		# if request method is GET, set form to Answer Form
 		elif request.method == 'GET':
 			form = AnswerForm()
