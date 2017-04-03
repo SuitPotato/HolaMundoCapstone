@@ -29,8 +29,8 @@ def submit(request):
 
 # results view displays results for user
 @login_required()
-def results(request, questionID):
-	quiz = Question.objects.get(questionID=questionID)
+def results(request, answerID):
+	quiz = Answer.objects.get(answerID=answerID)
 	context = { 'title': quiz.title, 'user': quiz.user, 'score': quiz.score, 'total': quiz.total}
 	return render(request, 'ShortAnswer/results.html', context)
 
