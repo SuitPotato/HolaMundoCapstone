@@ -53,27 +53,26 @@ def viewcourse(request, courseID):
 @login_required()
 def course(request):
 	current_user = request.user
+	form = CourseForm()
 	if request.method == 'POST':
 		# form is a variable that contains the courseform
 		form = CourseForm(request.POST)
         if form.is_valid():
             # Instantiate the class Course from Models
-
 			v = Course()
 			v.title = form.cleaned_data["title"]
 			v.description = form.cleaned_data["description"]
 			v.difficulty = form.cleaned_data["difficulty"]
             # Must save the instantiated variables afterwards
 			v.save()
-
             # Make sure HttpResponseRedirect has a view and URL
 			return HttpResponseRedirect('/success/')
-			
-	elif request.methnod == 'GET':
-			form = CourseForm()
+	elif request.method == 'GET':
+		form = CourseForm()
 	else:
 		form = CourseForm()
 	return render(request, "coursemanagement/courseform.html", {"form": form})
+
 
 
 @login_required()
