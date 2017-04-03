@@ -50,30 +50,28 @@ def viewcourse(request, courseID):
         # Should return a 404
         return render(request, 'mainpage/DragDemo.html')
 		
+
 @login_required()
 def course(request):
-	current_user = request.user
-	form = CourseForm()
-	if request.method == 'POST':
-		# form is a variable that contains the courseform
-		form = CourseForm(request.POST)
+    if request.method == 'POST':
+        # form is a variable that contains the courseform
+        form = CourseForm(request.POST)
         if form.is_valid():
             # Instantiate the class Course from Models
-			v = Course()
-			v.title = form.cleaned_data["title"]
-			v.description = form.cleaned_data["description"]
-			v.difficulty = form.cleaned_data["difficulty"]
-            # Must save the instantiated variables afterwards
-			v.save()
+            v = Course()
+            v.title = form.cleaned_data["title"]
+            v.description = form.cleaned_data["description"]
+            v.difficulty = form.cleaned_data["difficulty"]
+            v.author = request.user
+			# Must save the instantiated variables afterwards
+            v.save()
             # Make sure HttpResponseRedirect has a view and URL
-			return HttpResponseRedirect('/success/')
-	elif request.method == 'GET':
-		form = CourseForm()
-	else:
-		form = CourseForm()
-	return render(request, "coursemanagement/courseform.html", {"form": form})
-
-
+            return HttpResponseRedirect('/success/')
+    elif request.method == 'GET':
+        form = CourseForm()
+    else:
+        form = CourseForm()
+    return render(request, "coursemanagement/courseform.html", {"form": form})
 
 @login_required()
 def success(request):
@@ -107,7 +105,7 @@ def lesson(request):
         form = LessonForm()
     else:
         form = LessonForm()
-    return render(request, "coursemanagement/courseform.html", {"form": form})
+    return render(request, "coursemanagement/lessonform.html", {"form": form})
 
 
 def load_course(request, link, number):
