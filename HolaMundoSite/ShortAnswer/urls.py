@@ -26,5 +26,6 @@ urlpatterns = [
     #url(r'^ShortAnswer/?<questionID>[\w]/results/$', views.results, name='results'),
     url(r'^ShortAnswer/submit/$', views.submit, name='submit'),
     url(r'^ShortAnswer/success/$', views.success, name='success'),
+    url(r'^ShortAnswer/results/$', views.results, name='results'),
 
 ]

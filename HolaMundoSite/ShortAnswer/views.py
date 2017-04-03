@@ -28,6 +28,13 @@ def success(request):
 def submit(request):
 	return render(request, 'ShortAnswer/submit.html')
 
+# results view displays results for user
+@login_required()
+def results(request, questionID):
+	quiz = Question.objects.get(questionID=questionID)
+	context = { 'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
+	return render(request, 'ShortAnswer/results.html', context)
+
 # create_essay_quiz is a view where the Content Creator can create
 # a Short Answer or Essay question to be answered by the Student.
 # You must be logged in to the site create a quiz
@@ -112,7 +119,7 @@ def take_quiz(request, questionID):
 		quiz = Question.objects.get(questionID = questionID)
 		# set context to objects in Question Model
 		context = {'title': quiz.title, 'questionID': quiz.questionID,
-					'question': quiz.question, 'correctAnswer': quiz.correctAnswer,
+					'question': quiz.question, 'user': quiz.user, 'correctAnswer': quiz.correctAnswer,
 					'difficulty': quiz.difficulty,
 				}
 		return render(request, 'ShortAnswer/take_quiz.html', context)

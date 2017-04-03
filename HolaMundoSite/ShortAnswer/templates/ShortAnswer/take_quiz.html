@@ -14,22 +14,15 @@
 <center>
 <html>
 <div class="container">
-   	<form method="GET" action="" class="QuestionForm" id="quiz" >
-    	{% csrf_token %}
-    	<div class="question">
-        <p id="title"> {{ title }}</p>
-    		<label><name="question" id="1" value="{{question}}">{{question}}</label>
-    	</div>
-    	<!--<div class="choice">
-			<label><input type="text" name="Answer" id="answer" value=""></label> 
-		</div> -->
-	</form>
-	<form action= "" method= "POST" class = "AnswerForm">
+	<form method="POST" class ="AnswerForm" id="answer_quiz" align="center">
 		{% csrf_token %}
+    <h2>{{ title }}</h2>
+    <h3>{{ user }}</h3>
+    <h4>{{ question }}</h4>
     <input type="text" value="Answer"/>
 		{{ form.answer }}</br>
-    <input type="submit" value="Submit"/>
-  	</form>
+    <input type="submit" value="Submit" align="center"/>
+  </form>
 </div>
 </html>
 </center>

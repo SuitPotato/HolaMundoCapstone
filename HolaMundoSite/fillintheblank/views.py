@@ -27,6 +27,13 @@ def success(request):
 def submit(request):
 	return render(request, 'fillintheblank/submit.html')
 
+# results view displays results for user
+@login_required()
+def results(request, questionID):
+	quiz = Question.objects.get(questionID=questionID)
+	context = { 'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
+	return render(request, 'ShortAnswer/results.html', context)
+
 # create_quiz is a view that is for Content Creators to create a 
 # Fill In The Blank quiz. You must be logged in to the site to 
 # create a quiz.
@@ -51,7 +58,7 @@ def create_quiz(request):
 			q.author = request.user
 			# save data from Question Model
 			q.save()
-			print "Saved"
+			# print "Saved"
 			return render(request, 'fillintheblank/success.html')
 			#return HttpResponseRedirect('/success/')
 	# if request method is GET, we will create a blank Question Form
@@ -83,7 +90,7 @@ def take_quiz(request, questionID):
 			# check to see if User's answer is Correct
 			if((a.answer == q.correctAnswer)):
 				# if yes, increment score by 100
-				a.score = 100
+				a.score += 100
 				a.total = 100
 				print "Correct!"
 			# else the User's Answer is wrong 
@@ -112,7 +119,7 @@ def take_quiz(request, questionID):
 		# set quiz to objects in Question Model by using primary key questionID
 		quiz = Question.objects.get(questionID = questionID)
 		# set context to objects in Question Model
-		context = { 'title': quiz.title, 'questionID': quiz.questionID,
+		context = { 'title': quiz.title, 'questionID': quiz.questionID,'user': quiz.user,
 					'question_start': quiz.question_start, 'question_end': quiz.question_end,
 					'correctAnswer': quiz.correctAnswer, 'difficulty': quiz.difficulty,
 					}
