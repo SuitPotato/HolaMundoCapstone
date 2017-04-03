@@ -8,33 +8,27 @@ from django.forms import ModelForm
 from coursemanagement.models import Course
 from coursemanagement.models import Lesson
 
-#class CourseForm(forms.Form):
-
 
 class CourseForm(forms.Form):
 	# Meta Class
 	class Meta:
 		# Based off of the model
 		model = Course
-		# Include description later.
-		fields = ['title','difficulty'
+		fields = ['title','description','difficulty'
 		]
 		
-	# Choices
+	# Difficulty Choices 
 	DIFFICULTIES = (
 	('1', 'Beginner'),
 	('2', 'Intermediate'),
 	('3', 'Advanced'),
 	)
 	
-	
 	# Fields
 	title = forms.CharField(max_length = 100)
-	# Description form field for later
 	description = forms.CharField(max_length = 300)
 	difficulty = forms.ChoiceField(choices = DIFFICULTIES)
-		
-		
+	
 
 class LessonForm(forms.Form):
 	# Meta Class
