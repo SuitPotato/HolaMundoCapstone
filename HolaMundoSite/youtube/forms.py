@@ -5,5 +5,7 @@ from django import forms
 class VidUploadForm(forms.Form):
     title = forms.CharField(max_length=50)
     file = forms.FileField()
-    description = forms.CharField(widget=forms.Textarea, max_length=300)
-	
+    Tags = forms.CharField(widget=forms.Textarea, max_length=300)
+
+
+

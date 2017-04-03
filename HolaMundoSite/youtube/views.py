@@ -39,6 +39,7 @@ def uploaded(request):
         form = VidUploadForm(request.POST, request.FILES)
         print(form)
         if form.is_valid():
+            request.description = form.cleaned_data["description"]
             toYoutube(request.FILES['file'], request)
 
             # change HttpResponse to a page where user can edit information like tags, descriptions, etc
@@ -215,6 +216,7 @@ def resumable_upload(insert_request, request):
                     print "Video id '%s' was successfully uploaded." % response['id']
                     p = Lesson()
                     p.title = response['snippet']['title']
+                    p.tags = request.description
                     p.youtube = response['id']
                     p.link = 558
                     p.author = request.user
