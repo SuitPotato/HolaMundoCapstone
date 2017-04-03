@@ -22,6 +22,7 @@ from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     url(r'^profile/$', views.view_profile, name='view_profile'),
+    url(r'^myProfile/$', views.view_my_profile, name='view_profile'),
     url(r'^profile/edit/$',views.edit_profile, name='edit_profile'),
     url(r'^passwordform/$', views.passwordform, name="passwordform"),
     url(r'^UserSettingsPage', views.settings)
