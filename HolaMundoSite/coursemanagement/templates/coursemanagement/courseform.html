@@ -1,39 +1,65 @@
 {% extends "../mainpage/base.html" %}
-{% load crispy_forms_tags %}
-
-
-{% block titleBlock %} Course Form {% endblock %}
-
-
-<!--
-Google CDN for jQuery Host.
--->
-{% block headContent %}
-
-{% endblock %}
-
+{% block title %} Course Form {% endblock %}
 
 {% block content %}
-
-	
-	
-	
-	<h1 align="center" style="color: #000000;"> Develop a Course</h1>
-	
-	<br></br>
-	<h2 align="center">Enter the appropriate text to the fields.</h2>
-	
-	<br></br>
-
-	<h3 align="center"> Please fill out the information below, thank you.</h3>
-
-	<br></br>
 <form action="" method = "POST">
 	{% csrf_token %}
-	<h2>{{ form.title }}</h2>
-	<h2>{{ form.description }}</h2>
-	<h2>{{ form.difficulty }}</h2>
-	<center><input type="submit" value = "Submit"/></center>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h1 align="center">
+						Develop a Course
+					</h1>
+				</div>
+			</div>
+		</div>
+		<!-- Title -->
+		<div class="row">
+			<div class="col-md-1">
+				<h4>
+					Title
+				</h4>
+			</div>
+			<div class="col-md-11">
+				<h4 align = "left" >{{ form.title }}</h4>
+			</div>
+		</div>
+		<!-- Description -->
+		<div class="row">
+			<div class="col-md-1">
+				<h4>
+					Description
+				</h4>
+			</div>
+			<div class="col-md-11">
+				<h4>{{ form.description }}</h4>
+			</div>
+		</div>
+		<!-- Difficulty -->
+		<div class="row">
+			<div class="col-md-1">
+				<h4>
+					Difficulty
+				</h4>
+			</div>
+			<div class="col-md-11">
+				<h4>{{ form.difficulty }}</h4>
+			</div>
+		</div>
+		<!-- Submit Button -->
+		<div class="row">
+			<div class="col-md-1">
+				<!-- Nothing -->
+			</div>
+			<div class="col-md-11">
+				<br><br><br>
+				<h4>
+					<input type="submit" value = "Submit"/>
+				</h4>
+			</div>
+		</div>
+	</div>
 </form>
 {% endblock %}
 
