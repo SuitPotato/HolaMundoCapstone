@@ -20,18 +20,19 @@ class CourseForm(forms.Form):
 		fields = ['title','difficulty'
 		]
 		
-		# Choices
-		DIFFICULTIES = (
-		('Beginner', '1'),
-		('Intermediate', '2'),
-		('Advanced', '3'),
-		)
-		
-		# Fields
-		title = forms.CharField(max_length = 100)
-		# Description form field for later
-		description = forms.CharField(max_length = 300)
-		difficulty = forms.ChoiceField(choices = DIFFICULTIES)
+	# Choices
+	DIFFICULTIES = (
+	('1', 'Beginner'),
+	('2', 'Intermediate'),
+	('3', 'Advanced'),
+	)
+	
+	
+	# Fields
+	title = forms.CharField(max_length = 100)
+	# Description form field for later
+	description = forms.CharField(max_length = 300)
+	difficulty = forms.ChoiceField(choices = DIFFICULTIES)
 		
 		
 

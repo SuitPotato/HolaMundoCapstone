@@ -76,35 +76,11 @@
 				<div class="collapse navbar-collapse" id="navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href=#>Link</a>
+							<a href='/myHolaMundo'>My Hola Mundo</a>
 						</li>
-						<li>
-							<a href=#>Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
 								<li>
-									<a href="/DragDemo/">Drag Demo</a>
+									<a href="/manage">My Courses</a>
 								</li>
-								<li>
-									<a href="/results/">Basic Results</a>
-								</li>
-								<li>
-									<a href="/manage">Terrible Manage Page</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="/createcourse">Create a course?</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="/logout/">Logout {{ user.username }}</a>
-								</li>
-							</ul>
-						</li>
 					</ul>
                     <form class="navbar-form navbar-left" type="get" action="/results" autocomplete="off">
                         <div class="form-group">
@@ -113,25 +89,27 @@
                         <button class="btn btn-default" id="search_submit" type="submit"> Search</button>
                     </form>
 					<ul class="nav navbar-nav navbar-right">
+                        <!--
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
 							<ul class="dropdown-menu" >
 								<li>
-									<a href="/youtube/">Upload a video</a>
+									<a href="/createcourse">Create a course?</a>
 								</li>
 								<li>
 									<a href="/myHolaMundo/">My Hola Mundo</a>
 								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
 								<li class="divider">
-								</li>
-								<li>
-									<a href="#">Separated link</a>
 								</li>
 							</ul>
 						</li>
+						-->
+                        <li>
+                            <a href="/youtube/">Upload a video</a>
+                        </li>
+                        <li>
+                            <a href='/createcourse/'>Create a course</a>
+                        </li>
                         <li>
                             <a href="/UserSettingsPage/profile" style="margin-right: 20px;">My Profile</a>
                         </li>
@@ -153,31 +131,6 @@
 				</div>
 
 				<div class="collapse navbar-collapse" id="navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href=#>Link</a>
-						</li>
-						<li>
-							<a href=#>Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="/DragDemo/">Drag Demo</a>
-								</li>
-								<li>
-									<a href="/results/">Basic Results</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="/login/">Login</a>
-								</li>
-
-							</ul>
-						</li>
-					</ul>
                     <form class="navbar-form navbar-left" type=get" action="/results" autocomplete="off">
                         <div class="form-group">
                             <input class="form-control" id="query" type="text" name="query" placeholder="Search...">
@@ -185,21 +138,8 @@
                         <button class="btn btn-default" id="search_submit" type="submit"> Search</button>
                     </form>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown" >
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu" >
-								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="#">Separated link</a>
-								</li>
-							</ul>
+						<li>
+							<a href='/register'>Register</a>
 						</li>
                         <li>
                             <a href="#login-overlay" data-toggle="modal" style="margin-right: 20px;">Login</a>
