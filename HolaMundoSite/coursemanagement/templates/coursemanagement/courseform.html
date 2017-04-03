@@ -28,10 +28,12 @@ Google CDN for jQuery Host.
 	<h3 align="center"> Please fill out the information below, thank you.</h3>
 
 	<br></br>
-	
+<form action="" method = "POST">
+	{% csrf_token %}
 	<h2>{{ form.title }}</h2>
 	<h2>{{ form.description }}</h2>
 	<h2>{{ form.difficulty }}</h2>
-	
+	<center><input type="submit" value = "Submit"/></center>
+</form>
 {% endblock %}
 
