@@ -136,3 +136,7 @@ LOGIN_REDIRECT_URL = '/UserSettingsPage/profile'
 LOGIN_URL = '/login/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+
+MEDIA_ROOT = os.path.join(ENV_PATH, "media/")
