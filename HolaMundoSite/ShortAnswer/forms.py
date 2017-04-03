@@ -30,7 +30,7 @@ class AnswerForm(forms.Form):
 	class Meta:
 		# Based off Model: Short Answer/Essay Answer
 		model = Answer 
-		fields = ('answer')
+		fields = ('answer',)
 
 	# fields defined under form
 	answer = forms.CharField(max_length = 1000)
