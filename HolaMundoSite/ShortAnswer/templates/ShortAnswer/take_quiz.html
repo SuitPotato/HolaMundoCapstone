@@ -10,20 +10,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
-<!-- {% csrf_token %} -->
+{% csrf_token %}
 <center>
+  <html>
 <!-- <div class="container"> -->
 <!-- 	<form method="POST" action="{% url 'ShortAnswer:results' questionID %}" class ="AnswerForm" id="answer_quiz" align="center"> -->
   <!-- <form method="POST" action="" class ="AnswerForm" id="answer_quiz" align="center"> -->
-    <h2>{{ title }}</h2>
-    <h3>{{ user }}</h3>
-    <h4>{{ question }}</h4>
-  <form method="POST" action="">
-		{% csrf_token %}
+  <div class="container">
+    <form method="GET" class="QuestionForm" id="quiz">
+      {% csrf_token %}
+      <h2> <label><name="title" id="1" value="{{ title }}">{{title}}</h2></label>
+      <h3><label><name="user" id="2" value="{{ user }}">{{user}}</h3></label>
+      <h4><label><name="question" id="3" value="{{ question }}">{{question}}</h4></label>
+    <form method="POST" class="AnswerForm">
+	   {% csrf_token %}
 <!--     <h2>{{ title }}</h2>
     <h3>{{ user }}</h3>
     <h4>{{ question }}</h4> -->
-    {{ form.as_p }}
+    <!-- {{ form.as_p }} -->
     <input type="text" value="Answer" align="center"/>
 		{{ answer }}</br>
     <input type="submit" value="Submit" align="center"/>

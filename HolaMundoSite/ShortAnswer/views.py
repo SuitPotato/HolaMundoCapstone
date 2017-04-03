@@ -32,7 +32,7 @@ def submit(request):
 @login_required()
 def results(request, questionID):
 	quiz = Question.objects.get(questionID=questionID)
-	context = { 'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
+	context = { 'title': quiz.title, 'user': quiz.user, 'score': quiz.score, 'total': quiz.total}
 	return render(request, 'ShortAnswer/results.html', context)
 
 # create_essay_quiz is a view where the Content Creator can create
@@ -87,16 +87,16 @@ def take_quiz(request, questionID):
 			# clean data from Answer
 			a.answer = form.cleaned_data["answer"]
 			# check to see if User's answer is Correct
-			if((a.asnwer == q.correctAnswer)):
+			if((a.answer == q.correctAnswer)):
 				# if yes, increment score by 100
-				a.score = 100
-				a.total += 100
+				a.score += 100
+				a.total = 100
 				print "Correct"
 			# else the User's answer is Incorrect
 			else:
 				# do not increment score
 				a.score = 0
-				a.total = 0
+				a.total = 100
 				print "Incorrect"
 			# set title in Answer Model to title in Question Model
 			a.title = q.title
