@@ -75,92 +75,53 @@ def create_quiz(request):
 # take the quiz.
 @login_required()
 def take_quiz(request, questionID):
+	# set quiz to objects in Question Model by using primary key questionID
 	quiz = Question.objects.get(questionID=questionID)
-	if request.method == 'POST':
-		a = Answer(question=quiz, user=request.user)
-		form = AnswerForm(request.POST, instance=a)
-		if form.is_valid():
-			a = form.save()
-			print a.answer
-			q = Question.objects.get(questionID=questionID)
-			if((q.correctAnswer == a.answer)):
-				setattr(a, 'score', 100)
-				setattr(a, 'total', 100)
-				a.save()
-				print "Correct"
-			else:
-				setattr(a, 'score', 0)
-				setattr(a, 'total', 100)
-				a.save()
-				print "Incorrect"
-
-			return HttpResponseRedirect('results', a.answerID)
-	elif request.method == 'GET':
-		print "GET"
-		form = AnswerForm()
-	else:
-		form = AnswerForm()
-	quiz = Question.objects.get(questionID=questionID)
-	context = { 'title': quiz.title, 'questionID': quiz.questionID,
-					'question_start': quiz.question_start, 'question_end': quiz.question_end,
-					'correctAnswer': quiz.correctAnswer, 'difficulty': quiz.difficulty,
-					'form': form}
-	return render(request, 'fillintheblank/take_quiz.html', context)
-
-'''
-	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request
-		form = AnswerForm(request.POST)
+		a = Answer(question=quiz, user=request.user)
+		# set form to AnswerForm by request POST and set a to instance
+		form = AnswerForm(request.POST, instance=a)
 		# check whether it is valid
 		if form.is_valid():
-			# set q to the Question Model by primary key QuestionID
-			q = Question.objects.get(questionID = questionID)
-			# set a to data from Answer Model
-			a = Answer()
-			# clean data from Answer
-			a.answer = form.cleaned_data["answer"]
+			# save form as a
+			a = form.save()
+			# set q to objects in Question Model by using primary key questionID
+			q = Question.objects.get(questionID=questionID)
 			# check to see if User's answer is Correct
-			if((a.answer == q.correctAnswer)):
-				# if yes, increment score by 100
-				a.score += 100
-				a.total = 100
-				print "Correct!"
-			# else the User's Answer is wrong 
+			if((q.correctAnswer == a.answer)):
+				# update score attribute in a to 100 if correct
+				setattr(a, 'score', 100)
+				# update total attribute in a to 100
+				setattr(a, 'total', 100)
+				# save a
+				a.save()
+				print "Correct"
+			# else answer is incorrect
 			else:
-				# do not increment score
-				a.score = 0
-				a.total = 100
+				# set total attribute in a to 0
+				setattr(a, 'score', 0)
+				# update total attribute in a to 100
+				setattr(a, 'total', 100)
+				# save a
+				a.save()
 				print "Incorrect"
-			# set title in Answer Model to title in Question Model
-			a.title = q.title
-			# set answerID in Answer Model to questionID in Question Model
-			a.answerID = q.questionID
-			# set user in Answer Model to user who is logged in
-			a.user = request.user
-			# save answer to database
-			a.save()
-			# redirect 
-			return render(request, 'fillintheblank/submit.html')
+			# redirect to results page to correct answerID of question
+			return HttpResponseRedirect('results', a.answerID)
 	# if request method is GET, set form to Answer Form
 	elif request.method == 'GET':
+		print "GET"
 		form = AnswerForm()
 	# else set form to Answer Form
 	else:
 		form = AnswerForm()
-	try:
-		# set quiz to objects in Question Model by using primary key questionID
-		quiz = Question.objects.get(questionID = questionID)
-		# # get answer field from Answer model
-		# answer_quiz = Answer.objects.get(answer=answer)
-		# set context to objects in Question Model
-		context = { 'title': quiz.title, 'questionID': quiz.questionID,'user': quiz.user,
+	# set quiz to objects in Question Model by using primary key questionID
+	quiz = Question.objects.get(questionID=questionID)
+	# set context to objects in Question Model
+	context = { 'title': quiz.title, 'questionID': quiz.questionID,
 					'question_start': quiz.question_start, 'question_end': quiz.question_end,
 					'correctAnswer': quiz.correctAnswer, 'difficulty': quiz.difficulty,
 					'form': form}
-		return render(request, 'fillintheblank/take_quiz.html', context)
+	# render request and send to take_quiz.html for fillintheblank
+	return render(request, 'fillintheblank/take_quiz.html', context)
 
-	except:
-		return HttpResponseRedirect('http://www.djangoproject.com')
-
-'''

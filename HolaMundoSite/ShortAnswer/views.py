@@ -74,98 +74,53 @@ def create_essay_quiz(request):
 # to take the quiz.
 @login_required()
 def take_quiz(request, questionID):
+	# set quiz to objects in Question Model by using primary key questionID
 	quiz = Question.objects.get(questionID=questionID)
 	if request.method == 'POST':
-		print "POST"
+		# create a form instance and populate it with data from the request
 		a = Answer(question=quiz, user = request.user)
-		print a
+		# set form to AnswerForm by request POST and set a to instance
 		form = AnswerForm(request.POST, instance=a)
+		# check whether it is valid
 		if form.is_valid():
-			print "Valid"
+			# save form as a
 			a = form.save()
-			print a.answer
+			# set q to objects in Question Model by using primary key questionID
 			q = Question.objects.get(questionID=questionID)
+			# check to see if User's answer is Correct
 			if((q.correctAnswer == a.answer)):
+				# update score attribute in a to 100 if correct
 				setattr(a, 'score', 100)
+				# update total attribute in a to 100
 				setattr(a, 'total', 100)
+				# save a
 				a.save()
 				print "Correct"
+			# else answer is incorrect
 			else:
+				# set score attribute in a to 0
 				setattr(a, 'score', 0)
+				# update total attribute in a to 100
 				setattr(a, 'total', 100)
+				# save a
 				a.save()
 				print "Incorrect"
 			# a.title = q.title
 			# a.user = request.user
 			return HttpResponseRedirect('results', a.answerID)
+	# if request method is GET, set form to Answer Form
 	elif request.method == 'GET':
 		print "GET"
 		form = AnswerForm()
-		print form
+	# else set form to Answer Form
 	else:
 		form = AnswerForm()
-
+	# set quiz to objects in Question Model by using primary key questionID
 	quiz = Question.objects.get(questionID=questionID)
-	print quiz
+	# set context to objects in Question Model
 	context = {'questionID': quiz.questionID, 'title': quiz.title, 
 				'question': quiz.question, 'correctAnswer': quiz.correctAnswer, 
 				'difficulty': quiz.difficulty, 'form': form}
+	# render request and send to take_quiz.html for ShortAnswer
 	return render(request, 'ShortAnswer/take_quiz.html', context)
 
-		# return HttpResponseRedirect('http://www.djangoproject.com')
-
-'''
-	# if this is a POST request we need to process the form data
-	if request.method == 'POST':
-		# create a form instance and populate it with data from the request
-		form = AnswerForm(request.POST)
-		# check whether it's valid
-		if form.is_valid():
-			# set q to the Question Model by primary key questionID
-			q = Question.objects.get(questionID = questionID)
-			# set a to data from Answer Model
-			a = Answer()
-			# clean data from Answer
-			a.answer = form.cleaned_data["answer"]
-			# check to see if User's answer is Correct
-			if((a.answer == q.correctAnswer)):
-				# if yes, increment score by 100
-				a.score += 100
-				a.total = 100
-				print "Correct"
-			# else the User's answer is Incorrect
-			else:
-				# do not increment score
-				a.score = 0
-				a.total = 100
-				print "Incorrect"
-			# set title in Answer Model to title in Question Model
-			a.title = q.title
-			# set answerID in Answer Model to questionID in Question Model
-			# a.answerID = q.questionID
-			# set user in Answer Model to user who is logged in
-			a.user = request.user
-			# save answer to the database
-			a.save()
-			# redirect
-			return render(request, 'ShortAnswer/submit.html')
-		# if request method is GET, set form to Answer Form
-		elif request.method == 'GET':
-			form = AnswerForm()
-		# else set form to Answer Form
-		else:
-			form = AnswerForm()
-	try:
-		# set quiz to objects in Question Model by using primary key questionID
-		quiz = Question.objects.get(questionID = questionID)
-		# set context to objects in Question Model
-		context = {'title': quiz.title, 'questionID': quiz.questionID,
-					'question': quiz.question, 'user': quiz.user, 'correctAnswer': quiz.correctAnswer,
-					'difficulty': quiz.difficulty,
-				}
-		return render(request, 'ShortAnswer/take_quiz.html')
-
-	except:
-		#return render(request, 'ShortAnswer/essay_quiz.html')
-		return HttpResponseRedirect('http://www.djangoproject.com')
-	'''
