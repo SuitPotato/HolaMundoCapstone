@@ -26,11 +26,11 @@ class QuestionForm(forms.Form):
 	correctAnswer = forms.CharField(max_length = 1000)
 
 # Form for Short Answer/Essay Answer
-class AnswerForm(forms.Form):
+class AnswerForm(ModelForm):
 	class Meta:
 		# Based off Model: Short Answer/Essay Answer
 		model = Answer 
-		fields = ('answer',)
+		fields = ['answer',]
 
 	# fields defined under form
-	answer = forms.CharField(max_length = 1000)
+	# answer = forms.CharField(max_length = 1000)
