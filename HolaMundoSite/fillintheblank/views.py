@@ -118,13 +118,15 @@ def take_quiz(request, questionID):
 	try:
 		# set quiz to objects in Question Model by using primary key questionID
 		quiz = Question.objects.get(questionID = questionID)
+		# # get answer field from Answer model
+		# answer_quiz = Answer.objects.get(answer=answer)
 		# set context to objects in Question Model
 		context = { 'title': quiz.title, 'questionID': quiz.questionID,'user': quiz.user,
 					'question_start': quiz.question_start, 'question_end': quiz.question_end,
 					'correctAnswer': quiz.correctAnswer, 'difficulty': quiz.difficulty,
-					}
+					'form': form}
 		return render(request, 'fillintheblank/take_quiz.html', context)
 
 	except:
-		return render(request, 'fillintheblank/fb_quiz.html')
+		return HttpResponseRedirect('http://www.djangoproject.com')
 
