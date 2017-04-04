@@ -20,14 +20,13 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import argparser, run_flow
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from django.db import models
 from .models import *
 
 from coursemanagement.models import Lesson
 
-BASE_URL = 'C:\Users\Josh\Documents\GitHub\HolaMundoCapstone\HolaMundoSite'
-
-
+BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
@@ -40,17 +39,21 @@ def uploaded(request):
         form = VidUploadForm(request.POST, request.FILES)
         print(form)
         if form.is_valid():
-            toYoutube(request.FILES['file'])
-            return HttpResponseRedirect('/video/558')
+            request.description = form.cleaned_data["description"]
+            toYoutube(request.FILES['file'], request)
+
+            # change HttpResponse to a page where user can edit information like tags, descriptions, etc
+            return HttpResponseRedirect('/results/?query=beginner')
         #else:
             #form = VidUploadForm()
             #return render(request, 'youtube/index.html', {'form': form})
 
 
-def toYoutube(f):
+def toYoutube(f, request):
     fs = FileSystemStorage()
     filename = fs.save("Uploaded.mp4", f)
     uploaded_url = fs.url(filename)
+    video_abs_path = BASE_URL + uploaded_url
 
     #Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
     #  category='10', description='Test description',
@@ -58,14 +61,13 @@ def toYoutube(f):
     #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
     #  privacyStatus='public', title='Test video')
 
-    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file=BASE_URL + uploaded_url, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
-
+    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file=video_abs_path, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
     if not os.path.exists(args.file):
         exit("Please specify a valid file using the --file= parameter.")
 
     youtube = get_authenticated_service(args)
     try:
-        initialize_upload(youtube, args)
+        initialize_upload(youtube, args, request)
     except HttpError, e:
         print "An HTTP error %d occurred:\n%s" % (e.resp.status, e.content)
 
@@ -161,7 +163,7 @@ def get_authenticated_service(args):
                  http=credentials.authorize(httplib2.Http()))
 
 
-def initialize_upload(youtube, options):
+def initialize_upload(youtube, options, request):
     tags = None
     if options.keywords:
         tags = options.keywords.split(",")
@@ -196,12 +198,12 @@ def initialize_upload(youtube, options):
         media_body=MediaFileUpload(options.file, chunksize=-1, resumable=True)
     )
 
-    resumable_upload(insert_request)
+    resumable_upload(insert_request, request)
 
 
 # This method implements an exponential backoff strategy to resume a
 # failed upload.
-def resumable_upload(insert_request):
+def resumable_upload(insert_request, request):
     response = None
     error = None
     retry = 0
@@ -214,8 +216,10 @@ def resumable_upload(insert_request):
                     print "Video id '%s' was successfully uploaded." % response['id']
                     p = Lesson()
                     p.title = response['snippet']['title']
+                    p.tags = request.description
                     p.youtube = response['id']
                     p.link = 558
+                    p.author = request.user
                     p.save()
                 else:
                     exit("The upload failed with an unexpected response: %s" % response)
