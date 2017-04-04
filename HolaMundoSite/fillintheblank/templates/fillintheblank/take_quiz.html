@@ -16,17 +16,19 @@
 <form id="fillintheblank_form" action="" method="POST" class="QuestionForm" align="center">
   <div class="container" align="center">
     <h1><b>Answer the Fill In The Blank Question</h1></b>
+    {% csrf_token %}
+    
     {{ form.title }}</br>
 
     {% if form.question_start == " " %}
 
-      <h4><input type="text" value=""/>{{ form.answer }} <label><name="question_end" id="1" value="{{question_end}}">{{question_end}}</label></h4>
+      <h4>{{form}}<label><name="question_end" id="1" value="{{question_end}}">{{question_end}}</label></h4>
 
     {% elif form.question_end == " " %}
-      <h5>{<label><name="question_start" id="2" value="{{question_start}}">{{question_start}}</label><input type="text" value=""/>{{ form.answer }}</h5>
+      <h5>{<label><name="question_start" id="2" value="{{question_start}}">{{question_start}}</label>{{form}}</h5>
 
     {% else %}
-      <h6> <label><name="question_start" id="2" value="{{question_start}}">{{question_start}}</label><input type="text" value=""/>{{ form.answer }} <label><name="question_end" id="1" value="{{question_end}}">{{question_end}}</label></h6>
+      <h6> <label><name="question_start" id="2" value="{{question_start}}">{{question_start}}</label>{{form}} <label><name="question_end" id="1" value="{{question_end}}">{{question_end}}</label></h6>
 
     {% endif %}
     <button type="submit" value="Submit" align="center">Submit</button>

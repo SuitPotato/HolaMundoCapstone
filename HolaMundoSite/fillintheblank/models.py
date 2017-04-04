@@ -37,8 +37,8 @@ class Question(models.Model):
 class Answer(models.Model):
 	# answerID references primary key
 	answerID = models.AutoField(primary_key = True)
-	# title for quiz answer
-	title = models.CharField(max_length = 150, default='')
+	# title for quiz to answer
+	question = models.ForeignKey(Question, null=False, blank=False)
 	# Student's answerID
 	answer = models.CharField(max_length = 100)
 	# score to track Student's performance

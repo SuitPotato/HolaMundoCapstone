@@ -28,11 +28,11 @@ class QuestionForm(forms.Form):
 	question_end = forms.CharField(max_length = 100, required = False)
 
 # Form for Fill In The Blank Answer
-class AnswerForm(forms.Form):
+class AnswerForm(ModelForm):
 	# Based off Model: Fill In The Blank Answer
 	class Meta:
 		model = Answer
-		fields = ('answer')
+		fields = ['answer',]
 
 	# fields defined under form
-	answer = forms.CharField(max_length = 100)
+	# answer = forms.CharField(max_length = 100)

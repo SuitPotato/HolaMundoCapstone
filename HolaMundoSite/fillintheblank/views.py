@@ -30,9 +30,9 @@ def submit(request):
 # results view displays results for user
 @login_required()
 def results(request, answerID):
-	quiz = Answer.objects.get(answerID=answerID)
-	context = { 'title': quiz.title, 'user': quiz.user, 'score': quiz.score, 'total': quiz.total}
-	return render(request, 'ShortAnswer/results.html', context)
+	r = Answer.objects.get(answerID=answerID)
+	context = {'question': r.question, 'score': r.score, 'total': r.total, 'user': r.user}
+	return render(request, 'fillintheblank/results.html', context)
 
 # create_quiz is a view that is for Content Creators to create a 
 # Fill In The Blank quiz. You must be logged in to the site to 
@@ -75,6 +75,39 @@ def create_quiz(request):
 # take the quiz.
 @login_required()
 def take_quiz(request, questionID):
+	quiz = Question.objects.get(questionID=questionID)
+	if request.method == 'POST':
+		a = Answer(question=quiz, user=request.user)
+		form = AnswerForm(request.POST, instance=a)
+		if form.is_valid():
+			a = form.save()
+			print a.answer
+			q = Question.objects.get(questionID=questionID)
+			if((q.correctAnswer == a.answer)):
+				setattr(a, 'score', 100)
+				setattr(a, 'total', 100)
+				a.save()
+				print "Correct"
+			else:
+				setattr(a, 'score', 0)
+				setattr(a, 'total', 100)
+				a.save()
+				print "Incorrect"
+
+			return HttpResponseRedirect('results', a.answerID)
+	elif request.method == 'GET':
+		print "GET"
+		form = AnswerForm()
+	else:
+		form = AnswerForm()
+	quiz = Question.objects.get(questionID=questionID)
+	context = { 'title': quiz.title, 'questionID': quiz.questionID,
+					'question_start': quiz.question_start, 'question_end': quiz.question_end,
+					'correctAnswer': quiz.correctAnswer, 'difficulty': quiz.difficulty,
+					'form': form}
+	return render(request, 'fillintheblank/take_quiz.html', context)
+
+'''
 	# if this is a POST request we need to process the form data
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request
@@ -130,3 +163,4 @@ def take_quiz(request, questionID):
 	except:
 		return HttpResponseRedirect('http://www.djangoproject.com')
 
+'''

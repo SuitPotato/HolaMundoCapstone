@@ -28,6 +28,6 @@ urlpatterns = [
     #url(r'^fillintheblank/(?P<questionID>[\w]+)/results/$', views.results, name='results'),
     url(r'^fillintheblank/submit/$', views.submit, name='submit'),
     url(r'^fillintheblank/success/$', views.success, name='success'),
-    url(r'^fillintheblank/results/$', views.results, name='results'),
+    url(r'^fillintheblank/(?P<answerID>[\w]+)/results/$', views.results, name='results'),
 
 ]
