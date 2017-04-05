@@ -1,0 +1,26 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Short Answer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+{% csrf_token %}
+<center>
+  <html>
+<h1>{{title}}</h1>
+<h2>{{ question }}</h2>
+  
+   </br> <form method="POST" class="AnswerForm" action="">
+	   {% csrf_token %}
+		{{form}}</br>
+    </br><input type="submit" value="Submit" align="center"/>
+    </form>
+</center>
+</html>
+{% endblock %}
