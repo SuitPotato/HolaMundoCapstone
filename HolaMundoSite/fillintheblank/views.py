@@ -91,7 +91,7 @@ def take_quiz(request, questionID):
 			# check to see if User's answer is Correct
 			if((q.correctAnswer == a.answer)):
 				# update score attribute in a to 100 if correct
-				setattr(a, 'score', +100)
+				setattr(a, 'score', 100)
 				# update total attribute in a to 100
 				setattr(a, 'total', 100)
 				# save a
