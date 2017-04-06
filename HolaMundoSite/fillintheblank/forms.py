@@ -33,6 +33,7 @@ class AnswerForm(ModelForm):
 	class Meta:
 		model = Answer
 		fields = ['answer',]
+		
 
 	# fields defined under form
 	# answer = forms.CharField(max_length = 100)
