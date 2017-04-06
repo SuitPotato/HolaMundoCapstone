@@ -1,0 +1,83 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Multiple Choice {% endblock %}
+
+{% block content %}
+
+<form id="rendered-form" method="POST">
+    {% csrf_token %}
+    <div class="text-center" style="padding-bottom: 25px;">
+        <h1>
+            Multiple choice question creator
+        </h1>
+    </div>
+    <div class="fb-radio form-group field-radio-group-multiple-choice text-center" >
+        <label for="radio-group-multiple-choice" class="fb-radio-group-label" >
+            Please enter your question's details below
+        </label>
+        <div class="container-fluid" style="padding-top: 25px;">
+            <div class="row" style="padding-bottom: 100px;">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3 text-right">
+                    Question:
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="question-answer" style="width:100%">
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="row" style="padding-bottom: 30px;">
+                <div class="col-md-12">
+                    <label>
+                        Please enter your answer details below
+                    </label>
+                </div>
+            </div>
+            {% for choice in number_questions %}
+                <div class="row" style="padding-bottom: 35px;">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3 text-right">
+                        {{ choice.0 }}
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="{{ choice.1 }}-answer" style="width:100%">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="container-fluid" style="padding-top:50px;">
+            <div class="row" style="padding-bottom: 30px;">
+                <div class="col-md-12">
+                    <label>
+                        Lastly, select the correct answer below
+                    </label>
+                </div>
+            </div>
+            <div class="radio-group">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                        <div class="col-md-3">
+                        </div>
+                    <div class="col-md-4" style="position: relative;">
+                        {% for choice in number_questions %}
+                            <label class="radio-inline"> <input type="radio" name="correct-answer" id="{{ choice.1 }}" value="{{ choice.1 }}"> {{ choice.0 }} </label>
+                        {% endfor %}
+                        <div class="fb-submit form-group field-button-1491436558146" style="position: absolute; bottom: 0; right: 0;">
+                            <button type="submit" class="button-input btn btn-success" name="button-1491436558146" value="submit-button" id="button-1491436558146">Submit</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
