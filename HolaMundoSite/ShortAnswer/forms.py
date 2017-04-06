@@ -1,7 +1,7 @@
 #Django Imports
 from django import forms
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 # Import Models 
 from ShortAnswer.models import *
 
@@ -22,8 +22,10 @@ class QuestionForm(forms.Form):
 	# fields defined under form
 	title = forms.CharField(max_length = 50)
 	difficulty = forms.ChoiceField(choices = DIFFICULTIES)
-	question = forms.CharField(max_length = 100)
-	correctAnswer = forms.CharField(max_length = 1000)
+	question = forms.CharField(max_length = 100, 
+				widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
+	correctAnswer = forms.CharField(max_length = 1000, 
+				widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
 
 # Form for Short Answer/Essay Answer
 class AnswerForm(ModelForm):
@@ -31,6 +33,8 @@ class AnswerForm(ModelForm):
 		# Based off Model: Short Answer/Essay Answer
 		model = Answer 
 		fields = ['answer',]
+		widgets = {'answer': Textarea(attrs={'cols': 30, 'rows': 3}),
+				}
 
 	# fields defined under form
 	# answer = forms.CharField(max_length = 1000)
