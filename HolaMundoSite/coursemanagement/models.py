@@ -162,3 +162,60 @@ class CourseLessonQuiz(models.Model):
 
 	def __str__(self):
 		return self.courseID.title
+
+
+class MultipleChoiceQuiz(models.Model):
+	# QuizID - References the Primary Key
+	quizID = models.AutoField(primary_key=True)
+	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
+	title = models.CharField(max_length=140)
+	author = models.ForeignKey(User, null=False, blank=False)
+
+	NUMBER_OF_CHOICES = (
+		('2', '2'),
+		('3', '3'),
+		('4', '4'),
+		('5', '5'),
+		('6', '6'),
+	)
+
+	numberOfChoices = models.CharField(max_length=1, choices=NUMBER_OF_CHOICES, default="4")
+
+	choiceOne = models.CharField(max_length=15, null=False, blank=False)
+	choiceTwo = models.CharField(max_length=15, null=False, blank=False)
+	choiceThree = models.CharField(max_length=15, null=True, blank=True)
+	choiceFour = models.CharField(max_length=15, null=True, blank=True)
+	choiceFive = models.CharField(max_length=15, null=True, blank=True)
+	choiceSix = models.CharField(max_length=15, null=True, blank=True)
+
+	CHOICES = (
+		('A', '1'),
+		('B', '2'),
+		('C', '3'),
+		('D', '4'),
+		('E', '5'),
+		('F', '6'),
+	)
+
+	correctAnswer = models.CharField(max_length=1, choices=CHOICES, default="A")
+
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+	)
+
+	difficulty = models.CharField(max_length=15, choices=DIFFICULTIES, default="Beginner")
+
+	def __str__(self):
+		return self.title
+
+
+class MultipleChoiceQuizResponse(models.Model):
+	responseID = models.AutoField(primary_key=True)
+	quizID = models.ForeignKey(MultipleChoiceQuiz, null=False, blank=False)
+	user = models.ForeignKey(User, null=False, blank=False)
+	score = models.BooleanField(null=False, default=False)
+
+	def __str__(self):
+		return self.quizID.title + ": " + self.user.username
