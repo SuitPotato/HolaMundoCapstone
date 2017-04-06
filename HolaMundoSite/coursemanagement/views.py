@@ -1,4 +1,6 @@
 # Django Imports
+import random
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -178,23 +180,24 @@ def quiz_results(request, q, pk):
     # ALL BUT "dd" need to have Quiz db changed to their respective databases
     if q == "ma":
         quiz = Quiz.objects.get(quizID=pk)
-        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.toal}
+        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
         return render(request, 'coursemanagement/quizresults.html', context)
     elif q == "mc":
-        quiz = Quiz.objects.get(quizID=pk)
-        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.toal}
+        response = MultipleChoiceQuizResponse.objects.get(responseID=pk)
+        quiz = MultipleChoiceQuiz.objects.get(quizID=response.quizID.quizID)
+        context = {'title': quiz.title, 'score': response.score, 'total': 100}
         return render(request, 'coursemanagement/quizresults.html', context)
     elif q == "dd":
         quiz = Quiz.objects.get(quizID=pk)
-        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.toal}
+        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
         return render(request, 'coursemanagement/quizresults.html', context)
     elif q == "sa":
         quiz = Quiz.objects.get(quizID=pk)
-        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.toal}
+        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
         return render(request, 'coursemanagement/quizresults.html', context)
     elif q == "fb":
         quiz = Quiz.objects.get(quizID=pk)
-        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.toal}
+        context = {'title': quiz.title, 'score': quiz.score, 'total': quiz.total}
         return render(request, 'coursemanagement/quizresults.html', context)
     else:
         print("Shouldn't hit")
@@ -219,8 +222,6 @@ def create_multiple_choice_quiz(request):
 def create_multiple_choice_quiz_q(request, q, d):
     if request.method == 'POST':
         quiz = MultipleChoiceQuiz()
-        correctAnswers = quiz.CHOICES
-        difficulties = quiz.DIFFICULTIES
         answers = []
         for i in range(int(q)):
             answers.append(str(request.POST.get(str(int(i)+1)+"-answer")))
@@ -255,5 +256,27 @@ def create_multiple_choice_quiz_q(request, q, d):
 
 
 @login_required()
-def take_quiz(request):
-    return render(request, 'coursemanagement/multiplechoice.html')
+def take_quiz(request, quiz):
+
+    if request.method == 'POST':
+        quiz = MultipleChoiceQuiz.objects.get(quizID=quiz)
+        response = MultipleChoiceQuizResponse()
+        response.user = request.user
+        user_answer = request.POST.get('choice')
+        print(user_answer)
+        print(quiz.correctAnswer)
+        response.score = (user_answer == quiz.correctAnswer)
+        response.quizID = quiz
+        response.save()
+        print(response.responseID)
+        return HttpResponseRedirect('/quizresults/mc/' + str(response.responseID))
+
+    else:
+        quiz = MultipleChoiceQuiz.objects.get(quizID=quiz)
+        questions = [quiz.choiceOne, quiz.choiceTwo, quiz.choiceThree, quiz.choiceFour, quiz.choiceFive, quiz.choiceSix]
+        questions = [x for x in questions if x is not None]
+        print(questions)
+        random.shuffle(questions)
+        print(questions)
+        context = {'title': quiz.title, 'author': quiz.author, 'numChoices': quiz.numberOfChoices, 'questions': questions, 'difficulty': quiz.difficulty}
+        return render(request, 'coursemanagement/takemultiplechoicequiz.html', context)
