@@ -10,7 +10,7 @@ from coursemanagement.models import Lesson
 from coursemanagement.models import Course
 from coursemanagement.forms import LessonForm, CourseForm
 from UserSettingsPage.models import Preference
-from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz
+from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz, MultipleChoiceQuiz, MultipleChoiceQuizResponse
 
 # Import User
 from django.contrib.auth.models import User
@@ -198,3 +198,62 @@ def quiz_results(request, q, pk):
         return render(request, 'coursemanagement/quizresults.html', context)
     else:
         print("Shouldn't hit")
+
+
+@login_required()
+def create_multiple_choice_quiz(request):
+    if request.method == 'POST':
+        # if request.POST.get("savebutton") == "Save User info":
+        selected_difficulty = request.POST.get("quiz_difficulty")
+        selected_number_answers = request.POST.get("question_number")
+        return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
+    else:
+        number_of_options = MultipleChoiceQuiz.NUMBER_OF_CHOICES
+        difficulties = MultipleChoiceQuiz.DIFFICULTIES
+        context = {'choices': number_of_options, 'difficulties': difficulties}
+
+        return render(request, 'coursemanagement/multiplechoiceselect.html', context)
+
+
+@login_required()
+def create_multiple_choice_quiz_q(request, q, d):
+    if request.method == 'POST':
+        quiz = MultipleChoiceQuiz()
+        correctAnswers = quiz.CHOICES
+        difficulties = quiz.DIFFICULTIES
+        answers = []
+        for i in range(int(q)):
+            answers.append(str(request.POST.get(str(int(i)+1)+"-answer")))
+        print(answers)
+        try:
+            quiz.choiceOne = answers[0]
+            quiz.choiceTwo = answers[1]
+            quiz.choiceThree = answers[2]
+            quiz.choiceFour = answers[3]
+            quiz.choiceFive = answers[4]
+            quiz.choiceSix = answers[5]
+        except:
+            pass
+        quiz.title = request.POST.get("question-answer")
+        quiz.author = request.user
+        quiz.numberOfChoices = int(q)
+        quiz.correctAnswer = quiz.CHOICES[int(request.POST['correct-answer']) - 1][0]
+        quiz.difficulty = quiz.DIFFICULTIES[int(d)-1][0]
+        quiz.save()
+
+        return HttpResponseRedirect('/success/')
+    else:
+        questions = MultipleChoiceQuiz.CHOICES
+
+        list_questions = []
+        for item in range(int(q)):
+            list_questions.append(questions[item])
+
+        print(list_questions)
+        context = {'number_questions': list_questions}
+        return render(request, 'coursemanagement/multiplechoice.html', context)
+
+
+@login_required()
+def take_quiz(request):
+    return render(request, 'coursemanagement/multiplechoice.html')
