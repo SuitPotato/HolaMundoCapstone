@@ -19,16 +19,17 @@ from . import views
 
 urlpatterns = [
     url(r'^manage/$', views.manage),
-	url(r'^createlesson', views.lesson),
-	url(r'^createcourse', views.course),
-	url(r'^success', views.success),
-	url(r'^viewcourse/(\d+)/', views.viewcourse),	#Takes in a CourseID, check coursemanagement/views.py for more
-	url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', views.load_course, name='course_loader'),
-	url(r'^quizresults/(?P<q>[\w]+)/(?P<pk>[\w]+)$', views.quiz_results),
+    url(r'^createlesson', views.lesson),
+    url(r'^createcourse', views.course),
+    url(r'^success', views.success),
+    url(r'^viewcourse/(\d+)/', views.viewcourse),  # Takes in a CourseID, check coursemanagement/views.py for more
+    url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', views.load_course, name='course_loader'),
+    url(r'^quizresults/(?P<q>[\w]+)/(?P<pk>[\w]+)$', views.quiz_results),
+    url(r'^multiplechoice/$', views.create_multiple_choice_quiz),
+    url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', views.create_multiple_choice_quiz_q)
 
-	
-	#url(r'^create', views.create),
-	#url(r'^createcourse', views.course),
-	#url(r'^createquize', views.quiz),
-	
+    # url(r'^create', views.create),
+    # url(r'^createcourse', views.course),
+    # url(r'^createquize', views.quiz),
+
 ]
