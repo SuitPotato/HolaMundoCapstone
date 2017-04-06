@@ -33,6 +33,7 @@ class AnswerForm(ModelForm):
 	class Meta:
 		model = Answer
 		fields = ['answer',]
+		labels = {'answer': ''}
 		
 
 	# fields defined under form
