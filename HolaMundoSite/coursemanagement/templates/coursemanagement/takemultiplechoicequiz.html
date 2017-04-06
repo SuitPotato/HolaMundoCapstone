@@ -1,0 +1,53 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Multiple Choice {% endblock %}
+
+{% block content %}
+
+<form id="rendered-form" method="POST">
+    {% csrf_token %}
+    <div class="text-center">
+        <h1>
+            {{ title }}
+        </h1>
+    </div>
+    <div class="fb-radio form-group field-radio-group-multiple-choice text-center" >
+        <label for="radio-group-multiple-choice" class="fb-radio-group-label" >
+            Created by {{ author }}
+        </label>
+        <div class="container-fluid" style="padding-top: 125px;">
+            <div class="row" >
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-5 text-left">
+                    <div class="radio-group">
+                        {% for choice in questions %}
+                            <label class="radio"> <input type="radio" name="choice" id="{{ choice }}" value="{{ choice }}"> {{ choice }} </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-right">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                </div>
+
+                <div class="col-md-2">
+                    <div class="fb-submit form-group field-button-1491436558146" style="position: absolute; bottom: 0; right: 0;">
+                        <button type="submit" class="button-input btn btn-success" name="button-1491436558146" value="submit-button" id="button-1491436558146">Submit</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
