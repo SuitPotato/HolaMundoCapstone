@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'UserSettingsPage',
     'Video_page',
     'coursemanagement',
+    'fillintheblank',
+    'ShortAnswer',
     'youtube',
 	'matching',
 	'DragAndDropQuiz',
