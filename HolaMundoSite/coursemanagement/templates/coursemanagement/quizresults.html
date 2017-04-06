@@ -14,10 +14,10 @@
                 <div class="col-md-6">
                     <div class="panel-success">
                         <div class="panel-heading">
-                            <div class="center"> Thanks for taking the "{{ title }} quiz, {{ user.username }}! </div>
+                            <div class="center"> Thanks for taking the "{{ title }}" quiz, {{ user.username }}! </div>
                         </div>
                         <div class="panel-body">
-                            <div class="center"> You scored a {{ score }} out of {{ total }}!</div>
+                            <div class="center"> You scored a {% if score %} 100 {% else %} 0 {% endif %} out of {{ total }}!</div>
                         </div>
                     </div>
                 </div>

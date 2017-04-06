@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', views.load_course, name='course_loader'),
     url(r'^quizresults/(?P<q>[\w]+)/(?P<pk>[\w]+)$', views.quiz_results),
     url(r'^multiplechoice/$', views.create_multiple_choice_quiz),
-    url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', views.create_multiple_choice_quiz_q)
+    url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', views.create_multiple_choice_quiz_q),
+    url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', views.take_quiz)
 
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),
