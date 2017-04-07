@@ -33,6 +33,7 @@ class AnswerForm(ModelForm):
 		# Based off Model: Short Answer/Essay Answer
 		model = Answer 
 		fields = ['answer',]
+		labels = {'answer': ''}
 		widgets = {'answer': Textarea(attrs={'cols': 30, 'rows': 3}),
 				}
 

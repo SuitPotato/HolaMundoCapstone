@@ -16,11 +16,24 @@
 <h1>{{title}}</h1>
 <h2>{{ question }}</h2>
   
-   </br> <form method="POST" class="AnswerForm" action="">
+  <div class="container-fluid">
+    <center><label><font size="14"><b>Answer:</b></font></label></center>
+    <!-- </br> -->
+    <center>
+    <div class="col-md-26">
+    </br> <form method="POST" class="AnswerForm" action="">
+      {% csrf_token %}
+      {{form}}</br>
+      </br><input type="submit" value="Submit" align="center"/>
+    </form>
+    </div>
+  </center>
+  </div>
+<!--    </br> <form method="POST" class="AnswerForm" action="">
 	   {% csrf_token %}
 		{{form}}</br>
     </br><input type="submit" value="Submit" align="center"/>
-    </form>
+    </form> -->
 </center>
 </html>
 {% endblock %}
