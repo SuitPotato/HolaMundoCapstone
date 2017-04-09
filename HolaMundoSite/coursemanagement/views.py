@@ -281,15 +281,33 @@ def take_quiz(request, quiz):
         context = {'title': quiz.title, 'author': quiz.author, 'numChoices': quiz.numberOfChoices, 'questions': questions, 'difficulty': quiz.difficulty}
         return render(request, 'coursemanagement/takemultiplechoicequiz.html', context)
 		
-		
+
+
 def create_fill_in_the_blank(request):
 	pass
 	
 def create_matching(request):
 	pass
 	
+# Short Answer Question Overall Structure
+	# Question Prompt
+	# Answer 
+		
+	
 def create_short_answer(request):
-	pass
+	if request.method == 'POST':
+		quiz = ShortAnswerQuiz()			
+		quiz.title = request.POST.get("short-answer-title")
+		quiz.author = request.user
+		quiz.questionPrompt = request.POST.get("question-area")
+		quiz.correctAnswer = request.POST.get("correct-answer")
+		quiz.difficulty = request.POST.get("short-answer-difficulty")
+		quiz.save()
+		
+		return HttpResponseRedirect('/success/')
+	else:
+		return render(request, 'coursemanagement/shortanswer.html', context)
+	
 	
 def create_drag_and_drop(request):
 	pass
