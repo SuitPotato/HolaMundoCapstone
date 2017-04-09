@@ -13,6 +13,7 @@ from coursemanagement.models import Course
 from coursemanagement.forms import LessonForm, CourseForm
 from UserSettingsPage.models import Preference
 from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz, MultipleChoiceQuiz, MultipleChoiceQuizResponse
+from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse
 
 # Import User
 from django.contrib.auth.models import User
@@ -306,7 +307,7 @@ def create_short_answer(request):
 		
 		return HttpResponseRedirect('/success/')
 	else:
-		return render(request, 'coursemanagement/shortanswer.html', context)
+		return render(request, 'coursemanagement/shortanswer.html')
 	
 	
 def create_drag_and_drop(request):
