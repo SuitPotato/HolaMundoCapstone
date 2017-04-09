@@ -280,3 +280,16 @@ def take_quiz(request, quiz):
         print(questions)
         context = {'title': quiz.title, 'author': quiz.author, 'numChoices': quiz.numberOfChoices, 'questions': questions, 'difficulty': quiz.difficulty}
         return render(request, 'coursemanagement/takemultiplechoicequiz.html', context)
+		
+		
+def create_fill_in_the_blank(request):
+	pass
+	
+def create_matching(request):
+	pass
+	
+def create_short_answer(request):
+	pass
+	
+def create_drag_and_drop(request):
+	pass

@@ -25,10 +25,29 @@ urlpatterns = [
     url(r'^viewcourse/(\d+)/', views.viewcourse),  # Takes in a CourseID, check coursemanagement/views.py for more
     url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', views.load_course, name='course_loader'),
     url(r'^quizresults/(?P<q>[\w]+)/(?P<pk>[\w]+)$', views.quiz_results),
+	
+	# Multiple Choice URL's
+	
     url(r'^multiplechoice/$', views.create_multiple_choice_quiz),
     url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', views.create_multiple_choice_quiz_q),
-    url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', views.take_quiz)
+    url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', views.take_quiz),
+	
+	# Fill in the Blank URL's
 
+	url(r'^fillintheblank/$', views.create_fill_in_the_blank),
+	
+	# Matching URL's
+	
+	url(r'^matching/$', views.create_matching),
+	
+	# Short Answer URL's
+	
+	url(r'^shortanswer/$', views.create_short_answer),
+	
+	# Drag and Drop URL's
+	
+	url(r'^draganddrop/$', views.create_drag_and_drop),
+	
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),
     # url(r'^createquize', views.quiz),
