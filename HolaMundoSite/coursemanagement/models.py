@@ -172,7 +172,7 @@ class MultipleChoiceQuiz(models.Model):
 class ShortAnswerQuiz(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
-	title = models.CharField(max_length=100)
+	title = models.CharField(max_length=100, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
 	
 	DIFFICULTIES = (
@@ -183,8 +183,8 @@ class ShortAnswerQuiz(models.Model):
 	
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
 	
-	questionPrompt = models.CharField(max_length = 300, null = False, blank = False)
-	correctAnswer = models.CharField(max_length =  50)
+	questionPrompt = models.CharField(max_length = 300, null=False, blank=False)
+	correctAnswer = models.CharField(max_length =  50, null=False, blank=False)
 	
 	def __str__(self):
 		return self.title
