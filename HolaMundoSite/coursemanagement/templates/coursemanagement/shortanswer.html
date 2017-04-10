@@ -1,0 +1,66 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Short Answer {% endblock %}
+
+{% block content %}
+
+	<div class="text-center" style="padding-bottom: 25px;">
+        <h1>
+            Short Answer Quiz Creator
+        </h1>
+    </div>
+<form id="rendered-form" method="POST">
+	{% csrf_token %}
+	<div class="">
+		<h1 type="h1" class="header" name="" id="">
+			Short Answer Quiz Creator
+		</h1>
+	</div>
+	
+	<div class="fb-text form-group field-short-answer-title">
+		<label for="short-answer-title" class="fb-text-label">
+			Quiz Title  
+		</label> 
+		<input type="text" placeholder="Title" class="form-control" name="short-answer-title" maxlength="100" id="short-answer-title">
+	</div>
+	
+	<div class="fb-select form-group field-short-answer-difficulty">
+		<label for="short-answer-difficulty" class="fb-select-label">
+			Difficulty  
+		</label>
+		<select type="select" class="form-control" name="short-answer-difficulty" id="short-answer-difficulty">
+			<option value="1" selected="true">
+				Beginner
+			</option>
+			
+			<option value="2">
+				Intermediate
+			</option>
+			
+			<option value="3">
+				Advanced
+			</option>
+		</select>
+	</div>
+	
+	<div class="fb-undefined form-group field-textarea">
+		<label for="textarea" class="fb-textarea-label">
+			Text Area  </label>
+		<textarea type="textarea" placeholder="Insert your text here." class="form-control" name="question-area" maxlength="300" id="question-area"></textarea>
+	</div>
+	
+	<div class="fb-text form-group field-correct-answer">
+		<label for="correct-answer" class="fb-text-label">
+			Correct Answer  
+		</label> 
+		<input type="text" placeholder="Correct Answer" class="form-control" name="correct-answer" maxlength="50" id="correct-answer">
+	</div>
+	
+	<div class="fb-submit form-group field-submit-button">
+		<button type="submit" class="button-input btn btn-default" name="submit-button" style="default" id="submit-button">
+			Submit
+		</button>
+	</div>
+</form>
+
+{% endblock %}

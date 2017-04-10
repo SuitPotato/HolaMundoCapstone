@@ -13,6 +13,7 @@ from coursemanagement.models import Course
 from coursemanagement.forms import LessonForm, CourseForm
 from UserSettingsPage.models import Preference
 from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz, MultipleChoiceQuiz, MultipleChoiceQuizResponse
+from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse
 
 # Import User
 from django.contrib.auth.models import User
@@ -280,3 +281,62 @@ def take_quiz(request, quiz):
         print(questions)
         context = {'title': quiz.title, 'author': quiz.author, 'numChoices': quiz.numberOfChoices, 'questions': questions, 'difficulty': quiz.difficulty}
         return render(request, 'coursemanagement/takemultiplechoicequiz.html', context)
+		
+
+
+def create_fill_in_the_blank(request):
+	pass
+	
+def create_matching(request):
+	pass
+	
+# Short Answer Question Overall Structure
+	# Question Prompt
+	# Answer 
+		
+	
+def create_short_answer(request):
+	if request.method == 'POST':
+		quiz = ShortAnswerQuiz()			
+		quiz.title = request.POST.get("short-answer-title")
+		quiz.author = request.user
+		quiz.questionPrompt = request.POST.get("question-area")
+		quiz.correctAnswer = request.POST.get("correct-answer")
+		quiz.difficulty = request.POST.get("short-answer-difficulty")
+		quiz.save()
+		
+		return HttpResponseRedirect('/success/')
+	else:
+		return render(request, 'coursemanagement/shortanswer.html')
+
+def take_short_answer(request, id):
+	if request.method == 'POST':
+		# The actual quiz iteslf being referenced 
+		quiz = ShortAnswerQuiz.objects.get(quizID = id)
+		# Creating a response model
+		response = ShortAnswerQuizResponse()
+		# Creating a link to the appropriate quiz
+		response.quizID = quiz
+		# Grabbing the current session user storing it.
+		response.user = request.user
+		# Grabbing the correct answer and user answer
+		correct_answer = quiz.correctAnswer
+		user_answer = request.POST.get("user-input")
+		
+		# Stripping all spaces and lowering, checking if equal
+		if ((user_answer.replace(" ", "")).lower() == (correct_answer.replace(" ", "")).lower() ):
+			response.score = 1
+		else:
+			response.score = 0
+		response.save()
+		
+		# Change to render score redirect later
+		return HttpResponseRedirect('/success/')
+		
+	else:
+		quiz = ShortAnswerQuiz.objects.get(quizID = id)
+		context = {'title':quiz.title, 'author':quiz.author, 'question':quiz.questionPrompt}
+		return render(request, 'coursemanagement/takeshortanswer.html', context)
+		
+def create_drag_and_drop(request):
+	pass
