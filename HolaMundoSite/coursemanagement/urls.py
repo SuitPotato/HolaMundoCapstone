@@ -43,6 +43,7 @@ urlpatterns = [
 	# Short Answer URL's
 	
 	url(r'^shortanswer/$', views.create_short_answer),
+	url(r'^shortanswer/(\d+)/', views.take_short_answer),
 	
 	# Drag and Drop URL's
 	
