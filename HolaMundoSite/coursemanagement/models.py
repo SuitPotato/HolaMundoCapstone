@@ -191,12 +191,12 @@ class ShortAnswerQuiz(models.Model):
 		
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
-	quizId = models.ForeignKey(MultipleChoiceQuiz, null = False, blank = False)
+	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)
 	user = models.ForeignKey(User, null = False, blank = False)
-	#score = models.IntegerField()
+	score = models.IntegerField()
 	
 	def __str__(self):
-		return self.quizID.title + ": " + self.user.username + ": " + self.responseID
+		return self.quizID.title + ": " + self.user.username
 
 
 class MultipleChoiceQuizResponse(models.Model):
