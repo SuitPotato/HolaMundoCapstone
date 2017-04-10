@@ -8,11 +8,14 @@
 
 <div class="container">
     <h1>Profile</h1>
+
+    {% if notification != null %}
     <div class="alert alert-success alert-dismissable">
       <a class="panel-close close" data-dismiss="alert">×</a>
-      <i class="fa fa-coffee"></i>
-      This is an <strong>.alert</strong>. Use this to show important messages to the user.
+      {{ user.first_name }}{{ notification }}
     </div>
+
+    {% endif %}
   	<hr>
 	<div class="row">
       <!-- left column -->

@@ -72,7 +72,8 @@ def view_my_profile(request):
                 f = form.save(commit=False)
                 f.username = name
                 f.save()
-                return render(request, 'UserSettingsPage/myProfile.html')
+                context = {'notification': ', your user settings have been successfully updated.'}
+                return render(request, 'UserSettingsPage/myProfile.html', context)
 
         elif request.POST.get("savebutton") == "Save Password":
             print('2')
@@ -81,7 +82,8 @@ def view_my_profile(request):
             if form.is_valid():
                 user = form.save()
                 update_session_auth_hash(request, user)
-                return HttpResponseRedirect('/myProfile/')
+                context = {'notification': ', your password been successfully updated.'}
+                return HttpResponseRedirect('/myProfile/', context)
 
             else:
                 return HttpResponseRedirect('/myProfile/')
@@ -94,7 +96,9 @@ def view_my_profile(request):
             prefs.defaultLanguage = prefs.LANGUAGES[int(request.POST['user_language'])-1][0]
             prefs.difficulty = prefs.DIFFICULTIES[int(request.POST['user_difficulty'])-1][0]
             prefs.save()
-            return HttpResponseRedirect('/myProfile/')
+
+            context = {'notification': ', your user preferences have been successfully updated.'}
+            return HttpResponseRedirect('/myProfile/', context)
 
     else:
         try:
