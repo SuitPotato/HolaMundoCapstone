@@ -31,7 +31,6 @@
             padding: 10px;
             border: 3px solid #73AD21;
             position: relative;
-            left: 80px;
         }
 
         .video-line {
@@ -43,7 +42,6 @@
     body,
     html {
       color: #ecf0f1;
-      overflow-x: hidden;
       font-family: 'Open Sans', sans-serif;
       min-height: 100vh;
       display: -webkit-box;
@@ -87,7 +85,6 @@
       width: 100%;
     }
     .row {
-      overflow: hidden;
     }
     .row__inner {
       -webkit-transition: 450ms -webkit-transform;
@@ -212,74 +209,70 @@
     </div>
 
 {% if prefs.lastVid != null and prefs.secondLastVid != null and prefs.thirdLastVid != null and prefs.fourthLastVid != null%}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <h2 class="text">
-                    Last video watched
-                </h2>
-            </div>
-
-            <div class="col-md-6">
-            </div>
-
-            <div class="col-md-3">
-                <h2 class="text-center text">
-                    Other recent videos
-                </h2>
-            </div>
-        </div>
-    </div>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <a href="/video/{{ prefs.lastVid.link }}"> <img src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last" /> </a>
+            <div class="col-md-12 col-lg-6">
+                <div class="row">
+                    <h2 class="text">
+                        Last video watched
+                    </h2>
+                </div>
+                <div class="row" align="center">
+                    <a href="/video/{{ prefs.lastVid.link }}"> <img style="max-width:100%;" src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last" /> </a>
+                </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="contain" >
-                    <div class="row__inner">
-                        <div class="tile" >
-                            <a href="/video/{{ prefs.secondLastVid.link }}" style="color: #ecf0f1;">
-                                <div class="tile__media">
-                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
-                                </div>
-
-                                <div class="tile__details">
-                                    <div class="tile__title" >
-                                        {{ prefs.secondLastVid.title }}
+            <div class="col-md-12 col-lg-6">
+                <div class="row">
+                    <h2 class="text-center text">
+                        Other recent videos
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="contain" >
+                        <div class="row__inner">
+                            <div class="tile" >
+                                <a href="/video/{{ prefs.secondLastVid.link }}" style="color: #ecf0f1;">
+                                    <div class="tile__media">
+                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
 
-                        <div class="tile" >
-                            <a href="/video/{{ prefs.thirdLastVid.link }}" style="color: #ecf0f1;">
-                                <div class="tile__media">
-                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
-                                </div>
-
-                                <div class="tile__details">
-                                    <div class="tile__title" >
-                                        {{ prefs.thirdLastVid.title }}
+                                    <div class="tile__details">
+                                        <div class="tile__title" >
+                                            {{ prefs.secondLastVid.title }}
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
 
-                        <div class="tile" >
-                            <a href="/video/{{ prefs.fourthLastVid.link }}" style="color: #ecf0f1;">
-                                <div class="tile__media">
-                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
-                                </div>
-
-                                <div class="tile__details">
-                                    <div class="tile__title" >
-                                        {{ prefs.fourthLastVid.title }}
+                            <div class="tile" >
+                                <a href="/video/{{ prefs.thirdLastVid.link }}" style="color: #ecf0f1;">
+                                    <div class="tile__media">
+                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
                                     </div>
-                                </div>
-                            </a>
+
+                                    <div class="tile__details">
+                                        <div class="tile__title" >
+                                            {{ prefs.thirdLastVid.title }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="tile" >
+                                <a href="/video/{{ prefs.fourthLastVid.link }}" style="color: #ecf0f1;">
+                                    <div class="tile__media">
+                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                    </div>
+
+                                    <div class="tile__details">
+                                        <div class="tile__title" >
+                                            {{ prefs.fourthLastVid.title }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
