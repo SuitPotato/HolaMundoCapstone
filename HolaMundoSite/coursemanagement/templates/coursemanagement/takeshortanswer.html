@@ -1,0 +1,40 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Short Answer {% endblock %}
+
+{% block content %}
+
+<div class="">
+	<h1 type="h1" class="header" name="" id="">
+		{{ title }}
+	</h1>
+</div>
+
+<div class="">
+	<h2 type="h2" class="header" name="" id="">
+		{{ author}}
+	</h2>
+</div>
+
+
+<form id="rendered-form" method = "POST">
+	{% csrf_token %}
+	<div class="">
+		<p type="p" class="paragraph" name="" id="">
+			{{ question }}
+		</p>
+	</div>
+	<div class="fb-text form-group field-user-input">
+		<label for="user-input" class="fb-text-label">
+			User Input  
+		</label> 
+		<input type="text" placeholder="Enter your response here." class="form-control" name="user-input" maxlength="50" id="user-input">
+	</div>
+	<div class="fb-submit form-group field-button">
+		<button type="submit" class="button-input btn btn-default" name="button" style="default" id="button">
+			Submit
+		</button>
+	</div>
+</form>
+
+{% endblock %}
