@@ -61,6 +61,7 @@ def view_profile(request):
 
 @login_required()
 def view_my_profile(request):
+    name = request.user.username
     if request.method == 'POST':
         print(request.POST)
         if request.POST.get("savebutton") == "Save User info":
@@ -68,7 +69,9 @@ def view_my_profile(request):
             form = EditProfileForm(request.POST, instance=request.user)
 
             if form.is_valid():
-                form.save()
+                f = form.save(commit=False)
+                f.username = name
+                f.save()
                 return render(request, 'UserSettingsPage/myProfile.html')
 
         elif request.POST.get("savebutton") == "Save Password":
