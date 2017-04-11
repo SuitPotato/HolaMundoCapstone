@@ -12,7 +12,11 @@
     {% if notification != null %}
     <div class="alert alert-success alert-dismissable">
       <a class="panel-close close" data-dismiss="alert">×</a>
-      {{ user.first_name }}{{ notification }}
+        {% if user.first_name == '' %}
+            {{ user.username }}{{ notification }}
+        {% else %}
+            {{ user.first_name }}{{ notification }}
+        {% endif %}
     </div>
 
     {% endif %}
