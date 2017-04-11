@@ -75,7 +75,7 @@ def course(request):
     else:
         form = CourseForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})
-
+	
 @login_required()
 def success(request):
     return render(request, 'coursemanagement/success.html')
@@ -337,6 +337,46 @@ def take_short_answer(request, id):
 		quiz = ShortAnswerQuiz.objects.get(quizID = id)
 		context = {'title':quiz.title, 'author':quiz.author, 'question':quiz.questionPrompt}
 		return render(request, 'coursemanagement/takeshortanswer.html', context)
-		
+
+# Returns a redirect with difficulty and number of words		
 def create_drag_and_drop(request):
-	pass
+	if request.method == 'POST':
+		quiz_difficulty = request.POST.get("quiz_difficulty")
+		word_count = request.POST.get("word_count")
+		return HttpResponseRedirect('/dragndrop/' + word_count + '/' + quiz_difficulty)
+	else:
+		return render(request, 'coursemanagement/dragndrop.html')
+		
+def create_drag_and_drop_two(request, words, difficulty):
+	if request.method == 'POST':
+		quiz = DragAndDropQuiz()
+		pass
+		# Pass this information into the model
+	else:
+		# Display the appropriate number of words to fill out
+		pass
+
+		@login_required()
+# Pass in the Lesson later along with it later.
+def create_quiz(request)
+	if request.method == 'POST':
+		quiz = response.POST.get("select_quiz")
+		if quiz == 1:
+			# Short Answer
+			return HttpResponseRedirect('/shortanswer/')
+		elif quiz == 2:
+			# Multiple Choice
+			return HttpResponseRedirect('/multiplechoice/')
+		elif quiz == 3:
+			# Matching
+			pass
+		elif quiz == 4:
+			# Sentence Drag & Drop
+			pass
+		elif quiz == 5:
+			# Video Drag & Drop
+			pass
+		else:
+			return render(request, "coursemanagement/createquiz.html")
+	else:
+		return render(request, "coursemanagement/createquiz.html")
