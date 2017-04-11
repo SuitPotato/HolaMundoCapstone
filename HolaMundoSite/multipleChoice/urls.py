@@ -17,11 +17,11 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-    url(r'^multipleChoice/$', views.quiz),
-    url(r'^multipleChoice/$', views.quiz, name='quiz'),
+    url(r'^multipleChoice2/$', views.quiz),
+    url(r'^multipleChoice2/$', views.quiz, name='quiz'),
     # url(r'^multipleChoice/submit/$', views.submit, name='submit'),
     # url(r'^takeQuiz/$', views.takeQuiz, name = 'takeQuiz')
-    url(r'^multiple_Choice/(?P<quizID>[\w]+)/$', views.view_takeQuiz, name='view_takeQuiz'),
+    url(r'^multiple_Choice2/(?P<quizID>[\w]+)/$', views.view_takeQuiz, name='view_takeQuiz'),
     # url(r'^score/(?P<quizID>[\w]+)/$', views.score, name='score'),
     # url(r'^results/$', views.results, name = 'results'),
     # url(r'^(?P<quizID>[0-9]+)/results/$', views.results, name='results')
