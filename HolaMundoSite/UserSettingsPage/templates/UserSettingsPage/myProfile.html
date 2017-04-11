@@ -10,10 +10,18 @@
     <h1>Profile</h1>
 
     {% if notification != null %}
-    <div class="alert alert-success alert-dismissable">
-      <a class="panel-close close" data-dismiss="alert">×</a>
-      {{ user.first_name }}{{ notification }}
-    </div>
+	
+		{% if type == 'success' %}
+			<div class="alert alert-success alert-dismissable">
+			  <a class="panel-close close" data-dismiss="alert">×</a>
+			  {{ user.first_name }}{{ notification }}
+			</div>
+		{% else %}
+			<div class="alert alert-danger alert-dismissable">
+			  <a class="panel-close close" data-dismiss="alert">×</a>
+			  {{ user.first_name }}{{ notification }}
+			</div>
+		{% endif %}
 
     {% endif %}
   	<hr>

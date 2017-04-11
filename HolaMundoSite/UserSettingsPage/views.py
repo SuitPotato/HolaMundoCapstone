@@ -62,50 +62,58 @@ def view_profile(request):
 @login_required()
 def view_my_profile(request):
     name = request.user.username
+    try:
+        prefs = Preference.objects.get(user=request.user)
+    except:
+        prefs = Preference.objects.create(user=request.user)
+        prefs = Preference.objects.get(user=request.user)
+
     if request.method == 'POST':
         print(request.POST)
         if request.POST.get("savebutton") == "Save User info":
-            print('1')
             form = EditProfileForm(request.POST, instance=request.user)
-
             if form.is_valid():
                 f = form.save(commit=False)
                 f.username = name
                 f.save()
-                context = {'notification': ', your user settings have been successfully updated.'}
+                context = {'type': 'success', 'notification': ', your user settings have been successfully updated.',
+                           'user': request.user, 'prefs': prefs}
                 return render(request, 'UserSettingsPage/myProfile.html', context)
-
+            else:
+                context = {'type': 'danger', 'notification': ', problem updating your user info. Try again later.',
+                           'user': request.user, 'prefs': prefs}
+                return render(request, 'UserSettingsPage/myProfile.html', context)
         elif request.POST.get("savebutton") == "Save Password":
-            print('2')
             form = SetPasswordForm(request.user, request.POST)
-
             if form.is_valid():
                 user = form.save()
                 update_session_auth_hash(request, user)
-                context = {'notification': ', your password been successfully updated.'}
-                return HttpResponseRedirect('/myProfile/', context)
-
+                context = {'type': 'success', 'notification': ', your password been successfully updated.',
+                           'user': request.user, 'prefs': prefs}
+                return render(request, 'UserSettingsPage/myProfile.html', context)
             else:
-                return HttpResponseRedirect('/myProfile/')
-
+                context = {'type': 'danger',
+                           'notification': ', problem updating your password. Try using a more complex password.',
+                           'user': request.user, 'prefs': prefs}
+                return render(request, 'UserSettingsPage/myProfile.html', context)
         elif request.POST.get("savebutton") == "Save User Prefs":
-            prefs = Preference.objects.get(user=request.user)
-            print(prefs.LANGUAGES)
-            print(request.POST['user_language'])
-            print(request.POST['user_difficulty'])
-            prefs.defaultLanguage = prefs.LANGUAGES[int(request.POST['user_language'])-1][0]
-            prefs.difficulty = prefs.DIFFICULTIES[int(request.POST['user_difficulty'])-1][0]
-            prefs.save()
-
-            context = {'notification': ', your user preferences have been successfully updated.'}
-            return HttpResponseRedirect('/myProfile/', context)
+            try:
+                prefs = Preference.objects.get(user=request.user)
+                prefs.defaultLanguage = prefs.LANGUAGES[int(request.POST['user_language']) - 1][0]
+                prefs.difficulty = prefs.DIFFICULTIES[int(request.POST['user_difficulty']) - 1][0]
+                prefs.save()
+                context = {'notification': ', your user preferences have been successfully updated.',
+                           'user': request.user, 'prefs': prefs}
+                return render(request, 'UserSettingsPage/myProfile.html', context)
+            except:
+                context = {'type': 'danger', 'notification': ', problem updating your preferences. Try again later.',
+                           'user': request.user, 'prefs': prefs}
+                return render(request, 'UserSettingsPage/myProfile.html', context)
 
     else:
         try:
             prefs = Preference.objects.get(user=request.user)
             args = {'user': request.user, 'prefs': prefs}
-            print(prefs.difficulty)
-            print(prefs.defaultLanguage)
             return render(request, 'UserSettingsPage/myProfile.html', args)
         except:
             prefs = Preference.objects.create(user=request.user)
