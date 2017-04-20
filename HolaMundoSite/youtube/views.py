@@ -33,6 +33,12 @@ def index(request):
     form = VidUploadForm()
     return render(request, 'youtube/index.html', {'form': form})
 
+
+@login_required()
+def indexlink(request):
+    return render(request, 'youtube/index-link.html')
+
+
 @login_required()
 def uploaded(request):
     if request.method == 'POST':
