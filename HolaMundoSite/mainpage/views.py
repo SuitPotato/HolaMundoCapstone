@@ -62,6 +62,22 @@ def results(request, tag='all'):
 		# If any of this functionality is to be changed, change it below
         videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
         context = {"videos": videos}
+
+        # Show 10 videos for per page
+        paginator = Paginator(videos, 10)
+        page = request.GET.get('page')
+
+        try:
+            videos = paginator.page(page)
+
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page
+            videos = paginator.page(1)
+
+        except EmptyPage:
+            # If page is out of range, deliver last page of results
+            videos = paginator.page(paginator.num_pages) 
+
         return render(request, 'mainpage/results.html', context)
 
 
