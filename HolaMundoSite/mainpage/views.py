@@ -2,6 +2,7 @@ import random
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.models import User
@@ -35,6 +36,22 @@ def results(request, tag='all'):
 		# If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
         videos = Lesson.objects.all()
         context = {"videos": videos}
+
+        # Show 10 videos for per page
+        paginator = Paginator(videos, 10)
+        page = request.GET.get('page')
+
+        try:
+            videos = paginator.page(page)
+
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page
+            videos = paginator.page(1)
+
+        except EmptyPage:
+            # If page is out of range, deliver last page of results
+            videos = paginator.page(paginator.num_pages)
+
         return render(request, 'mainpage/results.html', context)
 	
 	# If the user searched a specific query
