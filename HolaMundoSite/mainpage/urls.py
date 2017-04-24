@@ -30,5 +30,6 @@ urlpatterns = [
 	url(r'^register/$', views.register),
     url(r'^UserSettingsPage/', include('UserSettingsPage.urls')),
 	url(r'^registered/$', views.registered),
-	url(r'^myHolaMundo/$', views.myHolaMundo)
+	url(r'^myHolaMundo/$', views.myHolaMundo),
+	url(r'^score/(?P<userID>[/w]+)$', views.score, name="score"),
 ]

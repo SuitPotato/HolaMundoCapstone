@@ -23,6 +23,19 @@ def index(request):
 def drag(request):
     return render(request, 'mainpage/sentenceTwo.html')
 
+# this view is to show all quiz scores for the User logged in
+@login_required()
+def score(request):
+    context = RequestContext(request)
+
+    # if request method is GET, then return list of scores for user
+    if request.method == 'GET':
+        # set data to objects in Response model
+        data = Response.objects.all()
+
+    else:
+        pass
+    return render(request, 'scores.html', {'data': data})
 
 def results(request, tag='all'):
 	
