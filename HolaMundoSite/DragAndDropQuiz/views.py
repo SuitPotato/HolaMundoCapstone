@@ -48,7 +48,7 @@ def view_sentence_dragTwo(request, title):
 
 @login_required()
 def create_sentence_drag(request):
-	if(request.user.groups.filter(name='Content Creator').exists()):
+	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			# Form is a variable that contains the source form
 			form = SentenceForm(request.POST)
