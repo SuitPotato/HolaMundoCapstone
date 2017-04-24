@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^sentence/(?P<title>[\w]+)$', views.view_sentence_drag, name='view_sentence'),
     url(r'^sentenceTwo/(?P<title>[\w]+)$', views.view_sentence_dragTwo, name='view_sentence2'),
 	url(r'^createsentence/$', views.create_sentence_drag, name = 'create_sentence'),
+	url(r'^denied/$', views.denied, name='denied'),
 ]

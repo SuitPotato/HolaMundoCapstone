@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html lang="en" >
+    <html lang="en">
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,6 +85,8 @@
                         <button class="btn btn-default" id="search_submit" type="submit"> Search</button>
                     </form>
 					<ul class="nav navbar-nav navbar-right">
+					{% load base_extras %}
+					{% if request.user|has_group:"Content Creator" %}
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
@@ -99,6 +101,7 @@
                                 </li>
 							</ul>
 						</li>
+					{% endif %}
 						<li>
 							<a href='/myHolaMundo'>My Hola Mundo</a>
 						</li>
