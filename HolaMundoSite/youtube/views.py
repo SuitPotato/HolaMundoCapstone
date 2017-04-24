@@ -1,6 +1,7 @@
 import os
 import httplib
 from argparse import Namespace
+from urlparse import urlparse, parse_qs
 
 import httplib2
 import random
@@ -36,11 +37,51 @@ def index(request):
 
 @login_required()
 def indexlink(request):
-    return render(request, 'youtube/index-link.html')
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        video_link = request.POST.get("link")
+        tags = request.POST.get("tags")
+        selected_difficulty = request.POST.get("video-difficulty")
+
+        query = urlparse(video_link)
+        if query.hostname == 'youtu.be':
+            link = query.path[1:]
+        if query.hostname in ('www.youtube.com', 'youtube.com'):
+            if query.path == '/watch':
+                p = parse_qs(query.query)
+                link = p['v'][0]
+            if query.path[:7] == '/embed/':
+                link = query.path.split('/')[2]
+            if query.path[:3] == '/v/':
+                link = query.path.split('/')[2]
+        ourlink = generateLink()
+        lesson = Lesson(title=title, youtube=link, author=request.user, link=ourlink, tags=tags,
+                        difficulty=selected_difficulty)
+        lesson.save()
+        time.sleep(2)
+        return HttpResponseRedirect('/video/' + ourlink)
+    else:
+        return render(request, 'youtube/index-link.html')
 
 
 @login_required()
 def uploaded(request):
+    if request.method == 'POST':
+        form = VidUploadForm(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            request.description = form.cleaned_data["description"]
+            toYoutube(request.FILES['file'], request)
+
+            # change HttpResponse to a page where user can edit information like tags, descriptions, etc
+            return HttpResponseRedirect('/results/?query=beginner')
+        #else:
+            #form = VidUploadForm()
+            #return render(request, 'youtube/index.html', {'form': form})
+
+
+@login_required()
+def uploadedLink(request):
     if request.method == 'POST':
         form = VidUploadForm(request.POST, request.FILES)
         print(form)
@@ -209,6 +250,16 @@ def initialize_upload(youtube, options, request):
 
 # This method implements an exponential backoff strategy to resume a
 # failed upload.
+def generateLink():
+    chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    while True:
+        value = "".join(random.choice(chars) for c in range(10))
+        try:
+            duplicate_key_video = Lesson.objects.get(link=value)
+            value = "".join(random.choice(chars) for c in range(10))
+        except:
+            return value
+
 def resumable_upload(insert_request, request):
     response = None
     error = None
@@ -224,7 +275,7 @@ def resumable_upload(insert_request, request):
                     p.title = response['snippet']['title']
                     p.tags = request.description
                     p.youtube = response['id']
-                    p.link = 558
+                    p.link = generateLink();
                     p.author = request.user
                     p.save()
                 else:
