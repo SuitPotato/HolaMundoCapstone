@@ -17,6 +17,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^youtube', views.index),
-    url(r'^upload/$', views.uploaded, name="upload")
+    url(r'^youtube/$', views.index),
+    url(r'^upload/$', views.uploaded, name="upload"),
+    url(r'^youtubelink/$', views.indexlink, name="indexlink")
 ]

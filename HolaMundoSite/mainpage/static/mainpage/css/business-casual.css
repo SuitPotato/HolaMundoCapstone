@@ -41,14 +41,6 @@ hr {
     display: none;
 }
 
-.navbar-brand {
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.navbar-nav {
-}
 
 .img-full {
     min-width: 100%;
