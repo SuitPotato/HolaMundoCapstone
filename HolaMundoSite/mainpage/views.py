@@ -97,10 +97,10 @@ def register(request):
 			# Create user if data put in register form is valid
             user = User.objects.create_user(username=form.cleaned_data['username'], password=form.cleaned_data['password1'], email=form.cleaned_data['email'])
 			
-			#gets chosen group from user selected in choicefield (drop down menu)
+			#gets chosen group that user selected in choicefield (drop down menu)
             g = Group.objects.get(name=form.cleaned_data['groups'])
 			
-			#adds user to selected
+			#adds user to selected group in database
             g.user_set.add(user)
 			
 			# Create preferences for the new user, preferences are a separate table than users, and have user as a foreign key attribute
