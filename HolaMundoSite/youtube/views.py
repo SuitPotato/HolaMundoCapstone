@@ -31,16 +31,24 @@ BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			toYoutube(request.FILES['file'], request)
 		else:
 			return render(request, 'youtube/index.html')
+	
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
 @login_required()
 def indexlink(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			title = request.POST.get("title")
@@ -93,11 +101,16 @@ def indexlink(request):
 		else:
 			context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length, 'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length, 'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
 			return render(request, 'youtube/index-link.html', context)
+			
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
 @login_required()
 def uploaded(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			form = VidUploadForm(request.POST, request.FILES)
@@ -111,6 +124,8 @@ def uploaded(request):
 			#else:
 				#form = VidUploadForm()
 				#return render(request, 'youtube/index.html', {'form': form})
+				
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
