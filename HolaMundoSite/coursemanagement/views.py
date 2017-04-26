@@ -354,6 +354,3 @@ def take_short_answer(request, id):
 		
 def create_drag_and_drop(request):
 	pass
-
-def denied(request):
-	return render(request, 'DragAndDropQuiz/denied.html')

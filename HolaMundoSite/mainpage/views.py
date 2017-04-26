@@ -133,3 +133,6 @@ def myHolaMundo(request):
 	# Pass user preferences, 6 videos by author/difficulty to dashboard.html to populate video displays at the bottom of the page
     context = {'user': request.user, 'prefs': user_preferences, 'videos_author': six_random_videos_by_author, 'videos_difficulty': six_random_videos_by_difficulty}
     return render(request, 'mainpage/dashboard.html', context)
+	
+def denied(request):
+	return render(request, 'mainpage/denied.html')
