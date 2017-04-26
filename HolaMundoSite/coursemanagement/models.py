@@ -15,7 +15,7 @@ class Lesson(models.Model):
 	lessonID = models.AutoField(primary_key=True)
 	assignedCourse = models.ForeignKey('coursemanagement.Course', on_delete=models.CASCADE,
 									   related_name='assigned_course', null=True, blank=True)
-	title = models.CharField(max_length=140)
+	title = models.CharField(max_length=55)
 	youtube = models.CharField(max_length=100)
 	author = models.ForeignKey(User, null=False, blank=False)
 
@@ -68,7 +68,7 @@ class Quiz(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key=True)
 	LessonID = models.ForeignKey(Lesson, null=False, blank=False)
-	title = models.CharField(max_length=140)
+	title = models.CharField(max_length=55)
 
 	# Potentially add the content of non-draggable sentence
 	# content = models.CharField(max_length = 1000)
@@ -87,7 +87,7 @@ class Quiz(models.Model):
 
 class Course(models.Model):
 	courseID = models.AutoField(primary_key=True)
-	title = models.CharField(max_length=100)
+	title = models.CharField(max_length=55)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
 	link = models.CharField(max_length=15)
@@ -127,7 +127,7 @@ class MultipleChoiceQuiz(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key=True)
 	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
-	title = models.CharField(max_length=140)
+	title = models.CharField(max_length=55)
 	author = models.ForeignKey(User, null=False, blank=False)
 
 	NUMBER_OF_CHOICES = (
@@ -172,7 +172,7 @@ class MultipleChoiceQuiz(models.Model):
 class ShortAnswerQuiz(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
-	title = models.CharField(max_length=100, null=False, blank=False)
+	title = models.CharField(max_length=55, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
 	
 	DIFFICULTIES = (
