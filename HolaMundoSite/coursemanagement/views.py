@@ -84,6 +84,8 @@ def course(request):
 		else:
 			form = CourseForm()
 		return render(request, "coursemanagement/courseform.html", {"form": form})
+
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 		
@@ -125,6 +127,8 @@ def lesson(request):
 		else:
 			form = LessonForm()
 		return render(request, "coursemanagement/lessonform.html", {"form": form})
+
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -238,6 +242,8 @@ def create_multiple_choice_quiz(request):
 			context = {'choices': number_of_options, 'difficulties': difficulties}
 
 			return render(request, 'coursemanagement/multiplechoiceselect.html', context)
+	#If not a conent creator then redirect to the denial view located in the mainpage
+
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -280,6 +286,8 @@ def create_multiple_choice_quiz_q(request, q, d):
 			print(list_questions)
 			context = {'number_questions': list_questions}
 			return render(request, 'coursemanagement/multiplechoice.html', context)
+
+	#If not a conent creator then redirect to the denial view located in the mainpage
     else:
 		return HttpResponseRedirect('/denied/')
 
@@ -318,6 +326,7 @@ def create_fill_in_the_blank(request):
 	
 		#FUNCTIONALITY HERE
 		
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
@@ -329,7 +338,8 @@ def create_matching(request):
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
-		
+	
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
@@ -356,6 +366,8 @@ def create_short_answer(request):
 			return HttpResponseRedirect('/success/')
 		else:
 			return render(request, 'coursemanagement/shortanswer.html')
+			
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -395,7 +407,8 @@ def create_drag_and_drop(request):
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
-		
+	
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
