@@ -52,5 +52,7 @@ urlpatterns = [
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),
     # url(r'^createquize', views.quiz),
+	
+	url(r'^denied/$', views.denied, name='denied'),
 
 ]
