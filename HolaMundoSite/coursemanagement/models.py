@@ -5,7 +5,7 @@ from django.db import models
 
 # Required for importing User for Author
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 
 
 # Courses can be assigned or be separate
@@ -43,17 +43,20 @@ class Lesson(models.Model):
 	tab6 = models.CharField(max_length=15, default="6")
 
 	# Hide the tabs that will not be used in the template/views
-	# class BlogAdmin(admin.ModelAdmin):
-	#
-    # formfield_overrides = {
-    #     models.TextField: {'widget': CKEditorWidget},
-    # }
-	tab1desc = models.TextField(max_length=2000, default="Tab 1 Description")
-	tab2desc = models.TextField(max_length=2000, default="Tab 2 Description")
-	tab3desc = models.TextField(max_length=2000, default="Tab 3 Description")
-	tab4desc = models.TextField(max_length=2000, default="Tab 4 Description")
-	tab5desc = models.TextField(max_length=2000, default="Tab 5 Description")
-	tab6desc = models.TextField(max_length=2000, default="Tab 6 Description")
+# class Post(models.Model):
+#     content = RichTextField()
+	# tab1desc = models.TextField(max_length=2000, default="Tab 1 Description")
+	# tab2desc = models.TextField(max_length=2000, default="Tab 2 Description")
+	# tab3desc = models.TextField(max_length=2000, default="Tab 3 Description")
+	# tab4desc = models.TextField(max_length=2000, default="Tab 4 Description")
+	# tab5desc = models.TextField(max_length=2000, default="Tab 5 Description")
+	# tab6desc = models.TextField(max_length=2000, default="Tab 6 Description")
+	tab1desc = RichTextField()
+	tab2desc = RichTextField()
+	tab3desc = RichTextField()
+	tab4desc = RichTextField()
+	tab5desc = RichTextField()
+	tab6desc = RichTextField()
 
 	tags = models.TextField(max_length=5000, default="")
 
