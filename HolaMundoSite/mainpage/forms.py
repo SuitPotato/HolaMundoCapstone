@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 import re
 from django.core.exceptions import ObjectDoesNotExist
 from crispy_forms.helper import FormHelper
@@ -38,11 +38,14 @@ class RegistrationForm(forms.Form):
         widget=forms.PasswordInput(),
     )
 	
+	#Tuple of choices to be used in ChoiceField
     GROUP_CHOICES = (
     ('Student', 'Student'),
     ('Content Creator', 'Content Creator'),
     )
 	
+	#creates CharField in the form that lets user choose whether they want
+	#to be a Student or Content Creator
     groups = forms.ChoiceField(choices=GROUP_CHOICES)
 
     def __init__(self, *args, **kwargs):
