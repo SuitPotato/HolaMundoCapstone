@@ -265,7 +265,7 @@ def create_multiple_choice_quiz_q(request, q, d):
 			print(list_questions)
 			context = {'number_questions': list_questions}
 			return render(request, 'coursemanagement/multiplechoice.html', context)
-	else:
+    else:
 		return HttpResponseRedirect('/denied/')
 
 @login_required()
@@ -283,7 +283,6 @@ def take_quiz(request, quiz):
         response.save()
         print(response.responseID)
         return HttpResponseRedirect('/quizresults/mc/' + str(response.responseID))
-
     else:
         quiz = MultipleChoiceQuiz.objects.get(quizID=quiz)
         questions = [quiz.choiceOne, quiz.choiceTwo, quiz.choiceThree, quiz.choiceFour, quiz.choiceFive, quiz.choiceSix]
