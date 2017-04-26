@@ -39,47 +39,52 @@ def index(request):
 
 @login_required()
 def indexlink(request):
-    if request.method == 'POST':
-        title = request.POST.get("title")
-        video_link = request.POST.get("link")
-        tags = request.POST.get("tags")
-        selected_difficulty = request.POST.get("video-difficulty")
+	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+		if request.method == 'POST':
+			title = request.POST.get("title")
+			video_link = request.POST.get("link")
+			tags = request.POST.get("tags")
+			selected_difficulty = request.POST.get("video-difficulty")
 
-        query = urlparse(video_link)
-        if query.hostname == 'youtu.be':
-            link = query.path[1:]
-        if query.hostname in ('www.youtube.com', 'youtube.com'):
-            if query.path == '/watch':
-                p = parse_qs(query.query)
-                link = p['v'][0]
-            if query.path[:7] == '/embed/':
-                link = query.path.split('/')[2]
-            if query.path[:3] == '/v/':
-                link = query.path.split('/')[2]
-        ourlink = generateLink()
-        lesson = Lesson(title=title, youtube=link, author=request.user, link=ourlink, tags=tags,
-                        difficulty=selected_difficulty)
-        lesson.save()
-        time.sleep(2)
-        return HttpResponseRedirect('/video/' + ourlink)
-    else:
-        return render(request, 'youtube/index-link.html')
-
+			query = urlparse(video_link)
+			if query.hostname == 'youtu.be':
+				link = query.path[1:]
+			if query.hostname in ('www.youtube.com', 'youtube.com'):
+				if query.path == '/watch':
+					p = parse_qs(query.query)
+					link = p['v'][0]
+				if query.path[:7] == '/embed/':
+					link = query.path.split('/')[2]
+				if query.path[:3] == '/v/':
+					link = query.path.split('/')[2]
+			ourlink = generateLink()
+			lesson = Lesson(title=title, youtube=link, author=request.user, link=ourlink, tags=tags,
+							difficulty=selected_difficulty)
+			lesson.save()
+			time.sleep(2)
+			return HttpResponseRedirect('/video/' + ourlink)
+		else:
+			return render(request, 'youtube/index-link.html')
+	else:
+		return HttpResponseRedirect('/denied/')
 
 @login_required()
 def uploaded(request):
-    if request.method == 'POST':
-        form = VidUploadForm(request.POST, request.FILES)
-        print(form)
-        if form.is_valid():
-            request.description = form.cleaned_data["description"]
-            toYoutube(request.FILES['file'], request)
+	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+		if request.method == 'POST':
+			form = VidUploadForm(request.POST, request.FILES)
+			print(form)
+			if form.is_valid():
+				request.description = form.cleaned_data["description"]
+				toYoutube(request.FILES['file'], request)
 
-            # change HttpResponse to a page where user can edit information like tags, descriptions, etc
-            return HttpResponseRedirect('/results/?query=beginner')
-        #else:
-            #form = VidUploadForm()
-            #return render(request, 'youtube/index.html', {'form': form})
+				# change HttpResponse to a page where user can edit information like tags, descriptions, etc
+				return HttpResponseRedirect('/results/?query=beginner')
+			#else:
+				#form = VidUploadForm()
+				#return render(request, 'youtube/index.html', {'form': form})
+	else:
+		return HttpResponseRedirect('/denied/')
 
 
 @login_required()
