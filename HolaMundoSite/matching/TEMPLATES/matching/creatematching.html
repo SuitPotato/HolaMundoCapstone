@@ -1,9 +1,5 @@
 {% extends "../mainpage/base.html" %}
 
-
-<!--
-
--->
 {% block titleBlock %} Matching Question Creator Form {% endblock %}
 
 
@@ -15,40 +11,127 @@
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 {% endblock %}
 
+<style type="text/css">
+
+form {width:800px;}
+
+#text1 {float:right;}
+
+#text2 {float:left;}
+
+</style>
 
 {% block content %}
-<!--<form method="GET" class="NumberForm" id="quiz">
-	{% csrf_token %}
-	<div class="title" style="text-align:center;float:center;">
-      <label><name="title" id="1" value="{{title}}">{{title}}</label>
-    </div>
-</form>-->
+ 
 
 <form action= "" method = "POST" class = "MatchingForm">
 	{% csrf_token %}
 	
-	<p align = "center">Title</p>
+	<br>
+	<p align = "center">Create Title of Matching Quiz</p>
 	<p align = "center">{{ form.title }}</p>
 	
-	<p align = "left">Left One</p>
-	<p align = "left">{{ form.left_one }}</p>
-	<p align = "left">Left Two</p>
-	<p align = "left">{{ form.left_two }}</p>
-	<p align = "left">Left Three</p>
-	<p align = "left">{{ form.left_three }}</p>
-	<p align = "left">Left Four</p>
-	<p align = "left">{{ form.left_four }}</p>
+	<p align = "center">Specify the Difficulty of This Quiz</p>
+	<p align = "center">{{ form.difficulty }}</p>
+	<br><br><br>
 	
-	<p align = "right">Right One</p>
-	<p align = "right">{{ form.right_one }}</p>
-	<p align = "right">Right Two</p>
-	<p align = "right">{{ form.right_two }}</p>
-	<p align = "right">Right Three</p>
-	<p align = "right">{{ form.right_three }}</p>
-	<p align = "right">Right Four</p>
-	<p align = "right">{{ form.right_four }}</p>
+	<p align = "center"> Fill out the matching quesitons and their corresponding correct answers for as many questions that you chose above in the drop-down menu.</p>
+	<p align = "center"> You can also include extra choices after you've finished inputting all the correct answers to its own question on the left by adding more answers underneath the correct answers.</p>
+	<br><br>
+	{% if number_questions > 0 %}
+		<label id="text1">Question 1.{{ form.left_one }}<br />
+		<hr>
+	{% endif %}
+	{% if number_questions > 1 %}
+		<span>Question 2.{{ form.left_two }}</span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 2 %}
+		<span>Question 3.{{ form.left_three }}</span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 3 %}
+		<span>Question 4.{{ form.left_four }}</span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 4 %}
+		<span>Question 5.{{ form.left_five }}</span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 5 %}
+		<span>Question 6.{{ form.left_six }}</span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 6 %}
+		<span>Question 7.{{ form.left_seven }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 7 %}
+		<span>Question 8.{{ form.left_eight }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 8 %}
+		<span>Question 9.{{ form.left_nine }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 9 %}
+		<span>Question 10.{{ form.left_ten }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 10 %}
+		<span>Question 11.{{ form.left_eleven }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 11 %}
+		<span>Question 12.{{ form.left_twelve }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 12 %}
+		<span>Question 13.{{ form.left_thirteen }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 13 %}
+		<span>Question 14.{{ form.left_fourteen }}<span>
+		<hr>
+	{% endif %}	
+	{% if number_questions > 14 %}
+		<span>Question 15.{{ form.left_fifteen }}<span>
+	{% endif %}
+	</label>
 	
+	<label id="text2">Answer 1.{{ form.right_one }}<br />
+	<hr>
+	Answer 2.{{ form.right_two }}<br />
+	<hr>
+	Answer 3.{{ form.right_three }}<br />
+	<hr>
+	Answer 4.{{ form.right_four }}<br />
+	<hr>
+	Answer 5.{{ form.right_five }}<br />
+	<hr>
+	Answer 6.{{ form.right_six }}<br />
+	<hr>
+	Answer 7.{{ form.right_seven }}<br />
+	<hr>
+	Answer 8.{{ form.right_eight }}<br />
+	<hr>
+	Answer 9.{{ form.right_nine }}<br />
+	<hr>
+	Answer 10.{{ form.right_ten }}<br />
+	<hr>
+	Answer 11.{{ form.right_eleven }}<br />
+	<hr>
+	Answer 12.{{ form.right_twelve }}<br />
+	<hr>
+	Answer 13.{{ form.right_thirteen }}</p>
+	<hr>
+	Answer 14.{{ form.right_fourteen }}</p>
+	<hr>
+	Answer 15.{{ form.right_fifteen }}</p>
+	</label>
+	<br><br>
 	<center><input type = "submit" value = "Submit"/></center>
+	<br><br>
 </form>
 {% endblock %}
 
