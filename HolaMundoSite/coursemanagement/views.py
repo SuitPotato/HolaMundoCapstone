@@ -311,6 +311,9 @@ def take_quiz(request, quiz):
 
 
 def create_fill_in_the_blank(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
@@ -320,6 +323,9 @@ def create_fill_in_the_blank(request):
 	pass
 	
 def create_matching(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
@@ -383,6 +389,9 @@ def take_short_answer(request, id):
 		return render(request, 'coursemanagement/takeshortanswer.html', context)
 		
 def create_drag_and_drop(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
