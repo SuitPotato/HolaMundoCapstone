@@ -31,9 +31,5 @@ urlpatterns = [
     url(r'^UserSettingsPage/', include('UserSettingsPage.urls')),
 	url(r'^registered/$', views.registered),
 	url(r'^myHolaMundo/$', views.myHolaMundo),
-<<<<<<< HEAD
-	url(r'^score/(?P<userID>[/w]+)$', views.score, name="score"),
-=======
 	url(r'^denied/$', views.denied, name='denied'),
->>>>>>> master
 ]

@@ -31,24 +31,33 @@ BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
+<<<<<<< HEAD
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
+=======
+>>>>>>> origin/pagination
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			toYoutube(request.FILES['file'], request)
 		else:
 			return render(request, 'youtube/index.html')
+<<<<<<< HEAD
 	
 	#If not a conent creator then redirect to the denial view located in the mainpage
+=======
+>>>>>>> origin/pagination
 	else:
 		return HttpResponseRedirect('/denied/')
 
 @login_required()
 def indexlink(request):
+<<<<<<< HEAD
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
+=======
+>>>>>>> origin/pagination
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			title = request.POST.get("title")
@@ -101,8 +110,11 @@ def indexlink(request):
 		else:
 			context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length, 'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length, 'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
 			return render(request, 'youtube/index-link.html', context)
+<<<<<<< HEAD
 			
 	#If not a conent creator then redirect to the denial view located in the mainpage
+=======
+>>>>>>> origin/pagination
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -228,15 +240,11 @@ YOUTUBE_API_VERSION = "v3"
 # missing.
 MISSING_CLIENT_SECRETS_MESSAGE = """
 WARNING: Please configure OAuth 2.0
-
 To make this sample run you will need to populate the client_secrets.json file
 found at:
-
    %s
-
 with information from the {{ Cloud Console }}
 {{ https://cloud.google.com/console }}
-
 For more information about the client_secrets.json file format, please visit:
 https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
 """ % os.path.abspath(os.path.join(os.path.dirname(__file__),

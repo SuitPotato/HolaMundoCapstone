@@ -16,28 +16,28 @@ class CourseForm(forms.Form):
 		model = Course
 		fields = ['title','description','difficulty'
 		]
-		
-	# Difficulty Choices 
+
+	# Difficulty Choices
 	DIFFICULTIES = (
 	('1', 'Beginner'),
 	('2', 'Intermediate'),
 	('3', 'Advanced'),
 	)
-	
+
 	# Fields
 	title = forms.CharField(max_length = 100)
 	description = forms.CharField(widget=forms.Textarea, max_length = 300)
 	difficulty = forms.ChoiceField(choices = DIFFICULTIES)
-	
+
 
 class LessonForm(forms.Form):
 	# Meta Class
 	class Meta:
 		# Based off of the model
 		model = Lesson
-		fields = ['title', 'youtube', 'link', 'tabs', 'tab1desc', 'tab2desc', 
+		fields = ['title', 'youtube', 'link', 'tabs', 'tab1desc', 'tab2desc',
 			'tab3desc', 'tab4desc', 'tab5desc', 'tab6desc']
-			
+
 	# Choices: NUM_TABS
 	NUM_TABS = (
 	('ONE', '1'),
@@ -47,7 +47,7 @@ class LessonForm(forms.Form):
 	('FIVE','5'),
 	('SIX','6'),
 	)
-	
+
 	# Fields
 	title = forms.CharField(max_length = 140)
 	youtube = forms.CharField(max_length = 100)

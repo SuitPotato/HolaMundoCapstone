@@ -39,18 +39,18 @@ def score(request):
     return render(request, 'scores.html', {'data': data})
 
 def results(request, tag='all'):
-	
+
 	# Should always be hit. Gets tag, which is the text the user searched for
     if request.method == 'GET':
         tag = request.GET.get('query')
 
 	# If the user hit the search button without putting in a query
     if tag == '':
-	
-<<<<<<< HEAD
+
+
         # If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
         videos = Lesson.objects.all()
-        context = {"videos": videos}
+        # context = {"videos": videos}
 
         page = request.GET.get('page', 1)
         # Show 10 videos for per page
@@ -67,51 +67,49 @@ def results(request, tag='all'):
             # If page is out of range, deliver last page of results
             videos = paginator.page(paginator.num_pages)
 
+        videos = Lesson.objects.all()
+        context = {"videos": videos}
         return render(request, 'mainpage/results.html', context)
 
 		#videos = Lesson.objects.all()
 		#context = {"videos": videos}
-		#return render(request, 'mainpage/results.html', context)
-=======
+		#return render(request, 'mainpage/results.html', cont
 		# If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
-        videos = Lesson.objects.all()
-        context = {"videos": videos}
-        return render(request, 'mainpage/results.html', context)
->>>>>>> master
-	
+        # videos = Lesson.objects.all()
+        # context = {"videos": videos}
+        # return render(request, 'mainpage/results.html', context)
+
 	# If the user searched a specific query
-    else:
-	
-		# This line takes all videos in the database, and if the video's tags contain any word in the query, we keep that video. If the video's difficulty
-		# is in the query, we add those videos as well. If nothing in the user's query is in the tags or difficulty, the video is excluded.
-		# If any of this functionality is to be changed, change it below
-        videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
-        context = {"videos": videos}
-<<<<<<< HEAD
+    # else:
+    #
+	# 	# This line takes all videos in the database, and if the video's tags contain any word in the query, we keep that video. If the video's difficulty
+	# 	# is in the query, we add those videos as well. If nothing in the user's query is in the tags or difficulty, the video is excluded.
+	# 	# If any of this functionality is to be changed, change it below
+    #     videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
+    #     context = {"videos": videos}
+    #
+    #     page = request.GET.get('page', 1)
+    #     # Show 10 videos for per page
+    #     paginator = Paginator(videos, 10)
+    #
+    #     try:
+    #         videos = paginator.page(page)
+    #
+    #     except PageNotAnInteger:
+    #         # If page is not an integer, deliver first page
+    #         videos = paginator.page(1)
+    #
+    #     except EmptyPage:
+    #         # If page is out of range, deliver last page of results
+    #         videos = paginator.page(paginator.num_pages)
+    #     videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
+    #
+    #
+    #     #return render(request, 'mainpage/results.html', context)
+    #     # videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
+	# 	context = {"videos": videos}
+	# 	return render(request, 'mainpage/results.html', context)
 
-        page = request.GET.get('page', 1)
-        # Show 10 videos for per page
-        paginator = Paginator(videos, 10)
-
-        try:
-            videos = paginator.page(page)
-
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page
-            videos = paginator.page(1)
-
-        except EmptyPage:
-            # If page is out of range, deliver last page of results
-            videos = paginator.page(paginator.num_pages) 
-
-        #return render(request, 'mainpage/results.html', context)
-
-		videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
-		context = {"videos": videos}
-		return render(request, 'mainpage/results.html', context)
-=======
-        return render(request, 'mainpage/results.html', context)
->>>>>>> master
 
 
 def loginview(request):
@@ -140,14 +138,14 @@ def login(request):
     if user is not None:
         login(request, user)
     else:
-	
+
         # Change from LoginView to the acutal Login Page later
         return HttpResponseRedirect('/loginview/')
 
 
 def logout(request):
     logout(request)
-	
+
     # Change from LoginView to the acutal Login Page later
     return HttpResponseRedirect('/loginview/')
 
@@ -167,14 +165,14 @@ def register(request):
 			
 			#adds user to selected group in database
             g.user_set.add(user)
-			
+
 			# Create preferences for the new user, preferences are a separate table than users, and have user as a foreign key attribute
             pref = Preference.objects.create(user=user)
-			
+
 			# Log in the new registered user so they can immediately access the site as a logged in user
             auth_login(request, user)
             return HttpResponseRedirect('/registered/')
-	
+
 	# Load the page, with an empty form. This will then be filled out and passed to this same function, under 'POST'
     form = RegistrationForm()
     return render(request, 'mainpage/register.html', {'form': form})
@@ -190,20 +188,23 @@ def registered(request):
 @login_required()
 def myHolaMundo(request):
     user_preferences = Preference.objects.get(user=request.user)
-	
+
     videos_by_author = Lesson.objects.filter(author=request.user).values()
-	
+
 	# Currently random videos uploaded by you, later will be changed to match variable name
-    six_random_videos_by_author = random.sample(videos_by_author, 6) 
-	
+    six_random_videos_by_author = random.sample(videos_by_author, 6)
+
 	# Currently random videos uploaded by you, later will be changed to match variable name
     six_random_videos_by_difficulty = random.sample(videos_by_author, 6)
-	
+
 	# Pass user preferences, 6 videos by author/difficulty to dashboard.html to populate video displays at the bottom of the page
     context = {'user': request.user, 'prefs': user_preferences, 'videos_author': six_random_videos_by_author, 'videos_difficulty': six_random_videos_by_difficulty}
     return render(request, 'mainpage/dashboard.html', context)
 
+<<<<<<< HEAD
 #function that renders template that lets user know that they do not have permission to access
 #the current view (url) they are trying to access	
+=======
+>>>>>>> origin/pagination
 def denied(request):
 	return render(request, 'mainpage/denied.html')
