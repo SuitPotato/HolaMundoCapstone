@@ -29,17 +29,29 @@ from coursemanagement.models import Lesson
 
 BASE_URL = settings.MEDIA_ROOT
 
+
 @login_required()
 def index(request):
-    if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+    # Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+    # creator or super user then they will be able to access this view. If not then they will be redirected to
+    # denial page
+    if ((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
         if request.method == 'POST':
             toYoutube(request.FILES['file'], request)
         else:
             return render(request, 'youtube/index.html')
 
+    # If not a content creator or super user then redirect to the denial view located in the mainpage
+    else:
+        return HttpResponseRedirect('/denied/')
+
+
 @login_required()
 def indexlink(request):
-    if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+    # Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+    # creator or super user then they will be able to access this view. If not then they will be redirected to
+    # denial page
+    if ((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
         if request.method == 'POST':
             title = request.POST.get("title")
             video_link = request.POST.get("link")
@@ -82,7 +94,8 @@ def indexlink(request):
             lesson = Lesson(title=title, youtube=link, author=request.user, link=ourlink, tags=tags,
                             difficulty=selected_difficulty,
                             tab1=tab1name, tab2=tab2name, tab3=tab3name, tab4=tab4name, tab5=tab5name, tab6=tab6name,
-                            tab1desc=tab1desc, tab2desc=tab2desc, tab3desc=tab3desc, tab4desc=tab4desc, tab5desc=tab5desc,
+                            tab1desc=tab1desc, tab2desc=tab2desc, tab3desc=tab3desc, tab4desc=tab4desc,
+                            tab5desc=tab5desc,
                             tab6desc=tab6desc
                             )
             lesson.save()
@@ -94,23 +107,33 @@ def indexlink(request):
                        'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
             return render(request, 'youtube/index-link.html', context)
 
+    # If not a content creator or super user then redirect to the denial view located in the mainpage
+    else:
+        return HttpResponseRedirect('/denied/')
+
+
 @login_required()
 def uploaded(request):
-	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
-		if request.method == 'POST':
-			form = VidUploadForm(request.POST, request.FILES)
-			print(form)
-			if form.is_valid():
-				request.description = form.cleaned_data["description"]
-				toYoutube(request.FILES['file'], request)
+    # Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+    # creator or super user then they will be able to access this view. If not then they will be redirected to
+    # denial page
+    if ((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+        if request.method == 'POST':
+            form = VidUploadForm(request.POST, request.FILES)
+            print(form)
+            if form.is_valid():
+                request.description = form.cleaned_data["description"]
+                toYoutube(request.FILES['file'], request)
 
-				# change HttpResponse to a page where user can edit information like tags, descriptions, etc
-				return HttpResponseRedirect('/results/?query=beginner')
-			#else:
-				#form = VidUploadForm()
-				#return render(request, 'youtube/index.html', {'form': form})
-	else:
-		return HttpResponseRedirect('/denied/')
+                # change HttpResponse to a page where user can edit information like tags, descriptions, etc
+                return HttpResponseRedirect('/results/?query=beginner')
+                # else:
+                # form = VidUploadForm()
+                # return render(request, 'youtube/index.html', {'form': form})
+
+    # If not a content creator or super user then redirect to the denial view located in the mainpage
+    else:
+        return HttpResponseRedirect('/denied/')
 
 
 @login_required()
@@ -124,9 +147,9 @@ def uploadedLink(request):
 
             # change HttpResponse to a page where user can edit information like tags, descriptions, etc
             return HttpResponseRedirect('/results/?query=beginner')
-        #else:
-            #form = VidUploadForm()
-            #return render(request, 'youtube/index.html', {'form': form})
+            # else:
+            # form = VidUploadForm()
+            # return render(request, 'youtube/index.html', {'form': form})
 
 
 def toYoutube(f, request):
@@ -135,13 +158,15 @@ def toYoutube(f, request):
     uploaded_url = fs.url(filename)
     video_abs_path = BASE_URL + uploaded_url
 
-    #Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
+    # Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
     #  category='10', description='Test description',
     # file='C:\\Users\\Josh\\Documents\\GitHub\\HolaMundoCapstone\\HolaMundoSite/media/Uploaded_6CXHmaW.mp4',
     #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
     #  privacyStatus='public', title='Test video')
 
-    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file=video_abs_path, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
+    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10',
+                     description='Test description', file=video_abs_path, keywords='', logging_level='ERROR',
+                     noauth_local_webserver=False, privacyStatus='public', title='Test video')
     if not os.path.exists(args.file):
         exit("Please specify a valid file using the --file= parameter.")
 
@@ -153,6 +178,7 @@ def toYoutube(f, request):
 
     # os.system('C:/Users/Josh/Documents/GitHub/HolaMundoCapstone/HolaMundoSite/youtube/upload.py --file=' + BASE_URL + uploaded_url + ' --title="Test video" --description="Test description" --category=10 --privacyStatus="public"')
     return HttpResponseRedirect('/youtube/index.html')
+
 
 # Current Video Category Codes
 #
@@ -292,6 +318,7 @@ def generateLink():
             value = "".join(random.choice(chars) for c in range(10))
         except:
             return value
+
 
 def resumable_upload(insert_request, request):
     response = None
