@@ -24,8 +24,8 @@ from django.contrib.auth.models import User
 # Purpose of the manage is to show all the courses related to the same author
 @login_required()
 def manage(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		# Filters out courses only made by the user
@@ -35,7 +35,7 @@ def manage(request):
 		context = {"courses": courses, "lessons": lessons}
 		return render(request, 'coursemanagement/manage.html', context)
 	
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -63,8 +63,8 @@ def viewcourse(request, courseID):
 
 @login_required()
 def course(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -87,7 +87,7 @@ def course(request):
 			form = CourseForm()
 		return render(request, "coursemanagement/courseform.html", {"form": form})
 
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 		
@@ -99,8 +99,8 @@ def success(request):
 
 @login_required()
 def lesson(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -130,7 +130,7 @@ def lesson(request):
 			form = LessonForm()
 		return render(request, "coursemanagement/lessonform.html", {"form": form})
 
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -229,8 +229,8 @@ def quiz_results(request, q, pk):
 
 @login_required()
 def create_multiple_choice_quiz(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -245,14 +245,14 @@ def create_multiple_choice_quiz(request):
 
 			return render(request, 'coursemanagement/multiplechoiceselect.html', context)
 			
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
 @login_required()
 def create_multiple_choice_quiz_q(request, q, d):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
     if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -289,7 +289,7 @@ def create_multiple_choice_quiz_q(request, q, d):
 			context = {'number_questions': list_questions}
 			return render(request, 'coursemanagement/multiplechoice.html', context)
 
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
     else:
 		return HttpResponseRedirect('/denied/')
 
@@ -321,27 +321,27 @@ def take_quiz(request, quiz):
 
 
 def create_fill_in_the_blank(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
 		
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
 	
 def create_matching(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
 	
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
@@ -352,8 +352,8 @@ def create_matching(request):
 		
 	
 def create_short_answer(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -369,7 +369,7 @@ def create_short_answer(request):
 		else:
 			return render(request, 'coursemanagement/shortanswer.html')
 			
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -403,14 +403,14 @@ def take_short_answer(request, id):
 		return render(request, 'coursemanagement/takeshortanswer.html', context)
 		
 def create_drag_and_drop(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 	
 		#FUNCTIONALITY HERE
 	
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
