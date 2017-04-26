@@ -41,13 +41,13 @@
                                 {% if forloop.counter <= 1 %}
                                 <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
-                                        {{ tab.1 }}
+                                        {{ tab.1 | safe}}
                                     </p>
                                 </div>
                                 {% else %}
                                 <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
-                                        {{ tab.1 }}
+                                        {{ tab.1 | safe}}
                                     </p>
                                 </div>
                                 {% endif %}
