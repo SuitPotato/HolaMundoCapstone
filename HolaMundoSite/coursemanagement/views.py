@@ -311,9 +311,21 @@ def take_quiz(request, quiz):
 
 
 def create_fill_in_the_blank(request):
+	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+	
+		#FUNCTIONALITY HERE
+		
+	#else:
+		#return HttpResponseRedirect('/denied/')
 	pass
 	
 def create_matching(request):
+	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+	
+		#FUNCTIONALITY HERE
+		
+	#else:
+		#return HttpResponseRedirect('/denied/')
 	pass
 	
 # Short Answer Question Overall Structure
@@ -371,4 +383,10 @@ def take_short_answer(request, id):
 		return render(request, 'coursemanagement/takeshortanswer.html', context)
 		
 def create_drag_and_drop(request):
+	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+	
+		#FUNCTIONALITY HERE
+		
+	#else:
+		#return HttpResponseRedirect('/denied/')
 	pass
