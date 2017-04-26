@@ -47,7 +47,8 @@ def index(request):
             toYoutube(request.FILES['file'], request)
         else:
             # Page loads for first time, GET not POST
-            return render(request, 'youtube/index.html')
+            context = {'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
+            return render(request, 'youtube/index.html', context)
 
     # If not a content creator or super user then redirect to the denial view located in the mainpage
     else:
@@ -88,7 +89,7 @@ def indexlink(request):
 
             difficulties = ("Beginner", "Intermediate", "Advanced")
 
-            selected_difficulty = difficulties[int(request.POST.get("video-difficulty")) - 1]   
+            selected_difficulty = difficulties[int(request.POST.get("video-difficulty")) - 1]
 
             # Get youtube video ID from link pasted in
             query = urlparse(video_link)
@@ -323,6 +324,26 @@ def resumable_upload(insert_request, request):
                     p.link = generateLink()
                     p.author = request.user
                     # Save video, wait, direct user to newly uploaded video
+
+
+                    # Tabs information
+                    p.tab1 = request.POST.get("Tab 1-name")
+                    p.tab1desc = request.POST.get("Tab 1-desc")
+
+                    p.tab2 = request.POST.get("Tab 2-name")
+                    p.tab2desc = request.POST.get("Tab 2-desc")
+
+                    p.tab3 = request.POST.get("Tab 3-name")
+                    p.tab3desc = request.POST.get("Tab 3-desc")
+
+                    p.tab4 = request.POST.get("Tab 4-name")
+                    p.tab4desc = request.POST.get("Tab 4-desc")
+
+                    p.tab5 = request.POST.get("Tab 5-name")
+                    p.tab5desc = request.POST.get("Tab 5-desc")
+
+                    p.tab6 = request.POST.get("Tab 6-name")
+                    p.tab6desc = request.POST.get("Tab 6-desc")
                     p.save()
                     time.sleep(2)
                     return HttpResponseRedirect('/video/' + p.link)

@@ -61,6 +61,22 @@
             </div>
         </div>
 
+        <!-- Video tab information
+         Tabs are received from views.py, as such:
+         ('Tab 1', 'Tab 2', .... 'Tab 6') -->
+        {% for tab in tabs %}
+            <div class="form-group">
+                <label class="control-label col-sm-2" data-toggle="tooltip" title="Enter {{ tab }} information here."
+                       for="{{ tab }}" >{{ tab }}:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" data-toggle="tooltip" title="Name: {{ tab_name_length }} chars." id="{{ tab }}-name" name="{{ tab }}-name" placeholder="Enter tab name" style="text-align: left;" maxlength="{{ tab_name_length }}">
+                </div>
+                <div class="col-sm-8">
+                    <textarea rows="1" class="form-control" data-toggle="tooltip" title="Desc: {{ tab_desc_length }} chars." id="{{ tab }}-desc" name="{{ tab }}-desc" placeholder="Enter tab description" maxlength="{{ tab_desc_length }}"></textarea>
+                </div>
+            </div>
+        {% endfor %}
+
         <!-- Video button to link upload instead of file upload -->
         <div class="form-group">
             <div class="col-md-1">
