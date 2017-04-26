@@ -22,10 +22,17 @@ def load_video(request, link):
             pref.lastVid = video
             pref.save()
 
-        context = {'video': video.youtube, 'title': video.title, 'tab1': video.tab1, 'tab2': video.tab2,
-                   'tab3': video.tab3, 'tab4': video.tab4, 'tab5': video.tab5, 'tab6': video.tab6,
-                   'tab1desc': video.tab1desc, 'tab2desc': video.tab2desc, 'tab3desc': video.tab3desc,
-                   'tab4desc': video.tab4desc, 'tab5desc': video.tab5desc, 'tab6desc': video.tab6desc}
-        return render(request, 'Video_page/videoloader.html', context)
+        tabInfo = [(video.tab1, video.tab1desc), (video.tab2, video.tab2desc), (video.tab3, video.tab3desc),
+                   (video.tab4, video.tab4desc), (video.tab5, video.tab5desc), (video.tab6, video.tab6desc)]
+        cleanTabInfo = []
+        for tab in tabInfo:
+            if tab[0] == "" or tab[0] is None or tab[1] == "" or tab[1] is None:
+                pass
+            else:
+                cleanTabInfo.append(tab)
+
+        print(cleanTabInfo)
+        context = {'video': video.youtube, 'title': video.title, 'tabInfo': cleanTabInfo}
+        return render(request, 'Video_page/video.html', context)
     except:
         return render(request, 'Video_page/404.html')

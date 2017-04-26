@@ -63,6 +63,18 @@
                 <textarea rows="15" class="form-control" id="tags" name="tags" placeholder="Enter tags"></textarea>
             </div>
         </div>
+        {% for tab in tabs %}
+            <div class="form-group">
+                <label class="control-label col-sm-2" data-toggle="tooltip" title="Enter {{ tab }} information here."
+                       for="{{ tab }}" >{{ tab }}:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" data-toggle="tooltip" title="Name: {{ tab_name_length }} chars." id="{{ tab }}-name" name="{{ tab }}-name" placeholder="Enter tab name" style="text-align: left;" maxlength="{{ tab_name_length }}">
+                </div>
+                <div class="col-sm-8">
+                    <textarea rows="1" class="form-control" data-toggle="tooltip" title="Desc: {{ tab_desc_length }} chars." id="{{ tab }}-desc" name="{{ tab }}-desc" placeholder="Enter tab description" maxlength="{{ tab_desc_length }}"></textarea>
+                </div>
+            </div>
+        {% endfor %}
         <div class="form-group">
             <div class="col-md-1">
             </div>
@@ -83,7 +95,7 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-1">
-                <button typ="submit" class="submit btn btn-success"> Submit </button>
+                <button type="submit" class="submit btn btn-success"> Submit </button>
             </div>
         </div>
     </form>
