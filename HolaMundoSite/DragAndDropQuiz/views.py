@@ -78,6 +78,3 @@ def create_sentence_drag(request):
 @login_required
 def success(request):
 	return render(request, 'DragAndDropQuiz/success.html')
-	
-def denied(request):
-	return render(request, 'DragAndDropQuiz/denied.html')

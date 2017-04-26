@@ -31,9 +31,11 @@ BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
-    form = VidUploadForm()
-    return render(request, 'youtube/index.html', {'form': form})
-
+	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+		form = VidUploadForm()
+		return render(request, 'youtube/index.html', {'form': form})
+	else:
+		return HttpResponseRedirect('/denied/')
 
 @login_required()
 def indexlink(request):
