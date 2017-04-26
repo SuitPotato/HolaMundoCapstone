@@ -40,7 +40,7 @@ def index(request):
 		else:
 			return render(request, 'youtube/index.html')
 	
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -102,7 +102,7 @@ def indexlink(request):
 			context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length, 'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length, 'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
 			return render(request, 'youtube/index-link.html', context)
 			
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -125,7 +125,7 @@ def uploaded(request):
 				#form = VidUploadForm()
 				#return render(request, 'youtube/index.html', {'form': form})
 				
-	#If not a conent creator then redirect to the denial view located in the mainpage
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
