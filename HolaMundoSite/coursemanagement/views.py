@@ -34,6 +34,8 @@ def manage(request):
 		lessons = Lesson.objects.filter(author=current_user)
 		context = {"courses": courses, "lessons": lessons}
 		return render(request, 'coursemanagement/manage.html', context)
+	
+	#If not a conent creator then redirect to the denial view located in the mainpage
 	else:
 		return HttpResponseRedirect('/denied/')
 
@@ -242,8 +244,8 @@ def create_multiple_choice_quiz(request):
 			context = {'choices': number_of_options, 'difficulties': difficulties}
 
 			return render(request, 'coursemanagement/multiplechoiceselect.html', context)
+			
 	#If not a conent creator then redirect to the denial view located in the mainpage
-
 	else:
 		return HttpResponseRedirect('/denied/')
 
