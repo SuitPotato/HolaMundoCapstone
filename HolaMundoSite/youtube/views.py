@@ -31,8 +31,8 @@ BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -46,8 +46,8 @@ def index(request):
 
 @login_required()
 def indexlink(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
@@ -108,8 +108,8 @@ def indexlink(request):
 
 @login_required()
 def uploaded(request):
-	#Checks if the user is registered as a Content Creator. If the user is registered as a content
-	#creator then they will be able to access this view. If not then they will be redirected to
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
