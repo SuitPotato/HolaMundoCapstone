@@ -31,10 +31,9 @@ BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
-
-  if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
-      if request.method == 'POST':
-          toYoutube(request.FILES['file'], request)
+    if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+        if request.method == 'POST':
+            toYoutube(request.FILES['file'], request)
         else:
             return render(request, 'youtube/index.html')
 
