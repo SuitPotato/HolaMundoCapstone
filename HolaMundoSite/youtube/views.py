@@ -43,6 +43,26 @@ def indexlink(request):
         title = request.POST.get("title")
         video_link = request.POST.get("link")
         tags = request.POST.get("tags")
+
+        # Tabs information
+        tab1name = request.POST.get("Tab 1-name")
+        tab1desc = request.POST.get("Tab 1-desc")
+
+        tab2name = request.POST.get("Tab 2-name")
+        tab2desc = request.POST.get("Tab 2-desc")
+
+        tab3name = request.POST.get("Tab 3-name")
+        tab3desc = request.POST.get("Tab 3-desc")
+
+        tab4name = request.POST.get("Tab 4-name")
+        tab4desc = request.POST.get("Tab 4-desc")
+
+        tab5name = request.POST.get("Tab 5-name")
+        tab5desc = request.POST.get("Tab 5-desc")
+
+        tab6name = request.POST.get("Tab 6-name")
+        tab6desc = request.POST.get("Tab 6-desc")
+
         selected_difficulty = request.POST.get("video-difficulty")
 
         query = urlparse(video_link)
@@ -57,13 +77,21 @@ def indexlink(request):
             if query.path[:3] == '/v/':
                 link = query.path.split('/')[2]
         ourlink = generateLink()
+        
         lesson = Lesson(title=title, youtube=link, author=request.user, link=ourlink, tags=tags,
-                        difficulty=selected_difficulty)
+                        difficulty=selected_difficulty,
+                        tab1=tab1name, tab2=tab2name, tab3=tab3name, tab4=tab4name, tab5=tab5name, tab6=tab6name,
+                        tab1desc=tab1desc, tab2desc=tab2desc, tab3desc=tab3desc, tab4desc=tab4desc, tab5desc=tab5desc,
+                        tab6desc=tab6desc
+                        )
         lesson.save()
         time.sleep(2)
         return HttpResponseRedirect('/video/' + ourlink)
     else:
-        return render(request, 'youtube/index-link.html')
+        context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length,
+                   'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length,
+                   'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
+        return render(request, 'youtube/index-link.html', context)
 
 
 @login_required()
