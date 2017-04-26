@@ -86,7 +86,9 @@ def indexlink(request):
             tab6name = request.POST.get("Tab 6-name")
             tab6desc = request.POST.get("Tab 6-desc")
 
-            selected_difficulty = request.POST.get("video-difficulty")
+            difficulties = ("Beginner", "Intermediate", "Advanced")
+
+            selected_difficulty = difficulties[int(request.POST.get("video-difficulty")) - 1]   
 
             # Get youtube video ID from link pasted in
             query = urlparse(video_link)
