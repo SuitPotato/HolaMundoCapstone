@@ -31,8 +31,10 @@ BASE_URL = settings.MEDIA_ROOT
 
 @login_required()
 def index(request):
-    form = VidUploadForm()
-    return render(request, 'youtube/index.html', {'form': form})
+    if request.method == 'POST':
+        toYoutube(request.FILES['file'], request)
+    else:
+        return render(request, 'youtube/index.html')
 
 
 @login_required()
@@ -272,12 +274,15 @@ def resumable_upload(insert_request, request):
                 if 'id' in response:
                     print "Video id '%s' was successfully uploaded." % response['id']
                     p = Lesson()
-                    p.title = response['snippet']['title']
-                    p.tags = request.description
+                    p.title = request.POST.get("title")
+                    p.tags = request.POST.get("tags")
+                    p.difficulty = request.POST.get("video-difficulty")
                     p.youtube = response['id']
-                    p.link = generateLink();
+                    p.link = generateLink()
                     p.author = request.user
                     p.save()
+                    time.sleep(2)
+                    return HttpResponseRedirect('/video/' + p.link)
                 else:
                     exit("The upload failed with an unexpected response: %s" % response)
         except HttpError, e:
