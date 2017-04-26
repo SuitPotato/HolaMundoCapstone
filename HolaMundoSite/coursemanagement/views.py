@@ -24,6 +24,9 @@ from django.contrib.auth.models import User
 # Purpose of the manage is to show all the courses related to the same author
 @login_required()
 def manage(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		# Filters out courses only made by the user
 		current_user = request.user
@@ -58,6 +61,9 @@ def viewcourse(request, courseID):
 
 @login_required()
 def course(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			# form is a variable that contains the courseform
@@ -89,6 +95,9 @@ def success(request):
 
 @login_required()
 def lesson(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			# form is a variable that contains the courseform
@@ -214,6 +223,9 @@ def quiz_results(request, q, pk):
 
 @login_required()
 def create_multiple_choice_quiz(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			# if request.POST.get("savebutton") == "Save User info":
@@ -231,6 +243,9 @@ def create_multiple_choice_quiz(request):
 
 @login_required()
 def create_multiple_choice_quiz_q(request, q, d):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
     if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			quiz = MultipleChoiceQuiz()
@@ -307,6 +322,9 @@ def create_matching(request):
 		
 	
 def create_short_answer(request):
+	#Checks if the user is registered as a Content Creator. If the user is registered as a content
+	#creator then they will be able to access this view. If not then they will be redirected to
+	#denial page
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			quiz = ShortAnswerQuiz()			
