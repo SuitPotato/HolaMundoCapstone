@@ -8,70 +8,50 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="text-center" style='font-family: "Times New Roman", Times, serif; '>
-						{% block title %}
-						{% endblock %}
+	                    Hola Mundo - {{title}}
 					</h3>
 				</div>
 			</div>
                 <div class="row">
                         <div class="col-md-6">
-                        {% block video %}
-
-                        {% endblock %}
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" style="max-height:650px;"
+                                    src="https://www.youtube.com/embed/{{video}}?rel=0&amp;showinfo=0"
+                                    frameborder="0" allowfullscreen>
+                                </iframe>
+                            </div>
                         </div>
                         <div class="col-md-6">
 					<div class="tabbable" id="tabs-925380">
 						<ul class="nav nav-tabs">
-							<li class="active">
-								<a href="#panel-1" data-toggle="tab">{% block tab1 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-2" data-toggle="tab">{% block tab2 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-3" data-toggle="tab">{% block tab3 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-4" data-toggle="tab">{% block tab4 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-5" data-toggle="tab">{% block tab5 %} {% endblock %}</a>
-							</li>
-							<li>
-								<a href="#panel-6" data-toggle="tab">{% block tab6 %} {% endblock %}</a>
-							</li>
+                            {% for tab in tabInfo %}
+                                {% if forloop.counter <= 1 %}
+                                <li class="active">
+                                    <a href="#panel-{{ tab.0 }}" data-toggle="tab">{{ tab.0 }}</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="#panel-{{ tab.0 }}" data-toggle="tab">{{ tab.0 }}</a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
 						</ul>
 						<div class="tab-content" id="tabs">
-							<div class="tab-pane active" style="overflow-y:auto; height: 60vh;" id="panel-1">
-								<p>
-									{% block tab1desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-2">
-								<p>
-									{% block tab2desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-3">
-								<p>
-									{% block tab3desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-4">
-								<p>
-									{% block tab4desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-5">
-								<p>
-									{% block tab5desc %} {% endblock %}
-								</p>
-							</div>
-							<div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-6">
-								<p>
-									{% block tab6desc %} {% endblock %}
-								</p>
-							</div>
+                            {% for tab in tabInfo %}
+                                {% if forloop.counter <= 1 %}
+                                <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
+                                    <p>
+                                        {{ tab.1 }}
+                                    </p>
+                                </div>
+                                {% else %}
+                                <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
+                                    <p>
+                                        {{ tab.1 }}
+                                    </p>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
 						</div>
 					</div>
 				</div>
