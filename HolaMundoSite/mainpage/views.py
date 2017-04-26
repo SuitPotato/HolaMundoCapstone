@@ -46,14 +46,13 @@ def results(request, tag='all'):
 	# If the user hit the search button without putting in a query
 	if tag == '':
 	
-		# If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
-<<<<<<< HEAD
+        # If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
         videos = Lesson.objects.all()
         context = {"videos": videos}
 
+        page = request.GET.get('page', 1)
         # Show 10 videos for per page
         paginator = Paginator(videos, 10)
-        page = request.GET.get('page')
 
         try:
             videos = paginator.page(page)
@@ -67,11 +66,10 @@ def results(request, tag='all'):
             videos = paginator.page(paginator.num_pages)
 
         return render(request, 'mainpage/results.html', context)
-=======
-		videos = Lesson.objects.all()
-		context = {"videos": videos}
-		return render(request, 'mainpage/results.html', context)
->>>>>>> master
+
+		#videos = Lesson.objects.all()
+		#context = {"videos": videos}
+		#return render(request, 'mainpage/results.html', context)
 	
 	# If the user searched a specific query
 	else:
@@ -79,13 +77,12 @@ def results(request, tag='all'):
 		# This line takes all videos in the database, and if the video's tags contain any word in the query, we keep that video. If the video's difficulty
 		# is in the query, we add those videos as well. If nothing in the user's query is in the tags or difficulty, the video is excluded.
 		# If any of this functionality is to be changed, change it below
-<<<<<<< HEAD
         videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
         context = {"videos": videos}
 
+        page = request.GET.get('page', 1)
         # Show 10 videos for per page
         paginator = Paginator(videos, 10)
-        page = request.GET.get('page')
 
         try:
             videos = paginator.page(page)
@@ -98,12 +95,11 @@ def results(request, tag='all'):
             # If page is out of range, deliver last page of results
             videos = paginator.page(paginator.num_pages) 
 
-        return render(request, 'mainpage/results.html', context)
-=======
+        #return render(request, 'mainpage/results.html', context)
+
 		videos = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
 		context = {"videos": videos}
 		return render(request, 'mainpage/results.html', context)
->>>>>>> master
 
 
 def loginview(request):
