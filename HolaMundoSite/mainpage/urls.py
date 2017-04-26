@@ -32,4 +32,5 @@ urlpatterns = [
 	url(r'^registered/$', views.registered),
 	url(r'^myHolaMundo/$', views.myHolaMundo),
 	url(r'^denied/$', views.denied, name='denied'),
+	url(r'^score/(?P<userID>[/w]+)$', views.score, name="score"),
 ]

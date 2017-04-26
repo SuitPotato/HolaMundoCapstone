@@ -1,0 +1,12 @@
+{% extends "mainpage/base.html" %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+{% for user in data %}
+	{{ user.quizID }}
+
+{% endfor %}
+
+{% endblock %}
