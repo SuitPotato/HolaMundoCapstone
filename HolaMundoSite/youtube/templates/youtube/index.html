@@ -9,54 +9,75 @@
 <link href="{% static 'youtube/css/fileinput.min.css' %}" media="all" rel="stylesheet" type="text/css" />
 <script src="{% static 'mainpage/js/jquery.min.js' %}"></script>
 
-    <style>
+<style>
 
-        .fileUpload  {
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
+    .fileUpload  {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+}
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+}
+    .submit {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
     }
-        .fileUpload input.upload {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
+    .ui-select {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        padding-left: 10px;
+        font-size: 20px;
     }
-        .submit {
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-        }
-        .ui-select {
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-            padding-left: 10px;
-            font-size: 20px;
-        }
-    </style>
+</style>
 
 <div class="container">
     <h2 class="text-center" style="padding-bottom: 30px;">Upload a video</h2>
     <form class="form-horizontal" autocomplete="off" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+
+        <!-- Video title -->
         <div class="form-group">
             <label class="control-label col-sm-2" for="title">Video title:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter video title">
             </div>
         </div>
+        <!-- Video tags -->
         <div class="form-group">
             <label class="control-label col-sm-2" data-toggle="tooltip" title="Enter tags separated by spaces" for="tags">Tags:</label>
             <div class="col-sm-10">
                 <textarea rows="15" class="form-control" id="tags" name="tags" placeholder="Enter tags"></textarea>
             </div>
         </div>
+
+        <!-- Video tab information
+         Tabs are received from views.py, as such:
+         ('Tab 1', 'Tab 2', .... 'Tab 6') -->
+        {% for tab in tabs %}
+            <div class="form-group">
+                <label class="control-label col-sm-2" data-toggle="tooltip" title="Enter {{ tab }} information here."
+                       for="{{ tab }}" >{{ tab }}:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" data-toggle="tooltip" title="Name: {{ tab_name_length }} chars." id="{{ tab }}-name" name="{{ tab }}-name" placeholder="Enter tab name" style="text-align: left;" maxlength="{{ tab_name_length }}">
+                </div>
+                <div class="col-sm-8">
+                    <textarea rows="1" class="form-control" data-toggle="tooltip" title="Desc: {{ tab_desc_length }} chars." id="{{ tab }}-desc" name="{{ tab }}-desc" placeholder="Enter tab description" maxlength="{{ tab_desc_length }}"></textarea>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Video button to link upload instead of file upload -->
         <div class="form-group">
             <div class="col-md-1">
             </div>
@@ -69,6 +90,8 @@
             </div>
             <div class="col-md-3">
             </div>
+
+            <!-- Video difficulty selection-->
             <div class="col-md-3">
                 <label class="control-label" style="float: left; font-size: 20px;">Difficulty:</label>
                 <div class="ui-select">
@@ -79,12 +102,16 @@
                     </select>
                 </div>
             </div>
+
+            <!-- Video file select button -->
             <div class="col-md-1">
                 <div class="fileUpload btn btn-primary">
                     <span>Upload</span>
                     <input type="file" name='file' class="upload" />
                 </div>
             </div>
+
+            <!-- Submit button -->
             <div class="col-md-1">
                 <button type="submit" class="submit btn btn-success"> Submit </button>
             </div>
