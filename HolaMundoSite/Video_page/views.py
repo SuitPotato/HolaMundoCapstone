@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from coursemanagement.models import Lesson
 from UserSettingsPage.models import Preference
-
+# from coursemanagement.forms import LessonForm
 
 # Create your views here.
 
@@ -14,6 +14,11 @@ def index(request):
 def load_video(request, link):
     try:
         video = Lesson.objects.get(link=link)
+        # if request.method == 'POST':
+        #     form = LessonForm(request.POST)
+        #     if form.is_valid():
+        #         l = Lesson()
+        #         l.save()
         if request.user.is_authenticated():
             pref = Preference.objects.get(user=request.user)
             pref.fourthLastVid = pref.thirdLastVid

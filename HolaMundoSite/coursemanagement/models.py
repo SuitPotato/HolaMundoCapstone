@@ -91,12 +91,12 @@ class Course(models.Model):
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
 	link = models.CharField(max_length=15)
-	
+
 	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
 	# Currently commented out for migrations/migrate
 	description = models.CharField(max_length = 300, null = False, blank = False)
 
-	
+
 	difficulty = models.IntegerField()
 
 	# quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
@@ -168,33 +168,33 @@ class MultipleChoiceQuiz(models.Model):
 
 	def __str__(self):
 		return self.title
-		
+
 class ShortAnswerQuiz(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
 	title = models.CharField(max_length=100, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
-	
+
 	DIFFICULTIES = (
 		('Beginner', '1'),
 		('Intermediate', '2'),
 		('Advanced', '3'),
 	)
-	
+
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
-	
+
 	questionPrompt = models.CharField(max_length = 300, null=False, blank=False)
 	correctAnswer = models.CharField(max_length =  50, null=False, blank=False)
-	
+
 	def __str__(self):
 		return self.title
-		
+
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
 	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)
 	user = models.ForeignKey(User, null = False, blank = False)
 	score = models.IntegerField()
-	
+
 	def __str__(self):
 		return self.quizID.title + ": " + self.user.username
 
