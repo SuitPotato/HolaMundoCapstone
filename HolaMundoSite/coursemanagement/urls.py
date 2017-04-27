@@ -21,7 +21,7 @@ urlpatterns = [
 
 	# Basic Manage Stuff
     url(r'^manage/$', views.manage),
-	url(r'^createquiz', views.create_quiz)
+	url(r'^createquiz', views.create_quiz),
     url(r'^createlesson', views.lesson),
     url(r'^createcourse', views.course),
 	
