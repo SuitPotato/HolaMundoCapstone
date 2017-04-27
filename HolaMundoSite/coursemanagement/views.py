@@ -79,26 +79,6 @@ def course(request):
 	else:
 		return HttpResponseRedirect('/denied/')
 
-
-    if request.method == 'POST':
-        # form is a variable that contains the courseform
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            # Instantiate the class Course from Models
-            v = Course()
-            v.title = form.cleaned_data["title"]
-            v.description = form.cleaned_data["description"]
-            v.difficulty = form.cleaned_data["difficulty"]
-            v.author = request.user
-			# Must save the instantiated variables afterwards
-            v.save()
-            # Make sure HttpResponseRedirect has a view and URL
-            return HttpResponseRedirect('/success/')
-    elif request.method == 'GET':
-        form = CourseForm()
-    else:
-        form = CourseForm()
-    return render(request, "coursemanagement/courseform.html", {"form": form})
 	
 
 @login_required()
@@ -227,6 +207,9 @@ def quiz_results(request, q, pk):
         return render(request, 'coursemanagement/quizresults.html', context)
     else:
         print("Shouldn't hit")
+		
+		
+		
 
 
 @login_required()
@@ -316,8 +299,6 @@ def create_fill_in_the_blank(request):
 
 def create_matching_selection(request):
 
-def create_matching(request):
-
 	if request.method == 'POST':
 		selected_difficulty = request.POST.get("quiz_difficulty")
 		selected_number_options = request.POST.get("question_number")
@@ -395,9 +376,6 @@ def create_matching_quiz(request, difficulty, options):
 			list_prompts.append(number[prompts])
 
 		quiz = MatchingQuiz()	
-	pass
-
-	
 		context = {'options':list_prompts}
 		
 		return render(request, 'coursemanagement/matching.html', context)
@@ -511,5 +489,4 @@ def create_drag_and_drop(request):
 		#return HttpResponseRedirect('/denied/')
 	pass
 
-		return render(request, "coursemanagement/createquiz.html")
 
