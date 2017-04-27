@@ -18,9 +18,14 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+
+	# Basic Manage Stuff
     url(r'^manage/$', views.manage),
+	url(r'^createquiz', views.create_quiz)
     url(r'^createlesson', views.lesson),
     url(r'^createcourse', views.course),
+	
+	# General 
     url(r'^success', views.success),
     url(r'^viewcourse/(\d+)/', views.viewcourse),  # Takes in a CourseID, check coursemanagement/views.py for more
     url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', views.load_course, name='course_loader'),
@@ -47,7 +52,7 @@ urlpatterns = [
 	
 	# Drag and Drop URL's
 	
-	url(r'^draganddrop/$', views.create_drag_and_drop),
+	url(r'^draganddrop/$', views.create_sentence_drag_and_drop),
 	
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),

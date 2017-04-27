@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Required for importing User for Author
@@ -188,7 +188,42 @@ class ShortAnswerQuiz(models.Model):
 	
 	def __str__(self):
 		return self.title
-		
+
+# Drag and Drop Quiz
+# 15 Words
+#	Either Choice Field or Integer
+
+class DragAndDropQuiz(models.Model):
+	quizID = models.AutoField(primary_key = True)
+	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
+	title = models.CharField(max_length=100, null=False, blank=False)
+	author = models.ForeignKey(User, null = False, blank = False)
+	
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+	)
+	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
+	# WordCount may not be needed
+	wordCount = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(15)])
+	
+	wordOne = models.CharField(max_length = 15, null = False, blank = False)
+	wordTwo = models.CharField(max_length = 15, null = False, blank = False)
+	wordThree = models.CharField(max_length = 15, null = False, blank = False)
+	wordFour = models.CharField(max_length = 15, null = True, blank = True)
+	wordFive = models.CharField(max_length = 15, null = True, blank = True)
+	wordSix = models.CharField(max_length = 15, null = True, blank = True)
+	wordSeven = models.CharField(max_length = 15, null = True, blank = True)
+	wordEight = models.CharField(max_length = 15, null = True, blank = True)
+	wordNine = models.CharField(max_length = 15, null = True, blank = True)
+	wordTen = models.CharField(max_length = 15, null = True, blank = True)
+	wordEleven = models.CharField(max_length = 15, null = True, blank = True)
+	wordTwelve = models.CharField(max_length = 15, null = True, blank = True)
+	wordThirteen = models.CharField(max_length = 15, null = True, blank = True)
+	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
+	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
+	
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
 	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)

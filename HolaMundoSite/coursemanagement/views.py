@@ -63,6 +63,28 @@ def viewcourse(request, courseID):
 
 @login_required()
 def course(request):
+<<<<<<< HEAD
+    if request.method == 'POST':
+        # form is a variable that contains the courseform
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            # Instantiate the class Course from Models
+            v = Course()
+            v.title = form.cleaned_data["title"]
+            v.description = form.cleaned_data["description"]
+            v.difficulty = form.cleaned_data["difficulty"]
+            v.author = request.user
+			# Must save the instantiated variables afterwards
+            v.save()
+            # Make sure HttpResponseRedirect has a view and URL
+            return HttpResponseRedirect('/success/')
+    elif request.method == 'GET':
+        form = CourseForm()
+    else:
+        form = CourseForm()
+    return render(request, "coursemanagement/courseform.html", {"form": form})
+	
+=======
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
@@ -92,6 +114,7 @@ def course(request):
 		return HttpResponseRedirect('/denied/')
 		
 
+>>>>>>> refs/remotes/origin/master
 @login_required()
 def success(request):
     return render(request, 'coursemanagement/success.html')
@@ -333,7 +356,38 @@ def create_fill_in_the_blank(request):
 		#return HttpResponseRedirect('/denied/')
 	pass
 	
+@login_required()
+def create_multiple_choice_quiz(request):
+    if request.method == 'POST':
+        # if request.POST.get("savebutton") == "Save User info":
+        selected_difficulty = request.POST.get("quiz_difficulty")
+        selected_number_answers = request.POST.get("question_number")
+        return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
+    else:
+        number_of_options = MultipleChoiceQuiz.NUMBER_OF_CHOICES
+        difficulties = MultipleChoiceQuiz.DIFFICULTIES
+        context = {'choices': number_of_options, 'difficulties': difficulties}
+
+        return render(request, 'coursemanagement/multiplechoiceselect.html', context)
+
+@login_required()
 def create_matching(request):
+<<<<<<< HEAD
+	if request.method == 'POST':
+		selected_difficulty = request.POST.get("quiz_difficulty")
+		selected_number_options = request.POST.get("option_number")
+		return HttpResponseRedirect('matching'+selected_difficulty+'/'+selected_number_questions)
+	else:
+		number_of_options = MatchingQuiz.NUMBER_OF_CHOICES
+		difficulty = MatchingQuiz.DIFFICULTIES
+		context = {'options': number_of_options, 'difficulty': difficulty}]
+		return render(request, 'coursemanagement/matchingselect.html', context)
+	
+	
+def create_matching_the_seconding(request):
+	if request.method == 'POST':
+		quiz = MatchingQuiz()	
+=======
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
@@ -344,8 +398,10 @@ def create_matching(request):
 	#If not a conent creator or super user then redirect to the denial view located in the mainpage
 	#else:
 		#return HttpResponseRedirect('/denied/')
+>>>>>>> refs/remotes/origin/master
 	pass
 	
+
 # Short Answer Question Overall Structure
 	# Question Prompt
 	# Answer 
@@ -401,7 +457,53 @@ def take_short_answer(request, id):
 		quiz = ShortAnswerQuiz.objects.get(quizID = id)
 		context = {'title':quiz.title, 'author':quiz.author, 'question':quiz.questionPrompt}
 		return render(request, 'coursemanagement/takeshortanswer.html', context)
+
+# Returns a redirect with difficulty and number of words		
+def create_sentence_drag_and_drop(request):
+	if request.method == 'POST':
+		quiz_difficulty = request.POST.get("quiz_difficulty")
+		word_count = request.POST.get("word_count")
+		return HttpResponseRedirect('/dragndrop/' + word_count + '/' + quiz_difficulty)
+	else:
+		return render(request, 'coursemanagement/dragndrop.html')
 		
+<<<<<<< HEAD
+def create_sentence_drag_and_drop_two(request, words, difficulty):
+	if request.method == 'POST':
+		quiz = DragAndDropQuiz()
+		pass
+		# Pass this information into the model
+	else:
+		# Display the appropriate number of words to fill out
+		pass
+		
+
+
+@login_required()
+# Pass in the Lesson later along with it later.
+def create_quiz(request)
+	if request.method == 'POST':
+		quiz = response.POST.get("select_quiz")
+		if quiz == 1:
+			# Short Answer
+			return HttpResponseRedirect('/shortanswer/')
+		elif quiz == 2:
+			# Multiple Choice
+			return HttpResponseRedirect('/multiplechoice/')
+		elif quiz == 3:
+			# Matching
+			pass
+		elif quiz == 4:
+			# Sentence Drag & Drop
+			pass
+		elif quiz == 5:
+			# Video Drag & Drop
+			pass
+		else:
+			return render(request, "coursemanagement/createquiz.html")
+	else:
+		return render(request, "coursemanagement/createquiz.html")
+=======
 def create_drag_and_drop(request):
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
@@ -414,3 +516,4 @@ def create_drag_and_drop(request):
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
+>>>>>>> refs/remotes/origin/master

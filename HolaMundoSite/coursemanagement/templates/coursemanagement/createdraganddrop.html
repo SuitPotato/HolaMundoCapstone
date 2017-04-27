@@ -1,0 +1,9 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Short Answer {% endblock %}
+
+{% block content %}
+
+<form id="rendered-form"><div class="fb-select form-group field-word-count"><label for="word-count" class="fb-select-label">Number of Words  </label><select type="select" placeholder="Number of Words" class="form-control" name="word-count" id="word-count"><option disabled="" selected="">Number of Words</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></div><div class="fb-select form-group field-difficulty-option"><label for="difficulty-option" class="fb-select-label">Difficulty Option  </label><select type="select" class="form-control" name="difficulty-option" id="difficulty-option"><option value="1" selected="true">Beginner</option><option value="2">Intermediate</option><option value="3">Advanced</option></select></div><div class="fb-submit form-group field-button-1491795303424"><button type="submit" class="button-input btn btn-default" name="button-1491795303424" style="default" id="button-1491795303424">Button</button></div></form>
+
+{% endblock %}
