@@ -9,30 +9,33 @@ from coursemanagement.models import Lesson
 
 class Preference(models.Model):
 
-    # Autoincrement ID and user
-    prefID = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, null=False, blank=False)
-    lastVid = models.ForeignKey(Lesson, null=True)
-    secondLastVid = models.ForeignKey(Lesson, null=True, related_name="second")
-    thirdLastVid = models.ForeignKey(Lesson, null=True, related_name="third")
-    fourthLastVid = models.ForeignKey(Lesson, null=True, related_name="fourth")
+	# Autoincrement ID and user
+	prefID = models.AutoField(primary_key=True)
+	user = models.ForeignKey(User, null=False, blank=False)
+	lastVid = models.ForeignKey(Lesson, null=True)
+	secondLastVid = models.ForeignKey(Lesson, null=True, related_name="second")
+	thirdLastVid = models.ForeignKey(Lesson, null=True, related_name="third")
+	fourthLastVid = models.ForeignKey(Lesson, null=True, related_name="fourth")
 
 
-    # Listed choices for preferences
-    LANGUAGES = (
-        ('English', '1'),
-        ('Spanish', '2'),
-    )
+	# Listed choices for preferences
+	LANGUAGES = (
+		('English', '1'),
+		('Spanish', '2'),
+	)
 
-    DIFFICULTIES = (
-        ('Beginner', '1'),
-        ('Intermediate', '2'),
-        ('Advanced', '3'),
-    )
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+	)
 
-    # Setting preferences
-    defaultLanguage = models.CharField(max_length=10, choices=LANGUAGES, default="1")
-    difficulty = models.CharField(max_length=20, choices=DIFFICULTIES, default="1")
+	# Setting preferences
+	defaultLanguage = models.CharField(max_length=10, choices=LANGUAGES, default="1")
+	difficulty = models.CharField(max_length=20, choices=DIFFICULTIES, default="1")
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
-    def __str__(self):
-        return self.user.username
+	def __str__(self):
+		return self.user.username

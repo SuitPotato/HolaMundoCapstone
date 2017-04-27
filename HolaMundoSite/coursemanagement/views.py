@@ -24,13 +24,12 @@ from django.contrib.auth.models import User
 # Purpose of the manage is to show all the courses related to the same author
 @login_required()
 def manage(request):
-
-    # Filters out courses only made by the user
-    current_user = request.user
-    courses = Course.objects.filter(author=current_user)
-    lessons = Lesson.objects.filter(author=current_user)
-    context = {"courses": courses, "lessons": lessons}
-    return render(request, 'coursemanagement/manage.html', context)
+		# Filters out courses only made by the user
+		current_user = request.user
+		courses = Course.objects.filter(author=current_user)
+		lessons = Lesson.objects.filter(author=current_user)
+		context = {"courses": courses, "lessons": lessons}
+		return render(request, 'coursemanagement/manage.html', context)
 
 
 # Purpose of viewcourse is to show the lessons specific course.
@@ -38,43 +37,45 @@ def manage(request):
 # Need to verify if the author is the current user, if not redirect
 @login_required()
 def viewcourse(request, courseID):
-    current_user = request.user
-    # Retrieving one value, so no filter needed, but get instead
-    # Follows the format (for looking up stuff):
-    # field__lookuptype=value
-    # courseID__exact = courseID
-    course = Course.objects.get(courseID__exact=courseID)
-    if (course.author == current_user):
+	current_user = request.user
+	# Retrieving one value, so no filter needed, but get instead
+	# Follows the format (for looking up stuff):
+	# field__lookuptype=value
+	# courseID__exact = courseID
+	course = Course.objects.get(courseID__exact=courseID)
+	if (course.author == current_user):
 
-        context = {"course": course}
-        return render(request, 'coursemanagement/viewcourse.html', context)
-    else:
-        # Just a temporary flag
-        # Should return a 404
-        return render(request, 'mainpage/DragDemo.html')
+		context = {"course": course}
+		return render(request, 'coursemanagement/viewcourse.html', context)
+	else:
+		# Just a temporary flag
+		# Should return a 404
+		return render(request, 'mainpage/DragDemo.html')
 		
 
 @login_required()
 def course(request):
-    if request.method == 'POST':
-        # form is a variable that contains the courseform
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            # Instantiate the class Course from Models
-            v = Course()
-            v.title = form.cleaned_data["title"]
-            v.description = form.cleaned_data["description"]
-            v.difficulty = form.cleaned_data["difficulty"]
-            v.author = request.user
+	if request.method == 'POST':
+		# form is a variable that contains the courseform
+		form = CourseForm(request.POST)
+		if form.is_valid():
+			# Instantiate the class Course from Models
+			v = Course()
+			v.title = form.cleaned_data["title"]
+			v.description = form.cleaned_data["description"]
+			v.difficulty = form.cleaned_data["difficulty"]
+			v.author = request.user
 			# Must save the instantiated variables afterwards
-            v.save()
-            # Make sure HttpResponseRedirect has a view and URL
-            return HttpResponseRedirect('/success/')
-    elif request.method == 'GET':
-        form = CourseForm()
-    else:
-        form = CourseForm()
-    return render(request, "coursemanagement/courseform.html", {"form": form})
+			v.save()
+			print(v.created_at)
+			print(v.updated_at)
+			# Make sure HttpResponseRedirect has a view and URL
+			return HttpResponseRedirect('/success/')
+	elif request.method == 'GET':
+		form = CourseForm()
+	else:
+		form = CourseForm()
+	return render(request, "coursemanagement/courseform.html", {"form": form})
 	
 @login_required()
 def success(request):
@@ -83,32 +84,32 @@ def success(request):
 
 @login_required()
 def lesson(request):
-    if request.method == 'POST':
-        # form is a variable that contains the courseform
-        form = LessonForm(request.POST)
-        if form.is_valid():
-            # Instantiate the class Course from Models
-            v = Lesson()
-            v.title = form.cleaned_data["title"]
-            v.link = form.cleaned_data["link"]
-            v.youtube = form.cleaned_data["youtube"]
-            v.tabs = form.cleaned_data["tabs"]
-            v.tab1desc = form.cleaned_data["tab1desc"]
-            v.tab2desc = form.cleaned_data["tab2desc"]
-            v.tab3desc = form.cleaned_data["tab3desc"]
-            v.tab4desc = form.cleaned_data["tab4desc"]
-            v.tab5desc = form.cleaned_data["tab5desc"]
-            v.tab6desc = form.cleaned_data["tab6desc"]
-            # Must save the instantiated variables afterwards
-            v.save()
+	if request.method == 'POST':
+		# form is a variable that contains the courseform
+		form = LessonForm(request.POST)
+		if form.is_valid():
+			# Instantiate the class Course from Models
+			v = Lesson()
+			v.title = form.cleaned_data["title"]
+			v.link = form.cleaned_data["link"]
+			v.youtube = form.cleaned_data["youtube"]
+			v.tabs = form.cleaned_data["tabs"]
+			v.tab1desc = form.cleaned_data["tab1desc"]
+			v.tab2desc = form.cleaned_data["tab2desc"]
+			v.tab3desc = form.cleaned_data["tab3desc"]
+			v.tab4desc = form.cleaned_data["tab4desc"]
+			v.tab5desc = form.cleaned_data["tab5desc"]
+			v.tab6desc = form.cleaned_data["tab6desc"]
+			# Must save the instantiated variables afterwards
+			v.save()
 
-            # Make sure HttpResponseRedirect has a view and URL
-            return HttpResponseRedirect('/success/')
-    elif request.method == 'GET':
-        form = LessonForm()
-    else:
-        form = LessonForm()
-    return render(request, "coursemanagement/lessonform.html", {"form": form})
+			# Make sure HttpResponseRedirect has a view and URL
+			return HttpResponseRedirect('/success/')
+	elif request.method == 'GET':
+		form = LessonForm()
+	else:
+		form = LessonForm()
+	return render(request, "coursemanagement/lessonform.html", {"form": form})
 
 
 def load_course(request, link, number):
@@ -206,55 +207,53 @@ def quiz_results(request, q, pk):
 
 @login_required()
 def create_multiple_choice_quiz(request):
-    if request.method == 'POST':
-        # if request.POST.get("savebutton") == "Save User info":
-        selected_difficulty = request.POST.get("quiz_difficulty")
-        selected_number_answers = request.POST.get("question_number")
-        return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
-    else:
-        number_of_options = MultipleChoiceQuiz.NUMBER_OF_CHOICES
-        difficulties = MultipleChoiceQuiz.DIFFICULTIES
-        context = {'choices': number_of_options, 'difficulties': difficulties}
+	if request.method == 'POST':
+		# if request.POST.get("savebutton") == "Save User info":
+		selected_difficulty = request.POST.get("quiz_difficulty")
+		selected_number_answers = request.POST.get("question_number")
+		return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
+	else:
+		number_of_options = MultipleChoiceQuiz.NUMBER_OF_CHOICES
+		difficulties = MultipleChoiceQuiz.DIFFICULTIES
+		context = {'choices': number_of_options, 'difficulties': difficulties}
 
-        return render(request, 'coursemanagement/multiplechoiceselect.html', context)
-
+		return render(request, 'coursemanagement/multiplechoiceselect.html', context)
 
 @login_required()
 def create_multiple_choice_quiz_q(request, q, d):
-    if request.method == 'POST':
-        quiz = MultipleChoiceQuiz()
-        answers = []
-        for i in range(int(q)):
-            answers.append(str(request.POST.get(str(int(i)+1)+"-answer")))
-        print(answers)
-        try:
-            quiz.choiceOne = answers[0]
-            quiz.choiceTwo = answers[1]
-            quiz.choiceThree = answers[2]
-            quiz.choiceFour = answers[3]
-            quiz.choiceFive = answers[4]
-            quiz.choiceSix = answers[5]
-        except:
-            pass
-        quiz.title = request.POST.get("question-answer")
-        quiz.author = request.user
-        quiz.numberOfChoices = int(q)
-        quiz.correctAnswer = quiz.CHOICES[int(request.POST['correct-answer']) - 1][0]
-        quiz.difficulty = quiz.DIFFICULTIES[int(d)-1][0]
-        quiz.save()
+	if request.method == 'POST':
+		quiz = MultipleChoiceQuiz()
+		answers = []
+		for i in range(int(q)):
+			answers.append(str(request.POST.get(str(int(i)+1)+"-answer")))
+		print(answers)
+		try:
+			quiz.choiceOne = answers[0]
+			quiz.choiceTwo = answers[1]
+			quiz.choiceThree = answers[2]
+			quiz.choiceFour = answers[3]
+			quiz.choiceFive = answers[4]
+			quiz.choiceSix = answers[5]
+		except:
+			pass
+		quiz.title = request.POST.get("question-answer")
+		quiz.author = request.user
+		quiz.numberOfChoices = int(q)
+		quiz.correctAnswer = quiz.CHOICES[int(request.POST['correct-answer']) - 1][0]
+		quiz.difficulty = quiz.DIFFICULTIES[int(d)-1][0]
+		quiz.save()
 
-        return HttpResponseRedirect('/success/')
-    else:
-        questions = MultipleChoiceQuiz.CHOICES
+		return HttpResponseRedirect('/success/')
+	else:
+		questions = MultipleChoiceQuiz.CHOICES
 
-        list_questions = []
-        for item in range(int(q)):
-            list_questions.append(questions[item])
+		list_questions = []
+		for item in range(int(q)):
+			list_questions.append(questions[item])
 
-        print(list_questions)
-        context = {'number_questions': list_questions}
-        return render(request, 'coursemanagement/multiplechoice.html', context)
-
+		print(list_questions)
+		context = {'number_questions': list_questions}
+		return render(request, 'coursemanagement/multiplechoice.html', context)
 
 @login_required()
 def take_quiz(request, quiz):
