@@ -56,7 +56,6 @@ def viewcourse(request, courseID):
 
 @login_required()
 def course(request):
-<<<<<<< HEAD
 	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
 		if request.method == 'POST':
 			# form is a variable that contains the courseform
@@ -81,7 +80,6 @@ def course(request):
 		return HttpResponseRedirect('/denied/')
 
 
-=======
     if request.method == 'POST':
         # form is a variable that contains the courseform
         form = CourseForm(request.POST)
@@ -102,7 +100,7 @@ def course(request):
         form = CourseForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})
 	
->>>>>>> refs/remotes/origin/master
+
 @login_required()
 def success(request):
     return render(request, 'coursemanagement/success.html')
@@ -315,11 +313,11 @@ def create_fill_in_the_blank(request):
 	pass
 
 @login_required()
-<<<<<<< HEAD
+
 def create_matching_selection(request):
-=======
+
 def create_matching(request):
->>>>>>> refs/remotes/origin/master
+
 	if request.method == 'POST':
 		selected_difficulty = request.POST.get("quiz_difficulty")
 		selected_number_options = request.POST.get("question_number")
@@ -333,7 +331,7 @@ def create_matching(request):
 	
 def create_matching_quiz(request, difficulty, options):
 	if request.method == 'POST':
-<<<<<<< HEAD
+
 		quiz = MatchingQuiz()
 		#quiz.title = request.POST.get("question-title")
 		quiz.author = request.user
@@ -395,10 +393,10 @@ def create_matching_quiz(request, difficulty, options):
 		list_prompts = []
 		for prompts in range(int(options)):
 			list_prompts.append(number[prompts])
-=======
+
 		quiz = MatchingQuiz()	
 	pass
->>>>>>> refs/remotes/origin/master
+
 	
 		context = {'options':list_prompts}
 		
@@ -462,10 +460,7 @@ def create_sentence_drag_and_drop(request):
 	else:
 		return render(request, 'coursemanagement/dragndrop.html')
 		
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/master
 def create_sentence_drag_and_drop_two(request, words, difficulty):
 	if request.method == 'POST':
 		quiz = DragAndDropQuiz()
@@ -500,7 +495,7 @@ def create_quiz(request):
 		else:
 			return render(request, "coursemanagement/createquiz.html")
 	else:
-<<<<<<< HEAD
+
 		return render(request, "coursemanagement/createquiz.html")
 
 def create_drag_and_drop(request):
@@ -516,6 +511,5 @@ def create_drag_and_drop(request):
 		#return HttpResponseRedirect('/denied/')
 	pass
 
-=======
 		return render(request, "coursemanagement/createquiz.html")
->>>>>>> refs/remotes/origin/master
+
