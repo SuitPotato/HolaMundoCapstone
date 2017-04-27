@@ -71,6 +71,8 @@ def course(request):
 				v.author = request.user
 				# Must save the instantiated variables afterwards
 				v.save()
+				print(v.created_at)
+				print(v.updated_at)
 				# Make sure HttpResponseRedirect has a view and URL
 				return HttpResponseRedirect('/success/')
 		elif request.method == 'GET':

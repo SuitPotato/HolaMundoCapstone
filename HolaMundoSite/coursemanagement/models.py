@@ -6,6 +6,8 @@ from django.db import models
 # Required for importing User for Author
 from django.contrib.auth.models import User
 
+from django.utils import timezone
+
 
 
 # Courses can be assigned or be separate
@@ -59,6 +61,9 @@ class Lesson(models.Model):
 	)
 
 	difficulty = models.CharField(max_length=15, choices=DIFFICULTIES, default="Beginner")
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
 	def __str__(self):
 		return self.title
@@ -80,6 +85,9 @@ class Quiz(models.Model):
 	wordThree = models.CharField(max_length=15)
 	wordFour = models.CharField(max_length=15)
 	wordFive = models.CharField(max_length=15)
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
 	def __str__(self):
 		return self.title
@@ -100,6 +108,9 @@ class Course(models.Model):
 	difficulty = models.IntegerField()
 
 	# quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
 	def __str__(self):
 		return self.title
@@ -115,6 +126,9 @@ class CourseLessonQuiz(models.Model):
 	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
 	QuizID = models.ForeignKey(Quiz, null=True, blank=True)
 	position = models.PositiveIntegerField(validators=[MaxValueValidator(30)])
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
 	class Meta:
 		ordering = ['position']
@@ -165,6 +179,9 @@ class MultipleChoiceQuiz(models.Model):
 	)
 
 	difficulty = models.CharField(max_length=15, choices=DIFFICULTIES, default="Beginner")
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
 	def __str__(self):
 		return self.title
@@ -185,6 +202,9 @@ class ShortAnswerQuiz(models.Model):
 	
 	questionPrompt = models.CharField(max_length = 300, null=False, blank=False)
 	correctAnswer = models.CharField(max_length =  50, null=False, blank=False)
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 	
 	def __str__(self):
 		return self.title
@@ -224,11 +244,17 @@ class DragAndDropQuiz(models.Model):
 	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
 	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
 	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
+	
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
 	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)
 	user = models.ForeignKey(User, null = False, blank = False)
 	score = models.IntegerField()
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 	
 	def __str__(self):
 		return self.quizID.title + ": " + self.user.username
@@ -239,6 +265,9 @@ class MultipleChoiceQuizResponse(models.Model):
 	quizID = models.ForeignKey(MultipleChoiceQuiz, null=False, blank=False)
 	user = models.ForeignKey(User, null=False, blank=False)
 	score = models.BooleanField(null=False, default=False)
+	
+	created_at = models.DateTimeField(auto_now_add=True, null = True)
+	updated_at = models.DateTimeField(auto_now=True, null = True)
 
 	def __str__(self):
 		return self.quizID.title + ": " + self.user.username
