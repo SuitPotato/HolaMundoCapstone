@@ -66,19 +66,25 @@
 
 	{% endfor %}
 	<div class="pagination">
-        <span class="step-links">
             {% if videos.has_previous %}
-                <a href="?page={{ videos.previous_page_number }}">previous</a>
+                <a href="?page={{ videos.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
             {% endif %}
 
-            <span class="current">
-                Page {{ videos.number }} of {{ videos.paginator.num_pages }}.
-            </span>
-
+            {% for i in videos.paginator.page_range %}
+                {% if videos.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
             {% if videos.has_next %}
-                <a href="?page={{ videos.next_page_number }}">next</a>
+                <li><a href="?page={{ videos.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
             {% endif %}
-        </span>
+
     </div>
 </div>
 {% endblock %}
