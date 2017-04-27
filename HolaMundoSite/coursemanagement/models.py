@@ -249,68 +249,62 @@ class MatchingQuiz(models.Model):
 	title = models.CharField(max_length = 140)
 	author = models.ForeignKey(User, null = False, blank = False)
 	
-	NUMBER_OF_OPTIONS = {
-		{'2',2},
-		{'3',3},
-		{'4',4},
-		{'5',5},
-		{'6',6},
-		{'7',7},
-		{'8',8},
-		{'9',9},
-		{'10',10},
-		{'11',11},
-		{'12',12},
-		{'13',13},
-		{'14',14},
-		{'15',15},
-	}
+	NUMBER_OF_OPTIONS = (
+		('1','1'),
+		('2','2'),
+		('3','3'),
+		('4','4'),
+		('5','5'),
+		('6','6'),
+		('7','7'),
+		('8','8'),
+		('9','9'),
+		('10','10'),
+		('11','11'),
+		('12','12'),
+		('13','13'),
+		('14','14'),
+		('15','15'),
+	)
 	
-	numberOfOptions = models.CharField(max_length=2, choices =)
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+	)
 	
-	matchOne = models.CharField(max_length = 25, null = False, blank = False)
+	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
+	numberOfOptions = models.CharField(max_length=2, choices=NUMBER_OF_OPTIONS, default = 6)
+	
+	promptOne = models.CharField(max_length = 25, null = False, blank = False)
 	answerOne = models.CharField(max_length = 25, null = False, blank = False)
-	
-	matchTwo = models.CharField(max_length = 25, null = False, blank = False)
+	promptTwo = models.CharField(max_length = 25, null = False, blank = False)
 	answerTwo = models.CharField(max_length = 25, null = False, blank = False)
-	
-	matchThree = models.CharField(max_length = 25, null = True, blank = True)
+	promptThree = models.CharField(max_length = 25, null = True, blank = True)
 	answerThree = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchFour = models.CharField(max_length = 25, null = True, blank = True)
+	promptFour = models.CharField(max_length = 25, null = True, blank = True)
 	answerFour = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchFive = models.CharField(max_length = 25, null = True, blank = True)
+	promptFive = models.CharField(max_length = 25, null = True, blank = True)
 	answerFive = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchSix = models.CharField(max_length = 25, null = True, blank = True)
+	promptSix = models.CharField(max_length = 25, null = True, blank = True)
 	answerSix = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchSeven = models.CharField(max_length = 25, null = True, blank = True)
+	promptSeven = models.CharField(max_length = 25, null = True, blank = True)
 	answerSeven = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchEight = models.CharField(max_length = 25, null = True, blank = True)
+	promptEight = models.CharField(max_length = 25, null = True, blank = True)
 	answerEight = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchNine = models.CharField(max_length = 25, null = True, blank = True)
+	promptNine = models.CharField(max_length = 25, null = True, blank = True)
 	answerNine = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchTen = models.CharField(max_length = 25, null = True, blank = True)
+	promptTen = models.CharField(max_length = 25, null = True, blank = True)
 	answerTen = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchEleven = models.CharField(max_length = 25, null = True, blank = True)
+	promptEleven = models.CharField(max_length = 25, null = True, blank = True)
 	answerEleven = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchTwelve = models.CharField(max_length = 25, null = True, blank = True)
+	promptTwelve = models.CharField(max_length = 25, null = True, blank = True)
 	answerTwelve = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchThirteen = models.CharField(max_length = 25, null = True, blank = True)
+	promptThirteen = models.CharField(max_length = 25, null = True, blank = True)
 	answerThirteen = models.CharField(max_length = 25, null = True, blank = True)
-
-	matchFourteen = models.CharField(max_length = 25, null = True, blank = True)
+	promptFourteen = models.CharField(max_length = 25, null = True, blank = True)
 	answerFourteen = models.CharField(max_length = 25, null = True, blank = True)
-	
-	matchFifteen = models.CharField(max_length = 25, null = True, blank = True)
+	promptFifteen = models.CharField(max_length = 25, null = True, blank = True)
 	answerFifteen5 = models.CharField(max_length = 25, null = True, blank = True)
 	
 	
