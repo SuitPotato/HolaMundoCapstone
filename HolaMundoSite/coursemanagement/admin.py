@@ -1,6 +1,6 @@
 from django.contrib import admin
 from coursemanagement.models import Lesson, Course, Quiz, CourseLessonQuiz, MultipleChoiceQuiz, MultipleChoiceQuizResponse
-from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse
+from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse, MatchingQuiz
 
 # Register your models here.
 # Course Management Models
@@ -16,3 +16,7 @@ admin.site.register(MultipleChoiceQuizResponse)
 # Short Answer Quiz models
 admin.site.register(ShortAnswerQuiz)
 admin.site.register(ShortAnswerQuizResponse)
+
+# Matching Quiz Models
+admin.site.register(MatchingQuiz)
+
