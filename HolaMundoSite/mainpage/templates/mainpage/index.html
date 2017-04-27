@@ -4,108 +4,134 @@
 {% block content %}
 
 {% load staticfiles %}
+<link href="{% static 'mainpage/css/business-casual.css' %}" rel="stylesheet">
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="page-header">
-				<div class="row">
 
-					<div class="col-md-3">
-					</div>
+	<div class="brand">Authentic Spanish Language</div>
+    <div class="address-bar">Your one stop shop for authentic spanish videos</div>
+	
+	<div class="container">
 
-					<div class="col-md-6">
-						<h1 style='text-align: center; font-family: "Times New Roman", Times, serif; '>Hola Mundo <p></p></h1><h2 style="text-align: center;"><small><i>For Authentic Spanish Language and Pedagogy</i></small> </h2>
-					</div>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    <div id="carousel-example-generic" class="carousel slide">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators hidden-xs">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
 
-					<div class="col-md-3">
-					</div>
-
-				</div>
-			</div>
-
-			{% comment %}
-
-			<div class="row ">
-
-				<div class="col-md-3">
-				</div>
-
-				<div class="col-md-6">
-					<img src="{% static 'mainpage/img/thumbs/home-aslap.png' %}" alt="Home-Aslap" class="img-responsive center-block" >
-				</div>
-
-				<div class="col-md-3">
-				</div>
-
-			</div>
-
-			{% endcomment %}
-
-
-			<div class="row">
-				<div class="col-md-12">
-					<div class="row" style="padding-bottom:35px; padding-top:30px;">
-						<div class="col-md-4">
-							<div class="thumbnail" style="background: #a5b2c6">
-								<img src="{% static 'mainpage/img/thumbs/beginner.jpg' %}" alt="beginner" class="img-responsive center-block" >
-								<div class="caption">
-									<h3>
-										Beginner
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="/results/?query=beginner">Take me to Beginner videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
-									</p>
+                        <!-- Wrapper for slides -->
+						
+                        <div class="carousel-inner">
+                            <div class="item active">
+								<a href="/results/?query=beginner">
+									<img class="img-responsive img-full" src="{% static 'mainpage/img/slide-1.jpg' %}" alt="">
+								</a>
+								<div class="carousel-caption">
+									Beginner
 								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="thumbnail" style="background: #a5b2c6">
-								<img src="{% static 'mainpage/img/thumbs/intermediate.jpg' %}" alt="Intermediate" class="img-responsive center-block" >
-								<div class="caption">
-									<h3>
-										Intermediate
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="/results/?query=intermediate">Take me to Intermediate videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
-									</p>
+                            </div>
+                            <div class="item">
+								<a href="/results/?query=intermediate">
+									<img class="img-responsive img-full" src="{% static 'mainpage/img/slide-2.jpg' %}" alt="">
+								</a>
+								<div class="carousel-caption">
+									Intermediate
 								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="thumbnail" style="background: #a5b2c6">
-								<img src="{% static 'mainpage/img/thumbs/advanced.jpg' %}" alt="Advanced" class="img-responsive center-block" >
-								<div class="caption">
-									<h3>
-										Advanced
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="/results/?query=advanced">Take me to Advanced videos</a> {% comment %}<a class="btn" href="#">Action</a>{% endcomment %}
-									</p>
+                            </div>
+                            <div class="item">
+								<a href="/results/?query=advanced">
+									<img class="img-responsive img-full" src="{% static 'mainpage/img/slide-3.jpg' %}" alt="">
+								</a>
+								<div class="carousel-caption">
+									Advanced
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
+                            </div>
+                        </div>
+						
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="icon-next"></span>
+                        </a>
+                    </div>
+                    <h2 class="brand-before">
+                        <small></small>
+                    </h2>
+                    <h1 class="brand-name">Multiple video difficulties</h1>
+                    <hr class="tagline-divider">
+                    <h2>
+                        <small> To
+                            <strong>fine tune</strong>
+							your learning experience
+                        </small>
+                    </h2>
+                </div>
+            </div>
+        </div>
 
-							<address>
-								 <strong>Hola Mundo</strong><br> S San Francisco St<br> Flagstaff, AZ 86001<br> <abbr title="Email">Email:</abbr> Karen.Schairer@nau.edu
-							</address>
-						</div>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center"> Last uploaded course - 
+                        <strong>Nohemi Introduction</strong>
+                    </h2>
+                    <hr>
+					<a href="/video/2">
+						<img class="img-responsive img-border img-left" src="https://img.youtube.com/vi/pleWkEaYmL4/1.jpg" alt="">
+					</a>
+                    <hr class="visible-xs">
+                    <p>Latest uploaded course is a set of interviews with Nohemi</p>
+					<p>Nohemi is from ___ and was interviewed about ____. For more information, click the photo to watch the interview!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center"> Information about the site
+                    </h2>
+                    <hr>
+                    <p> Un sitio para todos los que aman el idioma español y su asombrosa variedad de culturas. A site for all who love the Spanish language and culture in all its amazing variety. New videos will be added regularly and suggestions and/or activities welcome. Click the photos above to access video clips and language-learning activities. </p>
+					<p> Or, search for specific videos with the search bar above.</p>
+					
 					</div>
+            </div>
+        </div>
+
+    </div>
+	
+	<footer>
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-1">
 				</div>
-			</div>
-		</div>
-	</div>
+                <div class="col-lg-5 text-right">
+                    <p>Copyright &copy; Authentic Spanish Language<br>Email: Karen.Schairer@nau.edu</p>
+                </div>
+                <div class="col-lg-5 text-left">
+					<p>South San Francisco Street<br>Flagstaff, AZ 86001 </p>
+                </div>
+				<div class="col-lg-1">
+				</div>
+            </div>
+        </div>
+    </footer>
 </div>
+
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
 {% endblock %}

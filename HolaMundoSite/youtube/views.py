@@ -1,6 +1,7 @@
 import os
 import httplib
 from argparse import Namespace
+from urlparse import urlparse, parse_qs
 
 import httplib2
 import random
@@ -28,25 +29,106 @@ from coursemanagement.models import Lesson
 
 BASE_URL = settings.MEDIA_ROOT
 
+
+
+################## Important ##################
+####### Do not move client_secrets.json #######
+########## From main youtube folder ###########
+
+# Main video upload page
 @login_required()
 def index(request):
-    form = VidUploadForm()
-    return render(request, 'youtube/index.html', {'form': form})
+    # Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+    # creator or super user then they will be able to access this view. If not then they will be redirected to
+    # denial page
+    if ((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+        # After user uploads video to our site, get the file and upload it to youtube.
+        if request.method == 'POST':
+            toYoutube(request.FILES['file'], request)
+        else:
+            # Page loads for first time, GET not POST
+            context = {'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
+            return render(request, 'youtube/index.html', context)
+
+    # If not a content creator or super user then redirect to the denial view located in the mainpage
+    else:
+        return HttpResponseRedirect('/denied/')
+
 
 @login_required()
-def uploaded(request):
-    if request.method == 'POST':
-        form = VidUploadForm(request.POST, request.FILES)
-        print(form)
-        if form.is_valid():
-            request.description = form.cleaned_data["description"]
-            toYoutube(request.FILES['file'], request)
+def indexlink(request):
+    # Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+    # creator or super user then they will be able to access this view. If not then they will be redirected to
+    # denial page
+    if ((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+        if request.method == 'POST':
 
-            # change HttpResponse to a page where user can edit information like tags, descriptions, etc
-            return HttpResponseRedirect('/results/?query=beginner')
-        #else:
-            #form = VidUploadForm()
-            #return render(request, 'youtube/index.html', {'form': form})
+            # Get attributes from form post for video
+            title = request.POST.get("title")
+            video_link = request.POST.get("link")
+            tags = request.POST.get("tags")
+
+            # Tabs information
+            tab1name = request.POST.get("Tab 1-name")
+            tab1desc = request.POST.get("Tab 1-desc")
+
+            tab2name = request.POST.get("Tab 2-name")
+            tab2desc = request.POST.get("Tab 2-desc")
+
+            tab3name = request.POST.get("Tab 3-name")
+            tab3desc = request.POST.get("Tab 3-desc")
+
+            tab4name = request.POST.get("Tab 4-name")
+            tab4desc = request.POST.get("Tab 4-desc")
+
+            tab5name = request.POST.get("Tab 5-name")
+            tab5desc = request.POST.get("Tab 5-desc")
+
+            tab6name = request.POST.get("Tab 6-name")
+            tab6desc = request.POST.get("Tab 6-desc")
+
+            difficulties = ("Beginner", "Intermediate", "Advanced")
+
+            selected_difficulty = difficulties[int(request.POST.get("video-difficulty")) - 1]
+
+            # Get youtube video ID from link pasted in
+            query = urlparse(video_link)
+            if query.hostname == 'youtu.be':
+                link = query.path[1:]
+            if query.hostname in ('www.youtube.com', 'youtube.com'):
+                if query.path == '/watch':
+                    p = parse_qs(query.query)
+                    link = p['v'][0]
+                if query.path[:7] == '/embed/':
+                    link = query.path.split('/')[2]
+                if query.path[:3] == '/v/':
+                    link = query.path.split('/')[2]
+            ourlink = generateLink()
+
+            # Build new lesson
+            lesson = Lesson(title=title, youtube=link, author=request.user, link=ourlink, tags=tags,
+                            difficulty=selected_difficulty,
+                            tab1=tab1name, tab2=tab2name, tab3=tab3name, tab4=tab4name, tab5=tab5name, tab6=tab6name,
+                            tab1desc=tab1desc, tab2desc=tab2desc, tab3desc=tab3desc, tab4desc=tab4desc,
+                            tab5desc=tab5desc,
+                            tab6desc=tab6desc
+                            )
+
+            # Save lesson to database, wait, redirect user to new video just uploaded.
+            lesson.save()
+            time.sleep(2)
+            return HttpResponseRedirect('/video/' + ourlink)
+        # If get, form displays all tab information.
+        else:
+            # Max length set from database, so if database max length is changed form is too. Don't change these
+            context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length,
+                       'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length,
+                       'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
+            return render(request, 'youtube/index-link.html', context)
+
+    # If not a content creator or super user then redirect to the denial view located in the mainpage
+    else:
+        return HttpResponseRedirect('/denied/')
 
 
 def toYoutube(f, request):
@@ -55,24 +137,29 @@ def toYoutube(f, request):
     uploaded_url = fs.url(filename)
     video_abs_path = BASE_URL + uploaded_url
 
-    #Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
+    # Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
     #  category='10', description='Test description',
     # file='C:\\Users\\Josh\\Documents\\GitHub\\HolaMundoCapstone\\HolaMundoSite/media/Uploaded_6CXHmaW.mp4',
     #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
     #  privacyStatus='public', title='Test video')
 
-    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10', description='Test description', file=video_abs_path, keywords='', logging_level='ERROR', noauth_local_webserver=False, privacyStatus='public', title='Test video')
+    # These args match the youtube API. If in the future youtube api changes, here is where things should be updated
+    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10',
+                     description='Test description', file=video_abs_path, keywords='', logging_level='ERROR',
+                     noauth_local_webserver=False, privacyStatus='public', title='Test video')
     if not os.path.exists(args.file):
         exit("Please specify a valid file using the --file= parameter.")
 
     youtube = get_authenticated_service(args)
     try:
+        # Uploading to youtube now that API specs are met
         initialize_upload(youtube, args, request)
     except HttpError, e:
         print "An HTTP error %d occurred:\n%s" % (e.resp.status, e.content)
 
     # os.system('C:/Users/Josh/Documents/GitHub/HolaMundoCapstone/HolaMundoSite/youtube/upload.py --file=' + BASE_URL + uploaded_url + ' --title="Test video" --description="Test description" --category=10 --privacyStatus="public"')
     return HttpResponseRedirect('/youtube/index.html')
+
 
 # Current Video Category Codes
 #
@@ -203,6 +290,17 @@ def initialize_upload(youtube, options, request):
 
 # This method implements an exponential backoff strategy to resume a
 # failed upload.
+def generateLink():
+    chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    while True:
+        value = "".join(random.choice(chars) for c in range(10))
+        try:
+            duplicate_key_video = Lesson.objects.get(link=value)
+            value = "".join(random.choice(chars) for c in range(10))
+        except:
+            return value
+
+
 def resumable_upload(insert_request, request):
     response = None
     error = None
@@ -214,13 +312,41 @@ def resumable_upload(insert_request, request):
             if response is not None:
                 if 'id' in response:
                     print "Video id '%s' was successfully uploaded." % response['id']
+                    # response is return from youtube api. If we hit here, video successfully uploaded
+                    # Now we create a new video, p, and set all of our attributes accordingly
                     p = Lesson()
-                    p.title = response['snippet']['title']
-                    p.tags = request.description
+                    p.title = request.POST.get("title")
+                    p.tags = request.POST.get("tags")
+                    p.difficulty = request.POST.get("video-difficulty")
+                    # response['id'] = youtube video unique identifier
                     p.youtube = response['id']
-                    p.link = 558
+                    # Generate unique link for our sites use for video
+                    p.link = generateLink()
                     p.author = request.user
+                    # Save video, wait, direct user to newly uploaded video
+
+
+                    # Tabs information
+                    p.tab1 = request.POST.get("Tab 1-name")
+                    p.tab1desc = request.POST.get("Tab 1-desc")
+
+                    p.tab2 = request.POST.get("Tab 2-name")
+                    p.tab2desc = request.POST.get("Tab 2-desc")
+
+                    p.tab3 = request.POST.get("Tab 3-name")
+                    p.tab3desc = request.POST.get("Tab 3-desc")
+
+                    p.tab4 = request.POST.get("Tab 4-name")
+                    p.tab4desc = request.POST.get("Tab 4-desc")
+
+                    p.tab5 = request.POST.get("Tab 5-name")
+                    p.tab5desc = request.POST.get("Tab 5-desc")
+
+                    p.tab6 = request.POST.get("Tab 6-name")
+                    p.tab6desc = request.POST.get("Tab 6-desc")
                     p.save()
+                    time.sleep(2)
+                    return HttpResponseRedirect('/video/' + p.link)
                 else:
                     exit("The upload failed with an unexpected response: %s" % response)
         except HttpError, e:
