@@ -63,7 +63,7 @@ def viewcourse(request, courseID):
 
 @login_required()
 def course(request):
-<<<<<<< HEAD
+
     if request.method == 'POST':
         # form is a variable that contains the courseform
         form = CourseForm(request.POST)
@@ -84,7 +84,7 @@ def course(request):
         form = CourseForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})
 	
-=======
+
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
 	#denial page
@@ -114,7 +114,7 @@ def course(request):
 		return HttpResponseRedirect('/denied/')
 		
 
->>>>>>> refs/remotes/origin/master
+
 @login_required()
 def success(request):
     return render(request, 'coursemanagement/success.html')
@@ -372,7 +372,7 @@ def create_multiple_choice_quiz(request):
 
 @login_required()
 def create_matching(request):
-<<<<<<< HEAD
+
 	if request.method == 'POST':
 		selected_difficulty = request.POST.get("quiz_difficulty")
 		selected_number_options = request.POST.get("option_number")
@@ -387,18 +387,9 @@ def create_matching(request):
 def create_matching_the_seconding(request):
 	if request.method == 'POST':
 		quiz = MatchingQuiz()	
-=======
-	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
-	#creator or super user then they will be able to access this view. If not then they will be redirected to
-	#denial page
-	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+
 	
-		#FUNCTIONALITY HERE
-	
-	#If not a conent creator or super user then redirect to the denial view located in the mainpage
-	#else:
-		#return HttpResponseRedirect('/denied/')
->>>>>>> refs/remotes/origin/master
+
 	pass
 	
 
@@ -467,7 +458,7 @@ def create_sentence_drag_and_drop(request):
 	else:
 		return render(request, 'coursemanagement/dragndrop.html')
 		
-<<<<<<< HEAD
+
 def create_sentence_drag_and_drop_two(request, words, difficulty):
 	if request.method == 'POST':
 		quiz = DragAndDropQuiz()
@@ -503,7 +494,7 @@ def create_quiz(request)
 			return render(request, "coursemanagement/createquiz.html")
 	else:
 		return render(request, "coursemanagement/createquiz.html")
-=======
+
 def create_drag_and_drop(request):
 	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
 	#creator or super user then they will be able to access this view. If not then they will be redirected to
@@ -516,4 +507,4 @@ def create_drag_and_drop(request):
 	#else:
 		#return HttpResponseRedirect('/denied/')
 	pass
->>>>>>> refs/remotes/origin/master
+
