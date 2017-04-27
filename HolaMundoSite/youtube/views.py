@@ -50,7 +50,10 @@ def index(request):
             return HttpResponseRedirect('/video/' + link)
         else:
             # Page loads for first time, GET not POST
-            context = {'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
+            #  Max length set from database, so if database max length is changed form is too. Don't change these
+            context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length,
+                       'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length,
+                       'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
             return render(request, 'youtube/index.html', context)
 
     # If not a content creator or super user then redirect to the denial view located in the mainpage
