@@ -1,0 +1,47 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Create Quiz {% endblock %}
+
+{% block content %}
+<div class="">
+	<h1 type="h1" class="header" name="" id="">
+		Apply a quiz to { Lesson Title }
+	</h1>
+</div>
+	
+<form id="rendered-form" method="POST">
+
+	<div class="fb-select form-group field-select-quiz">
+		<label for="select-quiz" class="fb-select-label">
+			Select Quiz Type  
+		</label>
+		
+		<select type="select" placeholder="Quiz Type" class="form-control" name="select_quiz" id="select-quiz">
+			<option disabled="" selected="">
+				Quiz Type
+			</option>
+			<option value="1">
+				Short Answer
+			</option>
+			<option value="2">
+				Multiple Choice
+			</option>
+			<option value="3">
+				Matching
+			</option>
+			<option value="4">
+				Sentence Drag &amp; Drop
+			</option>
+			<option value="5">
+				Video Drag &amp; Drop
+			</option>
+		</select>
+	</div>
+	
+	<div class="fb-submit form-group field-submit">
+		<button type="submit" class="button-input btn btn-default" name="submit" style="default" id="submit">
+			Submit
+		</button>
+	</div>
+</form>
+{% endblock %}
