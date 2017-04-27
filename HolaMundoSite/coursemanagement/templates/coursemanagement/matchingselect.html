@@ -1,0 +1,75 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Matching {% endblock %}
+
+{% block content %}
+
+<form id="rendered-form" data-form-render="[object Object]">
+	<div>
+		<h1>
+			Matching Quiz Creator
+		</h1>
+	</div>
+	<div class="fb-select form-group field-difficulty-selection">
+		
+		<label class="fb-select-label">
+			Difficulty
+		</label>
+		
+		<select label="Difficulty" placeholder="Choose Difficulty" class="form-control" name="difficulty-selection">
+		
+			<option disabled="null" selected="null">
+				Choose Difficulty
+			</option>
+			
+			<option value="1" id="difficulty-selection-0">
+				Beginner
+			</option>
+			
+			<option value="2" id="difficulty-selection-1">
+				Intermediate
+			</option>
+			
+			<option value="3" id="difficulty-selection-2">
+				Advanced
+			</option>
+		</select>
+	</div>
+	
+	<div class="fb-select form-group field-matching-options">
+		<label class="fb-select-label">
+			How Many Matching Options?
+		</label>
+		
+		<select label="How Many Matching Options?" placeholder="How many matching options?" class="form-control" name="matching-options">
+		
+			<option disabled="null" selected="null">
+				How many matching options?
+			</option>
+			
+			<option value="2" id="matching-options-0">2</option>
+			<option value="3" id="matching-options-1">3</option>
+			<option value="4" id="matching-options-2">4</option>
+			<option value="5" id="matching-options-3">5</option>
+			<option value="6" id="matching-options-4">6</option>
+			<option value="7" id="matching-options-5">7</option>
+			<option value="8" id="matching-options-6">8</option>
+			<option value="9" id="matching-options-7">9</option>
+			<option value="10" id="matching-options-8">10</option>
+			<option value="11" id="matching-options-9">11</option>
+			<option value="12" id="matching-options-10">12</option>
+			<option value="13" id="matching-options-11">13</option>
+			<option value="14" id="matching-options-12">14</option>
+			<option value="15" id="matching-options-13">15</option>
+			
+		</select>
+	</div>
+	
+	<div class="fb-button form-group field-submit-button">
+		<button type="submit" class="btn btn-undefined" name="submit-button" style="undefined" id="submit-button">
+			Submit
+		</button>
+	</div>
+</form>
+
+{% endblock %}
