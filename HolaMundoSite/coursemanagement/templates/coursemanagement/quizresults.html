@@ -6,26 +6,27 @@
 
     {% if user.is_authenticated %}
         <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-
-                </div>
-
-                <div class="col-md-6">
-                    <div class="panel-success">
-                        <div class="panel-heading">
-                            <div class="center"> Thanks for taking the "{{ title }}" quiz, {{ user.username }}! </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="center"> You scored a {% if score %} 100 {% else %} 0 {% endif %} out of {{ total }}!</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-
-                </div>
-            </div>
+		
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8">
+					<hr>
+					<br>
+					<div class="text-center">
+						<h1> Great job! </h1>
+						<h3>You scored a 100% on the {{ title }} quiz, {{ user.username }}</h3>
+						<br>
+					</div>
+				</div>
+				<div class="col-md-2">
+				</div>
+			</div>
+			<div class="row">
+				<h4 class="pull-right" style="padding-top: 500px;">
+					<input class="btn btn-submit btn-success" type="submit" value = "Back to my lesson"/>
+				</h4>
+			</div>
         </div>
     {% else %}
 

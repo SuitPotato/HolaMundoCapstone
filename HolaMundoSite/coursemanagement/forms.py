@@ -25,7 +25,7 @@ class CourseForm(forms.Form):
 	)
 	
 	# Fields
-	title = forms.CharField(max_length = 100)
+	title = forms.CharField(max_length = 55)
 	description = forms.CharField(widget=forms.Textarea, max_length = 300)
 	difficulty = forms.ChoiceField(choices = DIFFICULTIES)
 	
@@ -49,7 +49,7 @@ class LessonForm(forms.Form):
 	)
 	
 	# Fields
-	title = forms.CharField(max_length = 140)
+	title = forms.CharField(max_length = 55)
 	youtube = forms.CharField(max_length = 100)
 	link = forms.CharField(max_length = 15)
 	tabs = forms.ChoiceField(choices = NUM_TABS)
