@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/UserSettingsPage/profile'
+LOGIN_REDIRECT_URL = '/myHolaMundo/'
 
 LOGIN_URL = '/login/'
 
