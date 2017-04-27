@@ -13,7 +13,7 @@ from coursemanagement.models import Course
 from coursemanagement.forms import LessonForm, CourseForm
 from UserSettingsPage.models import Preference
 from coursemanagement.models import CourseLessonQuiz, Course, Lesson, Quiz, MultipleChoiceQuiz, MultipleChoiceQuizResponse
-from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse
+from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse, MatchingQuiz
 
 # Import User
 from django.contrib.auth.models import User
@@ -56,6 +56,32 @@ def viewcourse(request, courseID):
 
 @login_required()
 def course(request):
+<<<<<<< HEAD
+	if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+		if request.method == 'POST':
+			# form is a variable that contains the courseform
+			form = CourseForm(request.POST)
+			if form.is_valid():
+				# Instantiate the class Course from Models
+				v = Course()
+				v.title = form.cleaned_data["title"]
+				v.description = form.cleaned_data["description"]
+				v.difficulty = form.cleaned_data["difficulty"]
+				v.author = request.user
+				# Must save the instantiated variables afterwards
+				v.save()
+				# Make sure HttpResponseRedirect has a view and URL
+				return HttpResponseRedirect('/success/')
+		elif request.method == 'GET':
+			form = CourseForm()
+		else:
+			form = CourseForm()
+		return render(request, "coursemanagement/courseform.html", {"form": form})
+	else:
+		return HttpResponseRedirect('/denied/')
+
+
+=======
     if request.method == 'POST':
         # form is a variable that contains the courseform
         form = CourseForm(request.POST)
@@ -76,6 +102,7 @@ def course(request):
         form = CourseForm()
     return render(request, "coursemanagement/courseform.html", {"form": form})
 	
+>>>>>>> refs/remotes/origin/master
 @login_required()
 def success(request):
     return render(request, 'coursemanagement/success.html')
@@ -288,23 +315,95 @@ def create_fill_in_the_blank(request):
 	pass
 
 @login_required()
+<<<<<<< HEAD
+def create_matching_selection(request):
+=======
 def create_matching(request):
+>>>>>>> refs/remotes/origin/master
 	if request.method == 'POST':
 		selected_difficulty = request.POST.get("quiz_difficulty")
-		selected_number_options = request.POST.get("option_number")
-		return HttpResponseRedirect('matching'+selected_difficulty+'/'+selected_number_questions)
+		selected_number_options = request.POST.get("question_number")
+		return HttpResponseRedirect('/matching/'+selected_difficulty+'/'+selected_number_options)
 	else:
-		number_of_options = MatchingQuiz.NUMBER_OF_CHOICES
+		number_of_options = MatchingQuiz.NUMBER_OF_OPTIONS
 		difficulty = MatchingQuiz.DIFFICULTIES
 		context = {'options': number_of_options, 'difficulty': difficulty}
 		return render(request, 'coursemanagement/matchingselect.html', context)
 	
 	
-def create_matching_the_seconding(request):
+def create_matching_quiz(request, difficulty, options):
 	if request.method == 'POST':
+<<<<<<< HEAD
+		quiz = MatchingQuiz()
+		#quiz.title = request.POST.get("question-title")
+		quiz.author = request.user
+		quiz.numberOfOptions = int(options)
+		quiz.difficulty = int(difficulty)
+		
+		# Two parts to a matching question. A prompt and the answer to the specific prompt
+		prompts = []
+		answers = []
+
+		for i in range(int(options)):
+			# Adding to the list for prompts and answers, using concatenation to pull the values.
+			# Expecting; 1-prompt and 1-answers for all possible options
+			prompts.append(str(request.POST.get(str(int(i)+1) + "-prompt")))
+			answers.append(str(request.POST.get(str(int(i)+1) + "-answers")))
+		# Blatant copy of multiple choice :)
+		try:
+			quiz.promptOne = prompts[0]
+			quiz.promptTwo = prompts[1]
+			quiz.promptThree = prompts[2]
+			quiz.promptFour = prompts[3]
+			quiz.promptFive = prompts[4]
+			quiz.promptSix = prompts[5]
+			quiz.promptSeven = prompts[6]
+			quiz.promptEight = prompts[7]
+			quiz.promptNine = prompts[8]
+			quiz.promptTen = prompts[9]
+			quiz.promptEleven = prompts[10]
+			quiz.promptTwelve = prompts[11]
+			quiz.promptThirteen = prompts[12]
+			quiz.promptFourteen = prompts[13]
+			quiz.promptFifteen = prompts[14]
+			
+		except:
+			pass
+		try:
+			quiz.answerOne = answers[0]
+			quiz.answerTwo = answers[1]
+			quiz.answerThree = answers[2]
+			quiz.answerFour = answers[3]
+			quiz.answerFive = answers[4]
+			quiz.answerSix = answers[5]
+			quiz.answerSeven = answers[6]
+			quiz.answerEight = answers[7]
+			quiz.answerNine = answers[8]
+			quiz.answerTen = answers[9]
+			quiz.answerEleven = answers[10]
+			quiz.answerTwelve = answers[11]
+			quiz.answerThirteen = answers[12]
+			quiz.answerFourteen = answers[13]
+			quiz.answerFifteen = answers[14]
+		except:
+			pass
+			
+		quiz.save()
+	else:
+		number = MatchingQuiz.NUMBER_OF_OPTIONS
+	
+		list_prompts = []
+		for prompts in range(int(options)):
+			list_prompts.append(number[prompts])
+=======
 		quiz = MatchingQuiz()	
 	pass
+>>>>>>> refs/remotes/origin/master
 	
+		context = {'options':list_prompts}
+		
+		return render(request, 'coursemanagement/matching.html', context)
+		
 
 # Short Answer Question Overall Structure
 	# Question Prompt
@@ -363,6 +462,10 @@ def create_sentence_drag_and_drop(request):
 	else:
 		return render(request, 'coursemanagement/dragndrop.html')
 		
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
 def create_sentence_drag_and_drop_two(request, words, difficulty):
 	if request.method == 'POST':
 		quiz = DragAndDropQuiz()
@@ -397,4 +500,22 @@ def create_quiz(request):
 		else:
 			return render(request, "coursemanagement/createquiz.html")
 	else:
+<<<<<<< HEAD
 		return render(request, "coursemanagement/createquiz.html")
+
+def create_drag_and_drop(request):
+	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
+	#creator or super user then they will be able to access this view. If not then they will be redirected to
+	#denial page
+	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
+	
+		#FUNCTIONALITY HERE
+	
+	#If not a conent creator or super user then redirect to the denial view located in the mainpage
+	#else:
+		#return HttpResponseRedirect('/denied/')
+	pass
+
+=======
+		return render(request, "coursemanagement/createquiz.html")
+>>>>>>> refs/remotes/origin/master

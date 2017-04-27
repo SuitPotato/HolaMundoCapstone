@@ -43,7 +43,8 @@ urlpatterns = [
 	
 	# Matching URL's
 	
-	url(r'^matching/$', views.create_matching),
+	url(r'^matching/$', views.create_matching_selection),
+	url(r'^matching/(?P<difficulty>[\w]+)/(?P<options>[\w]+)/',views.create_matching_quiz),
 	
 	# Short Answer URL's
 	
