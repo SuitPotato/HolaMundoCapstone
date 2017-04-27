@@ -216,7 +216,7 @@ class ShortAnswerQuiz(models.Model):
 class DragAndDropQuiz(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
-	title = models.CharField(max_length=100, null=False, blank=False)
+	title = models.CharField(max_length=55, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
 	
 	DIFFICULTIES = (

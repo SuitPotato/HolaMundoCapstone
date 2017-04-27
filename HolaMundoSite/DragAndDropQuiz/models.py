@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 class DragAndDrop(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key = True)
-	title = models.CharField(max_length = 140)
+	title = models.CharField(max_length = 55)
 	
 	# Text Content
 	content = models.CharField(max_length = 1000)
