@@ -1,0 +1,76 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Matching {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		
+		<form id="rendered-form" method="POST">
+		{% csrf_token %}
+		<div class="col-md-12">
+			<h1>
+				Matching Quiz Creator
+			</h1>
+			<div class="row">
+				<div class="col-md-6">
+				
+					<h2>
+						Matching Prompts
+					</h2>
+					{% for prompt in options %}
+					<div class="fb-text form-group field-matching-one">
+						<label class="fb-text-label">
+							Matching {{ prompt.0 }} Prompt
+						</label>
+		
+						<input type="text" placeholder="Matching {{ prompt.0 }} Prompt" class="form-control" name="{{ prompt.0 }}-prompt" maxlength="25" id="{{ prompt.0 }}-prompt">
+					</div>
+					{% endfor %}
+				</div>
+				<div class="col-md-6">
+				
+					<h2>
+						Matching Answers
+					</h2>
+					
+					{% for answer in options %}
+					<div class="fb-text form-group field-matching-one-answer">
+						<label class="fb-text-label">
+							Matching {{ answer.0 }} Answer
+						</label>
+						
+						<input type="text" placeholder="Matching {{ answer.0 }} Answer" class="form-control" name="{{ answer.0 }}-answer" maxlength="25" id="{{answers.0}}-answer">
+					</div>
+					{% endfor %} 
+				
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+				
+					<div class="fb-button form-group field-button-1493179932252">
+						<button type="submit" class="btn btn-undefined" name="button-1493179932252" style="undefined" id="button-1493179932252">
+							Submit
+						</button>
+					</div>
+					
+				</div>
+				<div class="col-md-4">
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+	
+	
+	
+	
+	

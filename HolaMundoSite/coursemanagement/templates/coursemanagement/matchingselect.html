@@ -1,0 +1,57 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Matching {% endblock %}
+
+{% block content %}
+
+<form id="rendered-form" method="POST">
+	{% csrf_token %}
+	<div>
+		<h1>
+			Matching Quiz Creator
+		</h1>
+	</div>
+	<div class="fb-select form-group field-difficulty-selection">
+		
+		<label class="fb-select-label">
+			Difficulty
+		</label>
+		
+		<select label="Difficulty" placeholder="Choose Difficulty" class="form-control" name="quiz_difficulty">
+		
+			{% for choice in difficulty %}
+				
+				<option value="{{ choice.1 }}">{{ choice.0 }}</option>
+				
+			{% endfor %}
+		</select>
+	</div>
+	
+	<div class="fb-select form-group field-matching-options">
+		<label class="fb-select-label">
+			How Many Matching Options?
+		</label>
+		
+		<select label="How Many Matching Options?" placeholder="How many matching options?" class="form-control" name="question_number">
+			{% for choice in options %}
+				{% if forloop.counter == 1 %}
+				{% else %}
+					<option value="{{ choice.1 }}">{{ choice.0 }}</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+	</div>
+	
+	<div class="fb-button form-group field-submit-button">
+		<button type="submit" class="btn btn-undefined" name="submit-button" style="undefined" id="submit-button">
+			Submit
+		</button>
+	</div>
+</form>
+
+{% endblock %}
+
+<option value="3" id="difficulty-selection-2">
+	Advanced
+</option>
+<option value="10" id="matching-options-8">10</option>

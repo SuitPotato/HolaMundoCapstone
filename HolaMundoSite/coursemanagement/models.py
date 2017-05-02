@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Required for importing User for Author
@@ -15,7 +15,7 @@ class Lesson(models.Model):
 	lessonID = models.AutoField(primary_key=True)
 	assignedCourse = models.ForeignKey('coursemanagement.Course', on_delete=models.CASCADE,
 									   related_name='assigned_course', null=True, blank=True)
-	title = models.CharField(max_length=55)
+	title = models.CharField(max_length=140)
 	youtube = models.CharField(max_length=100)
 	author = models.ForeignKey(User, null=False, blank=False)
 
@@ -76,7 +76,7 @@ class Quiz(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key=True)
 	LessonID = models.ForeignKey(Lesson, null=False, blank=False)
-	title = models.CharField(max_length=55)
+	title = models.CharField(max_length=140)
 
 	# Potentially add the content of non-draggable sentence
 	# content = models.CharField(max_length = 1000)
@@ -95,7 +95,7 @@ class Quiz(models.Model):
 
 class Course(models.Model):
 	courseID = models.AutoField(primary_key=True)
-	title = models.CharField(max_length=55)
+	title = models.CharField(max_length=100)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
 	link = models.CharField(max_length=15)
@@ -135,7 +135,7 @@ class MultipleChoiceQuiz(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key=True)
 	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
-	title = models.CharField(max_length=55)
+	title = models.CharField(max_length=140)
 	author = models.ForeignKey(User, null=False, blank=False)
 
 	NUMBER_OF_CHOICES = (
@@ -180,7 +180,7 @@ class MultipleChoiceQuiz(models.Model):
 class ShortAnswerQuiz(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
-	title = models.CharField(max_length=55, null=False, blank=False)
+	title = models.CharField(max_length=100, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
 
 	DIFFICULTIES = (
@@ -197,6 +197,44 @@ class ShortAnswerQuiz(models.Model):
 	def __str__(self):
 		return self.title
 
+<<<<<<< HEAD
+=======
+# Drag and Drop Quiz
+# 15 Words
+#	Either Choice Field or Integer
+
+class DragAndDropQuiz(models.Model):
+	quizID = models.AutoField(primary_key = True)
+	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
+	title = models.CharField(max_length=100, null=False, blank=False)
+	author = models.ForeignKey(User, null = False, blank = False)
+	
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+	)
+	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
+	# WordCount may not be needed
+	wordCount = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(15)])
+	
+	wordOne = models.CharField(max_length = 15, null = False, blank = False)
+	wordTwo = models.CharField(max_length = 15, null = False, blank = False)
+	wordThree = models.CharField(max_length = 15, null = False, blank = False)
+	wordFour = models.CharField(max_length = 15, null = True, blank = True)
+	wordFive = models.CharField(max_length = 15, null = True, blank = True)
+	wordSix = models.CharField(max_length = 15, null = True, blank = True)
+	wordSeven = models.CharField(max_length = 15, null = True, blank = True)
+	wordEight = models.CharField(max_length = 15, null = True, blank = True)
+	wordNine = models.CharField(max_length = 15, null = True, blank = True)
+	wordTen = models.CharField(max_length = 15, null = True, blank = True)
+	wordEleven = models.CharField(max_length = 15, null = True, blank = True)
+	wordTwelve = models.CharField(max_length = 15, null = True, blank = True)
+	wordThirteen = models.CharField(max_length = 15, null = True, blank = True)
+	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
+	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
+	
+>>>>>>> master
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
 	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)
@@ -215,3 +253,71 @@ class MultipleChoiceQuizResponse(models.Model):
 
 	def __str__(self):
 		return self.quizID.title + ": " + self.user.username
+
+class MatchingQuiz(models.Model):
+	quizID = models.AutoField(primary_key = True)
+	LessonID = models.ForeignKey(Lesson, null = True, blank = True)
+	title = models.CharField(max_length = 140)
+	author = models.ForeignKey(User, null = False, blank = False)
+	
+	NUMBER_OF_OPTIONS = (
+		('1','1'),
+		('2','2'),
+		('3','3'),
+		('4','4'),
+		('5','5'),
+		('6','6'),
+		('7','7'),
+		('8','8'),
+		('9','9'),
+		('10','10'),
+		('11','11'),
+		('12','12'),
+		('13','13'),
+		('14','14'),
+		('15','15'),
+	)
+	
+	DIFFICULTIES = (
+		('Beginner', '1'),
+		('Intermediate', '2'),
+		('Advanced', '3'),
+	)
+	
+	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
+	numberOfOptions = models.CharField(max_length=2, choices=NUMBER_OF_OPTIONS, default = 6)
+	
+	promptOne = models.CharField(max_length = 25, null = False, blank = False)
+	answerOne = models.CharField(max_length = 25, null = False, blank = False)
+	promptTwo = models.CharField(max_length = 25, null = False, blank = False)
+	answerTwo = models.CharField(max_length = 25, null = False, blank = False)
+	promptThree = models.CharField(max_length = 25, null = True, blank = True)
+	answerThree = models.CharField(max_length = 25, null = True, blank = True)
+	promptFour = models.CharField(max_length = 25, null = True, blank = True)
+	answerFour = models.CharField(max_length = 25, null = True, blank = True)
+	promptFive = models.CharField(max_length = 25, null = True, blank = True)
+	answerFive = models.CharField(max_length = 25, null = True, blank = True)
+	promptSix = models.CharField(max_length = 25, null = True, blank = True)
+	answerSix = models.CharField(max_length = 25, null = True, blank = True)
+	promptSeven = models.CharField(max_length = 25, null = True, blank = True)
+	answerSeven = models.CharField(max_length = 25, null = True, blank = True)
+	promptEight = models.CharField(max_length = 25, null = True, blank = True)
+	answerEight = models.CharField(max_length = 25, null = True, blank = True)
+	promptNine = models.CharField(max_length = 25, null = True, blank = True)
+	answerNine = models.CharField(max_length = 25, null = True, blank = True)
+	promptTen = models.CharField(max_length = 25, null = True, blank = True)
+	answerTen = models.CharField(max_length = 25, null = True, blank = True)
+	promptEleven = models.CharField(max_length = 25, null = True, blank = True)
+	answerEleven = models.CharField(max_length = 25, null = True, blank = True)
+	promptTwelve = models.CharField(max_length = 25, null = True, blank = True)
+	answerTwelve = models.CharField(max_length = 25, null = True, blank = True)
+	promptThirteen = models.CharField(max_length = 25, null = True, blank = True)
+	answerThirteen = models.CharField(max_length = 25, null = True, blank = True)
+	promptFourteen = models.CharField(max_length = 25, null = True, blank = True)
+	answerFourteen = models.CharField(max_length = 25, null = True, blank = True)
+	promptFifteen = models.CharField(max_length = 25, null = True, blank = True)
+	answerFifteen5 = models.CharField(max_length = 25, null = True, blank = True)
+	
+	
+	
+	
