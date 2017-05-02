@@ -197,8 +197,6 @@ class ShortAnswerQuiz(models.Model):
 	def __str__(self):
 		return self.title
 
-<<<<<<< HEAD
-=======
 # Drag and Drop Quiz
 # 15 Words
 #	Either Choice Field or Integer
@@ -234,7 +232,6 @@ class DragAndDropQuiz(models.Model):
 	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
 	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
 	
->>>>>>> master
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
 	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)

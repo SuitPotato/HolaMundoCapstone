@@ -29,7 +29,7 @@ def results(request, tag='all'):
     
     # Should always be hit. Gets tag, which is the text the user searched for
     if request.method == 'GET':
-        tag = request.GET.get('query')
+        tag = request.GET.get('query', '')
 
     # If the user hit the search button without putting in a query
     if tag == '':
@@ -40,7 +40,7 @@ def results(request, tag='all'):
         page = request.GET.get('page', 1)
 
         # paginate video_list to 5 per page
-        paginator = Paginator(video_list, 5)
+        paginator = Paginator(video_list, 10)
 
         # paginate page
         try:
