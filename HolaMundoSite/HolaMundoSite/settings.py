@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
     'crispy_forms',
-    'django_wysiwyg',
+    # 'django_wysiwyg',
     'ckeditor',
 ]
 
@@ -81,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'HolaMundoSite.wsgi.application'
 
-DJANGO_WYSIWYG_FLAVOR = "ckeditor"
+# DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
