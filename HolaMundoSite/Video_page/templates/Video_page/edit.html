@@ -3,7 +3,8 @@
 
 {% block content %}
     <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <form action="/edit/" method="POST" class="post-form">
+			{% csrf_token %}
 			<!-- {{ myform.media }}
     {{ myform.as_p }} -->
 				{{ form.media }}

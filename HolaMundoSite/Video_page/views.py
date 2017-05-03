@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from coursemanagement.models import Lesson
 from UserSettingsPage.models import Preference
-
+from django.http import HttpResponseRedirect
 from coursemanagement.forms import LessonForm
 # Create your views here.
 
@@ -14,8 +14,8 @@ def edit(request):
     if request.method == 'POST':
         form = LessonForm(request.POST)
         if form.is_valid():
-            Lesson = form.save()
-            Lesson.save()
+            # Lesson = form.save()
+            # Lesson.save()
             return render(request, 'Video_page/404.html')
     else:
         form = LessonForm()
@@ -39,10 +39,25 @@ def edit(request):
 def load_video(request, link):
     try:
         video = Lesson.objects.get(link=link)
+        if request.method == 'POST':
+           form = LessonForm(request.POST)
+           if form.is_valid():
+                     # Lesson = form.save()
+                     # Lesson.save()
+              return render(request, 'Video_page/404.html')
+        else:
+             form = LessonForm()
+        # return render(request, 'Video_page/edit.html', {'form': form})
         # if request.method == 'POST':
         #     form = LessonForm(request.POST)
         #     if form.is_valid():
         #         return redirect('google.de')
+        # if request.method == 'POST':
+        # form = LessonForm()
+            # if form.is_valid():
+            #     # Lesson = form.save()
+            #     # Lesson.save()
+            #     return render(request, 'Video_page/404.html')
         if request.user.is_authenticated():
             pref = Preference.objects.get(user=request.user)
             pref.fourthLastVid = pref.thirdLastVid

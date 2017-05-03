@@ -42,8 +42,15 @@
                                 <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
                                         {{ tab.1 }}
-                                        <a href="/edit/">Test</a>
+                                            <!-- <form action="." method="" class="post-form">
+                                        			  {% csrf_token %}
+                                        				{{ form.media }}
+                                                {{ form.tab1desc }}
+                                                <button type="submit" class="save btn btn-default">Save</button>
+                                            </form> -->
+
                                     </p>
+                                    <a href="/edit/">Edit Text</a>
                                 </div>
                                 {% else %}
                                 <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
