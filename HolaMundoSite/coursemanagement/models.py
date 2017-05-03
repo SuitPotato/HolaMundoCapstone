@@ -5,7 +5,7 @@ from django.db import models
 
 # Required for importing User for Author
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 
 
 # Courses can be assigned or be separate
@@ -43,12 +43,12 @@ class Lesson(models.Model):
 	tab6 = models.CharField(max_length=15, default="6")
 
 	# Hide the tabs that will not be used in the template/views
-	tab1desc = models.TextField(max_length=2000, default="Tab 1 Description")
-	tab2desc = models.TextField(max_length=2000, default="Tab 2 Description")
-	tab3desc = models.TextField(max_length=2000, default="Tab 3 Description")
-	tab4desc = models.TextField(max_length=2000, default="Tab 4 Description")
-	tab5desc = models.TextField(max_length=2000, default="Tab 5 Description")
-	tab6desc = models.TextField(max_length=2000, default="Tab 6 Description")
+	tab1desc = RichTextField()
+	tab2desc = RichTextField()
+	tab3desc = RichTextField()
+	tab4desc = RichTextField()
+	tab5desc = RichTextField()
+	tab6desc = RichTextField()
 
 	tags = models.TextField(max_length=5000, default="")
 
@@ -91,12 +91,12 @@ class Course(models.Model):
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
 	link = models.CharField(max_length=15)
-	
+
 	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
 	# Currently commented out for migrations/migrate
 	description = models.CharField(max_length = 300, null = False, blank = False)
 
-	
+
 	difficulty = models.IntegerField()
 
 	# quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
@@ -168,24 +168,24 @@ class MultipleChoiceQuiz(models.Model):
 
 	def __str__(self):
 		return self.title
-		
+
 class ShortAnswerQuiz(models.Model):
 	quizID = models.AutoField(primary_key = True)
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
 	title = models.CharField(max_length=100, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
-	
+
 	DIFFICULTIES = (
 		('Beginner', '1'),
 		('Intermediate', '2'),
 		('Advanced', '3'),
 	)
-	
+
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
-	
+
 	questionPrompt = models.CharField(max_length = 300, null=False, blank=False)
 	correctAnswer = models.CharField(max_length =  50, null=False, blank=False)
-	
+
 	def __str__(self):
 		return self.title
 
@@ -198,7 +198,7 @@ class DragAndDropQuiz(models.Model):
 	LessonID = models.ForeignKey(Lesson, null = True, blank = False)
 	title = models.CharField(max_length=100, null=False, blank=False)
 	author = models.ForeignKey(User, null = False, blank = False)
-	
+
 	DIFFICULTIES = (
 		('Beginner', '1'),
 		('Intermediate', '2'),
@@ -207,7 +207,7 @@ class DragAndDropQuiz(models.Model):
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
 	# WordCount may not be needed
 	wordCount = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(15)])
-	
+
 	wordOne = models.CharField(max_length = 15, null = False, blank = False)
 	wordTwo = models.CharField(max_length = 15, null = False, blank = False)
 	wordThree = models.CharField(max_length = 15, null = False, blank = False)
@@ -223,13 +223,13 @@ class DragAndDropQuiz(models.Model):
 	wordThirteen = models.CharField(max_length = 15, null = True, blank = True)
 	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
 	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
-	
+
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)
 	quizID = models.ForeignKey(ShortAnswerQuiz, null = False, blank = False)
 	user = models.ForeignKey(User, null = False, blank = False)
 	score = models.IntegerField()
-	
+
 	def __str__(self):
 		return self.quizID.title + ": " + self.user.username
 
@@ -248,7 +248,7 @@ class MatchingQuiz(models.Model):
 	LessonID = models.ForeignKey(Lesson, null = True, blank = True)
 	title = models.CharField(max_length = 140)
 	author = models.ForeignKey(User, null = False, blank = False)
-	
+
 	NUMBER_OF_OPTIONS = (
 		('1','1'),
 		('2','2'),
@@ -266,16 +266,16 @@ class MatchingQuiz(models.Model):
 		('14','14'),
 		('15','15'),
 	)
-	
+
 	DIFFICULTIES = (
 		('Beginner', '1'),
 		('Intermediate', '2'),
 		('Advanced', '3'),
 	)
-	
+
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
 	numberOfOptions = models.CharField(max_length=2, choices=NUMBER_OF_OPTIONS, default = 6)
-	
+
 	promptOne = models.CharField(max_length = 25, null = False, blank = False)
 	answerOne = models.CharField(max_length = 25, null = False, blank = False)
 	promptTwo = models.CharField(max_length = 25, null = False, blank = False)
@@ -306,7 +306,3 @@ class MatchingQuiz(models.Model):
 	answerFourteen = models.CharField(max_length = 25, null = True, blank = True)
 	promptFifteen = models.CharField(max_length = 25, null = True, blank = True)
 	answerFifteen5 = models.CharField(max_length = 25, null = True, blank = True)
-	
-	
-	
-	

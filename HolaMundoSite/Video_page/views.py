@@ -11,8 +11,17 @@ def index(request):
     return render(request, 'Video_page/videoloader.html')
 
 def edit(request):
-    form = LessonForm()
+    if request.method == 'POST':
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            Lesson = form.save()
+            Lesson.save()
+            return render(request, 'Video_page/404.html')
+    else:
+        form = LessonForm()
     return render(request, 'Video_page/edit.html', {'form': form})
+    # form = LessonForm()
+    # return render(request, 'Video_page/edit.html', {'form': form})
     # if request.method == 'POST':
     #     form = LessonForm(request.POST)
     #     if form.is_valid():
