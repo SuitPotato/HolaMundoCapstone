@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -44,16 +44,17 @@
                                 {% if forloop.counter <= 1 %}
                                 <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
-
-
                                         {{ tab.1|safe }}
                                         <!-- <button type="button" id="edit-text">Edit Text</button> -->
-                                        <body>
-                                          <textarea name="editor1"></textarea>
-                                          <script>
-                                          CKEDITOR.replace( 'editor1' );
-                                          </script>
-                                        </body>
+                                        <form id="rendered-form" method="POST">
+                                           {% csrf_token %}
+                                            <textarea name="editor1"></textarea>
+                                            <script>
+                                              CKEDITOR.replace( 'editor1' );
+                                            </script>
+                                        <button type="submit" class="button-input btn btn-success" name="button-1491436558146" value="submit-button" id="button-1491436558146">Submit</button>
+                                        </form>
+
                                     </p>
                                     <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
@@ -61,13 +62,14 @@
                                 <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
                                         {{ tab.1 | safe}}
-                                        <!-- <button type="button" id="edit-text">Edit Text</button> -->
-                                        <body>
-                                          <textarea name="editor1"></textarea>
-                                          <script>
-                                          CKEDITOR.replace( 'editor1' );
-                                          </script>
-                                        </body>
+                                        <form id="rendered-form" method="POST">
+                                           {% csrf_token %}
+                                            <textarea name="editor1"></textarea>
+                                            <script>
+                                              CKEDITOR.replace( 'editor1' );
+                                            </script>
+                                        <button type="submit" class="button-input btn btn-success" name="button-1491436558146" value="submit-button" id="button-1491436558146">Submit</button>
+                                        </form>
                                     </p>
                                     <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
