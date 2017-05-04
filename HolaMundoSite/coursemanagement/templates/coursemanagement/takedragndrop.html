@@ -65,21 +65,366 @@
 		$( "#draggable13" ).draggable({ revert: "invalid" });
 		$( "#draggable14" ).draggable({ revert: "invalid" });
 		
-
-        $( "#droppable" ).droppable({
+		$( "#droppable0" ).droppable({
           classes: {
-            "ui-droppable-active": "ui-state-active",
-            "ui-droppable-hover": "ui-state-hover"
           },
           drop: function( event, ui ) {
             $( this )
               .addClass( "ui-state-highlight" )
               .find( "p" )
                 .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
           },
-         
+          accept: function(d) {
+                if(d.attr("id") == "draggable0") {
+                    return true;
+                }
             }
         });
+		
+		$( "#droppable1" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable1") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable2" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable2") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable3" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable3") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable4" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable4") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable5" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable5") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable6" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable6") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable7" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable7") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable8" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable8") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable9" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable9") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable10" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable10") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable11" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable11") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable12" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable12") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable13" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable13") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable14" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable14") {
+                    return true;
+                }
+            }
+        });
+
 
       } );
     </script>
