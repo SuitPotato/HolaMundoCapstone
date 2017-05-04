@@ -102,7 +102,7 @@ def view_my_profile(request):
                 prefs.defaultLanguage = prefs.LANGUAGES[int(request.POST['user_language']) - 1][0]
                 prefs.difficulty = prefs.DIFFICULTIES[int(request.POST['user_difficulty']) - 1][0]
                 prefs.save()
-                context = {'notification': ', your user preferences have been successfully updated.',
+                context = {'type': 'success', 'notification': ', your user preferences have been successfully updated.',
                            'user': request.user, 'prefs': prefs}
                 return render(request, 'UserSettingsPage/myProfile.html', context)
             except:

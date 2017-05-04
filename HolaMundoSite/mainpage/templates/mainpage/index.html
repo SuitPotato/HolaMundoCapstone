@@ -1,10 +1,18 @@
 {% extends "mainpage/base.html" %}
 
 {% block title %} Hola Mundo {% endblock %}
-{% block content %}
 
 {% load staticfiles %}
-<link href="{% static 'mainpage/css/business-casual.css' %}" rel="stylesheet">
+
+{% block bodyStyle %}
+    <style>
+        body {
+            background: url({% static 'mainpage/img/bg.jpg' %}) no-repeat center center fixed;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
 
 <div class="container-fluid">
 
