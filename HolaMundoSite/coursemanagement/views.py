@@ -161,23 +161,6 @@ def load_course(request, link, number):
         return render(request, 'coursemanagement/quizloader.html', context)
 
 
-        # if request.user.is_authenticated():
-        # pref = Preference.objects.get(user=request.user)
-        # pref.fourthLastVid = pref.thirdLastVid
-        # pref.thirdLastVid = pref.secondLastVid
-        # pref.secondLastVid = pref.lastVid
-
-        # pref.save()
-
-        # if toDisplay.QuizID:
-        # sentence = toDisplay.QuizID
-        # context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
-        #     'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
-        #          'wordFive': sentence.wordFive}
-        # return render(request, 'DragAndDropQuiz/sentenceTwo.html', context)
-
-    # else:
-
     return render(request, 'Video_page/404.html')
 
 
@@ -291,9 +274,6 @@ def take_quiz(request, quiz):
         return render(request, 'coursemanagement/takemultiplechoicequiz.html', context)
 		
 
-
-def create_fill_in_the_blank(request):
-	pass
 
 @login_required()
 
@@ -442,13 +422,54 @@ def create_sentence_drag_and_drop(request):
 def create_sentence_drag_and_drop_two(request, words, difficulty):
 	if request.method == 'POST':
 		quiz = DragAndDropQuiz()
-		pass
-		# Pass this information into the model
-	else:
-		# Display the appropriate number of words to fill out
-		pass
+		quiz.author = request.author
+		# Passing parameters into the values
+		quiz.wordCount = int(words)
+		quiz.difficulty = int(difficulty)
+		wordList = []
 		
+		for i in range(int(words)):
+			# Adding to the list for words, using concatenation to pull the values
+			# Expecting" i-word for all of the words
+			wordList.append(str(request.POST.get(str(int(i)+1) + "-word")))
+		try:
+			quiz.wordOne = wordList[0]
+			quiz.wordTwo = wordList[1]
+			quiz.wordThree = wordList[2]
+			quiz.wordFour = wordList[3]
+			quiz.wordFive = wordList[4]
+			quiz.wordSix = wordList[5]
+			quiz.wordSeven = wordList[6]
+			quiz.wordEight = wordList[7]
+			quiz.wordNine = wordList[8]
+			quiz.wordTen = wordList[9]
+			quiz.wordEleven = wordList[10]
+			quiz.wordTwelve = wordList[11]
+			quiz.wordThirteen = wordList[12]
+			quiz.wordFourteen = wordList[13]
+			quiz.wordFifteen = wordList[14]
+		except:
+			pass
+	else:
+		number = DragAndDropQuiz()
+		word_List = []
+		for x in range(int(words)):
+			word_List.append(number[x])
+		context = {'words': word_List}
+		return render(request, 'coursemanagement/dragndrop.html',context)
 
+# Not a form so no submission		
+def take_drag_and_drop(request, quiz):
+	quiz = DragAndDropQuiz.objects.get(quizID = quiz)
+	wordList = []
+	
+	for i in range(int(wordCount)):
+		wordAppend = "word" + (str(wordCount))
+		wordAppend = (WordAppend,i)
+		wordList.append(quiz.wordAppend)
+	shuffledList = shuffle(wordList)
+	context = {'words': shuffledList}
+	return render(reuqest, 'coursemanagement/takedragndrop.html', context)
 
 @login_required()
 # Pass in the Lesson later along with it later.
@@ -476,17 +497,6 @@ def create_quiz(request):
 
 		return render(request, "coursemanagement/createquiz.html")
 
-def create_drag_and_drop(request):
-	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
-	#creator or super user then they will be able to access this view. If not then they will be redirected to
-	#denial page
-	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
-	
-		#FUNCTIONALITY HERE
-	
-	#If not a conent creator or super user then redirect to the denial view located in the mainpage
-	#else:
-		#return HttpResponseRedirect('/denied/')
-	pass
+
 
 
