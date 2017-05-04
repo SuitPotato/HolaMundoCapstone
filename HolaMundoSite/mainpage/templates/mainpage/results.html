@@ -65,6 +65,26 @@
     </div>
 
 	{% endfor %}
-	
+	<div class="pagination">
+            {% if videos.has_previous %}
+                <li><a href="/results/{{ videos.previous_page_number }}{% if tag %}/{{ tag }}{% else %}?tag={% endif %}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+
+            {% for i in videos.paginator.page_range %}
+                {% if videos.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="/results/{{ i }}{% if tag %}/{{ tag }}{% else %}?tag={% endif %}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if videos.has_next %}
+                <li><a href="/results/{{ videos.next_page_number }}{% if tag %}/{{ tag }}{% else %}?tag={% endif %}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+
+    </div>
 </div>
 {% endblock %}
