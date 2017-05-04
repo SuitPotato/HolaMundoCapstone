@@ -161,23 +161,6 @@ def load_course(request, link, number):
         return render(request, 'coursemanagement/quizloader.html', context)
 
 
-        # if request.user.is_authenticated():
-        # pref = Preference.objects.get(user=request.user)
-        # pref.fourthLastVid = pref.thirdLastVid
-        # pref.thirdLastVid = pref.secondLastVid
-        # pref.secondLastVid = pref.lastVid
-
-        # pref.save()
-
-        # if toDisplay.QuizID:
-        # sentence = toDisplay.QuizID
-        # context = {'title': sentence.title, 'wordOne': sentence.wordOne, 'wordTwo': sentence.wordTwo,
-        #     'wordThree': sentence.wordThree, 'wordFour': sentence.wordFour,
-        #          'wordFive': sentence.wordFive}
-        # return render(request, 'DragAndDropQuiz/sentenceTwo.html', context)
-
-    # else:
-
     return render(request, 'Video_page/404.html')
 
 
@@ -291,9 +274,6 @@ def take_quiz(request, quiz):
         return render(request, 'coursemanagement/takemultiplechoicequiz.html', context)
 		
 
-
-def create_fill_in_the_blank(request):
-	pass
 
 @login_required()
 
@@ -517,17 +497,6 @@ def create_quiz(request):
 
 		return render(request, "coursemanagement/createquiz.html")
 
-def create_drag_and_drop(request):
-	#Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
-	#creator or super user then they will be able to access this view. If not then they will be redirected to
-	#denial page
-	#if((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
-	
-		#FUNCTIONALITY HERE
-	
-	#If not a conent creator or super user then redirect to the denial view located in the mainpage
-	#else:
-		#return HttpResponseRedirect('/denied/')
-	pass
+
 
 
