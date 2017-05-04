@@ -477,7 +477,19 @@ def create_sentence_drag_and_drop_two(request, words, difficulty):
 			word_List.append(number[x])
 		context = {'words': word_List}
 		return render(request, 'coursemanagement/dragndrop.html',context)
-		
+
+# Not a form so no submission		
+def take_drag_and_drop(request, quiz):
+	quiz = DragAndDropQuiz.objects.get(quizID = quiz)
+	wordList = []
+	
+	for i in range(int(wordCount)):
+		wordAppend = "word" + (str(wordCount))
+		wordAppend = (WordAppend,i)
+		wordList.append(quiz.wordAppend)
+	shuffledList = shuffle(wordList)
+	context = {'words': shuffledList}
+	return render(reuqest, 'coursemanagement/takedragndrop.html', context)
 
 @login_required()
 # Pass in the Lesson later along with it later.
