@@ -410,10 +410,10 @@
         <div class="col-md-6">
             <h2> Word Bank: </h2>
 				<ul id="sortable" class="div3">
-					{% for x in y %}
-						<li id="draggable{{ x }}" class="ui-state-default buttonli">
+					{% for x in words %}
+						<li id="draggable{{ x.0 }}" class="ui-state-default buttonli">
 							<!-- Word Here -->
-							{{ x.0 }}
+							{{ x.1 }}
 						</li>
 					{% endfor %}
 				</ul>
@@ -423,8 +423,8 @@
             <h2> Sentence Bank: </h2>
 				<ul id="sortable" class="div3">
 					<!-- Needs to be in order and only # of words-->
-					{% for x in y %}
-						<li id="droppable{{ x }}" class="ui-state-default buttonli" > </li>
+					{% for x in words %}
+						<li id="droppable{{ x.0 }}" class="ui-state-default buttonli" > </li>
 					{% endfor %}
 				</ul>
 		</div>
