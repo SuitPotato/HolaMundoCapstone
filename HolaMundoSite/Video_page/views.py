@@ -12,31 +12,6 @@ from coursemanagement.forms import LessonForm
 def index(request):
     return render(request, 'Video_page/videoloader.html')
 
-def edit(request):
-    if request.method == 'POST':
-        form = LessonForm(request.POST)
-        if form.is_valid():
-            # Lesson = form.save()
-            # Lesson.save()
-            return render(request, 'Video_page/404.html')
-    else:
-        form = LessonForm()
-    return render(request, 'Video_page/edit.html', {'form': form})
-    # form = LessonForm()
-    # return render(request, 'Video_page/edit.html', {'form': form})
-    # if request.method == 'POST':
-    #     form = LessonForm(request.POST)
-    #     if form.is_valid():
-    #         Lesson = form.save()
-    #         return render(request, 'Video_page/404.html')
-    #     else:
-    #         return render(request, 'Video_page/404.html')
-    # else:
-    #     form = LessonForm(request.POST)
-    #     return render(request, 'Video_page/edit.html', {'form', form})
-        # form = PasswordChangeForm(request.user)
-        # return render(request, 'UserSettingsPage/passwordform.html', {'form': form})
-    # return render(request, 'Video_page/404.html')
 
 def load_video(request, link):
     try:

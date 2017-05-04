@@ -2,6 +2,7 @@
 
 
 {% block content %}
+<script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -46,29 +47,27 @@
 
 
                                         {{ tab.1|safe }}
-                                        <form id="rendered-form" method="POST">
-                                          {% csrf_token %}
-                                          <input type="text" name="tab-desc">
-                                        </form>
-
-
-                                        {{ tab.1 | safe}}
-
+                                        <!-- <button type="button" id="edit-text">Edit Text</button> -->
+                                        <body>
+                                          <textarea name="editor1"></textarea>
+                                          <script>
+                                          CKEDITOR.replace( 'editor1' );
+                                          </script>
+                                        </body>
                                     </p>
                                     <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
                                 {% else %}
                                 <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
-
-                                        {{ tab.1|safe }}
-                                        <form id="rendered-form" method="POST">
-                                          {% csrf_token %}
-                                          <input type="text" name="tab-desc">
-                                        </form>
-
                                         {{ tab.1 | safe}}
-
+                                        <!-- <button type="button" id="edit-text">Edit Text</button> -->
+                                        <body>
+                                          <textarea name="editor1"></textarea>
+                                          <script>
+                                          CKEDITOR.replace( 'editor1' );
+                                          </script>
+                                        </body>
                                     </p>
                                     <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
@@ -95,8 +94,5 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 247b62ac647001e41a221197efea3d0209ba10c9
 {% endblock %}
