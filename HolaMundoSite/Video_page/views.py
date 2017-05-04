@@ -39,25 +39,10 @@ def edit(request):
 def load_video(request, link):
     try:
         video = Lesson.objects.get(link=link)
-        if request.method == 'POST':
-           form = LessonForm(request.POST)
-           if form.is_valid():
-                     # Lesson = form.save()
-                     # Lesson.save()
-              return render(request, 'Video_page/404.html')
-        else:
-             form = LessonForm()
-        # return render(request, 'Video_page/edit.html', {'form': form})
         # if request.method == 'POST':
-        #     form = LessonForm(request.POST)
-        #     if form.is_valid():
-        #         return redirect('google.de')
-        # if request.method == 'POST':
-        # form = LessonForm()
-            # if form.is_valid():
-            #     # Lesson = form.save()
-            #     # Lesson.save()
-            #     return render(request, 'Video_page/404.html')
+            #variables in forms.py = variables .get in html form
+        # refresh to same page with updated descriptions
+
         if request.user.is_authenticated():
             pref = Preference.objects.get(user=request.user)
             pref.fourthLastVid = pref.thirdLastVid

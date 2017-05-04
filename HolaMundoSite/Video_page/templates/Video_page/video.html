@@ -27,11 +27,13 @@
                             {% for tab in tabInfo %}
                                 {% if forloop.counter <= 1 %}
                                 <li class="active">
-                                    <a href="#panel-{{ tab.0 }}" data-toggle="tab">{{ tab.0 }}</a>
+                                    <a href="#panel-{{ tab.0 }}" data-toggle="tab">{{ tab.0|safe }}</a>
+                                    <!-- <a href="/edit/">Edit Text</a> -->
                                 </li>
                                 {% else %}
                                 <li>
-                                    <a href="#panel-{{ tab.0 }}" data-toggle="tab">{{ tab.0 }}</a>
+                                    <a href="#panel-{{ tab.0 }}" data-toggle="tab">{{ tab.0|safe  }}</a>
+                                    <!-- <a href="/edit/">Edit Text</a> -->
                                 </li>
                                 {% endif %}
                             {% endfor %}
@@ -41,22 +43,26 @@
                                 {% if forloop.counter <= 1 %}
                                 <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
-                                        {{ tab.1 }}
-                                            <!-- <form action="." method="" class="post-form">
-                                        			  {% csrf_token %}
-                                        				{{ form.media }}
-                                                {{ form.tab1desc }}
-                                                <button type="submit" class="save btn btn-default">Save</button>
-                                            </form> -->
+
+                                        {{ tab.1|safe }}
+                                        <form id="rendered-form" method="POST">
+                                          {% csrf_token %}
+                                          <input type="text" name="tab-desc">
+                                        </form>
 
                                     </p>
-                                    <a href="/edit/">Edit Text</a>
+                                    <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
                                 {% else %}
                                 <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
-                                        {{ tab.1 }}
+                                        {{ tab.1|safe }}
+                                        <form id="rendered-form" method="POST">
+                                          {% csrf_token %}
+                                          <input type="text" name="tab-desc">
+                                        </form>
                                     </p>
+                                    <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
                                 {% endif %}
                             {% endfor %}
