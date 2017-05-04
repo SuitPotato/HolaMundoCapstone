@@ -29,11 +29,10 @@ from coursemanagement.models import Lesson
 
 BASE_URL = settings.MEDIA_ROOT
 
-
-
 ################## Important ##################
 ####### Do not move client_secrets.json #######
 ########## From main youtube folder ###########
+
 
 # Main video upload page
 @login_required()
@@ -44,10 +43,16 @@ def index(request):
     if ((request.user.groups.filter(name='Content Creator').exists()) or (request.user.is_superuser)):
         # After user uploads video to our site, get the file and upload it to youtube.
         if request.method == 'POST':
+            link = generateLink()
+            request.link = link
             toYoutube(request.FILES['file'], request)
+            return HttpResponseRedirect('/video/' + link)
         else:
             # Page loads for first time, GET not POST
-            context = {'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
+            #  Max length set from database, so if database max length is changed form is too. Don't change these
+            context = {'tab_name_length': Lesson._meta.get_field('tab1').max_length,
+                       'tab_desc_length': Lesson._meta.get_field('tab1desc').max_length,
+                       'tabs': ('Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5', 'Tab 6')}
             return render(request, 'youtube/index.html', context)
 
     # If not a content creator or super user then redirect to the denial view located in the mainpage
@@ -137,21 +142,22 @@ def toYoutube(f, request):
     uploaded_url = fs.url(filename)
     video_abs_path = BASE_URL + uploaded_url
 
-    # Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
-    #  category='10', description='Test description',
-    # file='C:\\Users\\Josh\\Documents\\GitHub\\HolaMundoCapstone\\HolaMundoSite/media/Uploaded_6CXHmaW.mp4',
-    #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
-    #  privacyStatus='public', title='Test video')
 
-    # These args match the youtube API. If in the future youtube api changes, here is where things should be updated
-    args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10',
-                     description='Test description', file=video_abs_path, keywords='', logging_level='ERROR',
-                     noauth_local_webserver=False, privacyStatus='public', title='Test video')
-    if not os.path.exists(args.file):
-        exit("Please specify a valid file using the --file= parameter.")
-
-    youtube = get_authenticated_service(args)
     try:
+        # Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090],
+        #  category='10', description='Test description',
+        # file='C:\\Users\\Josh\\Documents\\GitHub\\HolaMundoCapstone\\HolaMundoSite/media/Uploaded_6CXHmaW.mp4',
+        #  keywords='', logging_level='ERROR', noauth_local_webserver=False,
+        #  privacyStatus='public', title='Test video')
+
+        # These args match the youtube API. If in the future youtube api changes, here is where things should be updated
+        args = Namespace(auth_host_name='localhost', auth_host_port=[8080, 8090], category='10',
+                         description='Test description', file=video_abs_path, keywords='', logging_level='ERROR',
+                         noauth_local_webserver=False, privacyStatus='public', title='Test video')
+        if not os.path.exists(args.file):
+            exit("Please specify a valid file using the --file= parameter.")
+
+        youtube = get_authenticated_service(args)
         # Uploading to youtube now that API specs are met
         initialize_upload(youtube, args, request)
     except HttpError, e:
@@ -317,11 +323,14 @@ def resumable_upload(insert_request, request):
                     p = Lesson()
                     p.title = request.POST.get("title")
                     p.tags = request.POST.get("tags")
-                    p.difficulty = request.POST.get("video-difficulty")
+
+                    difficulties = ("Beginner", "Intermediate", "Advanced")
+
+                    p.difficulty = difficulties[int(request.POST.get("video-difficulty")) - 1]
                     # response['id'] = youtube video unique identifier
                     p.youtube = response['id']
                     # Generate unique link for our sites use for video
-                    p.link = generateLink()
+                    p.link = request.link
                     p.author = request.user
                     # Save video, wait, direct user to newly uploaded video
 
@@ -345,8 +354,7 @@ def resumable_upload(insert_request, request):
                     p.tab6 = request.POST.get("Tab 6-name")
                     p.tab6desc = request.POST.get("Tab 6-desc")
                     p.save()
-                    time.sleep(2)
-                    return HttpResponseRedirect('/video/' + p.link)
+                    time.sleep(5)
                 else:
                     exit("The upload failed with an unexpected response: %s" % response)
         except HttpError, e:
