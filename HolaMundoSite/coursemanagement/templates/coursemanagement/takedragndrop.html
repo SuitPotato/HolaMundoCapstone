@@ -46,22 +46,109 @@
 
     <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
-	<script>
-		$(function() {
-			$( "#sortable" ).sortable();
-			$( "#sortable" ).disableSelection();
-		  });
-	</script>
+	
+    <script>
+      $( function() {
+        $( "#draggable0" ).draggable({ revert: "invalid" });
+		$( "#draggable1" ).draggable({ revert: "invalid" });
+		$( "#draggable2" ).draggable({ revert: "invalid" });
+		$( "#draggable3" ).draggable({ revert: "invalid" });
+		$( "#draggable4" ).draggable({ revert: "invalid" });
+		$( "#draggable5" ).draggable({ revert: "invalid" });
+		$( "#draggable6" ).draggable({ revert: "invalid" });
+		$( "#draggable7" ).draggable({ revert: "invalid" });
+		$( "#draggable8" ).draggable({ revert: "invalid" });
+		$( "#draggable9" ).draggable({ revert: "invalid" });
+		$( "#draggable10" ).draggable({ revert: "invalid" });
+		$( "#draggable11" ).draggable({ revert: "invalid" });
+		$( "#draggable12" ).draggable({ revert: "invalid" });
+		$( "#draggable13" ).draggable({ revert: "invalid" });
+		$( "#draggable14" ).draggable({ revert: "invalid" });
+		
+
+        $( "#droppable" ).droppable({
+          classes: {
+            "ui-droppable-active": "ui-state-active",
+            "ui-droppable-hover": "ui-state-hover"
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+          },
+         
+            }
+        });
+
+      } );
+    </script>
 	
 {% endblock %}
 
 
 {% block content %}
 <ul id="sortable" class="div3">
-	<li id="word1" class="ui-state-default buttonli">Order</li>
-	<li id="word2" class="ui-state-default buttonli">The</li>
-	<li id="word3" class="ui-state-default buttonli">Words</li>
-	<li id="word4" class="ui-state-default buttonli">Put</li>  
-	<li id="word4" class="ui-state-default buttonli">In</li>
+	<li id="word1" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word2" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word3" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word4" class="ui-state-default buttonli">
+	
+	</li>  
+	
+	<li id="word5" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word6" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word7" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word8" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word9" class="ui-state-default buttonli">
+	
+	</li>  
+	
+	<li id="word10" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word11" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word12" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word13" class="ui-state-default buttonli">
+	
+	</li>
+	
+	<li id="word14" class="ui-state-default buttonli">
+	
+	</li>  
+	
+	<li id="word15" class="ui-state-default buttonli">
+	
+	</li>
+	
+	
 </ul>	
 {% endblock %}
