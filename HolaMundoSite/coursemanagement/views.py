@@ -475,7 +475,7 @@ def create_sentence_drag_and_drop_two(request, words, difficulty):
 		word_List = []
 		for x in range(int(words)):
 			word_List.append(number[x])
-		context = {'options': word_List}
+		context = {'words': word_List}
 		return render(request, 'coursemanagement/dragndrop.html',context)
 		
 
