@@ -7,38 +7,9 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 	<style>
-		#sortable { 
-		  list-style-type: none; 
-		  margin: 0; 
-		  padding: 0; 
-		}
-
-		#sortable li { 
-		  margin: 3px 3px 3px 0; 
-		  padding: 1px; 
-		  float: left; 
-		  width: 175px; 
-		  height: 90px; 
-		  font-size: 4em; 
-		  text-align: center; 
-		}
-
-		.div3 {
-		  margin-left: 0px;
-		  height:200px;
-		  padding:50px;
-		  border:1px solid #aaaaaa;
-		  background-color: LightBlue;
-		}
-
-		.buttonli { 
-		  margin: 20px; 
-		  padding: 20px; 
-		  border: 0px solid;
-		  border-radius: 25px;
-		  box-shadow: 5px 5px 5px grey;
-		}
-	</style>
+        #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+        #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+    </style>
 
 {% endblock %}
 
@@ -433,67 +404,34 @@
 
 
 {% block content %}
+<!-- Update Jinja for's -->
 <ul id="sortable" class="div3">
-	<li id="word1" class="ui-state-default buttonli">
+	<div class="row">
+        <div class="col-md-6">
+            <h2> Word Bank: </h2>
+				<ul id="sortable" class="div3">
+					{% for x in y %}
+						<li id="draggable{{ x }}" class="ui-state-default buttonli">
+							<!-- Word Here -->
+							{{ x.0 }}
+						</li>
+					{% endfor %}
+				</ul>
+		</div>
+		
+        <div class="col-md-6">
+            <h2> Sentence Bank: </h2>
+				<ul id="sortable" class="div3">
+					<!-- Needs to be in order and only # of words-->
+					{% for x in y %}
+						<li id="droppable{{ x }}" class="ui-state-default buttonli" > </li>
+					{% endfor %}
+				</ul>
+		</div>
+	</div>
 	
-	</li>
-	
-	<li id="word2" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word3" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word4" class="ui-state-default buttonli">
-	
-	</li>  
-	
-	<li id="word5" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word6" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word7" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word8" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word9" class="ui-state-default buttonli">
-	
-	</li>  
-	
-	<li id="word10" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word11" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word12" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word13" class="ui-state-default buttonli">
-	
-	</li>
-	
-	<li id="word14" class="ui-state-default buttonli">
-	
-	</li>  
-	
-	<li id="word15" class="ui-state-default buttonli">
-	
-	</li>
-	
-	
+	<!-- Buttons to go back to the lesson need to be added here-->
+	<div class="col-md-12">
+	</div>
 </ul>	
 {% endblock %}
