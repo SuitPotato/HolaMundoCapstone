@@ -451,26 +451,25 @@ def create_sentence_drag_and_drop_two(request, words, difficulty):
 		for i in range(int(words)):
 			# Adding to the list for words, using concatenation to pull the values
 			# Expecting" i-word for all of the words
-			
-			wordList.append(str(request.POST.get(str(int(i)+1) + "-word")
-			try:
-				quiz.wordOne = wordList[0]
-				quiz.wordTwo = wordList[1]
-				quiz.wordThree = wordList[2]
-				quiz.wordFour = wordList[3]
-				quiz.wordFive = wordList[4]
-				quiz.wordSix = wordList[5]
-				quiz.wordSeven = wordList[6]
-				quiz.wordEight = wordList[7]
-				quiz.wordNine = wordList[8]
-				quiz.wordTen = wordList[9]
-				quiz.wordEleven = wordList[10]
-				quiz.wordTwelve = wordList[11]
-				quiz.wordThirteen = wordList[12]
-				quiz.wordFourteen = wordList[13]
-				quiz.wordFifteen = wordList[14]
-			except:
-				pass
+			wordList.append(str(request.POST.get(str(int(i)+1) + "-word")))
+		try:
+			quiz.wordOne = wordList[0]
+			quiz.wordTwo = wordList[1]
+			quiz.wordThree = wordList[2]
+			quiz.wordFour = wordList[3]
+			quiz.wordFive = wordList[4]
+			quiz.wordSix = wordList[5]
+			quiz.wordSeven = wordList[6]
+			quiz.wordEight = wordList[7]
+			quiz.wordNine = wordList[8]
+			quiz.wordTen = wordList[9]
+			quiz.wordEleven = wordList[10]
+			quiz.wordTwelve = wordList[11]
+			quiz.wordThirteen = wordList[12]
+			quiz.wordFourteen = wordList[13]
+			quiz.wordFifteen = wordList[14]
+		except:
+			pass
 	else:
 		number = DragAndDropQuiz()
 		word_List = []
