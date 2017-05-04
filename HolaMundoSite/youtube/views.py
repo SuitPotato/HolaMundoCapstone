@@ -29,11 +29,10 @@ from coursemanagement.models import Lesson
 
 BASE_URL = settings.MEDIA_ROOT
 
-
-
 ################## Important ##################
 ####### Do not move client_secrets.json #######
 ########## From main youtube folder ###########
+
 
 # Main video upload page
 @login_required()
