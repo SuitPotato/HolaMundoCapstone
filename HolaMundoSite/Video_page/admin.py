@@ -1,4 +1,4 @@
 from django.contrib import admin
-# Register your models here.
-
-
+# from Video_page.models import Post
+# # Register your models here.
+# admin.site.register(Post)
