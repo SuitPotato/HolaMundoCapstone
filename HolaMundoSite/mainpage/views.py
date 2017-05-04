@@ -25,22 +25,21 @@ def drag(request):
     return render(request, 'mainpage/sentenceTwo.html')
 
 
-def results(request, tag='all'):
-    
-    # Should always be hit. Gets tag, which is the text the user searched for
+def results(request, tag='', page=1):
+    print(tag)
     if request.method == 'GET':
-        tag = request.GET.get('query', '')
+        tag = request.GET.get('tag', '')
 
     # If the user hit the search button without putting in a query
     if tag == '':
     
-        # If the user searches without a query, we return all videos. If this functionality would be changed it is changed here
+        # If the user searches without a query, we return all videos.
+        # If this functionality would be changed it is changed here
         video_list = Lesson.objects.all()
         # if request is GET set page to 1
-        page = request.GET.get('page', 1)
 
         # paginate video_list to 5 per page
-        paginator = Paginator(video_list, 10)
+        paginator = Paginator(video_list, 2)
 
         # paginate page
         try:
@@ -54,21 +53,24 @@ def results(request, tag='all'):
         except EmptyPage:
             videos = paginator.page(paginator.num_pages)
             
-        context = {"videos": videos}
+        context = {"videos": videos, "tag": tag, "page": page}
         return render(request, 'mainpage/results.html', context)
     
     # If the user searched a specific query
     else:
     
-        # This line takes all videos in the database, and if the video's tags contain any word in the query, we keep that video. If the video's difficulty
-        # is in the query, we add those videos as well. If nothing in the user's query is in the tags or difficulty, the video is excluded.
+        # This line takes all videos in the database, and if the video's tags contain any word in the query, we keep
+        # that video. If the video's difficulty
+        # is in the query, we add those videos as well. If nothing in the user's query is in the tags or difficulty,
+        #  the video is excluded.
         # If any of this functionality is to be changed, change it below
-        video_list = [video for video in Lesson.objects.all() if any(text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
+        video_list = [video for video in Lesson.objects.all() if any(text.lower()
+                      in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
         # if request is GET set page to 1
         page = request.GET.get('page', 1)
 
-         # paginate video_list to 5 per page
-        paginator = Paginator(video_list, 5)
+        # paginate video_list to 5 per page
+        paginator = Paginator(video_list, 2)
 
         # paginate page
         try:
@@ -82,8 +84,27 @@ def results(request, tag='all'):
         except EmptyPage:
             videos = paginator.page(paginator.num_pages)
 
-        context = {"videos": videos}
+        context = {"videos": videos, 'tag': tag, 'page': page}
         return render(request, 'mainpage/results.html', context)
+
+
+# Results function to handle other pages. Need both just incase a page, or tag, isn't specified.
+def results_p(request, page=1, tag=''):
+    video_list = [video for video in Lesson.objects.all() if any(
+        text.lower() in video.tags.lower() or text.lower() in video.difficulty.lower() for text in tag.split())]
+
+    paginator = Paginator(video_list, 2)
+    try:
+        videos = paginator.page(page)
+
+    except PageNotAnInteger:
+        videos = paginator.page(1)
+
+    except EmptyPage:
+        videos = paginator.page(paginator.num_pages)
+
+    context = {"videos": videos, 'page': page, 'tag': tag}
+    return render(request, 'mainpage/results.html', context)
 
 
 def loginview(request):
@@ -175,7 +196,8 @@ def myHolaMundo(request):
     context = {'user': request.user, 'prefs': user_preferences, 'videos_author': six_random_videos_by_author, 'videos_difficulty': six_random_videos_by_difficulty}
     return render(request, 'mainpage/dashboard.html', context)
 
-#function that renders template that lets user know that they do not have permission to access
-#the current view (url) they are trying to access   
+
+# function that renders template that lets user know that they do not have permission to access
+# the current view (url) they are trying to access
 def denied(request):
     return render(request, 'mainpage/denied.html')
