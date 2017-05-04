@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
     'crispy_forms',
-    'django_summernote',
     'django_wysiwyg',
     'ckeditor',
 ]

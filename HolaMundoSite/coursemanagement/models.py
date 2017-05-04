@@ -43,6 +43,7 @@ class Lesson(models.Model):
 	tab6 = models.CharField(max_length=15, default="6")
 
 	# Hide the tabs that will not be used in the template/views
+
 	tab1desc = RichTextField()
 	tab2desc = RichTextField()
 	tab3desc = RichTextField()
@@ -223,6 +224,7 @@ class DragAndDropQuiz(models.Model):
 	wordThirteen = models.CharField(max_length = 15, null = True, blank = True)
 	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
 	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
+
 
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)

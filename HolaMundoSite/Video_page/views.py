@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from coursemanagement.models import Lesson
 from UserSettingsPage.models import Preference
+
 from django.http import HttpResponseRedirect
 from coursemanagement.forms import LessonForm
+
 # Create your views here.
 
 
@@ -40,6 +42,7 @@ def load_video(request, link):
     try:
         video = Lesson.objects.get(link=link)
         # if request.method == 'POST':
+
             #variables in forms.py = variables .get in html form
         # refresh to same page with updated descriptions
 

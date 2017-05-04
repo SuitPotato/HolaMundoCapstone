@@ -44,11 +44,15 @@
                                 <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
 
+
                                         {{ tab.1|safe }}
                                         <form id="rendered-form" method="POST">
                                           {% csrf_token %}
                                           <input type="text" name="tab-desc">
                                         </form>
+
+
+                                        {{ tab.1 | safe}}
 
                                     </p>
                                     <!-- <a href="/edit/">Edit Text</a> -->
@@ -56,11 +60,15 @@
                                 {% else %}
                                 <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
                                     <p>
+
                                         {{ tab.1|safe }}
                                         <form id="rendered-form" method="POST">
                                           {% csrf_token %}
                                           <input type="text" name="tab-desc">
                                         </form>
+
+                                        {{ tab.1 | safe}}
+
                                     </p>
                                     <!-- <a href="/edit/">Edit Text</a> -->
                                 </div>
@@ -87,4 +95,8 @@
 		</div>
 	</div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 247b62ac647001e41a221197efea3d0209ba10c9
 {% endblock %}
