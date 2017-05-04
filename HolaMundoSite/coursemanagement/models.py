@@ -206,7 +206,26 @@ class DragAndDropQuiz(models.Model):
 	)
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
 	# WordCount may not be needed
-	wordCount = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(15)])
+	
+	NUMBER_OF_WORDS = (
+		('1','1'),
+		('2','2'),
+		('3','3'),
+		('4','4'),
+		('5','5'),
+		('6','6'),
+		('7','7'),
+		('8','8'),
+		('9','9'),
+		('10','10'),
+		('11','11'),
+		('12','12'),
+		('13','13'),
+		('14','14'),
+		('15','15'),
+	)
+	
+	wordCount = models.CharField(max_length=2, choices=NUMBER_OF_WORDS, default = 6)
 	
 	wordOne = models.CharField(max_length = 15, null = False, blank = False)
 	wordTwo = models.CharField(max_length = 15, null = False, blank = False)
