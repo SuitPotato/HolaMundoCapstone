@@ -214,23 +214,42 @@ class DragAndDropQuiz(models.Model):
 	)
 	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
 	# WordCount may not be needed
-	wordCount = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(15)])
 	
-	wordOne = models.CharField(max_length = 15, null = False, blank = False)
-	wordTwo = models.CharField(max_length = 15, null = False, blank = False)
-	wordThree = models.CharField(max_length = 15, null = False, blank = False)
-	wordFour = models.CharField(max_length = 15, null = True, blank = True)
-	wordFive = models.CharField(max_length = 15, null = True, blank = True)
-	wordSix = models.CharField(max_length = 15, null = True, blank = True)
-	wordSeven = models.CharField(max_length = 15, null = True, blank = True)
-	wordEight = models.CharField(max_length = 15, null = True, blank = True)
-	wordNine = models.CharField(max_length = 15, null = True, blank = True)
-	wordTen = models.CharField(max_length = 15, null = True, blank = True)
-	wordEleven = models.CharField(max_length = 15, null = True, blank = True)
-	wordTwelve = models.CharField(max_length = 15, null = True, blank = True)
-	wordThirteen = models.CharField(max_length = 15, null = True, blank = True)
-	wordFourteen = models.CharField(max_length = 15, null = True, blank = True)
-	wordFifteen = models.CharField(max_length = 15, null = True, blank = True)
+	NUMBER_OF_WORDS = (
+		('1','1'),
+		('2','2'),
+		('3','3'),
+		('4','4'),
+		('5','5'),
+		('6','6'),
+		('7','7'),
+		('8','8'),
+		('9','9'),
+		('10','10'),
+		('11','11'),
+		('12','12'),
+		('13','13'),
+		('14','14'),
+		('15','15'),
+	)
+	
+	wordCount = models.CharField(max_length=2, choices=NUMBER_OF_WORDS, default = 6)
+	
+	word1 = models.CharField(max_length = 15, null = False, blank = False)
+	word2 = models.CharField(max_length = 15, null = False, blank = False)
+	word3 = models.CharField(max_length = 15, null = False, blank = False)
+	word4 = models.CharField(max_length = 15, null = True, blank = True)
+	word5 = models.CharField(max_length = 15, null = True, blank = True)
+	word6 = models.CharField(max_length = 15, null = True, blank = True)
+	word7 = models.CharField(max_length = 15, null = True, blank = True)
+	word8 = models.CharField(max_length = 15, null = True, blank = True)
+	word9 = models.CharField(max_length = 15, null = True, blank = True)
+	word10 = models.CharField(max_length = 15, null = True, blank = True)
+	word11 = models.CharField(max_length = 15, null = True, blank = True)
+	word12 = models.CharField(max_length = 15, null = True, blank = True)
+	word13 = models.CharField(max_length = 15, null = True, blank = True)
+	word14 = models.CharField(max_length = 15, null = True, blank = True)
+	word15 = models.CharField(max_length = 15, null = True, blank = True)
 	
 class ShortAnswerQuizResponse(models.Model):
 	responseID = models.AutoField(primary_key = True)

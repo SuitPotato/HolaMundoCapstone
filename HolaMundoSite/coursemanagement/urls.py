@@ -37,10 +37,6 @@ urlpatterns = [
     url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', views.create_multiple_choice_quiz_q),
     url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', views.take_quiz),
 	
-	# Fill in the Blank URL's
-
-	url(r'^fillintheblank/$', views.create_fill_in_the_blank),
-	
 	# Matching URL's
 	
 	url(r'^matching/$', views.create_matching_selection),
@@ -54,6 +50,8 @@ urlpatterns = [
 	# Drag and Drop URL's
 	
 	url(r'^draganddrop/$', views.create_sentence_drag_and_drop),
+	url(r'^draganddrop/(?P<words>[\w]+)/(?P<difficulty>[\w]+)/$', views.create_sentence_drag_and_drop_two),
+	url(r'^draganddrop/take/(?P<quiz>[\w]+)/$', views.take_drag_and_drop),
 	
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),

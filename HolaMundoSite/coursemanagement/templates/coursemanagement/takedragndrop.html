@@ -7,38 +7,9 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 	<style>
-		#sortable { 
-		  list-style-type: none; 
-		  margin: 0; 
-		  padding: 0; 
-		}
-
-		#sortable li { 
-		  margin: 3px 3px 3px 0; 
-		  padding: 1px; 
-		  float: left; 
-		  width: 175px; 
-		  height: 90px; 
-		  font-size: 4em; 
-		  text-align: center; 
-		}
-
-		.div3 {
-		  margin-left: 0px;
-		  height:200px;
-		  padding:50px;
-		  border:1px solid #aaaaaa;
-		  background-color: LightBlue;
-		}
-
-		.buttonli { 
-		  margin: 20px; 
-		  padding: 20px; 
-		  border: 0px solid;
-		  border-radius: 25px;
-		  box-shadow: 5px 5px 5px grey;
-		}
-	</style>
+        #draggable, #draggable2, #draggable3 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+        #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+    </style>
 
 {% endblock %}
 
@@ -46,22 +17,421 @@
 
     <script type='text/javascript' src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
-	<script>
-		$(function() {
-			$( "#sortable" ).sortable();
-			$( "#sortable" ).disableSelection();
-		  });
-	</script>
+	
+    <script>
+      $( function() {
+        $( "#draggable0" ).draggable({ revert: "invalid" });
+		$( "#draggable1" ).draggable({ revert: "invalid" });
+		$( "#draggable2" ).draggable({ revert: "invalid" });
+		$( "#draggable3" ).draggable({ revert: "invalid" });
+		$( "#draggable4" ).draggable({ revert: "invalid" });
+		$( "#draggable5" ).draggable({ revert: "invalid" });
+		$( "#draggable6" ).draggable({ revert: "invalid" });
+		$( "#draggable7" ).draggable({ revert: "invalid" });
+		$( "#draggable8" ).draggable({ revert: "invalid" });
+		$( "#draggable9" ).draggable({ revert: "invalid" });
+		$( "#draggable10" ).draggable({ revert: "invalid" });
+		$( "#draggable11" ).draggable({ revert: "invalid" });
+		$( "#draggable12" ).draggable({ revert: "invalid" });
+		$( "#draggable13" ).draggable({ revert: "invalid" });
+		$( "#draggable14" ).draggable({ revert: "invalid" });
+		
+		$( "#droppable0" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable0") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable1" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable1") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable2" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable2") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable3" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable3") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable4" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable4") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable5" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable5") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable6" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable6") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable7" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable7") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable8" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable8") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable9" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable9") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable10" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable10") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable11" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable11") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable12" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable12") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable13" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable13") {
+                    return true;
+                }
+            }
+        });
+		
+		$( "#droppable14" ).droppable({
+          classes: {
+          },
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+                ui.draggable.position({
+                    my: "center",
+                    at: "center",
+                    of: this,
+                    using: function(pos) {
+                        $(this).animate(pos, 200, "linear");
+                    }
+                });
+          },
+          accept: function(d) {
+                if(d.attr("id") == "draggable14") {
+                    return true;
+                }
+            }
+        });
+
+
+      } );
+    </script>
 	
 {% endblock %}
 
 
 {% block content %}
+<!-- Update Jinja for's -->
 <ul id="sortable" class="div3">
-	<li id="word1" class="ui-state-default buttonli">Order</li>
-	<li id="word2" class="ui-state-default buttonli">The</li>
-	<li id="word3" class="ui-state-default buttonli">Words</li>
-	<li id="word4" class="ui-state-default buttonli">Put</li>  
-	<li id="word4" class="ui-state-default buttonli">In</li>
+	<div class="row">
+        <div class="col-md-6">
+            <h2> Word Bank: </h2>
+				<ul id="sortable" class="div3">
+					{% for x in words %}
+						<li id="draggable{{ x.0 }}" class="ui-state-default buttonli">
+							<!-- Word Here -->
+							{{ x.1 }}
+						</li>
+					{% endfor %}
+				</ul>
+		</div>
+		
+        <div class="col-md-6">
+            <h2> Sentence Bank: </h2>
+				<ul id="sortable" class="div3">
+					<!-- Needs to be in order and only # of words-->
+					{% for x in words %}
+						<li id="droppable{{ x.0 }}" class="ui-state-default buttonli" > </li>
+					{% endfor %}
+				</ul>
+		</div>
+	</div>
+	
+	<!-- Buttons to go back to the lesson need to be added here-->
+	<div class="col-md-12">
+	</div>
 </ul>	
 {% endblock %}
