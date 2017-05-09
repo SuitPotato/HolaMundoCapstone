@@ -39,7 +39,7 @@ def results(request, tag='', page=1):
         # if request is GET set page to 1
 
         # paginate video_list to 5 per page
-        paginator = Paginator(video_list, 2)
+        paginator = Paginator(video_list, 5)
 
         # paginate page
         try:
@@ -47,7 +47,7 @@ def results(request, tag='', page=1):
 
         #  if user enters a letter and not an Integer, take them to page 1
         except PageNotAnInteger:
-            videos = paginator.page(1)
+            videos = paginator.page(5)
 
         # if the user enters a page out of range, take to last page
         except EmptyPage:

@@ -8,6 +8,7 @@
 
 <link href="{% static 'youtube/css/fileinput.min.css' %}" media="all" rel="stylesheet" type="text/css" />
 <script src="{% static 'mainpage/js/jquery.min.js' %}"></script>
+<script src="{% static 'youtube/js/ckeditor/ckeditor.js' %}"></script>
 
 <style>
 
@@ -40,6 +41,7 @@
         font-size: 20px;
     }
 </style>
+
 
 <div class="container">
     <h2 class="text-center" style="padding-bottom: 30px;">Upload a video</h2>
@@ -78,10 +80,14 @@
                 <label class="control-label col-sm-2" data-toggle="tooltip" title="Enter {{ tab }} information here."
                        for="{{ tab }}" >{{ tab }}:</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" data-toggle="tooltip" title="Name: {{ tab_name_length }} chars." id="{{ tab }}-name" name="{{ tab }}-name" placeholder="Enter tab name" style="text-align: left;" maxlength="{{ tab_name_length }}">
+                    <input type="text" class="form-control" data-toggle="tooltip" title="Name: {{ tab_name_length }} chars, no spaces" id="{{ tab }}-name" name="{{ tab }}-name" placeholder="Enter tab name" style="text-align: left;" maxlength="{{ tab_name_length }}">
                 </div>
                 <div class="col-sm-8">
-                    <textarea rows="1" class="form-control" data-toggle="tooltip" title="Desc: {{ tab_desc_length }} chars." id="{{ tab }}-desc" name="{{ tab }}-desc" placeholder="Enter tab description" maxlength="{{ tab_desc_length }}"></textarea>
+                    <textarea rows="1" class="form-control" data-toggle="tooltip"
+                              title="Desc: {{ tab_desc_length }} chars." id="{{ tab }}-desc"
+                              name="{{ tab }}-desc" placeholder="Enter tab description"
+                              maxlength="{{ tab_desc_length }}"> </textarea>
+                    <script> CKEDITOR.replace( "{{ tab }}-desc", {extraPlugins : 'confighelper', } );</script>
                 </div>
             </div>
         {% endfor %}
