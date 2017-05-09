@@ -3,159 +3,86 @@
 
 {% block content %}
 <div class="container-fluid">
-	
-	<!-- Title and Sorting Button -->
-	
-	<div class="row">	
+	<div class="row">
 		<div class="col-md-12">
-		
-			<!-- Title Header
-				Title can be cnanged for something more suitable later on.
-			-->
 			<div class="page-header">
 				<h1>
-					Manager <small>for courses, lessons, and quizzes.</small>
+					LayoutIt! <small>Interface Builder for Bootstrap</small>
 				</h1>
 			</div>
-			
-			<!-- Button Group -->
-			<div class="btn-group">
-				
-				<!-- Text Field for the Button -->
-				<button class="btn btn-default">
-					Sort
-				</button> 
-				<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-					<span class="caret"></span>
-				</button>
-				<!-- Dropdown Menu for the Button
-					Can do a query on courses, quizzes, or all. Sorted by date.
-				-->
-				
-				<ul class="dropdown-menu">
-					<li>
-						<a href="#">Courses</a>
-					</li>
-					<li>
-						<a href="#">Lessons</a>
-					</li>
-					<li>
-						<a href="#">All</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		
-			<!-- End of Button -->
-	</div>
-	
-	<!-- End of Title and Sorting Button  -->
-			
-	<!-- Courses/Lessons and their information -->		
-	<div class="row">
-		<div class="col-md-8">
-			<h3>
-				<!-- Course Title Location -->
-				h3. Lorem ipsum dolor sit amet.
-			</h3>
-			<!-- Collapsable information. would show lessons.
-			May need to change id. Could cause problems 
-			A potential solution is just to show the courses and lessons
-			and have an edit function button that calls a function-->
-			
-			<div class="panel-group" id="panel-386088">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-386088" href="#panel-element-125140">Collapsible Group Item #1</a>
-					</div>
-					<div id="panel-element-125140" class="panel-collapse collapse in">
-						<div class="panel-body">
-							Anim pariatur cliche...
-						</div>
-					</div>
+			<div class="row">
+				<div class="col-md-4">
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-386088" href="#panel-element-729703">Collapsible Group Item #2</a>
-					</div>
-					<div id="panel-element-729703" class="panel-collapse collapse">
-						<div class="panel-body">
-							Anim pariatur cliche...
-						</div>
-					</div>
+				<div class="col-md-4">
+					<ul class="nav nav-pills">
+						<li class="active">
+							<!-- href = /manage/ 
+									 /manage/title
+									 /manage/creation
+									 /manage/beginner
+									 /intermediate
+									 /advanced
+									-->
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="#">Profile</a>
+						</li>
+						<li class="disabled">
+							<a href="#">Messages</a>
+						</li>
+						<li class="dropdown pull-right">
+							 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">Action</a>
+								</li>
+								<li>
+									<a href="#">Another action</a>
+								</li>
+								<li>
+									<a href="#">Something else here</a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									<a href="#">Separated link</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-4">
 				</div>
 			</div>
-		</div>
-		<div class="col-md-2">
-			<!-- Adding Button -->
-			<!-- Button Group -->
-			<div class="btn-group">
-				
-				<!-- Text Field for the Button -->
-				<button class="btn btn-default">
-					Add
-				</button> 
-				<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-					<span class="caret"></span>
-				</button>
-				<!-- Dropdown Menu for the Button
-					Send to form for creating Lesson or Quiz
-				-->
-				
-				<ul class="dropdown-menu">
-					<li>
-						<a href="#">Lesson</a>
-					</li>
-					<li>
-						<a href="#">Quiz</a>
-					</li>
-				</ul>
+			{% for course in courses %}
+			<div class="row">
+				<div class="col-md-3">
+					<h2>
+						{course.title}
+					</h2>
+				</div>
+				<div class="col-md-3">
+					<h3>
+						{course.description}
+					</h3>
+				</div>
+				<div class="col-md-3">
+					<!-- Test button for correct linking --> 
+					<button type="button" class="btn btn-success btn-lg btn-block active" href="/manage/course/{course.link}">
+						Edit
+					</button>
+				</div>
+				<div class="col-md-3">
+					 
+					<button type="button" class="btn btn-danger btn-lg active btn-block" id="{course.link}">
+						Delete
+					</button>
+				</div>
 			</div>
-		</div>
-		
-		<div class="col-md-2">
-			<!-- Info Button
-				Send to form fill in with editable information? -->
-			<button type="button" class="btn btn-info">
-				<!-- Text on Button -->
-				Edit
-			</button>
+			{% endfor %}
+			
 		</div>
 	</div>
-	<!-- End of Courses/Lessons and their information block -->
-	
-	
-	<!-- Pagination Block
-		Currently unusable, can work with it later
-	-->
-	<div class="row">
-		<div class="col-md-12">
-			<ul class="pagination pagination-lg">
-				<li>
-					<a href="#">Prev</a>
-				</li>
-				<li>
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">Next</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!-- End of Pagination Block -->
-	
 </div>
 {% endblock %}
