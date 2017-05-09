@@ -21,7 +21,7 @@
                                 </iframe>
                             </div>
                         </div>
-                        <div class="col-md-6">``
+                        <div class="col-md-6">
 					<div class="tabbable" id="tabs-925380">
 						<ul class="nav nav-tabs">
                             {% for tab in tabInfo %}
@@ -39,15 +39,15 @@
 						<div class="tab-content" id="tabs">
                             {% for tab in tabInfo %}
                                 {% if forloop.counter <= 1 %}
-                                <div class="tab-pane active" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
+                                <div class="tab-pane active" style="overflow-y:auto; height: 50vh;" id="panel-{{ tab.0 }}">
                                     <p>
-                                        {{ tab.1 }}
+                                        {% autoescape off %}{{ tab.1 }}{% endautoescape %}
                                     </p>
                                 </div>
                                 {% else %}
-                                <div class="tab-pane" style="overflow-y:auto; height: 15vh;" id="panel-{{ tab.0 }}">
+                                <div class="tab-pane" style="overflow-y:auto; height: 50vh;" id="panel-{{ tab.0 }}">
                                     <p>
-                                        {{ tab.1 }}
+                                        {% autoescape off %}{{ tab.1 }}{% endautoescape %}
                                     </p>
                                 </div>
                                 {% endif %}
