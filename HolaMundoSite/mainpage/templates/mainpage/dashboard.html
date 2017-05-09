@@ -172,14 +172,18 @@
     .row__inner:hover .tile {
     }
     .row__inner:hover .tile:hover {
-      -webkit-transform: scale(1.5);
-              transform: scale(1.5);
-      opacity: 1;
     }
 
-    .tile:hover ~ .tile {
-      -webkit-transform: translate3d(125px, 0, 0);
-              transform: translate3d(125px, 0, 0);
+    .green {
+        border: 6px solid #44AF69;
+    }
+
+    .red {
+        border: 6px solid #c62830;
+    }
+
+    .gold {
+        border: 6px solid #FCAB10;
     }
     
     </style>
@@ -193,6 +197,7 @@
 
 {% if prefs.lastVid != null and prefs.secondLastVid != null and prefs.thirdLastVid != null and prefs.fourthLastVid != null%}
 
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-lg-6">
@@ -202,10 +207,16 @@
                     </h2>
                 </div>
                 <div class="row" align="center">
-                    <a href="/video/{{ prefs.lastVid.link }}"> <img style="max-width:100%;" src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last" /> </a>
+                    {% if prefs.lastVid.difficulty == "Beginner" %}
+                    <a href="/video/{{ prefs.lastVid.link }}"> <img style="max-width:100%;" src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last green" /> </a>
+                    {% elif prefs.lastVid.difficulty == "Intermediate" %}
+                    <a href="/video/{{ prefs.lastVid.link }}"> <img style="max-width:100%;" src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last gold" /> </a>
+                    {% elif prefs.lastVid.difficulty == "Advanced" %}
+                    <a href="/video/{{ prefs.lastVid.link }}"> <img style="max-width:100%;" src="https://img.youtube.com/vi/{{ prefs.lastVid.youtube }}/0.jpg" class="img-thumbnail last red" /> </a>
+                    {% endif %}
                 </div>
             </div>
-
+            <script> console.log("{{ prefs.fourthLastVid.difficulty }}");</script>
             <div class="col-md-12 col-lg-6">
                 <div class="row">
                     <h2 class="text-center text">
@@ -218,7 +229,13 @@
                             <div class="tile" >
                                 <a href="/video/{{ prefs.secondLastVid.link }}" style="color: #ecf0f1;">
                                     <div class="tile__media">
-                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
+                                        {% if prefs.secondLastVid.difficulty == "Beginner" %}
+                                        <img class="tile__img green" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
+                                        {% elif prefs.secondLastVid.difficulty == "Intermediate" %}
+                                        <img class="tile__img gold" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
+                                        {% elif prefs.secondLastVid.difficulty == "Advanced" %}
+                                        <img class="tile__img red" src="https://img.youtube.com/vi/{{ prefs.secondLastVid.youtube }}/0.jpg"/>
+                                        {% endif %}
                                     </div>
 
                                     <div class="tile__details">
@@ -232,7 +249,13 @@
                             <div class="tile" >
                                 <a href="/video/{{ prefs.thirdLastVid.link }}" style="color: #ecf0f1;">
                                     <div class="tile__media">
-                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
+                                        {% if prefs.thirdLastVid.difficulty == "Beginner" %}
+                                        <img class="tile__img green" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
+                                        {% elif prefs.thirdLastVid.difficulty == "Intermediate" %}
+                                        <img class="tile__img gold" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
+                                        {% elif prefs.thirdLastVid.difficulty == "Advanced" %}
+                                        <img class="tile__img red" src="https://img.youtube.com/vi/{{ prefs.thirdLastVid.youtube }}/0.jpg"/>
+                                        {% endif %}
                                     </div>
 
                                     <div class="tile__details">
@@ -246,7 +269,13 @@
                             <div class="tile" >
                                 <a href="/video/{{ prefs.fourthLastVid.link }}" style="color: #ecf0f1;">
                                     <div class="tile__media">
-                                        <img class="tile__img" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                        {% if prefs.fourthLastVid.difficulty == "Beginner" %}
+                                        <img class="tile__img green" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                        {% elif prefs.fourthLastVid.difficulty == "Intermediate" %}
+                                        <img class="tile__img gold" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                        {% elif prefs.fourthLastVid.difficulty == "Advanced" %}
+                                        <img class="tile__img red" src="https://img.youtube.com/vi/{{ prefs.fourthLastVid.youtube }}/0.jpg"/>
+                                        {% endif %}
                                     </div>
 
                                     <div class="tile__details">
@@ -279,7 +308,13 @@
                             <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
 
                                 <div class="tile__media">
-                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% if video.difficulty == "Beginner" %}
+                                    <img class="tile__img green" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% elif video.difficulty == "Intermediate" %}
+                                    <img class="tile__img gold" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% elif video.difficulty == "Advanced" %}
+                                    <img class="tile__img red" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% endif %}
                                 </div>
 
                                 <div class="tile__details">
@@ -315,7 +350,13 @@
                             <a href="/video/{{ video.link }}" style="color: #ecf0f1;">
 
                                 <div class="tile__media">
-                                    <img class="tile__img" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% if video.difficulty == "Beginner" %}
+                                    <img class="tile__img green" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% elif video.difficulty == "Intermediate" %}
+                                    <img class="tile__img gold" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% elif video.difficulty == "Advanced" %}
+                                    <img class="tile__img red" src="https://img.youtube.com/vi/{{ video.youtube }}/0.jpg"/>
+                                    {% endif %}
                                 </div>
 
                                 <div class="tile__details">
