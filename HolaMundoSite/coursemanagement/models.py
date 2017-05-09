@@ -95,7 +95,7 @@ class Quiz(models.Model):
 
 class Course(models.Model):
 	courseID = models.AutoField(primary_key=True)
-	title = models.CharField(max_length=100)
+	title = models.CharField(max_length=30)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
 	link = models.CharField(max_length=15)
