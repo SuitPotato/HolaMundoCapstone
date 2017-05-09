@@ -23,14 +23,48 @@ from django.contrib.auth.models import User
 
 # Purpose of the manage is to show all the courses related to the same author
 @login_required()
-def manage(request):
+def manage(request, filter_results='all'):
 
     # Filters out courses only made by the user
-    current_user = request.user
-    courses = Course.objects.filter(author=current_user)
-    lessons = Lesson.objects.filter(author=current_user)
-    context = {"courses": courses, "lessons": lessons}
-    return render(request, 'coursemanagement/manage.html', context)
+	current_user = request.user
+	
+	
+	# Order by Title
+	if filter_results == 'title':
+		courses = Course.objects.filter(author=current_user).order_by('title')
+		context = {"courses":courses}
+		return render(request, 'coursemanagement/manage.html', context)
+		
+	# Filter by Creation Date
+	elif filter_results == 'creation':
+		courses = Course.objects.filter(author=current_users).order_by('-date')
+		context = {"courses":courses}
+		return render(request, 'coursemanagement/manage.html', context)
+		
+	# Filter by beginner
+	elif filter_results == 'beginner':
+		courses = Course.objects.filter(author=current_users).filter(difficulty='1')
+		context = {"courses":courses}
+		return render(request, 'coursemanagement/manage.html', context)
+	
+	# Intermediate
+	elif filter_results == 'intermediate':
+		courses = Course.objects.filter(author=current_users).filter(difficulty='2')
+		context = {"courses":courses}
+		return render(request, 'coursemanagement/manage.html', context)
+	# Advanced
+	elif filter_results == 'advanced':
+		courses = Course.objects.filter(author=current_users).filter(difficulty='3')
+		context = {"courses":courses}
+		return render(request, 'coursemanagement/manage.html', context)
+	
+	else:
+		courses = Course.objects.filter(author=current_user)
+		#lessons = Lesson.objects.filter(author=current_user)
+		context = {"courses": courses}
+		return render(request, 'coursemanagement/manage.html', context)
+	
+	
 
 
 # Purpose of viewcourse is to show the lessons specific course.
@@ -45,13 +79,14 @@ def viewcourse(request, courseID):
     # courseID__exact = courseID
     course = Course.objects.get(courseID__exact=courseID)
     if (course.author == current_user):
-
-        context = {"course": course}
-        return render(request, 'coursemanagement/viewcourse.html', context)
+		lesson = Lesson.objects.filter(author = current_user).filter(lessonID = courseID)
+		context = {"course": course}
+		return render(request, 'coursemanagement/viewcourse.html', context)
     else:
         # Just a temporary flag
         # Should return a 404
         return render(request, 'mainpage/DragDemo.html')
+
 		
 
 @login_required()
