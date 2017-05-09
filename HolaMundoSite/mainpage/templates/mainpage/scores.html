@@ -4,9 +4,14 @@
 
 {% load staticfiles %}
 
-{% for user in data %}
-	{{ user.quizID }}
+<div class="container">
+	<div class="col-md-4">
+		{% if request.user.is_authenticated %}
+			Welcome '{{ request.user.user }}'
+		{% endif %}
+	</div>
 
-{% endfor %}
+
+</div>
 
 {% endblock %}

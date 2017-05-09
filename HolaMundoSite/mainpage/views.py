@@ -28,15 +28,17 @@ def drag(request):
 def scores(request):
     if request.method == 'GET':
         
-        mc_quiz = MultipleChoiceResponse.objects.all()
-        sa_quiz = ShortAnswerResponse.objects.all()
+        if request.user == user:
 
-        context = {"mc_quiz_responseID": mc_quiz.responseID, "mc_quiz_quizID": mc_quiz.quizID, 
-                    "mc_quiz_user": mc_quiz.user, "mc_quiz_score": mc_quiz.score, "sa_quiz_responseID": sa_quiz.responseID,
-                    "sa_quiz_quizID": sa_quiz.quizID, "sa_quiz_user": sa_quiz.user, "sa_quiz_score": sa_quiz.score}
+            mc_quiz = MultipleChoiceResponse.objects.all()
+            sa_quiz = ShortAnswerResponse.objects.all()
 
-        #return to scores html
-        return render(request, 'mainpage/scores.html', context)
+            context = { "user": request.user, "mc_quiz_responseID": mc_quiz.responseID, "mc_quiz_quizID": mc_quiz.quizID, 
+                        "mc_quiz_user": mc_quiz.user, "mc_quiz_score": mc_quiz.score, "sa_quiz_responseID": sa_quiz.responseID,
+                        "sa_quiz_quizID": sa_quiz.quizID, "sa_quiz_user": sa_quiz.user, "sa_quiz_score": sa_quiz.score}
+
+            #return to scores html
+            return render(request, 'mainpage/scores.html', context)
 
 
 def results(request, tag='', page=1):
