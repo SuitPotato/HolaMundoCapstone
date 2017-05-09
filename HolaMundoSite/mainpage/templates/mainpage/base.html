@@ -30,6 +30,8 @@
 	scripts from google and microsoft. These imports aren't necessary on every page, however, so it's being left
 	as a block to fill in.	
 	-->
+    {% block bodyStyle %}
+    {% endblock %}
 	{% block headContent %}
 	
 	{% endblock %}
@@ -73,14 +75,18 @@
 					</button> 
 					<a class="navbar-brand" href="/">
 						<span class="glyphicon glyphicon-home"></span>
-						Hola Mundo
+						We-Learning
 					</a>
 				</div>
 
 				<div class="collapse navbar-collapse" id="navbar-collapse-1">
-                    <form class="navbar-form navbar-left" type="get" action="/results" autocomplete="off">
+                    <form class="navbar-form navbar-left" type="get" action="/results/" autocomplete="off">
                         <div class="form-group">
-                            <input class="form-control" id="query" type="text" name="query" placeholder="Search...">
+                            {% if tag %}
+                                <input class="form-control" id="tag" type="text" name="tag" placeholder="Search..." value="{{ tag }}">
+                            {% else %}
+                                <input class="form-control" id="tag" type="text" name="tag" placeholder="Search...">
+                            {% endif %}
                         </div>
                         <button class="btn btn-default" id="search_submit" type="submit"> Search</button>
                     </form>

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
     'crispy_forms',
+    # 'django_wysiwyg',
+    'ckeditor',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -79,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'HolaMundoSite.wsgi.application'
 
-
+# DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -129,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/UserSettingsPage/profile'
+LOGIN_REDIRECT_URL = '/myHolaMundo/'
 
 LOGIN_URL = '/login/'
 
