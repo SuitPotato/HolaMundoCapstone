@@ -35,26 +35,26 @@ def manage(request, filter_results='all'):
 		context = {"courses":courses}
 		return render(request, 'coursemanagement/manage.html', context)
 		
-	# Filter by Creation Date
+	# Order by Title
 	elif filter_results == 'creation':
-		courses = Course.objects.filter(author=current_users).order_by('-date')
+		courses = Course.objects.filter(author=current_user).order_by('-date')
 		context = {"courses":courses}
 		return render(request, 'coursemanagement/manage.html', context)
 		
 	# Filter by beginner
 	elif filter_results == 'beginner':
-		courses = Course.objects.filter(author=current_users).filter(difficulty='1')
+		courses = Course.objects.filter(author=current_user).filter(difficulty='1')
 		context = {"courses":courses}
 		return render(request, 'coursemanagement/manage.html', context)
 	
 	# Intermediate
 	elif filter_results == 'intermediate':
-		courses = Course.objects.filter(author=current_users).filter(difficulty='2')
+		courses = Course.objects.filter(author=current_user).filter(difficulty='2')
 		context = {"courses":courses}
 		return render(request, 'coursemanagement/manage.html', context)
 	# Advanced
 	elif filter_results == 'advanced':
-		courses = Course.objects.filter(author=current_users).filter(difficulty='3')
+		courses = Course.objects.filter(author=current_user).filter(difficulty='3')
 		context = {"courses":courses}
 		return render(request, 'coursemanagement/manage.html', context)
 	
@@ -73,10 +73,9 @@ def manage(request, filter_results='all'):
 @login_required()
 def viewcourse(request, courseID):
     current_user = request.user
-    # Retrieving one value, so no filter needed, but get instead
-    # Follows the format (for looking up stuff):
-    # field__lookuptype=value
-    # courseID__exact = courseID
+    # Need to add lesson
+	# Add Quizzes to lesson
+	# Try deleting lessons maybe
     course = Course.objects.get(courseID__exact=courseID)
     if (course.author == current_user):
 		lesson = Lesson.objects.filter(author = current_user).filter(lessonID = courseID)
@@ -86,8 +85,8 @@ def viewcourse(request, courseID):
         # Just a temporary flag
         # Should return a 404
         return render(request, 'mainpage/DragDemo.html')
-
 		
+
 
 @login_required()
 def course(request):
