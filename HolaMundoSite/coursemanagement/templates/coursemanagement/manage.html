@@ -12,8 +12,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-				</div>
-				<div class="col-md-4">
+				
 					<ul class="nav nav-pills">
 						<li class="active">
 							<!-- href = /manage/ 
@@ -51,6 +50,10 @@
 							</ul>
 						</li>
 					</ul>
+				
+				</div>
+				<div class="col-md-4">
+					
 				</div>
 				<div class="col-md-4">
 				</div>
@@ -58,18 +61,18 @@
 			{% for course in courses %}
 			<div class="row">
 				<div class="col-md-3">
-					<h2>
-						{course.title}
-					</h2>
-				</div>
-				<div class="col-md-3">
 					<h3>
-						{course.description}
+						{{ course.title }}
 					</h3>
 				</div>
 				<div class="col-md-3">
+					<h5>
+						{{ course.description }}
+					</h5>
+				</div>
+				<div class="col-md-3">
 					<!-- Test button for correct linking --> 
-					<button type="button" class="btn btn-success btn-lg btn-block active" href="/manage/course/{course.link}">
+					<button type="button" class="btn btn-success btn-lg btn-block active" href="/manage/course/{{course.link}}">
 						Edit
 					</button>
 				</div>
