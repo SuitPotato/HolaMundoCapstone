@@ -15,47 +15,51 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from . import views
+import coursemanagement.views
+import youtube.views
 
 urlpatterns = [
 
 	# Basic Manage Stuff
-    url(r'^manage/$', views.manage),
-	url(r'^manage/(?P<filter_results>[\w]+)/$', views.manage),
-	url(r'^manage/course/(?P<courseID>[\w]+)/$', views.viewcourse),
-    url(r'^manage/create/course', views.course),
+    url(r'^manage/$', coursemanagement.views.manage),
+	url(r'^manage/(?P<filter_results>[\w]+)/$', coursemanagement.views.manage),
+	url(r'^manage/course/(?P<courseID>[\w]+)/$', coursemanagement.views.viewcourse),
+    url(r'^manage/create/course', coursemanagement.views.course),
+	url(r'^manage/create/lesson/(?P<courseID>[\w]+)$', youtube.views.indexlink),
+	#url(r'^manage/create/quiz/)
 	
-	url(r'^createquiz', views.create_quiz),
-    url(r'^createlesson', views.lesson),
+	
+	url(r'^createquiz', coursemanagement.views.create_quiz),
+#    url(r'^createlesson', coursemanagement.views.lesson),
 
 	
 	# General 
-    url(r'^success', views.success),
-    url(r'^viewcourse/(\d+)/', views.viewcourse),  # Takes in a CourseID, check coursemanagement/views.py for more
-    url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', views.load_course, name='course_loader'),
-    url(r'^quizresults/(?P<q>[\w]+)/(?P<pk>[\w]+)$', views.quiz_results),
+    url(r'^success', coursemanagement.views.success),
+    url(r'^viewcourse/(\d+)/', coursemanagement.views.viewcourse),  # Takes in a CourseID, check coursemanagement/views.py for more
+    url(r'^course/(?P<link>[\w]+)/(?P<number>[\w]+)$', coursemanagement.views.load_course, name='course_loader'),
+    url(r'^quizresults/(?P<q>[\w]+)/(?P<pk>[\w]+)$', coursemanagement.views.quiz_results),
 	
 	# Multiple Choice URL's
 	
-    url(r'^multiplechoice/$', views.create_multiple_choice_quiz),
-    url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', views.create_multiple_choice_quiz_q),
-    url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', views.take_quiz),
+    url(r'^multiplechoice/$', coursemanagement.views.create_multiple_choice_quiz),
+    url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', coursemanagement.views.create_multiple_choice_quiz_q),
+    url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', coursemanagement.views.take_quiz),
 	
 	# Matching URL's
 	
-	url(r'^matching/$', views.create_matching_selection),
-	url(r'^matching/(?P<difficulty>[\w]+)/(?P<options>[\w]+)/',views.create_matching_quiz),
+	url(r'^matching/$', coursemanagement.views.create_matching_selection),
+	url(r'^matching/(?P<difficulty>[\w]+)/(?P<options>[\w]+)/', coursemanagement.views.create_matching_quiz),
 	
 	# Short Answer URL's
 	
-	url(r'^shortanswer/$', views.create_short_answer),
-	url(r'^shortanswer/(\d+)/', views.take_short_answer),
+	url(r'^shortanswer/$', coursemanagement.views.create_short_answer),
+	url(r'^shortanswer/(\d+)/', coursemanagement.views.take_short_answer),
 	
 	# Drag and Drop URL's
 	
-	url(r'^draganddrop/$', views.create_sentence_drag_and_drop),
-	url(r'^draganddrop/(?P<words>[\w]+)/(?P<difficulty>[\w]+)/$', views.create_sentence_drag_and_drop_two),
-	url(r'^draganddrop/take/(?P<quiz>[\w]+)/$', views.take_drag_and_drop),
+	url(r'^draganddrop/$', coursemanagement.views.create_sentence_drag_and_drop),
+	url(r'^draganddrop/(?P<words>[\w]+)/(?P<difficulty>[\w]+)/$', coursemanagement.views.create_sentence_drag_and_drop_two),
+	url(r'^draganddrop/take/(?P<quiz>[\w]+)/$', coursemanagement.views.take_drag_and_drop),
 	
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),

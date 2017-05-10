@@ -9,18 +9,32 @@
 					{{ course.title }}
 				</h1>
 			</div>
+			{% for lesson in lessons %}
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-3">
+					{{ lesson.title }}
 				</div>
 				<div class="col-md-3">
+					{{ lesson.difficulty }}
 				</div>
 				<div class="col-md-3">
+				
+					<a href="#" style="color: white;" data-toggle="tooltip" title="Click to edit course information.">
+						<div class="Edit btn btn-success">
+							Edit
+						</div>
+					</a>
+				
 				</div>
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
+					<a href="#" style="color: white;" data-toggle="tooltip" title="Click to edit course information.">
+						<div class="Edit btn btn-danger">
+							Delete
+						</div>
+					</a>
 				</div>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>
