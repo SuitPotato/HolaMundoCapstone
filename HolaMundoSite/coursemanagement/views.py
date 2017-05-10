@@ -27,8 +27,6 @@ def manage(request, filter_results='all'):
 
     # Filters out courses only made by the user
 	current_user = request.user
-	
-	
 	# Order by Title
 	if filter_results == 'title':
 		courses = Course.objects.filter(author=current_user).order_by('title')
@@ -78,8 +76,9 @@ def viewcourse(request, courseID):
 	# Try deleting lessons maybe
     course = Course.objects.get(courseID__exact=courseID)
     if (course.author == current_user):
-		lesson = Lesson.objects.filter(author = current_user).filter(lessonID = courseID)
-		context = {"course": course}
+		actualCourseID = course.courseID
+		lesson = Lesson.objects.filter(author = current_user).filter(assignedCourse = actualCourseID)
+		context = {"course": course, "lessons":lesson}
 		return render(request, 'coursemanagement/viewcourse.html', context)
     else:
         # Just a temporary flag
@@ -115,35 +114,6 @@ def course(request):
 def success(request):
     return render(request, 'coursemanagement/success.html')
 
-
-@login_required()
-def lesson(request):
-    if request.method == 'POST':
-        # form is a variable that contains the courseform
-        form = LessonForm(request.POST)
-        if form.is_valid():
-            # Instantiate the class Course from Models
-            v = Lesson()
-            v.title = form.cleaned_data["title"]
-            v.link = form.cleaned_data["link"]
-            v.youtube = form.cleaned_data["youtube"]
-            v.tabs = form.cleaned_data["tabs"]
-            v.tab1desc = form.cleaned_data["tab1desc"]
-            v.tab2desc = form.cleaned_data["tab2desc"]
-            v.tab3desc = form.cleaned_data["tab3desc"]
-            v.tab4desc = form.cleaned_data["tab4desc"]
-            v.tab5desc = form.cleaned_data["tab5desc"]
-            v.tab6desc = form.cleaned_data["tab6desc"]
-            # Must save the instantiated variables afterwards
-            v.save()
-
-            # Make sure HttpResponseRedirect has a view and URL
-            return HttpResponseRedirect('/success/')
-    elif request.method == 'GET':
-        form = LessonForm()
-    else:
-        form = LessonForm()
-    return render(request, "coursemanagement/lessonform.html", {"form": form})
 
 
 def load_course(request, link, number):
