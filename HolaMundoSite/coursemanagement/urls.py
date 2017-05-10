@@ -23,11 +23,11 @@ urlpatterns = [
     url(r'^manage/$', views.manage),
 	url(r'^manage/(?P<filter_results>[\w]+)/$', views.manage),
 	url(r'^manage/course/(?P<courseID>[\w]+)/$', views.viewcourse),
-	
+    url(r'^manage/create/course', views.course),
 	
 	url(r'^createquiz', views.create_quiz),
     url(r'^createlesson', views.lesson),
-    url(r'^createcourse', views.course),
+
 	
 	# General 
     url(r'^success', views.success),
