@@ -25,7 +25,7 @@ from django.conf import settings
 from django.db import models
 from .models import *
 
-from coursemanagement.models import Lesson
+from coursemanagement.models import Course, Lesson, CourseLessonQuiz
 
 BASE_URL = settings.MEDIA_ROOT
 
@@ -61,7 +61,7 @@ def index(request):
 
 
 @login_required()
-def indexlink(request):
+def indexlink(request, courseID=None):
     # Checks if the user is registered as a Content Creator or super user. If the user is registered as a content
     # creator or super user then they will be able to access this view. If not then they will be redirected to
     # denial page
@@ -118,6 +118,27 @@ def indexlink(request):
                             tab5desc=tab5desc,
                             tab6desc=tab6desc
                             )
+							
+            if courseID is None:
+				relation = CourseLessonQuiz()
+				relation.lessonID = lesson
+				relation.save()
+            else:
+				course = Course.objects.get(courseID__exact = courseID)
+				
+				positionFind = CourseLessonQuiz.objects.filter(courseID__exact = courseID)
+				position = 0
+				for x in positionFind:
+					position = position + 1	
+				position = position - 1
+				
+				relation = CourseLessonQuiz()
+				relation.courseID = course
+				relation.lessonID = lesson
+				relation.position = position
+				relation.save()
+
+				
 
             # Save lesson to database, wait, redirect user to new video just uploaded.
             lesson.save()
