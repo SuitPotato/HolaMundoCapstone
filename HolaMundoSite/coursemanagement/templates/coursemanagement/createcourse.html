@@ -1,0 +1,51 @@
+{% extends "mainpage/base.html" %}
+
+{% block title %} Create Course {% endblock %}
+
+{% block content %}
+
+<form id="rendered-form" data-form-render="[object Object]" method="POST">
+	<div class="fb-text form-group field-title">
+		<label class="fb-text-label">
+			Title
+		</label>
+		
+		<input type="text" placeholder="Enter a title for your course." class="form-control" name="title" maxlength="30" id="title">
+	</div>
+	
+	<div class="fb-textarea form-group field-textarea-1494388400465">
+		<label class="fb-textarea-label">
+			Description
+		</label>
+		<textarea type="textarea" placeholder="Enter a description for the course here." class="form-control" name="description" id="textarea-1494388400465"></textarea>
+	</div>
+	
+	<div class="fb-select form-group field-select-1494388406121">
+		<label class="fb-select-label">
+			Select
+		</label>
+		
+		<select label="Select" class="form-control" name="difficulty">
+			<option value="1" selected="true" id="select-1494388406121-0">
+				Beginner
+			</option>
+			
+			<option value="2" id="select-1494388406121-1">
+				Intermediate
+			</option>
+			
+			<option value="3" id="select-1494388406121-2">
+				Advanced 
+			</option>
+		</select>
+		
+	</div>
+	
+	<div class="fb-button form-group field-button-1494388478465">
+		<button type="submit" class="btn btn-undefined" name="button-1494388478465" style="undefined" id="button-1494388478465">
+			Submit
+		</button>
+	</div>
+</form>
+
+{% endblock %}
