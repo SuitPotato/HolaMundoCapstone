@@ -98,7 +98,7 @@ class Course(models.Model):
 	title = models.CharField(max_length=30)
 	author = models.ForeignKey(User, null=False, blank=False)
 	date = models.DateField(auto_now_add=True)
-	link = models.CharField(max_length=15)
+
 
 	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
 	# Currently commented out for migrations/migrate
@@ -119,6 +119,7 @@ class Course(models.Model):
 
 
 class CourseLessonQuiz(models.Model):
+	relationID = models.AutoField(primary_key=True)
 	courseID = models.ForeignKey(Course, null=False, blank=False)
 	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
 	QuizID = models.ForeignKey(Quiz, null=True, blank=True)
