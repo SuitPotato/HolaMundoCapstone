@@ -21,10 +21,6 @@ def index(request):
     return render(request, 'mainpage/index.html')
 
 
-def drag(request):
-    return render(request, 'mainpage/sentenceTwo.html')
-
-
 def results(request, tag='', page=1):
     print(tag)
     if request.method == 'GET':
@@ -105,25 +101,6 @@ def results_p(request, page=1, tag=''):
 
     context = {"videos": videos, 'page': page, 'tag': tag}
     return render(request, 'mainpage/results.html', context)
-
-
-def loginview(request):
-    return render(request, 'mainpage/login.html')
-
-
-def lexusadduser(request):
-    if request.method == "POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            new_user = User.objects.create_user(**form.cleaned_data)
-            login(new_user)
-            # Redirect, or however we want to return back to the main view
-
-            # HttpResponse is based off of URL Response, not Views
-            return HttpResponseRedirect('/loginview/')
-    else:
-        form = UserForm()
-    return render(request, 'mainpage/adduser.html', {'form': form})
 
 
 def login(request):
