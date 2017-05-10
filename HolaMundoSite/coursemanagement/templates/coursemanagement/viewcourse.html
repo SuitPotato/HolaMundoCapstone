@@ -4,47 +4,25 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h3 class="text-center">
-				h3. Lorem ipsum dolor sit amet.
-			</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<div class="panel-group" id="panel-741310">
-				
-				{% for course in courses %}
-				
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-741310" href="#panel-element-799358">{{ course.title }}</a>
-					</div>
-					<div id="panel-element-799358" class="panel-collapse collapse">
-						
-						
-						<div class="panel-body">
-							{{ course.lesson }}
-						</div>
-						
-						
-						
-					</div>
-					<div id="panel-element-799358" class="panel-collapse collapse">
-						<div class="panel-body">
-							Test
-						</div>
-					</div>
-					
+			<div class="page-header">
+				<h1>
+					{{ course.title }}
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
 				</div>
-				
-				{% endfor %}
-				
+				<div class="col-md-3">
+				</div>
+				<div class="col-md-3">
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-2">
+				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
-		</div>
 	</div>
+</div>
 </div>
 {% endblock %}
