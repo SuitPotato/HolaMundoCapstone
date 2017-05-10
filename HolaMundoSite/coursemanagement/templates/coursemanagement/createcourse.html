@@ -5,6 +5,7 @@
 {% block content %}
 
 <form id="rendered-form" data-form-render="[object Object]" method="POST">
+	{% csrf_token %}
 	<div class="fb-text form-group field-title">
 		<label class="fb-text-label">
 			Title
