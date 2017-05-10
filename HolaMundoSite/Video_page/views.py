@@ -4,13 +4,7 @@ from coursemanagement.models import Lesson
 from UserSettingsPage.models import Preference
 # from coursemanagement.forms import LessonForm
 
-# Create your views here.
-
-
-def index(request):
-    return render(request, 'Video_page/videoloader.html')
-
-
+# Create your views here:
 def load_video(request, link):
     try:
         video = Lesson.objects.get(link=link)
