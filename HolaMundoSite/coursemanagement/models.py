@@ -122,7 +122,7 @@ class CourseLessonQuiz(models.Model):
 	courseID = models.ForeignKey(Course, null=False, blank=False)
 	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
 	QuizID = models.ForeignKey(Quiz, null=True, blank=True)
-	position = models.PositiveIntegerField(validators=[MaxValueValidator(30)])
+	position = models.PositiveIntegerField(validators=[MaxValueValidator(30)], null=True, blank=True)
 
 	class Meta:
 		ordering = ['position']
