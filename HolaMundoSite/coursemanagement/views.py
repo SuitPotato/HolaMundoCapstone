@@ -180,9 +180,10 @@ def create_multiple_choice_quiz(request, courseID=None):
         selected_difficulty = request.POST.get("quiz_difficulty")
         selected_number_answers = request.POST.get("question_number")
         if courseID != None:
-			return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
-        else:
 			return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty+'/'+courseID)
+        else:
+			return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
+
     else:
         number_of_options = MultipleChoiceQuiz.NUMBER_OF_CHOICES
         difficulties = MultipleChoiceQuiz.DIFFICULTIES
