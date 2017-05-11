@@ -126,46 +126,7 @@
     </div> -->
       <div class="col-md-3">
       </div>
-
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-        <h3>Website preferences</h3>
-
-        <form class="form-horizontal" role="form" method="post" id="preferencesform">
-            {% csrf_token %}
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Default language:</label>
-                <div class="col-lg-8">
-                    <div class="ui-select">
-                        <select  name='user_language' class="form-control">
-                            {% for choice in prefs.LANGUAGES %}
-                            <option value="{{ choice.1 }}" {% if prefs.defaultLanguage == choice.0 %}selected{% endif %}>{{ choice.0 }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Difficulty:</label>
-                <div class="col-lg-8">
-                    <div class="ui-select">
-                        <select name="user_difficulty" class="form-control">
-                            {% for choice in prefs.DIFFICULTIES %}
-                            <option value="{{ choice.1 }}" {% if prefs.difficulty == choice.0 %}selected{% endif %}>{{ choice.0 }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label"></label>
-                <div class="col-md-8">
-                    <input name='savebutton' type="submit" class="btn btn-primary" value="Save User Prefs">
-                        <span></span>
-                    <input type="reset" class="btn btn-default" value="Cancel">
-                </div>
-          </div>
-        </form>
+        
         <a href="/logout/" class="btn btn-danger pull-right">Log out {{ user.username }}</a>
       </div>
   </div>
