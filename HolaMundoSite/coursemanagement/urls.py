@@ -29,7 +29,8 @@ urlpatterns = [
 	#url(r'^manage/create/quiz/)
 	
 	
-	url(r'^createquiz', coursemanagement.views.create_quiz),
+	url(r'^manage/create/quiz/(?P<courseID>[\w]+)$', coursemanagement.views.create_quiz),
+	#url(r'^manage/create/quiz/)
 #    url(r'^createlesson', coursemanagement.views.lesson),
 
 	
@@ -60,7 +61,7 @@ urlpatterns = [
 	url(r'^draganddrop/$', coursemanagement.views.create_sentence_drag_and_drop),
 	url(r'^draganddrop/(?P<words>[\w]+)/(?P<difficulty>[\w]+)/$', coursemanagement.views.create_sentence_drag_and_drop_two),
 	url(r'^draganddrop/take/(?P<quiz>[\w]+)/$', coursemanagement.views.take_drag_and_drop),
-	
+	url(r'^dnd/take/(?P<quiz>[\w]+)/$', coursemanagement.views.take_drag_and_drop),
     # url(r'^create', views.create),
     # url(r'^createcourse', views.course),
     # url(r'^createquize', views.quiz),

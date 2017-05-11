@@ -8,6 +8,21 @@
 				<h1>
 					{{ course.title }}
 				</h1>
+				
+				<!-- Move Button-->
+				<a href="/manage/create/lesson/{{ course.courseID }}" style="color: white;" data-toggle="tooltip" title="Click to edit course information.">
+					<div class="Edit btn btn-success">
+						Create Lesson
+					</div>
+				</a>
+				
+				<!-- Move Button-->
+				<a href="/manage/create/quiz/{{ course.courseID }}" style="color: white;" data-toggle="tooltip" title="Click to edit course information.">
+					<div class="Edit btn btn-success">
+						Create Quiz
+					</div>
+				</a>
+				
 			</div>
 			{% for lesson in lessons %}
 			<div class="row">

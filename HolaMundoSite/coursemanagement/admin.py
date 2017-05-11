@@ -1,6 +1,7 @@
 from django.contrib import admin
 from coursemanagement.models import Lesson, Course, Quiz, CourseLessonQuiz, MultipleChoiceQuiz, MultipleChoiceQuizResponse
 from coursemanagement.models import ShortAnswerQuiz, ShortAnswerQuizResponse, MatchingQuiz
+from coursemanagement.models import DragAndDropQuiz
 
 # Register your models here.
 # Course Management Models
@@ -19,4 +20,7 @@ admin.site.register(ShortAnswerQuizResponse)
 
 # Matching Quiz Models
 admin.site.register(MatchingQuiz)
+
+# DragAndDropQuiz
+admin.site.register(DragAndDropQuiz)
 
