@@ -473,7 +473,8 @@ def take_drag_and_drop(request, quiz):
 
 @login_required()
 # Pass in the Lesson later along with it later.
-def create_quiz(request):
+def create_quiz(request, courseID):
+	course = Course.objects.get(courseID__exact=courseID)
 	if request.method == 'POST':
 		quiz = response.POST.get("select_quiz")
 		if quiz == 1:
@@ -492,10 +493,11 @@ def create_quiz(request):
 			# Video Drag & Drop
 			pass
 		else:
-			return render(request, "coursemanagement/createquiz.html")
+			context = {"course":course}
+			return render(request, "coursemanagement/createquiz.html", context)
 	else:
-
-		return render(request, "coursemanagement/createquiz.html")
+		context = {"course":course}
+		return render(request, "coursemanagement/createquiz.html", context)
 
 
 
