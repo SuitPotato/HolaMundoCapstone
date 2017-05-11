@@ -205,7 +205,8 @@ class DragAndDropQuiz(models.Model):
 		('Intermediate', '2'),
 		('Advanced', '3'),
 	)
-	difficulty = models.IntegerField(choices=DIFFICULTIES, default=2)
+
+	difficulty = models.CharField(max_length=15, choices=DIFFICULTIES, default="Beginner")
 	# WordCount may not be needed
 	
 	NUMBER_OF_WORDS = (
