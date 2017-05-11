@@ -61,29 +61,7 @@ def manage(request, filter_results='all'):
 		#lessons = Lesson.objects.filter(author=current_user)
 		context = {"courses": courses}
 		return render(request, 'coursemanagement/manage.html', context)
-	
-	
 
-
-# Purpose of viewcourse is to show the lessons specific course.
-# Takes in a request and the courseID
-# Need to verify if the author is the current user, if not redirect
-@login_required()
-def viewcourse(request, courseID):
-    current_user = request.user
-    # Need to add lesson
-	# Add Quizzes to lesson
-	# Try deleting lessons maybe
-    course = Course.objects.get(courseID__exact=courseID)
-    if (course.author == current_user):
-		actualCourseID = course.courseID
-		lesson = Lesson.objects.filter(author = current_user).filter(assignedCourse = actualCourseID)
-		context = {"course": course, "lessons":lesson}
-		return render(request, 'coursemanagement/viewcourse.html', context)
-    else:
-        # Just a temporary flag
-        # Should return a 404
-        return render(request, 'mainpage/DragDemo.html')
 		
 
 
@@ -196,12 +174,15 @@ def quiz_results(request, q, pk):
 
 
 @login_required()
-def create_multiple_choice_quiz(request):
+def create_multiple_choice_quiz(request, courseID=None):
     if request.method == 'POST':
         # if request.POST.get("savebutton") == "Save User info":
         selected_difficulty = request.POST.get("quiz_difficulty")
         selected_number_answers = request.POST.get("question_number")
-        return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
+        if courseID != None:
+			return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty)
+        else:
+			return HttpResponseRedirect('/multiplechoice/'+selected_number_answers+'/'+selected_difficulty+'/'+courseID)
     else:
         number_of_options = MultipleChoiceQuiz.NUMBER_OF_CHOICES
         difficulties = MultipleChoiceQuiz.DIFFICULTIES
@@ -211,7 +192,7 @@ def create_multiple_choice_quiz(request):
 
 
 @login_required()
-def create_multiple_choice_quiz_q(request, q, d):
+def create_multiple_choice_quiz_q(request, q, d, courseID=None):
     if request.method == 'POST':
         quiz = MultipleChoiceQuiz()
         answers = []
@@ -232,7 +213,15 @@ def create_multiple_choice_quiz_q(request, q, d):
         quiz.numberOfChoices = int(q)
         quiz.correctAnswer = quiz.CHOICES[int(request.POST['correct-answer']) - 1][0]
         quiz.difficulty = quiz.DIFFICULTIES[int(d)-1][0]
-        quiz.save()
+		
+        if courseID != None:
+			courseIDTwo = courseID
+			course = Course.objects.get(courseID=courseIDTwo)
+			quiz.assignedCourse = course
+			quiz.save()
+        else:
+			quiz.assignedCourse = None
+			quiz.save()
 
         return HttpResponseRedirect('/success/')
     else:
@@ -475,14 +464,16 @@ def take_drag_and_drop(request, quiz):
 # Pass in the Lesson later along with it later.
 def create_quiz(request, courseID):
 	course = Course.objects.get(courseID__exact=courseID)
+	assignedCourse = str(course.courseID) 
 	if request.method == 'POST':
-		quiz = response.POST.get("select_quiz")
+		quiz = request.POST.get("select_quiz")
+		quiz = int(quiz)
 		if quiz == 1:
 			# Short Answer
 			return HttpResponseRedirect('/shortanswer/')
 		elif quiz == 2:
 			# Multiple Choice
-			return HttpResponseRedirect('/multiplechoice/')
+			return HttpResponseRedirect('/multiplechoice/'+ assignedCourse)
 		elif quiz == 3:
 			# Matching
 			pass
@@ -499,6 +490,26 @@ def create_quiz(request, courseID):
 		context = {"course":course}
 		return render(request, "coursemanagement/createquiz.html", context)
 
-
+	
+# Purpose of viewcourse is to show the lessons specific course.
+# Takes in a request and the courseID
+# Need to verify if the author is the current user, if not redirect
+@login_required()
+def viewcourse(request, courseID):
+    current_user = request.user
+    # Need to add lesson
+	# Add Quizzes to lesson
+	# Try deleting lessons maybe
+    course = Course.objects.get(courseID__exact=courseID)
+    if (course.author == current_user):
+		actualCourseID = course.courseID
+		lesson = Lesson.objects.filter(author = current_user).filter(assignedCourse = actualCourseID)
+		MultipleChoice = MultipleChoiceQuiz.objects.filter(author = current_user).filter(assignedCourse = actualCourseID)
+		context = {"course": course, "lessons":lesson, "quizzes":MultipleChoice}
+		return render(request, 'coursemanagement/viewcourse.html', context)
+    else:
+        # Just a temporary flag
+        # Should return a 404
+        return render(request, 'mainpage/DragDemo.html')
 
 

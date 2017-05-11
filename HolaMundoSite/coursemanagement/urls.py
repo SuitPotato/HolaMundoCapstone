@@ -46,6 +46,11 @@ urlpatterns = [
     url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)$', coursemanagement.views.create_multiple_choice_quiz_q),
     url(r'^multiplechoice/take/(?P<quiz>[\w]+)/', coursemanagement.views.take_quiz),
 	
+	# Multiple Choice in Courses
+	url(r'^multiplechoice/(?P<courseID>[\w])$', coursemanagement.views.create_multiple_choice_quiz),
+	url(r'^multiplechoice/(?P<q>[\w]+)/(?P<d>[\w]+)/(?P<courseID>[\w])$', coursemanagement.views.create_multiple_choice_quiz_q),
+
+	
 	# Matching URL's
 	
 	url(r'^matching/$', coursemanagement.views.create_matching_selection),
