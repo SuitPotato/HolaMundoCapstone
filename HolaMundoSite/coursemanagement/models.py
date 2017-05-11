@@ -64,10 +64,30 @@ class Lesson(models.Model):
 		return self.title
 
 
+class Course(models.Model):
+	courseID = models.AutoField(primary_key=True)
+	title = models.CharField(max_length=30)
+	author = models.ForeignKey(User, null=False, blank=False)
+	date = models.DateField(auto_now_add=True)
+
+
+	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
+	# Currently commented out for migrations/migrate
+	description = models.CharField(max_length = 300, null = False, blank = False)
+
+
+	difficulty = models.IntegerField()
+
+
+
+	def __str__(self):
+		return self.title
+
+
 class Quiz(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key=True)
-	LessonID = models.ForeignKey(Lesson, null=False, blank=False)
+	assignedCourse = models.ForeignKey(Course, null=False, blank=False)
 	title = models.CharField(max_length=140)
 
 	# Potentially add the content of non-draggable sentence
@@ -84,30 +104,6 @@ class Quiz(models.Model):
 	def __str__(self):
 		return self.title
 
-
-class Course(models.Model):
-	courseID = models.AutoField(primary_key=True)
-	title = models.CharField(max_length=30)
-	author = models.ForeignKey(User, null=False, blank=False)
-	date = models.DateField(auto_now_add=True)
-
-
-	# Text Field can work for the descripton, however, max length is not inforced at all which is not good.
-	# Currently commented out for migrations/migrate
-	description = models.CharField(max_length = 300, null = False, blank = False)
-
-
-	difficulty = models.IntegerField()
-
-	# quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-
-	def __str__(self):
-		return self.title
-
-	# class Series(models.Model):
-	# series_id = models.AutoField(primary_key = True)
-
-# pass
 
 
 class CourseLessonQuiz(models.Model):
@@ -127,7 +123,7 @@ class CourseLessonQuiz(models.Model):
 class MultipleChoiceQuiz(models.Model):
 	# QuizID - References the Primary Key
 	quizID = models.AutoField(primary_key=True)
-	LessonID = models.ForeignKey(Lesson, null=True, blank=True)
+	assignedCourse = models.ForeignKey(Course, null=True, blank=True)
 	title = models.CharField(max_length=140)
 	author = models.ForeignKey(User, null=False, blank=False)
 
